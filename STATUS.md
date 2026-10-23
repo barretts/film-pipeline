@@ -1,7 +1,7 @@
 # STATUS
 
-**Current task:** P0-T04
-**Project root (from `pwd -W`, forward slashes):** C:/code/local-agent-mode-sessions/outputs/film-pipeline (relocate to F:/film-pipeline in P0-T04)
+**Current task:** P1-T01
+**Project root (from `pwd -W`, forward slashes):** F:/film-pipeline (canonical; original download at C:/code/local-agent-mode-sessions/outputs/film-pipeline)
 **Model drive (HF_HOME):** F:\hf
 
 Statuses: TODO · DOING · DONE · BLOCKED · SKIPPED. Keep results ≤ 15 words; details go to `logs/tasks/<ID>.md`.
@@ -12,7 +12,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T01 | Hardware check | HUMAN | — | DONE | 16GB RTX 4060 Ti, 128GB RAM, F: NVMe 497GB free, all tools present |
 | P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; unsloth MCP via `start claude` |
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
-| P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DOING | |
+| P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | TODO | |
 | P1-T02 | Turn on MCP, connect Claude Code | HUMAN+AGENT | P1-T01 | TODO | |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
@@ -75,6 +75,8 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · unsloth 2026.8.18 registers MCP via `unsloth start claude`, not `unsloth mcp add`; P1 uses that · agent
 - 2026-10-23 · P0-T03 applied: HF_HOME=F:\hf (created F:\hf), AC sleep/hibernate→never (verified 0x0); Dev Mode pending human (§3.7) · agent
 - 2026-10-23 · P0-T03 complete: human enabled Developer Mode; checker now clean (no [FIX], no long-path/pagefile/DevMode [NOTE]) · human+agent
+- 2026-10-23 · canonical project root = F:/film-pipeline (relocated from C: original in P0-T04); all future work + commits target F: · agent
+- 2026-10-23 · this MSYS bash can't exec the .venv python.exe stub by path; run venv python/pip via PowerShell `& 'F:\film-pipeline\.venv\Scripts\python.exe'` · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -85,3 +87,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P0-T02 · DONE; git/node24/ffmpeg/claude/unsloth present; dev: py3.13 + mcp cmd rename
 2026-10-23 · P0-T03 DOING · HF_HOME + no-sleep applied, long-paths/pagefile already OK, no [FIX]; needs human: Developer Mode On (or authorize documented skip)
 2026-10-23 · P0-T03 · DONE; model cache→F:\hf, no-sleep, DevMode on; moving to P0-T04
+2026-10-23 · P0-T04 · DONE; venv+libs on 3.13, folders, git scaffold 707a614 @ F:\film-pipeline — Phase 0 COMPLETE
