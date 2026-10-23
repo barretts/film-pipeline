@@ -1,6 +1,6 @@
 # STATUS
 
-**Current task:** P1-T02 (gated on P1-T01 human steps: start Studio, owner account, and Resources settings)
+**Current task:** P1-T01 (Studio is up; human must confirm owner account and Resources settings)
 **Project root (from `pwd -W`, forward slashes):** F:/film-pipeline (canonical; original download at C:/code/local-agent-mode-sessions/outputs/film-pipeline)
 **Model drive (HF_HOME):** F:\hf
 
@@ -10,11 +10,11 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | ID | Task | Who | Needs | Status | Result |
 |---|---|---|---|---|---|
 | P0-T01 | Hardware check | HUMAN | — | DONE | 16GB RTX 4060 Ti, 128GB RAM, F: NVMe 497GB free, all tools present |
-| P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; unsloth MCP via `start claude` |
+| P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; Unsloth CLI installed |
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
-| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | BLOCKED | VRAM 995/16380 MiB; Studio down; awaiting human setup |
-| P1-T02 | Turn on MCP, connect Claude Code | HUMAN+AGENT | P1-T01 | TODO | |
+| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DOING | Studio HTTP 200; owner account and Resources settings unconfirmed |
+| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | TODO | |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
@@ -72,7 +72,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · model drive = F: (NVMe, 497 GB free ≥250; K:/G:/H: are HDDs, rejected) · agent
 - 2026-10-23 · relocate package to F:/film-pipeline (short path) during P0-T04 · agent
 - 2026-10-23 · run pipeline on Python 3.13 (`py -3`); venv pinned to 3.13 in P0-T04; no 2nd system python · agent
-- 2026-10-23 · unsloth 2026.8.18 registers MCP via `unsloth start claude`, not `unsloth mcp add`; P1 uses that · agent
+- 2026-10-23 · CLI distinction: `unsloth start claude` launches Claude against a served model; `unsloth mcp add <agent>` registers MCP. This Codex session uses `unsloth mcp add codex`, confirmed by CLI help and dry-run · agent
 - 2026-10-23 · P0-T03 applied: HF_HOME=F:\hf (created F:\hf), AC sleep/hibernate→never (verified 0x0); Dev Mode pending human (§3.7) · agent
 - 2026-10-23 · P0-T03 complete: human enabled Developer Mode; checker now clean (no [FIX], no long-path/pagefile/DevMode [NOTE]) · human+agent
 - 2026-10-23 · canonical project root = F:/film-pipeline (relocated from C: original in P0-T04); all future work + commits target F: · agent
@@ -82,6 +82,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · P1-T08: contact sheets are the visual-review path; run venv python via PowerShell; vision ?q= endpoint (127.0.0.1:8080) is down → verified labels via PIL stddev instead · agent
 - 2026-10-23 · Resume check: local model stopped; VRAM 994/16380 MiB; Studio :8888 unavailable; human setup remains · agent
 - 2026-10-23 · Follow-up check: VRAM 995/16380 MiB; Studio :8888 unavailable; awaiting human Studio setup · agent
+- 2026-10-23 · Studio now responds HTTP 200; VRAM 1191/16380 MiB; User API key absent; MCP add codex dry-run confirmed · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -96,3 +97,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T07 · DONE; render+render_preview + starter MP4 verified + RENDER_CMD; skills at ~/.claude/skills/hyperframes. P1-T01 BLOCKED(human)
 2026-10-23 · P1-T08 · DONE; contact_sheet.py (images+video frames, ≤1600px, 16-limit exit2). All non-Studio P1 tasks done → HALT at P1-T01 human gate
 2026-10-23 · P1-T01 resumed · VRAM freed; endpoint checked; waiting for human to start Studio and set Resources
+2026-10-23 · P1-T01 resumed · Studio HTTP 200; waiting for human confirmation of owner account and Resources settings
