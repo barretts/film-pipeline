@@ -13,7 +13,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; Unsloth CLI installed |
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
-| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DOING | Studio HTTP 200; owner account and Resources settings unconfirmed |
+| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DOING | Studio HTTP 200; multiple models off; conservative memory setting pending |
 | P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | TODO | |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
@@ -83,6 +83,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · Resume check: local model stopped; VRAM 994/16380 MiB; Studio :8888 unavailable; human setup remains · agent
 - 2026-10-23 · Follow-up check: VRAM 995/16380 MiB; Studio :8888 unavailable; awaiting human Studio setup · agent
 - 2026-10-23 · Studio now responds HTTP 200; VRAM 1191/16380 MiB; User API key absent; MCP add codex dry-run confirmed · agent
+- 2026-10-23 · Human confirmed “Keep multiple models loaded” is Off; conservative model-memory setting still to confirm · human
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -98,3 +99,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T08 · DONE; contact_sheet.py (images+video frames, ≤1600px, 16-limit exit2). All non-Studio P1 tasks done → HALT at P1-T01 human gate
 2026-10-23 · P1-T01 resumed · VRAM freed; endpoint checked; waiting for human to start Studio and set Resources
 2026-10-23 · P1-T01 resumed · Studio HTTP 200; waiting for human confirmation of owner account and Resources settings
+2026-10-23 · P1-T01 · human confirmed multiple-model setting Off; conservative memory setting remains pending

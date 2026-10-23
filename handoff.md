@@ -10,7 +10,7 @@
   - **Phase 0 (P0-T01..T04) complete.** RTX 4060 Ti 16 GB (driver 591.86, CUDA 13.1, PCIe Gen3 x8), 128 GB DDR4, model drive **F:** NVMe. `HF_HOME=F:\hf`, Dev Mode on, no-AC-sleep. venv on **Python 3.13**; requirements installed via PowerShell; imports OK.
   - **P1-T07 HyperFrames DONE** — v0.8.188 via `npx --yes hyperframes …`; starter render verified `render/renders/starter.mp4` (1920×1080, 24 fps, 240 f, 10.000 s). `RENDER_CMD` recorded in `TOOLS.md` (lines ~47–60). Skills at `C:\Users\barrett\.claude\skills\hyperframes*`.
   - **P1-T08 contact-sheet tool DONE** — `tools/contact_sheet.py` (231 lines): `--images/--videos`, ≤16 tiles (17 → exit 2, writes nothing), sheet ≤1600 px, JPEG q80; tested (images+video→5 tiles; over-limit→exit 2).
-- **IN PROGRESS — P1-T01.** On 2026-10-23, Studio returned **HTTP 200** at `127.0.0.1:8888`; GPU use was **1191/16,380 MiB**. The local model is stopped. Windows User-scope `UNSLOTH_API_KEY` is unset. Owner-account and Resources settings still need human confirmation; keep P1-T01 in progress until confirmed.
+- **IN PROGRESS — P1-T01.** On 2026-10-23, Studio returned **HTTP 200** at `127.0.0.1:8888`; GPU use was **1191/16,380 MiB**. The human confirmed **Keep multiple models loaded = Off**. Confirm the owner account and most-conservative model-memory setting before closing P1-T01. The Windows User-scope `UNSLOTH_API_KEY` is unset.
 - **Everything else is gated behind P1-T01.** `P1-T02 → … → P2 → P3 → P7` all need a running Studio/MCP. The CPU-only P3 tooling is *deliberately* built only after real Phase-2 assets exist — do **not** pre-build it (violates the task's declared Needs).
 
 ## Why :8888
