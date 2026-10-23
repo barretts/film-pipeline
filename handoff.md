@@ -6,11 +6,11 @@
 **ONE task at a time, forever.** No parallel subagents, no parallel/background GPU jobs, no interleaved edits. Pick one next task, finish or park it, then move on. This supersedes any workflow that suggests fan-out.
 
 ## Where we are (evidence-backed)
-- **DONE & committed** — git tip `1bf2832`, working tree clean, 4 commits (`707a614` scaffold, `f3978ab` P0 bookkeeping, `1855823` P1-T07, `1bf2832` P1-T08):
+- **DONE & committed** — latest verified tip before this handoff refresh: `75e8318`; five commits from scaffold through P1-T08 and handoff (`707a614`, `f3978ab`, `1855823`, `1bf2832`, `75e8318`).
   - **Phase 0 (P0-T01..T04) complete.** RTX 4060 Ti 16 GB (driver 591.86, CUDA 13.1, PCIe Gen3 x8), 128 GB DDR4, model drive **F:** NVMe. `HF_HOME=F:\hf`, Dev Mode on, no-AC-sleep. venv on **Python 3.13**; requirements installed via PowerShell; imports OK.
   - **P1-T07 HyperFrames DONE** — v0.8.188 via `npx --yes hyperframes …`; starter render verified `render/renders/starter.mp4` (1920×1080, 24 fps, 240 f, 10.000 s). `RENDER_CMD` recorded in `TOOLS.md` (lines ~47–60). Skills at `C:\Users\barrett\.claude\skills\hyperframes*`.
   - **P1-T08 contact-sheet tool DONE** — `tools/contact_sheet.py` (231 lines): `--images/--videos`, ≤16 tiles (17 → exit 2, writes nothing), sheet ≤1600 px, JPEG q80; tested (images+video→5 tiles; over-limit→exit 2).
-- **BLOCKED — P1-T01 (human gate).** Unsloth **Studio is not running**. Last probe: `curl :8888` → **000 / exit 7** (connection refused — expected, Studio not started); **0** listeners on 8888; **0** `unsloth*` processes; **VRAM ~15.7/16.4 GB (~96 %)** held by GUI/game apps; **`UNSLOTH_API_KEY` unset**.
+- **WAITING ON HUMAN — P1-T01.** On 2026-10-23, `nvidia-smi` showed **994/16,380 MiB used (~6%)** after the local model was shut down. Studio still refuses connections at `127.0.0.1:8888`; `unsloth` is installed at **2026.8.18**; `UNSLOTH_API_KEY` is unset. VRAM pressure is cleared; remaining P1-T01 steps (start Studio, owner account, conservative Resources settings) are human UI steps.
 - **Everything else is gated behind P1-T01.** `P1-T02 → … → P2 → P3 → P7` all need a running Studio/MCP. The CPU-only P3 tooling is *deliberately* built only after real Phase-2 assets exist — do **not** pre-build it (violates the task's declared Needs).
 
 ## Why :8888
@@ -30,14 +30,13 @@
 ## NEXT STEPS
 
 ### A) HUMAN runs these (to clear P1-T01 → P1-T02)
-1. **Free VRAM.** See holders: `nvidia-smi`. Biggest GPU consumers seen: `E:\strata\Strata\engine\strata.exe` (~PID 10244), Epic (`EpicGamesLauncher`/`EpicWebHelper`/`EOSOverlayRenderer`), Edge (`msedge.exe` + `msedgewebview2.exe`), the **Claude desktop app** (`claude.exe`, the Windows Store app — NOT the terminal), and VS Code `Code.exe` (optional). **Fastest clean reclaim = reboot.** Do **NOT** close `WindowsTerminal` (this agent's host), `explorer`, or the StartMenu/Search/Settings/DWM system UI. Verify: `nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader` should drop toward low values.
-2. **Start Studio:** `unsloth studio` → browser opens `http://127.0.0.1:8888` → **create the owner account** (your credential). **Settings → Resources**: Model memory = most conservative; **"Keep multiple models loaded" = Off** (16 GB card).
-3. **Confirm it's up** (paste output to the agent, or just reply "Studio ready"):
+1. **Start Studio:** `unsloth studio` → browser opens `http://127.0.0.1:8888` → **create the owner account** (your credential). **Settings → Resources**: Model memory = most conservative; **"Keep multiple models loaded" = Off** (16 GB card). Current VRAM use is low; no further app-closing step is indicated.
+2. **Confirm it's up** (paste output to the agent, or just reply "Studio ready"):
    ```
    curl -s -o NUL -w "%{http_code}\n" http://127.0.0.1:8888/
    ```
    Expect `200`/`30x`.
-4. **Mint the API key:** Studio → Settings → API → create a key with **MCP access ON**, then set the user env var (paste your real key; never share it with the agent):
+3. **Mint the API key:** Studio → Settings → API → create a key with **MCP access ON**, then set the user env var (paste your real key; never share it with the agent):
    ```
    setx UNSLOTH_API_KEY "PASTE_KEY_HERE"
    ```

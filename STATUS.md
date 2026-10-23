@@ -13,7 +13,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; unsloth MCP via `start claude` |
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
-| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | BLOCKED | Studio down; VRAM held by Strata/Epic/Edge/Claude GUIs; awaiting human |
+| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | BLOCKED | VRAM 994/16380 MiB; Studio down; awaiting human setup |
 | P1-T02 | Turn on MCP, connect Claude Code | HUMAN+AGENT | P1-T01 | TODO | |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
@@ -80,6 +80,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · P1-T01: agent ran curl(:8888)=000 + Get-NetTCPConnection=none + nvidia-smi(compute apps). Root blocker = VRAM (15348/16380 MiB) held by GUI/Electron/game procs (strata.exe, Epic+overlay, msedge+webview2, Claude, VS Code, DWM), not a model. Studio NOT running. Do NOT start under VRAM pressure (no room to load models). Human: free VRAM, then `unsloth studio`, owner account, conservative Resources. Skipping `winget upgrade` (unsloth present; §3.7). Park P1-T01, advance agent tasks P1-T07/P1-T08 (needs=P0-T04). · agent
 - 2026-10-23 · P1-T07: HyperFrames render default is 30fps; film pins 24fps (CONTEXT §5); canonical RENDER_CMD uses --quality delivery + frames-cache on F: (TOOLS.md) · agent
 - 2026-10-23 · P1-T08: contact sheets are the visual-review path; run venv python via PowerShell; vision ?q= endpoint (127.0.0.1:8080) is down → verified labels via PIL stddev instead · agent
+- 2026-10-23 · Resume check: local model stopped; VRAM 994/16380 MiB; Studio :8888 unavailable; human setup remains · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -93,3 +94,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P0-T04 · DONE; venv+libs on 3.13, folders, git scaffold 707a614 @ F:\film-pipeline — Phase 0 COMPLETE
 2026-10-23 · P1-T07 · DONE; render+render_preview + starter MP4 verified + RENDER_CMD; skills at ~/.claude/skills/hyperframes. P1-T01 BLOCKED(human)
 2026-10-23 · P1-T08 · DONE; contact_sheet.py (images+video frames, ≤1600px, 16-limit exit2). All non-Studio P1 tasks done → HALT at P1-T01 human gate
+2026-10-23 · P1-T01 resumed · VRAM freed; endpoint checked; waiting for human to start Studio and set Resources
