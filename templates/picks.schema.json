@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "edit/picks.json: the approved file for every shot, line, cue and the score",
+  "type": "object",
+  "required": ["shots", "vo", "dialogue", "music", "sfx"],
+  "additionalProperties": false,
+  "definitions": {
+    "pick": {
+      "type": "object",
+      "required": ["file", "duration_s", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "file": { "type": "string", "description": "project-relative path of the picked file" },
+        "duration_s": { "type": "number", "minimum": 0 },
+        "source": { "type": "string", "description": "manifest#item, e.g. jobs/motion.json#s07_vid_t1, or 'ffmpeg' for still shots" },
+        "mcp_seq": { "type": "array", "items": { "type": "integer" } },
+        "qa": { "type": ["string", "null"], "description": "path to the qa_take.py JSON (voice-over and dialogue picks)" },
+        "type": { "type": "string", "enum": ["motion", "hero", "talking", "still"], "description": "shots only" },
+        "fps": { "type": "number", "description": "shots only" },
+        "width": { "type": "integer" },
+        "height": { "type": "integer" },
+        "notes": { "type": "string" }
+      }
+    }
+  },
+  "properties": {
+    "shots": { "type": "object", "patternProperties": { "^s[0-9]{2}$": { "$ref": "#/definitions/pick" } }, "additionalProperties": false },
+    "vo": { "type": "object", "patternProperties": { "^v[0-9]{2}$": { "$ref": "#/definitions/pick" } }, "additionalProperties": false },
+    "dialogue": { "type": "object", "patternProperties": { "^s[0-9]{2}$": { "$ref": "#/definitions/pick" } }, "additionalProperties": false },
+    "music": { "oneOf": [ { "type": "null" }, { "$ref": "#/definitions/pick" } ] },
+    "sfx": { "type": "object", "patternProperties": { "^x[0-9]{2}$": { "$ref": "#/definitions/pick" } }, "additionalProperties": false }
+  }
+}

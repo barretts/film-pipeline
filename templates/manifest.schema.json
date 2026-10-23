@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "jobs/<name>.json: resumable batch of generation items for ONE model",
+  "type": "object",
+  "required": ["name", "model", "tool", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string" },
+    "model": { "type": "string", "description": "exact model id + variant from MODELS.md" },
+    "tool": { "type": "string", "description": "MCP tool used for every item, e.g. generate_video" },
+    "defaults": { "type": "object", "description": "params shared by all items" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "params", "attempts"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "<id>_<kind>_<take>, e.g. s07_vid_t1" },
+          "shot": { "type": ["string", "null"] },
+          "status": { "type": "string", "enum": ["todo", "queued", "running", "done", "failed", "rejected", "picked"] },
+          "params": { "type": "object" },
+          "attempts": { "type": "integer", "minimum": 0 },
+          "job_id": { "type": ["string", "null"] },
+          "mcp_seq": { "type": "array", "items": { "type": "integer" }, "description": "seq numbers in logs/mcp_calls.jsonl" },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "qa": { "type": ["object", "null"] },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

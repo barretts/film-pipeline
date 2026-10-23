@@ -1,0 +1,6 @@
+# project venv (.venv) — install with: .venv/Scripts/python -m pip install -r tools/requirements.txt
+numpy>=1.26
+soundfile>=0.12
+librosa>=0.10
+pillow>=10.0
+jsonschema>=4.0

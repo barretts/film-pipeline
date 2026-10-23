@@ -1,0 +1,32 @@
+{
+  "env": {
+    "MCP_TOOL_TIMEOUT": "3600000",
+    "CLAUDE_CODE_MCP_TOOL_IDLE_TIMEOUT": "1800000"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__unsloth.*",
+        "hooks": [
+          { "type": "command", "command": "py", "args": ["-3", "${CLAUDE_PROJECT_DIR}/tools/log_mcp.py", "pre"], "timeout": 15 }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__unsloth.*",
+        "hooks": [
+          { "type": "command", "command": "py", "args": ["-3", "${CLAUDE_PROJECT_DIR}/tools/log_mcp.py", "post"], "timeout": 15 }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "mcp__unsloth.*",
+        "hooks": [
+          { "type": "command", "command": "py", "args": ["-3", "${CLAUDE_PROJECT_DIR}/tools/log_mcp.py", "fail"], "timeout": 15 }
+        ]
+      }
+    ]
+  }
+}

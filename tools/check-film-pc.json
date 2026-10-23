@@ -1,0 +1,182 @@
+﻿{
+    "checked_at":  "2026-10-23T12:57:19",
+    "os":  {
+               "name":  "Microsoft Windows 11 Pro",
+               "version":  "10.0.26200",
+               "build":  "26200"
+           },
+    "cpu":  {
+                "name":  "AMD Ryzen Threadripper 1950X 16-Core Processor",
+                "cores":  16,
+                "threads":  32
+            },
+    "ram":  {
+                "total_gb":  127.9,
+                "modules":  8,
+                "speed_mts":  2933
+            },
+    "gpu":  {
+                "nvidia":  [
+                               {
+                                   "name":  "NVIDIA GeForce RTX 4060 Ti",
+                                   "vram_gb":  16,
+                                   "used_gb":  15.3,
+                                   "driver":  "591.86",
+                                   "pcie_gen_max":  "3",
+                                   "pcie_gen_now":  "3",
+                                   "pcie_width_max":  "8",
+                                   "pcie_width_now":  "8"
+                               }
+                           ],
+                "adapters":  [
+                                 {
+                                     "name":  "NVIDIA GeForce RTX 4060 Ti",
+                                     "vram_gb":  16,
+                                     "driver":  "32.0.15.9186"
+                                 },
+                                 {
+                                     "name":  "Microsoft Remote Display Adapter",
+                                     "vram_gb":  null,
+                                     "driver":  "10.0.26100.9278"
+                                 },
+                                 {
+                                     "name":  "Microsoft Remote Display Adapter",
+                                     "vram_gb":  null,
+                                     "driver":  "10.0.26100.9711"
+                                 },
+                                 {
+                                     "name":  "Microsoft Remote Display Adapter",
+                                     "vram_gb":  null,
+                                     "driver":  "10.0.26100.7705"
+                                 }
+                             ],
+                "cuda":  "13.1"
+            },
+    "disks":  [
+                  {
+                      "drive":  "C",
+                      "free_gb":  164,
+                      "size_gb":  931,
+                      "media":  "SSD",
+                      "bus":  "NVMe"
+                  },
+                  {
+                      "drive":  "D",
+                      "free_gb":  149,
+                      "size_gb":  466,
+                      "media":  "SSD",
+                      "bus":  "SATA"
+                  },
+                  {
+                      "drive":  "E",
+                      "free_gb":  338,
+                      "size_gb":  1863,
+                      "media":  "SSD",
+                      "bus":  "NVMe"
+                  },
+                  {
+                      "drive":  "F",
+                      "free_gb":  497,
+                      "size_gb":  1908,
+                      "media":  "SSD",
+                      "bus":  "NVMe"
+                  },
+                  {
+                      "drive":  "G",
+                      "free_gb":  932,
+                      "size_gb":  9314,
+                      "media":  "HDD",
+                      "bus":  "SATA"
+                  },
+                  {
+                      "drive":  "H",
+                      "free_gb":  855,
+                      "size_gb":  7445,
+                      "media":  "HDD",
+                      "bus":  "SATA"
+                  },
+                  {
+                      "drive":  "I",
+                      "free_gb":  238,
+                      "size_gb":  238,
+                      "media":  "Unspecified",
+                      "bus":  "USB"
+                  },
+                  {
+                      "drive":  "K",
+                      "free_gb":  1827,
+                      "size_gb":  7445,
+                      "media":  "HDD",
+                      "bus":  "SATA"
+                  }
+              ],
+    "settings":  {
+                     "long_paths":  1,
+                     "developer_mode":  1,
+                     "pagefile_auto":  true,
+                     "pagefile_mb":  8192,
+                     "hf_home":  "F:\\hf"
+                 },
+    "tools":  {
+                  "winget":  {
+                                 "found":  true,
+                                 "path":  "C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe",
+                                 "version":  "v1.29.380"
+                             },
+                  "git":  {
+                              "found":  true,
+                              "path":  "C:\\Program Files\\Git\\cmd\\git.exe",
+                              "version":  "git version 2.53.0.windows.1"
+                          },
+                  "node":  {
+                               "found":  true,
+                               "path":  "C:\\nvm4w\\nodejs\\node.exe",
+                               "version":  "v24.13.1"
+                           },
+                  "npx":  {
+                              "found":  true,
+                              "path":  "C:\\nvm4w\\nodejs\\npx.ps1",
+                              "version":  null
+                          },
+                  "ffmpeg":  {
+                                 "found":  true,
+                                 "path":  "C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.exe",
+                                 "version":  "ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers"
+                             },
+                  "py":  {
+                             "found":  true,
+                             "path":  "C:\\Users\\barrett\\AppData\\Local\\Programs\\Python\\Launcher\\py.exe",
+                             "version":  "Python 3.13.15"
+                         },
+                  "python":  {
+                                 "found":  true,
+                                 "path":  "C:\\Users\\barrett\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                                 "version":  "Python 3.13.15"
+                             },
+                  "claude":  {
+                                 "found":  true,
+                                 "path":  "C:\\Users\\barrett\\.local\\bin\\claude.exe",
+                                 "version":  "2.1.284 (Claude Code)"
+                             },
+                  "unsloth":  {
+                                  "found":  true,
+                                  "path":  "C:\\Users\\barrett\\.unsloth\\studio\\bin\\unsloth.exe",
+                                  "version":  null
+                              }
+              },
+    "verdict":  {
+                    "ok":  [
+                               "GPU NVIDIA GeForce RTX 4060 Ti (16 GB): 16 GB tier. Matches this package (writer UD-Q4_K_XL with RAM offload, Wan2.2-5B, 14B video with offload).",
+                               "RAM 127.9 GB: enough to offload Wan2.2-A14B / LTX-2.5 hero and talking shots.",
+                               "Drive F: has 497 GB free (need about 250 GB)."
+                           ],
+                    "fix":  [
+
+                            ],
+                    "note":  [
+                                 "GPU link is PCIe Gen 3 x8. Offloading to system RAM runs at about half the speed of a Gen 4 slot, so prefer settings that fit in VRAM.",
+                                 "15.3 GB of VRAM is already in use. Close browsers, games and overlays before long runs.",
+                                 "NVIDIA driver 591.86: update to the latest Game Ready or Studio driver before installing models."
+                             ]
+                }
+}

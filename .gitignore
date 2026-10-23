@@ -1,0 +1,33 @@
+# copy to .gitignore in the project root (P0-T04)
+# media and heavy outputs stay on disk, out of git
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.wav
+*.flac
+*.mp3
+*.ogg
+*.m4a
+*.gguf
+*.safetensors
+# runtime state
+.venv/
+venvs/
+logs/vram*.csv
+logs/mcp_raw/
+logs/.pending/
+logs/.lock
+logs/.seq
+tests/fixtures/
+render/node_modules/
+render/renders/
+__pycache__/
+# never commit secrets
+.env
+*.key

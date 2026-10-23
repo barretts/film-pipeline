@@ -1,0 +1,31 @@
+<!--
+  Minimal HyperFrames composition, following the attribute pattern in the HyperFrames README:
+  data-composition-id / data-start / data-duration / data-track-index on timed elements.
+  Before writing the real builder (P3-T05), check the exact conventions in the
+  skills and docs that `npx hyperframes init` installs. They win over this file.
+  Audio is left out on purpose: the film is rendered silent and the final mix is muxed by tools/mux_final.py.
+-->
+<div id="stage" data-composition-id="film" data-start="0" data-width="1920" data-height="1080">
+
+  <!-- track 0: picture -->
+  <video class="clip" data-start="0" data-duration="5" data-track-index="0"
+         src="assets/s01_vid.mp4" muted playsinline></video>
+
+  <!-- track 1: title card (text must come from edit/facts.json) -->
+  <h1 id="t-f01" class="clip title" data-start="1.5" data-duration="3" data-track-index="1">generate_video</h1>
+
+  <!-- track 2: captions -->
+  <p class="clip caption" data-start="0.6" data-duration="2.2" data-track-index="2">Every feature arrives one at a time.</p>
+
+  <!-- track 3: grain/vignette overlay for the whole film -->
+  <div class="clip grain" data-start="0" data-duration="5" data-track-index="3"></div>
+</div>
+
+<style>
+  #stage { background: #000; overflow: hidden; }
+  .clip { position: absolute; inset: 0; }
+  video.clip { width: 100%; height: 100%; object-fit: cover; }
+  .title { inset: auto 0 44% 0; text-align: center; color: #efe9dc; font: 400 64px/1.1 Georgia, serif; letter-spacing: 0.3em; }
+  .caption { inset: auto 10% 7% 10%; text-align: center; color: #f4f1ea; font: 400 38px/1.3 Georgia, serif; text-shadow: 0 2px 6px #000; }
+  .grain { pointer-events: none; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.55) 100%); }
+</style>

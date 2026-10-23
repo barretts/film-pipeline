@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "edit/edl.json: edit decision list (timeline in film seconds)",
+  "type": "object",
+  "required": ["fps", "width", "height", "duration_s", "video", "overlays", "captions", "audio"],
+  "additionalProperties": false,
+  "definitions": {
+    "clip": {
+      "type": "object",
+      "required": ["file", "start"],
+      "additionalProperties": false,
+      "properties": {
+        "file": { "type": "string" },
+        "start": { "type": "number", "minimum": 0 },
+        "end": { "type": "number", "minimum": 0 },
+        "in": { "type": "number", "minimum": 0, "description": "trim from the start of the source file" },
+        "gain_db": { "type": "number", "minimum": -60, "maximum": 12 },
+        "fade_in": { "type": "number", "minimum": 0 },
+        "fade_out": { "type": "number", "minimum": 0 },
+        "loop": { "type": "boolean" },
+        "duck": { "type": "boolean", "description": "music only: duck under voice + dialogue" }
+      }
+    }
+  },
+  "properties": {
+    "fps": { "type": "integer", "enum": [24] },
+    "width": { "type": "integer", "enum": [1920] },
+    "height": { "type": "integer", "enum": [1080] },
+    "duration_s": { "type": "number", "minimum": 5, "maximum": 180 },
+    "video": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["shot", "file", "start", "duration"],
+        "additionalProperties": false,
+        "properties": {
+          "shot": { "type": "string", "pattern": "^s[0-9]{2}$" },
+          "file": { "type": "string" },
+          "start": { "type": "number", "minimum": 0 },
+          "duration": { "type": "number", "minimum": 0.5 },
+          "in": { "type": "number", "minimum": 0 },
+          "playback_rate": { "type": "number", "minimum": 0.5, "maximum": 1.5 },
+          "transition_in": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": { "type": "string", "enum": ["cut", "fade_from_black", "dissolve"] },
+              "duration": { "type": "number", "minimum": 0, "maximum": 2 }
+            }
+          }
+        }
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "start", "duration"],
+        "additionalProperties": false,
+        "properties": {
+          "kind": { "type": "string", "enum": ["title", "subtitle", "label", "chalk_curve", "black"] },
+          "fact_ref": { "type": "string", "description": "key path into edit/facts.json; required for title/subtitle/label" },
+          "data_file": { "type": "string", "description": "chalk_curve only: train/loss.csv" },
+          "start": { "type": "number", "minimum": 0 },
+          "duration": { "type": "number", "minimum": 0.2 },
+          "position": { "type": "string", "enum": ["center", "lower_third", "upper_left", "board"] }
+        }
+      }
+    },
+    "captions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "start"],
+        "additionalProperties": false,
+        "properties": {
+          "file": { "type": "string", "description": "captions/<id>.json with clip-local word timings" },
+          "start": { "type": "number", "minimum": 0 },
+          "in": { "type": "number", "minimum": 0, "description": "same in-point as the audio clip; word shown at start + (t - in)" }
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "required": ["voice", "dialogue", "music", "sfx", "drone"],
+      "additionalProperties": false,
+      "properties": {
+        "voice": { "type": "array", "items": { "$ref": "#/definitions/clip" } },
+        "dialogue": { "type": "array", "items": { "$ref": "#/definitions/clip" } },
+        "music": { "type": "array", "items": { "$ref": "#/definitions/clip" } },
+        "sfx": { "type": "array", "items": { "$ref": "#/definitions/clip" } },
+        "drone": { "type": "array", "items": { "$ref": "#/definitions/clip" } }
+      }
+    }
+  }
+}
