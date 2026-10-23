@@ -27,6 +27,10 @@ logs/.seq
 tests/fixtures/
 render/node_modules/
 render/renders/
+render/.hf-cache/
+.hf-cache/
+render/.debug/
+hyperframes-extract-cache-*/
 __pycache__/
 # never commit secrets
 .env

@@ -43,3 +43,18 @@ Rows were pre-filled from the Unsloth release notes. Confirm each one, fix param
 ## Call recipes that worked (one line each; add during P2)
 
 <!-- e.g. motion clip: load_model(...) → generate_video(...) → get_job(id, wait=…) → curl link → unload_model -->
+
+## HyperFrames notes (P1-T07; CLI v0.8.188; skill at C:\Users\barrett\.claude\skills\hyperframes)
+- **Entry file:** `index.html` (root composition — declares variables, mounts scenes from `compositions/`; media/fonts in `assets/`). Projects: `render/` (film) + `render_preview/` (previews).
+- **Timed element:** `class="clip"` + `data-start` + `data-duration` (seconds), visible over `[start, start+duration)`. `data-track-index` is a Studio lane only; **paint order = `z-index`**.
+- **Canvas:** html/body size + `<meta viewport width=1920 height=1080>` + root `data-width`/`data-height` = 1920×1080.
+- **Seekable:** build ONE paused GSAP timeline per composition and register it AFTER its tweens — `window.__timelines["<data-composition-id>"] = tl; tl.seek(0);` — HyperFrames seeks it frame-by-frame, so renders are identical.
+- **Determinism:** no `Date.now()`, unseeded `Math.random()`, network, timers, `repeat:-1`. Never tween `display`/`visibility`/`autoAlpha` on a `.clip`; don't mix CSS `transform` with GSAP transforms on the same element.
+- **Media:** a `<video>` keeps sound only with `data-has-audio="true"`, else `muted`; music/voice = separate `<audio id=…>`; no `crossorigin`; time a video OR its wrapper, not both. (Film renders **silent**; final mix muxed by `tools/mux_final.py`.)
+- **Footage grades/grain/vignette/blur** go through `hyperframes media-treatment`, not CSS filters. Fonts: bundled by name or `@font-face` to `assets/fonts/`. Asset paths root-relative.
+- Validate with `npx hyperframes check --json` (fix errors) before render. Skill default is **30 fps**; this film overrides to **24 fps** (CONTEXT §5).
+- **Template diff** (`templates/composition_example.html`): static — no `window.__timelines`. Real builder (P3-T05) MUST add the paused timeline; skill wins.
+
+**Canonical render command** (run from `render/`; H.264, 1920×1080, 24 fps, high quality; frame cache kept on F: to avoid C: temp exhaustion):
+`RENDER_CMD: cd render && npx hyperframes render . --resolution landscape --fps 24 --quality delivery --format mp4 -o "renders/<name>.mp4" --frames-cache-dir "F:/film-pipeline/.hf-cache"`
+(tip: GPU is VRAM-contended per P1-T01 — on capture/GPU errors add `--no-browser-gpu`; on a heavy composition timing out add `--browser-timeout 120`.)

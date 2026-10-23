@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "historyId": "a4bb39b3-07a9-4fcb-a27d-85a142a5f557",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\1b\\1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "CLAUDE.md": {
+      "hash": "1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\1b\\1b36171117cb7c18f4100a0db6a3782ff2e096115995733200445cc2e80a4060"
+    },
+    "hyperframes.json": {
+      "hash": "53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\53\\53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50"
+    },
+    "index.html": {
+      "hash": "f647f277b2a0acb4998a7f79a757efbc20f620e4fc95407bd99ee36732764a62",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\f6\\f647f277b2a0acb4998a7f79a757efbc20f620e4fc95407bd99ee36732764a62"
+    },
+    "meta.json": {
+      "hash": "b02969815655cad1be06cec2533766eddc1742578bfce520b5ed0cedcc526833",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\b0\\b02969815655cad1be06cec2533766eddc1742578bfce520b5ed0cedcc526833"
+    },
+    "package-lock.json": {
+      "hash": "c17a8425066c12ea5d50c409fa924f92db1d182c00e7742c19bc2aad8067a37c",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\c1\\c17a8425066c12ea5d50c409fa924f92db1d182c00e7742c19bc2aad8067a37c"
+    },
+    "package.json": {
+      "hash": "735651c021f86f8efc7c540fe58018c37dc92e495470d14eada00301f60fba3f",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a4bb39b3-07a9-4fcb-a27d-85a142a5f557\\blobs\\73\\735651c021f86f8efc7c540fe58018c37dc92e495470d14eada00301f60fba3f"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "5e2db737-4eca-4632-8dfe-a157384cb16c",
+      "completedAt": 1792781200312,
+      "output": "F:\\film-pipeline\\render\\renders\\starter.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}
