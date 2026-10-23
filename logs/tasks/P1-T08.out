@@ -1,0 +1,7 @@
+logs\sheets\test.jpg
+tiles=5 size=1576x880 52KB
+TEST_RC=0
+DIM=1576,880
+error: 17 tiles > 16 limit; split the set into multiple sheets
+OVER_RC=2
+OVER_EXISTS=ok(absent)
