@@ -9,7 +9,7 @@
 ## Steps
 1. **AGENT:** once P1-T01 is confirmed DONE, start `logs/tasks/P1-T02.md` and give the human these steps.
 2. **[HUMAN]** In Studio → Settings → API, create a key and enable **MCP access**.
-3. **[HUMAN · PowerShell]** Store the key without placing it in shell history. Paste at the hidden prompt:
+3. **[HUMAN · your Windows PowerShell]** Outside the agent sandbox, store the key without placing it in shell history. Paste at the hidden prompt:
    ```powershell
    $s = Read-Host 'Paste Unsloth API key' -AsSecureString
    $b = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($s)
@@ -25,6 +25,7 @@
 4. **[HUMAN · new PowerShell window]** Run:
    ```powershell
    unsloth mcp add codex
+   $env:UNSLOTH_STUDIO_URL = 'http://127.0.0.1:8888'
    unsloth doctor --mcp
    ```
    The MCP entry refers to `${UNSLOTH_API_KEY}`; the key itself must stay out of `config.toml`. `doctor` should report the API key accepted, MCP enabled, and verdict OK.

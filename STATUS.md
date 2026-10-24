@@ -14,7 +14,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
-| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | DOING | Waiting for API key, MCP registration, and Codex restart |
+| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | BLOCKED | Studio healthy; waiting for host Codex to load the configured MCP server |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
