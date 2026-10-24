@@ -14,7 +14,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
-| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | TODO | |
+| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | DOING | Waiting for API key, MCP registration, and Codex restart |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
@@ -105,3 +105,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T01 · human confirmed multiple-model setting Off; conservative memory setting remains pending
 2026-10-23 · P1-T01 · screenshot shows residency/oversized/multiple-model controls Off; set image/video idle auto-unload from 0 to 60 seconds
 2026-10-23 · P1-T01 DONE · Studio HTTP 200, Settings confirmed, idle auto-unload 60 seconds; moving to P1-T02
+2026-10-23 · P1-T02 DOING · log started; waiting for human API-key setup and Codex MCP restart
