@@ -3,7 +3,7 @@
 Keep this file under ~2,500 tokens: one line per tool, key parameters only. Never paste full schemas.
 
 **Server name in Codex:** _pending P1-T02_ (tools appear as `mcp__<server>__<tool>`)
-**Studio URL:** http://127.0.0.1:8888 (HTTP 200 verified 2026-10-23) · **Studio version:** _human to confirm in Settings/About_ · **`unsloth doctor --mcp` verdict:** _pending P1-T02_
+**Studio URL:** http://127.0.0.1:8888 (HTTP 200 verified 2026-10-23) · **Studio server version:** 2026.10.8 (`/openapi.json`) · **`unsloth doctor --mcp` verdict:** _pending P1-T02_
 
 ## Tools
 

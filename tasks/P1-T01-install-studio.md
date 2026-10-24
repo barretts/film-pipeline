@@ -15,8 +15,9 @@
 3. **[HUMAN]** Create the owner account and password when asked.
 4. **[HUMAN]** Open `http://127.0.0.1:8888`. If Studio uses a different URL or port, run `setx UNSLOTH_STUDIO_URL http://127.0.0.1:PORT` and tell the agent the URL.
 5. **[HUMAN]** Settings › Resources:
-   - **Model memory:** choose the most conservative option. Never pick "Always" for keeping image, video or speech models loaded next to the chat model.
+   - **Model memory:** choose **When they fit**; do not choose **Always** for keeping image, video or speech models loaded next to the chat model.
    - **Keep multiple models loaded:** Off.
+   - If **Model memory** is not present, report the labels shown on the Resources page and stop here; do not assume another control is equivalent.
 6. **AGENT** checks that Studio answers. It should print `200` or a 30x code:
    ```bash
    curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8888/
