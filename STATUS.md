@@ -15,7 +15,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
 | P1-T02 | Turn on MCP, connect OMP | HUMAN+AGENT | P1-T01 | DONE | 23 tools; studio_status OK; doctor OK; server unsloth-studio v2026.10.8 |
-| P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
+| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | BLOCKED | offline redactor verified (UTF-8+redact); awaiting ✋ review + OMP restart |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
 | P1-T06 | Map models to catalog → MODELS.md | AGENT | P1-T05 | TODO | |
@@ -89,6 +89,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · Human confirmed idle auto-unload set to 60 seconds and saved; P1-T01 done · human
 - 2026-10-24 · client changed Codex→oh-my-pi (OMP) by owner request; MCP registered in `C:\Users\barrett\.omp\agent\mcp.json` (server unsloth-studio, command-based Bearer from User-scope UNSLOTH_API_KEY) · human+agent
 - 2026-10-24 · P1-T02 DONE: 23 tools + studio_status executed + `unsloth doctor --mcp` Verdict OK on host (User key len 43); Studio idle but physical GPU 15.2/16 GB used externally → free GPU before P2 loads · agent
+- 2026-10-24 · P1-T03 adapted to OMP: TS hook `.omp/hooks/post/unsloth-log.ts` (pi.on tool_call/tool_result) → log_mcp.py; OMP has no shell hooks so `.claude/settings.json` path is inert; log_mcp.py unchanged · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -109,3 +110,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T01 DONE · Studio HTTP 200, Settings confirmed, idle auto-unload 60 seconds; moving to P1-T02
 2026-10-23 · P1-T02 DOING · log started; waiting for human API-key setup and Codex MCP restart
 2026-10-24 · P1-T02 · DONE; OMP MCP connected (studio_status OK, doctor OK); client Codex→OMP; next P1-T03 logging hook (needs OMP-compat + human review)
+2026-10-24 · P1-T03 DOING→BLOCKED · offline redactor verified (UTF-8+redact+duration); authored OMP hook; awaiting human ✋ review + OMP restart + live test
