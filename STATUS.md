@@ -13,7 +13,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; Unsloth CLI installed |
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
-| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DOING | Multiple models off; server 2026.10.8; Model memory control still unclear |
+| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DOING | Residency and oversized loads appear off; idle auto-unload is 0; set to 60s |
 | P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | TODO | |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
@@ -84,8 +84,8 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · Follow-up check: VRAM 995/16380 MiB; Studio :8888 unavailable; awaiting human Studio setup · agent
 - 2026-10-23 · Studio now responds HTTP 200; VRAM 1191/16380 MiB; User API key absent; MCP add codex dry-run confirmed · agent
 - 2026-10-23 · Human confirmed “Keep multiple models loaded” is Off; conservative model-memory setting still to confirm · human
-- 2026-10-23 · Human reports Model memory control not visible; current server version verified; request visible Resources labels before resolving gate · human+agent
-- 2026-10-23 · Local `/openapi.json` reports Studio server version 2026.10.8; release notes label the control “Model memory” with choices “When they fit” and “Always” · agent
+- 2026-10-23 · Local `/openapi.json` reports server version 2026.10.8; user screenshot shows discrete residency toggles and an idle-unload timer, not a mode selector · agent
+- 2026-10-23 · Screenshot shows GPU-residency and oversized-load toggles off, multiple models Off; idle auto-unload is 0 (keeps models loaded) · human
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -102,5 +102,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T01 resumed · VRAM freed; endpoint checked; waiting for human to start Studio and set Resources
 2026-10-23 · P1-T01 resumed · Studio HTTP 200; waiting for human confirmation of owner account and Resources settings
 2026-10-23 · P1-T01 · human confirmed multiple-model setting Off; conservative memory setting remains pending
-2026-10-23 · P1-T01 · human cannot see Model memory control; request Studio version; do not infer a substitute
-2026-10-23 · P1-T01 · `/openapi.json` version 2026.10.8; clarified exact Model memory labels; need human report of Resources controls if absent
+2026-10-23 · P1-T01 · screenshot shows residency/oversized/multiple-model controls Off; set image/video idle auto-unload from 0 to 60 seconds

@@ -15,9 +15,11 @@
 3. **[HUMAN]** Create the owner account and password when asked.
 4. **[HUMAN]** Open `http://127.0.0.1:8888`. If Studio uses a different URL or port, run `setx UNSLOTH_STUDIO_URL http://127.0.0.1:PORT` and tell the agent the URL.
 5. **[HUMAN]** Settings › Resources:
-   - **Model memory:** choose **When they fit**; do not choose **Always** for keeping image, video or speech models loaded next to the chat model.
+   - **Keep model in GPU memory:** Off.
    - **Keep multiple models loaded:** Off.
-   - If **Model memory** is not present, report the labels shown on the Resources page and stop here; do not assume another control is equivalent.
+   - **Allow oversized model loads:** Off.
+   - **Idle auto-unload for image and video:** set to **60 seconds** (minimum), then Save. The UI says `0` keeps them loaded.
+   - Leave **Don't reserve system RAM for the model** unchanged; this task only configures GPU model residency and unsafe oversized loads.
 6. **AGENT** checks that Studio answers. It should print `200` or a 30x code:
    ```bash
    curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:8888/

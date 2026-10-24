@@ -10,7 +10,7 @@
   - **Phase 0 (P0-T01..T04) complete.** RTX 4060 Ti 16 GB (driver 591.86, CUDA 13.1, PCIe Gen3 x8), 128 GB DDR4, model drive **F:** NVMe. `HF_HOME=F:\hf`, Dev Mode on, no-AC-sleep. venv on **Python 3.13**; requirements installed via PowerShell; imports OK.
   - **P1-T07 HyperFrames DONE** — v0.8.188 via `npx --yes hyperframes …`; starter render verified `render/renders/starter.mp4` (1920×1080, 24 fps, 240 f, 10.000 s). `RENDER_CMD` recorded in `TOOLS.md` (lines ~47–60). Skills at `C:\Users\barrett\.claude\skills\hyperframes*`.
   - **P1-T08 contact-sheet tool DONE** — `tools/contact_sheet.py` (231 lines): `--images/--videos`, ≤16 tiles (17 → exit 2, writes nothing), sheet ≤1600 px, JPEG q80; tested (images+video→5 tiles; over-limit→exit 2).
-- **IN PROGRESS — P1-T01.** On 2026-10-23, Studio returned **HTTP 200** at `127.0.0.1:8888`; `/openapi.json` reports server version **2026.10.8**; GPU use was **1191/16,380 MiB**. The human confirmed **Keep multiple models loaded = Off**, but reports the **Model memory** control is not visible. Current Unsloth release notes place it at Settings → Resources and name its choices **When they fit** and **Always**. Ask which labels the human sees if the control is absent. The Windows User-scope `UNSLOTH_API_KEY` is unset.
+- **IN PROGRESS — P1-T01.** On 2026-10-23, Studio returned **HTTP 200** at `127.0.0.1:8888`; `/openapi.json` reports server version **2026.10.8**; GPU use was **1191/16,380 MiB**. The screenshot shows **Keep model in GPU memory = Off**, **Keep multiple models loaded = Off**, and **Allow oversized model loads = Off**. Image/video idle auto-unload is **0**, and the UI states 0 keeps them loaded. The remaining P1-T01 action is set idle auto-unload to **60 seconds** and Save. Leave **Don't reserve system RAM for the model** unchanged. The Windows User-scope `UNSLOTH_API_KEY` is unset.
 - **Everything else is gated behind P1-T01.** `P1-T02 → … → P2 → P3 → P7` all need a running Studio/MCP. The CPU-only P3 tooling is *deliberately* built only after real Phase-2 assets exist — do **not** pre-build it (violates the task's declared Needs).
 
 ## Why :8888
@@ -30,7 +30,7 @@
 ## NEXT STEPS
 
 ### A) HUMAN runs these (to clear P1-T01 → P1-T02)
-1. **Finish P1-T01 in Studio:** it currently returns HTTP 200. Confirm the owner account exists. **Settings → Resources**: choose **Model memory → When they fit** (not **Always**) if that control is present, and confirm **Keep multiple models loaded = Off**. If Model memory is absent, report the labels visible on the Resources page; do not guess at an equivalent.
+1. **Finish P1-T01 in Studio:** it currently returns HTTP 200. **Settings → Resources**: screenshot shows **Keep model in GPU memory = Off**, **Keep multiple models loaded = Off**, and **Allow oversized model loads = Off**. Set **Idle auto-unload for image and video = 60 seconds**; click Save. Leave **Don't reserve system RAM for the model** unchanged.
 2. After P1-T01 is marked DONE, begin P1-T02: create a Studio API key in Settings → API with **MCP access ON**. Keep it secret; store it only in Windows User environment variable `UNSLOTH_API_KEY` using the hidden PowerShell prompt in `tasks/P1-T02-connect-mcp.md`.
 3. Open a new PowerShell window and run `unsloth mcp add codex`, then `unsloth doctor --mcp`. Restart Codex so it loads the MCP server; then say **"continue"**.
 4. **If Studio stops answering**, check it with:
