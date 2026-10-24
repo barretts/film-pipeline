@@ -2,8 +2,10 @@
 
 Keep this file under ~2,500 tokens: one line per tool, key parameters only. Never paste full schemas.
 
-**Server name in Codex:** _pending P1-T02_ (tools appear as `mcp__<server>__<tool>`)
-**Studio URL:** http://127.0.0.1:8888 (HTTP 200 verified 2026-10-23) · **Studio server version:** 2026.10.8 (`/openapi.json`) · **`unsloth doctor --mcp` verdict:** _pending P1-T02_
+**Server name:** `unsloth-studio` (oh-my-pi client; tools mounted as `mcp__unsloth_studio__<tool>`)
+**Studio URL:** http://127.0.0.1:8888 (HTTP 200) · **Server version:** 2026.10.8 (`/openapi.json`) · **`unsloth doctor --mcp`:** Verdict OK (key accepted, MCP endpoint on) — verified on host 2026-10-24 via oh-my-pi
+
+**GPU state (2026-10-24, `studio_status`):** no model loaded; embedder `unsloth/bge-small-en-v1.5` available. Physical GPU ~15.2/16.0 GB used (99 % util) by something OUTSIDE Studio → free the GPU before any P2 model load (agent model must not occupy the film's GPU).
 
 ## Tools
 

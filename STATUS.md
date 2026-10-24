@@ -1,6 +1,6 @@
 # STATUS
 
-**Current task:** P1-T02 (Studio setup complete; connect Codex to Studio MCP)
+**Current task:** P1-T03 (MCP logging hook; OMP-compat check + human review)
 **Project root (from `pwd -W`, forward slashes):** F:/film-pipeline (canonical; original download at C:/code/local-agent-mode-sessions/outputs/film-pipeline)
 **Model drive (HF_HOME):** F:\hf
 
@@ -14,7 +14,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
-| P1-T02 | Turn on MCP, connect Codex | HUMAN+AGENT | P1-T01 | BLOCKED | Studio healthy; waiting for host Codex to load the configured MCP server |
+| P1-T02 | Turn on MCP, connect OMP | HUMAN+AGENT | P1-T01 | DONE | 23 tools; studio_status OK; doctor OK; server unsloth-studio v2026.10.8 |
 | P1-T03 | MCP logging hook | AGENT | P1-T02 | TODO | |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
@@ -87,6 +87,8 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-23 · Local `/openapi.json` reports server version 2026.10.8; user screenshot shows discrete residency toggles and an idle-unload timer, not a mode selector · agent
 - 2026-10-23 · Screenshot shows GPU-residency and oversized-load toggles off, multiple models Off; idle auto-unload is 0 (keeps models loaded) · human
 - 2026-10-23 · Human confirmed idle auto-unload set to 60 seconds and saved; P1-T01 done · human
+- 2026-10-24 · client changed Codex→oh-my-pi (OMP) by owner request; MCP registered in `C:\Users\barrett\.omp\agent\mcp.json` (server unsloth-studio, command-based Bearer from User-scope UNSLOTH_API_KEY) · human+agent
+- 2026-10-24 · P1-T02 DONE: 23 tools + studio_status executed + `unsloth doctor --mcp` Verdict OK on host (User key len 43); Studio idle but physical GPU 15.2/16 GB used externally → free GPU before P2 loads · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -106,3 +108,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T01 · screenshot shows residency/oversized/multiple-model controls Off; set image/video idle auto-unload from 0 to 60 seconds
 2026-10-23 · P1-T01 DONE · Studio HTTP 200, Settings confirmed, idle auto-unload 60 seconds; moving to P1-T02
 2026-10-23 · P1-T02 DOING · log started; waiting for human API-key setup and Codex MCP restart
+2026-10-24 · P1-T02 · DONE; OMP MCP connected (studio_status OK, doctor OK); client Codex→OMP; next P1-T03 logging hook (needs OMP-compat + human review)
