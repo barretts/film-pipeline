@@ -15,7 +15,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
 | P1-T02 | Turn on MCP, connect OMP | HUMAN+AGENT | P1-T01 | DONE | 23 tools; studio_status OK; doctor OK; server unsloth-studio v2026.10.8 |
-| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | BLOCKED | offline redactor verified (UTF-8+redact); awaiting ✋ review + OMP restart |
+| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | BLOCKED | root cause fixed (filter missed write→xd://mcp path); hook 10/10 offline; awaiting restart + live |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
 | P1-T06 | Map models to catalog → MODELS.md | AGENT | P1-T05 | TODO | |
@@ -111,3 +111,4 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-23 · P1-T02 DOING · log started; waiting for human API-key setup and Codex MCP restart
 2026-10-24 · P1-T02 · DONE; OMP MCP connected (studio_status OK, doctor OK); client Codex→OMP; next P1-T03 logging hook (needs OMP-compat + human review)
 2026-10-24 · P1-T03 DOING→BLOCKED · offline redactor verified (UTF-8+redact+duration); authored OMP hook; awaiting human ✋ review + OMP restart + live test
+2026-10-25 · P1-T03 root cause found via live diagnosis (dumpTools shows no native mcp__ tool; MCP = write→xd://mcp__ device); hook filter fixed to match write/mcp-dispatcher surfaces; regression 10/10; needs another owner restart to load corrected hook + live confirm
