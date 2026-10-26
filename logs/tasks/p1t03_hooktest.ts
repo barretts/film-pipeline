@@ -3,28 +3,25 @@ import path from "node:path";
 import os from "node:os";
 import { pathToFileURL } from "node:url";
 
-// Offline end-to-end regression test for .omp/hooks/post/unsloth-log.ts, run under
-// Bun (OMP's runtime) against a throwaway temp log (FILM_LOG_DIR). Never touches the
-// real truth log. Run: `bun logs/tasks/p1t03_hooktest.ts`.
+// Offline end-to-end regression for .omp/hooks/post/unsloth-log.ts (FIFO pre/post hook),
+// run under Bun (OMP's runtime) against a THROWAWAY temp log via FILM_LOG_DIR. Never
+// touches the real truth log. Run: `bun logs/tasks/p1t03_hooktest.ts`.
 //
-// Fires the REAL surfaces MCP calls take (verified via get_state.dumpTools): the
-// `write`->xd://mcp__unsloth_studio__<tool> device path, a native namespaced name,
-// and the `mcp` dispatcher — plus a plain file write and a non-Studio call that MUST
-// be ignored.
+// Fires the surface a STANDARD OMP CLI session produces: MCP tools are AgentTools named
+// `mcp__<server>__<tool>` = `mcp__unsloth-studio__<tool>` (pi docs; hook PREFIX
+// "mcp__unsloth" matches hyphen OR underscore). pi's tool_result carries `input`, so the
+// same input is sent on both events (that is how args get captured). A bash call is ignored.
 type HookHandler = (event: unknown) => void;
 type RegisterHook = (event: string, handler: HookHandler) => void;
 type HookFactory = (pi: { on: RegisterHook }) => void;
 
 const T = fs.mkdtempSync(path.join(os.tmpdir(), "hookrun-"));
 fs.mkdirSync(path.join(T, "logs"));
-process.env.FILM_LOG_DIR = T;
-process.env.FILM_LOG_SCRIPT = "F:/film-pipeline/tools/log_mcp.py";
+process.env.FILM_LOG_DIR = T; // hook + log_mcp.py write <T>/logs/
 
-// Dynamic import: the hook is a runtime-discovered OMP module (plugin-loading
-// boundary), so a static import cannot work here.
 const hookPath = pathToFileURL(path.resolve("F:/film-pipeline/.omp/hooks/post/unsloth-log.ts")).href;
 const mod: { default: unknown } = await import(hookPath);
-const factory = mod.default as HookFactory; // module entry factory; shape known from OMP contract
+const factory = mod.default as HookFactory;
 
 const H = new Map<string, HookHandler>();
 factory({ on: (event, handler) => { H.set(event, handler); } });
@@ -43,43 +40,38 @@ const fire = async (event: string, payload: unknown, delayMs: number): Promise<v
   await sleep(delayMs);
 };
 
-// 1) PRIMARY harness path: write to xd://mcp__ device, with a secret + UTF-8 to prove
-//    redaction + UTF-8 round-trip + ok=true + pre->post duration correlation.
-const devInput = { path: "xd://mcp__unsloth_studio_studio_status", content: '{"api_key":"sk-unsloth-XYZ123","note":"café × “q”"}' };
-await fire("tool_call", { toolName: "write", input: devInput }, 900);
-await fire("tool_result", { toolName: "write", input: devInput, content: [{ type: "text", text: '{"gpu":"15.2/16.0"}' }], isError: false }, 900);
-// 2) failure via device -> ok=false
-const devJob = { path: "xd://mcp__unsloth_studio_get_job", content: '{"id":"does-not-exist"}' };
-await fire("tool_call", { toolName: "write", input: devJob }, 700);
-await fire("tool_result", { toolName: "write", input: devJob, content: [{ type: "text", text: "job not found" }], isError: true }, 900);
-// 3) native namespaced name (older-build surface) still captured
-await fire("tool_call", { toolName: "mcp__unsloth_studio__list_models", input: {} }, 700);
-await fire("tool_result", { toolName: "mcp__unsloth_studio__list_models", input: {}, content: [{ type: "text", text: '{"models":[]}' }], isError: false }, 900);
-// 4) `mcp` dispatcher -> captured with tool from input.tool
-await fire("tool_call", { toolName: "mcp", input: { server: "unsloth-studio", tool: "get_job", args: { job_id: "x" } } }, 700);
-await fire("tool_result", { toolName: "mcp", input: { server: "unsloth-studio", tool: "get_job", args: { job_id: "x" } }, content: [{ type: "text", text: "ok" }], isError: false }, 900);
-// 5) MUST be ignored: a plain file write, a non-Studio MCP call, and a plain bash
-await fire("tool_call", { toolName: "write", input: { path: "F:/film-pipeline/notes.md", content: "hi" } }, 250);
-await fire("tool_result", { toolName: "write", input: { path: "F:/film-pipeline/notes.md", content: "hi" }, content: [{ type: "text", text: "wrote" }], isError: false }, 250);
-await fire("tool_call", { toolName: "mcp", input: { server: "other", tool: "x" } }, 200);
-await fire("tool_result", { toolName: "mcp", input: { server: "other", tool: "x" }, content: [{ type: "text", text: "no" }], isError: false }, 200);
-await fire("tool_call", { toolName: "bash", input: { command: "ls" } }, 200);
-await fire("tool_result", { toolName: "bash", input: { command: "ls" }, content: [{ type: "text", text: "hi" }], isError: false }, 250);
+// 1) studio_status ok=true (secret + non-ASCII in input → prove redaction + UTF-8 + args)
+const stName = "mcp__unsloth-studio__studio_status";
+const stIn = { api_key: "sk-unsloth-XYZ123", note: "café × “q”" };
+await fire("tool_call", { toolName: stName, toolCallId: "id1", input: stIn }, 900);
+await fire("tool_result", { toolName: stName, toolCallId: "id1", input: stIn, content: [{ type: "text", text: '{"gpu":"15.2/16.0"}' }], isError: false }, 900);
+// 2) get_job ok=false (isError) — proves fail path + a SECOND distinct pending id (FIFO)
+const gjName = "mcp__unsloth-studio__get_job";
+const gjIn = { job_id: "does-not-exist" };
+await fire("tool_call", { toolName: gjName, toolCallId: "id2", input: gjIn }, 700);
+await fire("tool_result", { toolName: gjName, toolCallId: "id2", input: gjIn, content: [{ type: "text", text: "job not found" }], isError: true }, 900);
+// 3) list_models ok=true
+const lmName = "mcp__unsloth-studio__list_models";
+await fire("tool_call", { toolName: lmName, toolCallId: "id3", input: {} }, 700);
+await fire("tool_result", { toolName: lmName, toolCallId: "id3", input: {}, content: [{ type: "text", text: '{"models":[]}' }], isError: false }, 900);
+// 4) MUST be ignored: plain bash
+await fire("tool_call", { toolName: "bash", toolCallId: "b1", input: { command: "ls" } }, 250);
+await fire("tool_result", { toolName: "bash", toolCallId: "b1", input: {}, content: [{ type: "text", text: "hi" }], isError: false }, 250);
 
 const lines = readLines();
 const all = lines.join("\n");
-const results: string[] = [`LINE_COUNT=${lines.length} (expect 4)`];
-lines.forEach((l, i) => results.push(`LINE${i + 1} ${l}`));
-const a = (name: string, ok: boolean): void => { results.push((ok ? "OK  " : "FAIL ") + name); };
 const lineFor = (tool: string): string => lines.find((l) => l.includes(`"tool": "${tool}"`)) ?? "";
-a("count=4 (ignores file/other/bash)", lines.length === 4);
-a("device write->studio_status tool parsed", /"tool": "studio_status"/.test(all));
-a("api_key redacted", /"api_key": *"<redacted>"/.test(all));
-a("no raw secret in log", !/sk-unsloth-XYZ123/.test(all));
-a("utf8 note intact", all.includes("café × “q”"));
-a("studio_status ok=true", /"ok": *true/.test(lineFor("studio_status")));
-a("get_job device ok=false", /"ok": *false/.test(lineFor("get_job")));
-a("native name list_models captured", /"tool": "list_models"/.test(all));
-a("mcp dispatcher get_job(2nd) captured", (lines.filter((l) => l.includes('"tool": "get_job"')).length) === 2);
-a("duration_s present", /"duration_s": *[0-9]/.test(lineFor("studio_status")));
-console.log(results.join("\n"));
+const a = (name: string, ok: boolean): string => (ok ? "OK  " : "FAIL ") + name;
+const out = [`LINE_COUNT=${lines.length} (expect 3)`, ...lines];
+out.push(a("count=3 (bash ignored)", lines.length === 3));
+out.push(a("server=unsloth-studio parsed", /"server": "unsloth-studio"/.test(all)));
+out.push(a("tool short names (studio_status/get_job/list_models)", /"tool": "studio_status"/.test(all) && /"tool": "get_job"/.test(all) && /"tool": "list_models"/.test(all)));
+out.push(a("api_key redacted in args", /"api_key": *"<redacted>"/.test(lineFor("studio_status"))));
+out.push(a("job_id captured in args", /"job_id": *"does-not-exist"/.test(lineFor("get_job"))));
+out.push(a("no raw secret anywhere", !/sk-unsloth-XYZ123/.test(all)));
+out.push(a("utf8 note intact in args", lineFor("studio_status").includes("café × “q”")));
+out.push(a("studio_status ok=true", /"ok": *true/.test(lineFor("studio_status"))));
+out.push(a("get_job ok=false", /"ok": *false/.test(lineFor("get_job"))));
+out.push(a("duration_s numeric on all 3", lines.length === 3 && lines.every((l) => /"duration_s": *[0-9]/.test(l))));
+out.push(a("3 distinct FIFO pending ids", new Set(lines.map((l) => /"tool_use_id": *"([^"]+)"/.exec(l)?.[1])).size === 3));
+console.log(out.join("\n"));
