@@ -15,7 +15,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 | P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
 | P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
 | P1-T02 | Turn on MCP, connect OMP | HUMAN+AGENT | P1-T01 | DONE | 23 tools; studio_status OK; doctor OK; server unsloth-studio v2026.10.8 |
-| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | DOING | FIFO hook fires on CLI mcp__ tools, 11/11 offline; harness write→xd:// not hookable; CLI live pending |
+| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | DONE | Live hook fires live 2/2; duration/fail/redact/UTF-8 pass; server/tool parse fixed, 14/14 offline |
 | P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
 | P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
 | P1-T06 | Map models to catalog → MODELS.md | AGENT | P1-T05 | TODO | |
@@ -90,6 +90,7 @@ Rows are in working order. Always take the first TODO row whose Needs are DONE o
 - 2026-10-24 · client changed Codex→oh-my-pi (OMP) by owner request; MCP registered in `C:\Users\barrett\.omp\agent\mcp.json` (server unsloth-studio, command-based Bearer from User-scope UNSLOTH_API_KEY) · human+agent
 - 2026-10-24 · P1-T02 DONE: 23 tools + studio_status executed + `unsloth doctor --mcp` Verdict OK on host (User key len 43); Studio idle but physical GPU 15.2/16 GB used externally → free GPU before P2 loads · agent
 - 2026-10-24 · P1-T03 adapted to OMP: TS hook `.omp/hooks/post/unsloth-log.ts` (pi.on tool_call/tool_result) → log_mcp.py; OMP has no shell hooks so `.claude/settings.json` path is inert; log_mcp.py unchanged · agent
+- 2026-10-26 · P1-T03 live: OMP registers `mcp__unsloth_studio_<tool>` (underscore id, single `__`); `log_mcp.py:230` split("__") needs ≥3 parts → logs `server=""` + full tool name; redactor fix needs fresh ✋ (CONTEXT §3.7) · agent
 
 ## Key measurements
 Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
@@ -114,3 +115,5 @@ Per-model VRAM, time and production settings are in MODELS.md. Full-run time est
 2026-10-25 · P1-T03 root cause found via live diagnosis (dumpTools shows no native mcp__ tool; MCP = write→xd://mcp__ device); hook filter fixed to match write/mcp-dispatcher surfaces; regression 10/10; needs another owner restart to load corrected hook + live confirm
 2026-10-26 · P1-T03 · real gate is client mode: agent-mode harness exposes MCP as write→xd:// host-bridge (no tool_call events, not hookable); standard OMP CLI exposes mcp__<server>__<tool> AgentTools (hookable) → owner chose standard OMP CLI live test + is restarting Studio; committed hook is correct for CLI
 2026-10-26 · P1-T03 · reverted hook to cd4f56a FIFO (last approved shape; toolCallId not guaranteed on tool_call); offline test fires real CLI names mcp__unsloth-studio__* → 11/11 green; Studio healthy; live two-line test runs in interactive OMP CLI from F:\film-pipeline
+2026-10-26 · P1-T03 LIVE test · hook fired live: seq1 studio_status ok:true, seq2 get_job ok:false, durations numeric, raw written, no keys in logs, no hook_errors.log; found server/tool parsing defect in log_mcp.py → awaiting ✋ fix
+2026-10-26 · P1-T03 DONE · log_mcp.py split_server_tool() maps OMP's live mcp__unsloth_studio_<tool> → server 'unsloth-studio' + short tool (hyphen __ form too); offline test 14/14 green incl exact live input; hook already live-verified (ok/fail/duration/redact/UTF-8); next P1-T04

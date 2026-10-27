@@ -190,6 +190,28 @@ def locked_append(logs, record, raw_payload):
                 pass
 
 
+def split_server_tool(tool_name):
+    """Split a fully-qualified MCP tool name into (server, short_tool).
+
+    OMP CLI sanitizes server+tool to underscores and joins them with a single '_', so
+    a call to Studio's studio_status arrives as mcp__unsloth_studio_studio_status: the
+    server is 'unsloth-studio' and the tool 'studio_status', NOT 'unsloth_studio_studio_status'
+    (which a naive split('__') yields). Handle the underscore form, the hyphen+double-underscore
+    form (mcp__unsloth-studio__studio_status), and a generic double-underscore fallback.
+    """
+    rest = tool_name[len("mcp__"):] if tool_name.startswith("mcp__") else tool_name
+    if "__" in rest:                          # hyphen server (unsloth-studio__<tool>); '__' is the delimiter
+        server, _, tool = rest.partition("__")
+        return server, tool
+    t = rest.split("_")                       # all-underscore: 2-token server 'unsloth-studio' + tool (may hold '_')
+    if len(t) >= 3 and t[0] == "unsloth":
+        return t[0] + "-" + t[1], "_".join(t[2:])
+    parts = rest.split("__")
+    if len(parts) >= 2:
+        return parts[0], parts[-1]
+    return rest, rest
+
+
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "post"
     # Claude Code sends UTF-8 JSON. Read bytes and decode explicitly: on Windows, sys.stdin would
@@ -227,9 +249,7 @@ def main():
         except Exception:
             pass
 
-    parts = tool_name.split("__")
-    server = parts[1] if len(parts) >= 3 else ""
-    tool = parts[-1]
+    server, tool = split_server_tool(tool_name)
     response = None
     for key in ("tool_response", "tool_output", "tool_result", "response", "error"):
         if key in event:
