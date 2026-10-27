@@ -1,0 +1,118 @@
+{
+  "prompt": [
+    2,
+    "ca8ccf4f-60ab-4d32-9366-e5243b1ca971",
+    {
+      "201": {
+        "class_type": "VHS_LoadVideo",
+        "inputs": {
+          "video": "ref2va-comparison-source.mp4",
+          "force_rate": 0.0,
+          "custom_width": 0,
+          "custom_height": 0,
+          "frame_load_cap": 0,
+          "skip_first_frames": 0,
+          "select_every_nth": 1,
+          "format": "None"
+        }
+      },
+      "138": {
+        "class_type": "RTXVideoSuperResolution",
+        "inputs": {
+          "images": [
+            "201",
+            0
+          ],
+          "resize_type": "scale by multiplier",
+          "resize_type.scale": 2.0,
+          "quality": "ULTRA",
+          "strength": 1.0,
+          "image_encoding": "8-bit RGB"
+        }
+      },
+      "161": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+          "images": [
+            "138",
+            0
+          ],
+          "audio": [
+            "201",
+            2
+          ],
+          "frame_rate": 24.0,
+          "loop_count": 0,
+          "filename_prefix": "ref2va-comparison/supplied-upscaled",
+          "format": "video/h264-mp4",
+          "pix_fmt": "yuv420p",
+          "crf": 19,
+          "save_metadata": true,
+          "trim_to_audio": false,
+          "pingpong": false,
+          "save_output": true
+        }
+      }
+    },
+    {
+      "client_id": "ref2va-controlled-quality-test",
+      "create_time": 1793144703236
+    },
+    [
+      "161"
+    ]
+  ],
+  "outputs": {
+    "161": {
+      "gifs": [
+        {
+          "filename": "supplied-upscaled_00001-audio.mp4",
+          "subfolder": "ref2va-comparison",
+          "type": "output",
+          "format": "video/h264-mp4",
+          "frame_rate": 24.0,
+          "workflow": "supplied-upscaled_00001.png",
+          "fullpath": "F:\\film-pipeline\\comfy-local\\output\\ref2va-comparison\\supplied-upscaled_00001-audio.mp4"
+        }
+      ]
+    }
+  },
+  "status": {
+    "status_str": "success",
+    "completed": true,
+    "messages": [
+      [
+        "execution_start",
+        {
+          "prompt_id": "ca8ccf4f-60ab-4d32-9366-e5243b1ca971",
+          "timestamp": 1793144703238
+        }
+      ],
+      [
+        "execution_cached",
+        {
+          "nodes": [],
+          "prompt_id": "ca8ccf4f-60ab-4d32-9366-e5243b1ca971",
+          "timestamp": 1793144703240
+        }
+      ],
+      [
+        "execution_success",
+        {
+          "prompt_id": "ca8ccf4f-60ab-4d32-9366-e5243b1ca971",
+          "timestamp": 1793144720561
+        }
+      ]
+    ]
+  },
+  "meta": {
+    "161": {
+      "node_id": "161",
+      "display_node": "161",
+      "parent_node": null,
+      "real_node_id": "161"
+    }
+  },
+  "wall_seconds": 20.166618824005127,
+  "peak_gpu_mib_sampled": 6127
+}

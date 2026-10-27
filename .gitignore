@@ -51,3 +51,13 @@ jobs/isolated-studio*.log
 logs/local-agent-smoke/agent/
 logs/local-agent-smoke/agent4b/
 render/reels/frames-cache/
+# Isolated runtime dependencies and locally downloaded third-party node packages
+comfy-local/python-cu130/
+comfy-local/python-extra/
+comfy-local/downloads/
+comfy-local/custom_nodes/ComfyUI-KJNodes/
+comfy-local/custom_nodes/ComfyUI-Ref2VA-VSA/
+comfy-local/custom_nodes/ComfyUI-VideoHelperSuite/
+comfy-local/custom_nodes/ComfyUI_Nvidia_VFX_Nodes/
+comfy-local/custom_nodes/Comfyui-Memory_Cleanup/
+comfy-local/custom_nodes/MiniMax_H3_Semantic_Bridge/

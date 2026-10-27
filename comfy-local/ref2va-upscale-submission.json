@@ -1,0 +1,60 @@
+{
+  "submitted": 1793144703.2265897,
+  "response": {
+    "prompt_id": "ca8ccf4f-60ab-4d32-9366-e5243b1ca971",
+    "number": 2,
+    "node_errors": {}
+  },
+  "graph": {
+    "201": {
+      "class_type": "VHS_LoadVideo",
+      "inputs": {
+        "video": "ref2va-comparison-source.mp4",
+        "force_rate": 0,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 0,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "None"
+      }
+    },
+    "138": {
+      "class_type": "RTXVideoSuperResolution",
+      "inputs": {
+        "images": [
+          "201",
+          0
+        ],
+        "resize_type": "scale by multiplier",
+        "resize_type.scale": 2.0,
+        "quality": "ULTRA",
+        "strength": 1.0,
+        "image_encoding": "8-bit RGB"
+      }
+    },
+    "161": {
+      "class_type": "VHS_VideoCombine",
+      "inputs": {
+        "images": [
+          "138",
+          0
+        ],
+        "audio": [
+          "201",
+          2
+        ],
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "ref2va-comparison/supplied-upscaled",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true
+      }
+    }
+  }
+}
