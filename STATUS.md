@@ -1,119 +1,40 @@
-# STATUS
+﻿# Status
 
-**Current task:** P1-T03 (MCP logging hook; OMP-compat check + human review)
-**Project root (from `pwd -W`, forward slashes):** F:/film-pipeline (canonical; original download at C:/code/local-agent-mode-sessions/outputs/film-pipeline)
-**Model drive (HF_HOME):** F:\hf
+Updated 2026-10-27. `handoff.md` is the current resume point. Outcomes are not complete until their evidence is recorded and, where requested, reviewed.
 
-Statuses: TODO · DOING · DONE · BLOCKED · SKIPPED. Keep results ≤ 15 words; details go to `logs/tasks/<ID>.md`.
-Rows are in working order. Always take the first TODO row whose Needs are DONE or SKIPPED.
-
-| ID | Task | Who | Needs | Status | Result |
-|---|---|---|---|---|---|
-| P0-T01 | Hardware check | HUMAN | — | DONE | 16GB RTX 4060 Ti, 128GB RAM, F: NVMe 497GB free, all tools present |
-| P0-T02 | Install prerequisites | HUMAN | P0-T01 | DONE | all tools present; node v24, python 3.13, claude signed-in; Unsloth CLI installed |
-| P0-T03 | Windows settings + model drive | HUMAN | P0-T02 | DONE | HF_HOME=F:\hf, AC sleep off, long paths+pagefile ok, Dev Mode on; no [FIX] |
-| P0-T04 | Project folder, venv, git | AGENT | P0-T03 | DONE | venv(py3.13)+libs ok; folders + git scaffold 707a614 at F:\film-pipeline |
-| P1-T01 | Install and start Unsloth Studio | HUMAN | P0-T04 | DONE | HTTP 200; residency controls off; image/video unload saved at 60 seconds |
-| P1-T02 | Turn on MCP, connect OMP | HUMAN+AGENT | P1-T01 | DONE | 23 tools; studio_status OK; doctor OK; server unsloth-studio v2026.10.8 |
-| P1-T03 | MCP logging hook (OMP) | AGENT+HUMAN | P1-T02 | DONE | Live hook fires live 2/2; duration/fail/redact/UTF-8 pass; server/tool parse fixed, 14/14 offline |
-| P1-T04 | VRAM sampler + MCP report | AGENT | P1-T03 | TODO | |
-| P1-T05 | Discover MCP tools → TOOLS.md | AGENT | P1-T03 | TODO | |
-| P1-T06 | Map models to catalog → MODELS.md | AGENT | P1-T05 | TODO | |
-| P1-T07 | HyperFrames + folder scaffold | AGENT | P0-T04 | DONE | render+render_preview OK; starter MP4 ffprobe-verified; RENDER_CMD in TOOLS.md |
-| P1-T08 | Contact-sheet tool | AGENT | P0-T04 | DONE | contact_sheet.py: images+video frames, ≤1600px; 17→exit2; 5-tile test ok |
-| P2-T01 | Writer: Qwen3.8-27B | AGENT | P1-T04, P1-T06 | TODO | |
-| P2-T02 | Stills: Qwen-Image-2.1-Turbo | AGENT | P1-T04, P1-T06 | TODO | |
-| P2-T03 | Character consistency (reference) | AGENT | P2-T02, P1-T08 | TODO | |
-| P2-T04 | Motion video: Wan2.2-TI2V-5B | AGENT | P2-T02 | TODO | |
-| P2-T05 | Hero video: Wan2.2-I2V-A14B | AGENT | P2-T03, P2-T04 | TODO | |
-| P2-T06 | Talking video: LTX-2.5 native audio | AGENT | P2-T02 | TODO | |
-| P2-T07 | Separation: HTDemucs | AGENT | P2-T06 | TODO | |
-| P2-T08 | Transcription: MOSS | AGENT | P2-T07 | TODO | |
-| P2-T09 | Voice: Breeze-TTS-2 | AGENT | P2-T08 | TODO | |
-| P2-T10 | Audio-driven talking test (optional) | AGENT | P2-T09 | TODO | |
-| P2-T11 | Music: YuE 2 | AGENT | P1-T04, P1-T06 | TODO | |
-| P2-T12 | SFX: MiDashengLM-Gen | AGENT | P1-T04, P1-T06 | TODO | |
-| P2-T13 | Fine-tune: Qwen3-0.6B → GGUF | AGENT | P1-T04, P1-T06 | TODO | |
-| P2-T14 | Render: HyperFrames test | AGENT | P1-T07, P2-T04, P2-T11 | TODO | |
-| P2-T15 | ✋ Stack review | HUMAN | P2-T01…P2-T14 | TODO | |
-| P3-T01 | Schemas, validator, manifests | AGENT | P2-T15 | TODO | |
-| P3-T02 | QA gate: qa_take.py | AGENT | P3-T01 | TODO | |
-| P3-T03 | Facts + truth check: facts.py | AGENT | P3-T01 | TODO | |
-| P3-T04 | Mixer: mix.py | AGENT | P3-T01 | TODO | |
-| P3-T05 | Composition builder | AGENT | P3-T03 | TODO | |
-| P3-T06 | Final mux + checks | AGENT | P3-T04, P3-T05 | TODO | |
-| P4-T01 | Pilot script + shot list | AGENT | P3-T02, P3-T06 | TODO | |
-| P4-T02 | Pilot assets | AGENT | P4-T01 | TODO | |
-| P4-T03 | Pilot post | AGENT | P4-T02 | TODO | |
-| P4-T04 | ✋ Calibrate + pilot review | HUMAN | P4-T03 | TODO | |
-| P5-T01 | Feature list from logs | AGENT | P4-T04 | TODO | |
-| P5-T02 | Production prompt (~2,500 words) | AGENT | P5-T01 | TODO | |
-| P5-T03 | ✋ Script + shot list | AGENT | P5-T02 | TODO | |
-| P5-T04 | ✋ Character master | AGENT | P5-T03 | TODO | |
-| P5-T05 | ✋ Stills for every shot | AGENT | P5-T04 | TODO | |
-| P6-T01 | ✋ Voice reference | AGENT | P5-T05 | TODO | |
-| P6-T02 | Voice-over takes + QA | AGENT | P6-T01 | TODO | |
-| P6-T03 | Talking shots | AGENT | P6-T02 | TODO | |
-| P6-T04 | Motion shots + still shots | AGENT | P5-T05 | TODO | |
-| P6-T07 | Music | AGENT | P5-T03 | TODO | |
-| P6-T08 | SFX + drone | AGENT | P5-T03 | TODO | |
-| P6-T09 | Fine-tune + loss curve | AGENT | P5-T03 | TODO | |
-| P6-T05 | Hero shots (queue in the evening) | AGENT | P5-T05 | TODO | |
-| P6-T06 | Video QA + reshoots | AGENT | P6-T03, P6-T04, P6-T05 | TODO | |
-| P7-T01 | Captions | AGENT | P6-T02, P6-T06 | TODO | |
-| P7-T02 | Edit decision list | AGENT | P7-T01, P6-T07, P6-T08, P6-T09 | TODO | |
-| P7-T03 | Mix | AGENT | P7-T02 | TODO | |
-| P7-T04 | Composition | AGENT | P7-T02 | TODO | |
-| P7-T05 | Render + mux | AGENT | P7-T03, P7-T04 | TODO | |
-| P7-T06 | ✋ Review + final report | HUMAN | P7-T05 | TODO | |
+| Outcome | State | Evidence / next step |
+|---|---|---|
+| Local baseline | In progress | Media works. Qwen 4B completed a bounded tool-using coding task and resumed context after unload/reload; a full film workflow remains unproven. |
+| Replacement workflow | Done | Old task and phase plans replaced; root instructions and handoff updated. |
+| Minimal pilot | Technical pilot rendered | `render/pilot.mp4`: generated SDXL still and Piper speech, four seconds, verified streams. Not a creative-quality pilot or full film. |
+| Local lip sync | Working technical sample | MuseTalk produced `video/lipsync/v15/talking.mp4`; reusable `tools/lipsync.py` produced a second clip. Audio-delay control confirms animation follows the speech timing. |
+| Preferred talking-shot workflow | Owner approved | MiniMax H3 speech-driven comparison was preferred over postprocessed lip sync. `tools/minimax_speech.py` is the default for new takes; see `TOOLS.md`. The approved comparison is a five-second shot, not a full reel. |
+| Instagram reel batch | Three MiniMax reels ready for owner review | `render/reels/minimax/` contains moving anime, hand-drawn and 3D reels with narration, music and captions. Automated file and audio checks passed; actual sound balance and perceived lip sync need listening. The hand-drawn reel uses voiceover for its final profile section. See `handoff.md`. |
+| Pilot review | Awaiting owner | Review `render/pilot.mp4`: room is brighter than the brief, square image is pillarboxed, and voice quality needs listening. |
+| Reusable production pipeline | Not started | Extend the proven pilot path to another brief and production requirements. |
+| Promo film and review | Not started | Produce the film from `brief.md`; obtain owner review of the final render. |
 
 ## Decisions
-<!-- date · decision · by whom. Example: 2026-10-24 · writer quant UD-Q4_K_XL (9.8 tok/s) · human -->
-- 2026-10-23 · model drive = F: (NVMe, 497 GB free ≥250; K:/G:/H: are HDDs, rejected) · agent
-- 2026-10-23 · relocate package to F:/film-pipeline (short path) during P0-T04 · agent
-- 2026-10-23 · run pipeline on Python 3.13 (`py -3`); venv pinned to 3.13 in P0-T04; no 2nd system python · agent
-- 2026-10-23 · CLI distinction: `unsloth start claude` launches Claude against a served model; `unsloth mcp add <agent>` registers MCP. This Codex session uses `unsloth mcp add codex`, confirmed by CLI help and dry-run · agent
-- 2026-10-23 · P0-T03 applied: HF_HOME=F:\hf (created F:\hf), AC sleep/hibernate→never (verified 0x0); Dev Mode pending human (§3.7) · agent
-- 2026-10-23 · P0-T03 complete: human enabled Developer Mode; checker now clean (no [FIX], no long-path/pagefile/DevMode [NOTE]) · human+agent
-- 2026-10-23 · canonical project root = F:/film-pipeline (relocated from C: original in P0-T04); all future work + commits target F: · agent
-- 2026-10-23 · this MSYS bash can't exec the .venv python.exe stub by path; run venv python/pip via PowerShell `& 'F:\film-pipeline\.venv\Scripts\python.exe'` · agent
-- 2026-10-23 · P1-T01: agent ran curl(:8888)=000 + Get-NetTCPConnection=none + nvidia-smi(compute apps). Root blocker = VRAM (15348/16380 MiB) held by GUI/Electron/game procs (strata.exe, Epic+overlay, msedge+webview2, Claude, VS Code, DWM), not a model. Studio NOT running. Do NOT start under VRAM pressure (no room to load models). Human: free VRAM, then `unsloth studio`, owner account, conservative Resources. Skipping `winget upgrade` (unsloth present; §3.7). Park P1-T01, advance agent tasks P1-T07/P1-T08 (needs=P0-T04). · agent
-- 2026-10-23 · P1-T07: HyperFrames render default is 30fps; film pins 24fps (CONTEXT §5); canonical RENDER_CMD uses --quality delivery + frames-cache on F: (TOOLS.md) · agent
-- 2026-10-23 · P1-T08: contact sheets are the visual-review path; run venv python via PowerShell; vision ?q= endpoint (127.0.0.1:8080) is down → verified labels via PIL stddev instead · agent
-- 2026-10-23 · Resume check: local model stopped; VRAM 994/16380 MiB; Studio :8888 unavailable; human setup remains · agent
-- 2026-10-23 · Follow-up check: VRAM 995/16380 MiB; Studio :8888 unavailable; awaiting human Studio setup · agent
-- 2026-10-23 · Studio now responds HTTP 200; VRAM 1191/16380 MiB; User API key absent; MCP add codex dry-run confirmed · agent
-- 2026-10-23 · Human confirmed “Keep multiple models loaded” is Off; conservative model-memory setting still to confirm · human
-- 2026-10-23 · Local `/openapi.json` reports server version 2026.10.8; user screenshot shows discrete residency toggles and an idle-unload timer, not a mode selector · agent
-- 2026-10-23 · Screenshot shows GPU-residency and oversized-load toggles off, multiple models Off; idle auto-unload is 0 (keeps models loaded) · human
-- 2026-10-23 · Human confirmed idle auto-unload set to 60 seconds and saved; P1-T01 done · human
-- 2026-10-24 · client changed Codex→oh-my-pi (OMP) by owner request; MCP registered in `C:\Users\barrett\.omp\agent\mcp.json` (server unsloth-studio, command-based Bearer from User-scope UNSLOTH_API_KEY) · human+agent
-- 2026-10-24 · P1-T02 DONE: 23 tools + studio_status executed + `unsloth doctor --mcp` Verdict OK on host (User key len 43); Studio idle but physical GPU 15.2/16 GB used externally → free GPU before P2 loads · agent
-- 2026-10-24 · P1-T03 adapted to OMP: TS hook `.omp/hooks/post/unsloth-log.ts` (pi.on tool_call/tool_result) → log_mcp.py; OMP has no shell hooks so `.claude/settings.json` path is inert; log_mcp.py unchanged · agent
-- 2026-10-26 · P1-T03 live: OMP registers `mcp__unsloth_studio_<tool>` (underscore id, single `__`); `log_mcp.py:230` split("__") needs ≥3 parts → logs `server=""` + full tool name; redactor fix needs fresh ✋ (CONTEXT §3.7) · agent
 
-## Key measurements
-Per-model VRAM, time and production settings are in MODELS.md. Full-run time estimate after the pilot (P4-T04): _fill in_.
+- The owner wants both the current film and a reusable pipeline. All inference is local; internet access is allowed for downloads, setup and research.
+- Strata is optional and may be stopped to release GPU resources. Use a guided handoff if switching needs owner action.
+- Keep the film brief with owner-approved creative substitutions when local feasibility requires them.
+- Replace the old plans and handoff, including historical task documents; retain working code, generated artifacts and non-planning evidence.
 
-## Session log
-<!-- one line per session: date · tasks touched · stopped at -->
-2026-10-23 · P0-T01 · DONE; machine matches §2, tools present, model drive = F:
-2026-10-23 · P0-T02 · DONE; git/node24/ffmpeg/claude/unsloth present; dev: py3.13 + mcp cmd rename
-2026-10-23 · P0-T03 DOING · HF_HOME + no-sleep applied, long-paths/pagefile already OK, no [FIX]; needs human: Developer Mode On (or authorize documented skip)
-2026-10-23 · P0-T03 · DONE; model cache→F:\hf, no-sleep, DevMode on; moving to P0-T04
-2026-10-23 · P0-T04 · DONE; venv+libs on 3.13, folders, git scaffold 707a614 @ F:\film-pipeline — Phase 0 COMPLETE
-2026-10-23 · P1-T07 · DONE; render+render_preview + starter MP4 verified + RENDER_CMD; skills at ~/.claude/skills/hyperframes. P1-T01 BLOCKED(human)
-2026-10-23 · P1-T08 · DONE; contact_sheet.py (images+video frames, ≤1600px, 16-limit exit2). All non-Studio P1 tasks done → HALT at P1-T01 human gate
-2026-10-23 · P1-T01 resumed · VRAM freed; endpoint checked; waiting for human to start Studio and set Resources
-2026-10-23 · P1-T01 resumed · Studio HTTP 200; waiting for human confirmation of owner account and Resources settings
-2026-10-23 · P1-T01 · human confirmed multiple-model setting Off; conservative memory setting remains pending
-2026-10-23 · P1-T01 · screenshot shows residency/oversized/multiple-model controls Off; set image/video idle auto-unload from 0 to 60 seconds
-2026-10-23 · P1-T01 DONE · Studio HTTP 200, Settings confirmed, idle auto-unload 60 seconds; moving to P1-T02
-2026-10-23 · P1-T02 DOING · log started; waiting for human API-key setup and Codex MCP restart
-2026-10-24 · P1-T02 · DONE; OMP MCP connected (studio_status OK, doctor OK); client Codex→OMP; next P1-T03 logging hook (needs OMP-compat + human review)
-2026-10-24 · P1-T03 DOING→BLOCKED · offline redactor verified (UTF-8+redact+duration); authored OMP hook; awaiting human ✋ review + OMP restart + live test
-2026-10-25 · P1-T03 root cause found via live diagnosis (dumpTools shows no native mcp__ tool; MCP = write→xd://mcp__ device); hook filter fixed to match write/mcp-dispatcher surfaces; regression 10/10; needs another owner restart to load corrected hook + live confirm
-2026-10-26 · P1-T03 · real gate is client mode: agent-mode harness exposes MCP as write→xd:// host-bridge (no tool_call events, not hookable); standard OMP CLI exposes mcp__<server>__<tool> AgentTools (hookable) → owner chose standard OMP CLI live test + is restarting Studio; committed hook is correct for CLI
-2026-10-26 · P1-T03 · reverted hook to cd4f56a FIFO (last approved shape; toolCallId not guaranteed on tool_call); offline test fires real CLI names mcp__unsloth-studio__* → 11/11 green; Studio healthy; live two-line test runs in interactive OMP CLI from F:\film-pipeline
-2026-10-26 · P1-T03 LIVE test · hook fired live: seq1 studio_status ok:true, seq2 get_job ok:false, durations numeric, raw written, no keys in logs, no hook_errors.log; found server/tool parsing defect in log_mcp.py → awaiting ✋ fix
-2026-10-26 · P1-T03 DONE · log_mcp.py split_server_tool() maps OMP's live mcp__unsloth_studio_<tool> → server 'unsloth-studio' + short tool (hyphen __ form too); offline test 14/14 green incl exact live input; hook already live-verified (ok/fail/duration/redact/UTF-8); next P1-T04
+## Evidence and current limitations
+
+On 2026-10-26, after the Strata engine was stopped with the owner's authorization, the preflight measured 16,380 MiB total GPU memory, 976 MiB used and 15,134 MiB free; Studio health passed and F: had 531,816,910,848 bytes free. These are point-in-time readings, not current capacity guarantees. The existing MCP logger, contact-sheet utility, schemas and starter render exist; the production model choices and end-to-end media pipeline are not yet proven. Verify all state again before acting on it.
+
+Direct local MCP calls were verified and captured; Piper generated `audio/pilot/piper-smoke.wav` (2.74 seconds, mono 22.05 kHz). SDXL generated `stills/pilot/sdxl-smoke.png` (512x512); Lumina generation failed HTTP 500. The assembler produced `render/pilot.mp4` from those local assets, and ffprobe confirmed four seconds, H.264 1920x1080 at 24 fps, and AAC stereo 48 kHz. A frame was inspected; audio contains a non-silent signal but has not been auditioned. The voice's rights for the final promo remain unresolved. SDXL terms were reviewed in `MODELS.md`. A small local Qwen model correctly answered a simple coding prompt, but agent tool use and session resume are not yet tested. Six automated tests passed, including three assembly tests using synthetic media. The film and reusable production workflow are unfinished.
+
+On a fresh rerun, Studio generated new SDXL and Piper assets (MCP sequences 38–43), then `tools/assemble_pilot.py` produced `render/verify_f5d1cdf1.mp4` using `edit/verify_f5d1cdf1.json`. FFprobe confirmed four seconds, 1920x1080 H.264/24 fps, and 48 kHz stereo AAC; FFmpeg decoded both streams successfully and detected non-silent audio. The result was not auditioned. This sequence was manually orchestrated; it does not establish an automatic end-to-end film pipeline.
+
+An isolated local OMP agent using Qwen 0.8B invoked tools but did not complete a simple coding task: it repeatedly called write without required content and failed to create the requested file despite exit code 0. A separate resume check recovered the prior marker from the saved session. Evidence: `logs/local-agent-smoke/sessions/2026-10-27T04-52-37-432Z_01a17bb4-03b8-75f7-b722-509faf24964d.jsonl`. The model was unloaded afterward. Do not use the exit code alone as task verification.
+
+The stronger Qwen3.5 4B UD-Q4_K_XL model completed a bounded OMP coding task, using two reads and one write; four independent cases passed and the requirements file remained unchanged. After unloading and reloading the model, its saved session recovered the earlier marker. The prompt specified the write-tool schema and retry rule; this does not prove unattended film production. The video playback issue was traced to private temporary-directory permissions, corrected for existing renders and fixed in the assembler; an ACL regression test passes.
+
+Stable Audio 3 Small Music produced `audio/pilot/stable-audio-music-smoke.wav` locally (MCP sequences 71–73): eight seconds, 44.1 kHz stereo, non-silent. YuE2 produced lyric-conditioned `audio/pilot/yue2-vocal-smoke.wav` (seq 74–77), non-silent 69.639 seconds, 48 kHz stereo. Studio warned it ignored both the requested eight-second duration and `semantic_max_tokens`. Neither output has been auditioned; audible vocals and quality remain unverified. Studio's audio-reference interface does not establish speech-driven lip synchronization, so the successful test below used MuseTalk locally.
+
+On 2026-10-27, local MuseTalk 1.5 generated the talking portrait from `stills/lipsync/character.png` and `audio/lipsync/character.wav`. A one-second speech delay shifted the closest matching mouth frames by 25 frames at 25 fps; this tests audio-driven timing but not subjective phoneme accuracy. The reusable command rendered `video/lipsync/space test/speaking sample.mp4`, using input and output paths with spaces; its decoded audio had correlation 0.99978 with the supplied speech and the file inherited user-readable Windows permissions. The technical voice's final-promo rights remain unresolved.
+
+The Room Remembers batch contains three original fictional stories, each rendered four times as successive revisions: `render/reels/round-01/` through `round-04/`. Latest copies are `render/reels/final/01-anime.mp4`, `02-hand-drawn.mp4` and `03-3d-animated.mp4`. All 12 intended exports were checked for 1080x1920 H.264 at 30 fps, stereo AAC, full decode, readable Windows ACL, visible changes and matching narration. Phone-sized frames were inspected; speech/music were measured and transcribed but not auditioned. The 2D lip-sync mouth retains some realistic softness. The generated score's terms should be reviewed for any actual publication.

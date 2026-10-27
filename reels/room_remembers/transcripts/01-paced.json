@@ -1,0 +1,156 @@
+{
+  "audio": "audio\\reels\\01-paced.wav",
+  "text": " Tomorrow, this room will forget me. So, hid this message inside the silence between two heartbeats. If you can hear it, the room missed one.",
+  "words": [
+    {
+      "word": " Tomorrow,",
+      "start": 0.0,
+      "end": 0.82,
+      "probability": 0.7989653944969177
+    },
+    {
+      "word": " this",
+      "start": 1.22,
+      "end": 1.28,
+      "probability": 0.997769832611084
+    },
+    {
+      "word": " room",
+      "start": 1.28,
+      "end": 1.5,
+      "probability": 0.9957990050315857
+    },
+    {
+      "word": " will",
+      "start": 1.5,
+      "end": 1.74,
+      "probability": 0.9971311092376709
+    },
+    {
+      "word": " forget",
+      "start": 1.74,
+      "end": 1.9,
+      "probability": 0.998262345790863
+    },
+    {
+      "word": " me.",
+      "start": 1.9,
+      "end": 2.54,
+      "probability": 0.9991554021835327
+    },
+    {
+      "word": " So,",
+      "start": 2.8,
+      "end": 3.34,
+      "probability": 0.9904822111129761
+    },
+    {
+      "word": " hid",
+      "start": 3.4,
+      "end": 3.58,
+      "probability": 0.7059775590896606
+    },
+    {
+      "word": " this",
+      "start": 3.58,
+      "end": 3.92,
+      "probability": 0.9956076741218567
+    },
+    {
+      "word": " message",
+      "start": 3.92,
+      "end": 4.2,
+      "probability": 0.9959988594055176
+    },
+    {
+      "word": " inside",
+      "start": 4.2,
+      "end": 4.72,
+      "probability": 0.9972444772720337
+    },
+    {
+      "word": " the",
+      "start": 4.72,
+      "end": 5.36,
+      "probability": 0.9930319786071777
+    },
+    {
+      "word": " silence",
+      "start": 5.36,
+      "end": 5.36,
+      "probability": 0.9880066514015198
+    },
+    {
+      "word": " between",
+      "start": 5.36,
+      "end": 5.74,
+      "probability": 0.9973216652870178
+    },
+    {
+      "word": " two",
+      "start": 5.74,
+      "end": 6.1,
+      "probability": 0.9563223123550415
+    },
+    {
+      "word": " heartbeats.",
+      "start": 6.1,
+      "end": 6.7,
+      "probability": 0.8784981171290079
+    },
+    {
+      "word": " If",
+      "start": 7.32,
+      "end": 7.46,
+      "probability": 0.9937955141067505
+    },
+    {
+      "word": " you",
+      "start": 7.46,
+      "end": 7.6,
+      "probability": 0.9985966086387634
+    },
+    {
+      "word": " can",
+      "start": 7.6,
+      "end": 7.76,
+      "probability": 0.9985063672065735
+    },
+    {
+      "word": " hear",
+      "start": 7.76,
+      "end": 7.96,
+      "probability": 0.9969743490219116
+    },
+    {
+      "word": " it,",
+      "start": 7.96,
+      "end": 8.34,
+      "probability": 0.9941620230674744
+    },
+    {
+      "word": " the",
+      "start": 8.38,
+      "end": 8.58,
+      "probability": 0.9835104942321777
+    },
+    {
+      "word": " room",
+      "start": 8.58,
+      "end": 8.84,
+      "probability": 0.9934346675872803
+    },
+    {
+      "word": " missed",
+      "start": 8.84,
+      "end": 9.14,
+      "probability": 0.9593809247016907
+    },
+    {
+      "word": " one.",
+      "start": 9.14,
+      "end": 9.42,
+      "probability": 0.9925110340118408
+    }
+  ]
+}

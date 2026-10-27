@@ -19,6 +19,8 @@
 # runtime state
 .venv/
 venvs/
+tools/MuseTalk/
+tools/LatentSync/
 logs/vram*.csv
 logs/mcp_raw/
 logs/.pending/
@@ -35,3 +37,17 @@ __pycache__/
 # never commit secrets
 .env
 *.key
+# Local model downloads, caches, vendor checkouts and private runtime databases
+comfy-local/cache/
+comfy-local/models/
+comfy-local/user/
+comfy-local/temp/
+comfy-local/torch/
+comfy-local/triton/
+comfy-local/custom_nodes/ComfyUI_LC_AV_nodes/
+jobs/Rhubarb-Lip-Sync-1.14.0-Windows/
+jobs/rhubarb-1.14.0-Windows.zip
+jobs/isolated-studio*.log
+logs/local-agent-smoke/agent/
+logs/local-agent-smoke/agent4b/
+render/reels/frames-cache/

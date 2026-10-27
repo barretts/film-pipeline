@@ -1,0 +1,10 @@
+{
+  "shots": [
+    {
+      "file": "../stills/pilot/sdxl-smoke.png",
+      "type": "image",
+      "duration": 4
+    }
+  ],
+  "audio": "../audio/pilot/piper-smoke.wav"
+}

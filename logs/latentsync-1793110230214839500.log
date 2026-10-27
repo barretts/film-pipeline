@@ -1,0 +1,338 @@
+Input video path: F:\film-pipeline\jobs\latent-ul86m553\crop-0.mp4
+Input audio path: F:\film-pipeline\jobs\latent-ul86m553\voice-0.wav
+Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
+Initial seed: 1247
+Applied providers: ['CUDAExecutionProvider', 'CPUExecutionProvider'], with options: {'CUDAExecutionProvider': {'device_id': '0', 'has_user_compute_stream': '0', 'cudnn_conv1d_pad_to_nc1d': '0', 'user_compute_stream': '0', 'gpu_external_alloc': '0', 'gpu_mem_limit': '18446744073709551615', 'enable_cuda_graph': '0', 'gpu_external_free': '0', 'gpu_external_empty_cache': '0', 'arena_extend_strategy': 'kNextPowerOfTwo', 'cudnn_conv_algo_search': 'EXHAUSTIVE', 'do_copy_in_default_stream': '1', 'cudnn_conv_use_max_workspace': '1', 'tunable_op_enable': '0', 'tunable_op_tuning_enable': '0', 'tunable_op_max_tuning_duration_ms': '0', 'enable_skip_layer_norm_strict_mode': '0', 'prefer_nhwc': '0', 'use_ep_level_unified_stream': '0', 'use_tf32': '1', 'sdpa_kernel': '0', 'fuse_conv_bias': '0'}, 'CPUExecutionProvider': {}}
+find model: checkpoints/auxiliary\models\buffalo_l\2d106det.onnx landmark_2d_106 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CUDAExecutionProvider', 'CPUExecutionProvider'], with options: {'CUDAExecutionProvider': {'device_id': '0', 'has_user_compute_stream': '0', 'cudnn_conv1d_pad_to_nc1d': '0', 'user_compute_stream': '0', 'gpu_external_alloc': '0', 'gpu_mem_limit': '18446744073709551615', 'enable_cuda_graph': '0', 'gpu_external_free': '0', 'gpu_external_empty_cache': '0', 'arena_extend_strategy': 'kNextPowerOfTwo', 'cudnn_conv_algo_search': 'EXHAUSTIVE', 'do_copy_in_default_stream': '1', 'cudnn_conv_use_max_workspace': '1', 'tunable_op_enable': '0', 'tunable_op_tuning_enable': '0', 'tunable_op_max_tuning_duration_ms': '0', 'enable_skip_layer_norm_strict_mode': '0', 'prefer_nhwc': '0', 'use_ep_level_unified_stream': '0', 'use_tf32': '1', 'sdpa_kernel': '0', 'fuse_conv_bias': '0'}, 'CPUExecutionProvider': {}}
+find model: checkpoints/auxiliary\models\buffalo_l\det_10g.onnx detection [1, 3, '?', '?'] 127.5 128.0
+set det-size: (512, 512)
+video in 25 FPS, audio idx in 50FPS
+Affine transforming 105 faces...
+  0%|          | 0/105 [00:00<?, ?it/s]  1%|          | 1/105 [00:00<00:45,  2.26it/s]  4%|3         | 4/105 [00:00<00:11,  8.54it/s]  7%|6         | 7/105 [00:00<00:07, 13.25it/s] 10%|9         | 10/105 [00:00<00:05, 16.78it/s] 12%|#2        | 13/105 [00:00<00:04, 19.91it/s] 15%|#5        | 16/105 [00:01<00:03, 22.50it/s] 18%|#8        | 19/105 [00:01<00:03, 24.40it/s] 21%|##        | 22/105 [00:01<00:03, 25.96it/s] 25%|##4       | 26/105 [00:01<00:02, 28.18it/s] 29%|##8       | 30/105 [00:01<00:02, 29.47it/s] 32%|###2      | 34/105 [00:01<00:02, 29.48it/s] 36%|###6      | 38/105 [00:01<00:02, 29.89it/s] 40%|####      | 42/105 [00:01<00:02, 30.06it/s] 44%|####3     | 46/105 [00:01<00:01, 30.80it/s] 48%|####7     | 50/105 [00:02<00:01, 31.23it/s] 51%|#####1    | 54/105 [00:02<00:01, 31.62it/s] 55%|#####5    | 58/105 [00:02<00:01, 31.69it/s] 59%|#####9    | 62/105 [00:02<00:01, 31.21it/s] 63%|######2   | 66/105 [00:02<00:01, 31.48it/s] 67%|######6   | 70/105 [00:02<00:01, 31.41it/s] 70%|#######   | 74/105 [00:02<00:00, 31.23it/s] 74%|#######4  | 78/105 [00:02<00:00, 31.21it/s] 78%|#######8  | 82/105 [00:03<00:00, 30.69it/s] 82%|########1 | 86/105 [00:03<00:00, 31.29it/s] 86%|########5 | 90/105 [00:03<00:00, 31.64it/s] 90%|########9 | 94/105 [00:03<00:00, 31.82it/s] 93%|#########3| 98/105 [00:03<00:00, 31.98it/s] 97%|#########7| 102/105 [00:03<00:00, 32.05it/s]100%|##########| 105/105 [00:03<00:00, 27.35it/s]
+Doing inference...:   0%|          | 0/7 [00:00<?, ?it/s]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.10it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.46it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:09,  1.71it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.91it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.08it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.24it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.38it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.52it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.60it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.66it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.71it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.75it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.78it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.80it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.82it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.81it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.81it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.82it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.48it/s]
+Doing inference...:  14%|#4        | 1/7 [00:09<00:55,  9.26s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:10,  1.74it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:07,  2.26it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.49it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.62it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.70it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.75it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.78it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.80it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.82it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.83it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.83it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.84it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.83it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.83it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.83it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.75it/s]
+Doing inference...:  29%|##8       | 2/7 [00:17<00:42,  8.53s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:10,  1.73it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:07,  2.25it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.49it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.61it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.67it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.73it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.76it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.80it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.81it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.82it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.84it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.84it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.85it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.85it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.85it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.75it/s]
+Doing inference...:  43%|####2     | 3/7 [00:25<00:33,  8.30s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.71it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.22it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.45it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.60it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.69it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.74it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.77it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.79it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.81it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.82it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.82it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.84it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.84it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.85it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.75it/s]
+Doing inference...:  57%|#####7    | 4/7 [00:33<00:24,  8.20s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.68it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.20it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.43it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.57it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:02<00:05,  2.66it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.71it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.74it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.76it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.78it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.82it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.83it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.74it/s]
+Doing inference...:  71%|#######1  | 5/7 [00:41<00:16,  8.15s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.72it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:07,  2.25it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.49it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.61it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.69it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.74it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.76it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.79it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.81it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.82it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.84it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.85it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.85it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.75it/s]
+Doing inference...:  86%|########5 | 6/7 [00:49<00:08,  8.11s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:07,  2.47it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:05,  3.22it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:00<00:04,  3.59it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.80it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:03,  3.91it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.98it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:01<00:03,  3.99it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:02<00:02,  4.01it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  4.02it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  4.04it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:02<00:02,  4.07it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:03<00:01,  4.07it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  4.08it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  4.09it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:03<00:01,  4.10it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:04<00:00,  4.11it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  4.11it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  4.11it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:04<00:00,  4.11it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  4.11it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.97it/s]
+Doing inference...: 100%|##########| 7/7 [00:55<00:00,  7.28s/it]Doing inference...: 100%|##########| 7/7 [00:55<00:00,  7.86s/it]
+Restoring 107 faces...
+  0%|          | 0/107 [00:00<?, ?it/s]  2%|1         | 2/107 [00:00<00:05, 19.34it/s] 11%|#1        | 12/107 [00:00<00:01, 64.27it/s] 20%|#9        | 21/107 [00:00<00:01, 74.01it/s] 27%|##7       | 29/107 [00:00<00:01, 75.53it/s] 36%|###5      | 38/107 [00:00<00:00, 79.24it/s] 44%|####3     | 47/107 [00:00<00:00, 80.92it/s] 52%|#####2    | 56/107 [00:00<00:00, 83.19it/s] 61%|######    | 65/107 [00:00<00:00, 84.06it/s] 69%|######9   | 74/107 [00:00<00:00, 83.94it/s] 78%|#######7  | 83/107 [00:01<00:00, 78.84it/s] 86%|########5 | 92/107 [00:01<00:00, 79.56it/s] 94%|#########4| 101/107 [00:01<00:00, 80.60it/s]100%|##########| 107/107 [00:01<00:00, 78.53it/s]
+Input video path: F:\film-pipeline\jobs\latent-ul86m553\crop-1.mp4
+Input audio path: F:\film-pipeline\jobs\latent-ul86m553\voice-1.wav
+Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
+Initial seed: 1247
+Applied providers: ['CUDAExecutionProvider', 'CPUExecutionProvider'], with options: {'CUDAExecutionProvider': {'device_id': '0', 'has_user_compute_stream': '0', 'cudnn_conv1d_pad_to_nc1d': '0', 'user_compute_stream': '0', 'gpu_external_alloc': '0', 'gpu_mem_limit': '18446744073709551615', 'enable_cuda_graph': '0', 'gpu_external_free': '0', 'gpu_external_empty_cache': '0', 'arena_extend_strategy': 'kNextPowerOfTwo', 'cudnn_conv_algo_search': 'EXHAUSTIVE', 'do_copy_in_default_stream': '1', 'cudnn_conv_use_max_workspace': '1', 'tunable_op_enable': '0', 'tunable_op_tuning_enable': '0', 'tunable_op_max_tuning_duration_ms': '0', 'enable_skip_layer_norm_strict_mode': '0', 'prefer_nhwc': '0', 'use_ep_level_unified_stream': '0', 'use_tf32': '1', 'sdpa_kernel': '0', 'fuse_conv_bias': '0'}, 'CPUExecutionProvider': {}}
+find model: checkpoints/auxiliary\models\buffalo_l\2d106det.onnx landmark_2d_106 ['None', 3, 192, 192] 0.0 1.0
+Applied providers: ['CUDAExecutionProvider', 'CPUExecutionProvider'], with options: {'CUDAExecutionProvider': {'device_id': '0', 'has_user_compute_stream': '0', 'cudnn_conv1d_pad_to_nc1d': '0', 'user_compute_stream': '0', 'gpu_external_alloc': '0', 'gpu_mem_limit': '18446744073709551615', 'enable_cuda_graph': '0', 'gpu_external_free': '0', 'gpu_external_empty_cache': '0', 'arena_extend_strategy': 'kNextPowerOfTwo', 'cudnn_conv_algo_search': 'EXHAUSTIVE', 'do_copy_in_default_stream': '1', 'cudnn_conv_use_max_workspace': '1', 'tunable_op_enable': '0', 'tunable_op_tuning_enable': '0', 'tunable_op_max_tuning_duration_ms': '0', 'enable_skip_layer_norm_strict_mode': '0', 'prefer_nhwc': '0', 'use_ep_level_unified_stream': '0', 'use_tf32': '1', 'sdpa_kernel': '0', 'fuse_conv_bias': '0'}, 'CPUExecutionProvider': {}}
+find model: checkpoints/auxiliary\models\buffalo_l\det_10g.onnx detection [1, 3, '?', '?'] 127.5 128.0
+set det-size: (512, 512)
+video in 25 FPS, audio idx in 50FPS
+Affine transforming 105 faces...
+  0%|          | 0/105 [00:00<?, ?it/s]  1%|          | 1/105 [00:00<00:45,  2.27it/s]  5%|4         | 5/105 [00:00<00:09, 10.93it/s]  9%|8         | 9/105 [00:00<00:05, 17.17it/s] 11%|#1        | 12/105 [00:00<00:04, 20.38it/s] 15%|#5        | 16/105 [00:00<00:03, 24.03it/s] 19%|#9        | 20/105 [00:01<00:03, 26.45it/s] 23%|##2       | 24/105 [00:01<00:02, 28.37it/s] 27%|##6       | 28/105 [00:01<00:02, 29.47it/s] 30%|###       | 32/105 [00:01<00:02, 29.29it/s] 34%|###4      | 36/105 [00:01<00:02, 29.73it/s] 38%|###8      | 40/105 [00:01<00:02, 30.16it/s] 42%|####1     | 44/105 [00:01<00:01, 30.66it/s] 46%|####5     | 48/105 [00:01<00:01, 30.53it/s] 50%|####9     | 52/105 [00:02<00:01, 29.08it/s] 52%|#####2    | 55/105 [00:02<00:01, 28.89it/s] 56%|#####6    | 59/105 [00:02<00:01, 29.06it/s] 59%|#####9    | 62/105 [00:02<00:01, 28.79it/s] 63%|######2   | 66/105 [00:02<00:01, 29.28it/s] 66%|######5   | 69/105 [00:02<00:01, 28.98it/s] 69%|######8   | 72/105 [00:02<00:01, 29.18it/s] 71%|#######1  | 75/105 [00:02<00:01, 28.74it/s] 75%|#######5  | 79/105 [00:03<00:00, 29.59it/s] 78%|#######8  | 82/105 [00:03<00:00, 29.30it/s] 82%|########1 | 86/105 [00:03<00:00, 29.90it/s] 86%|########5 | 90/105 [00:03<00:00, 30.55it/s] 90%|########9 | 94/105 [00:03<00:00, 30.98it/s] 93%|#########3| 98/105 [00:03<00:00, 31.32it/s] 97%|#########7| 102/105 [00:03<00:00, 30.97it/s]100%|##########| 105/105 [00:03<00:00, 27.21it/s]
+Doing inference...:   0%|          | 0/7 [00:00<?, ?it/s]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.08it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.44it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:10,  1.68it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.86it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.02it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.18it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.32it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.45it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.56it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.64it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.70it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.75it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.77it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:06<00:02,  2.80it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.81it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.82it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.83it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.82it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.81it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.45it/s]
+Doing inference...:  14%|#4        | 1/7 [00:09<00:55,  9.29s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:10,  1.73it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.24it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.47it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.61it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.69it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.74it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.78it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.80it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.81it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.82it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.82it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.81it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.81it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.81it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.83it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.83it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.82it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.74it/s]
+Doing inference...:  29%|##8       | 2/7 [00:17<00:42,  8.56s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.72it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.24it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.48it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.62it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.69it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.75it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.77it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.80it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.81it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.82it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.83it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.84it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.84it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.84it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.75it/s]
+Doing inference...:  43%|####2     | 3/7 [00:25<00:33,  8.32s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:10,  1.74it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:07,  2.26it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.49it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.62it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.70it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.73it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.75it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.80it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.79it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.79it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.80it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.81it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.82it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.83it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.83it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.74it/s]
+Doing inference...:  57%|#####7    | 4/7 [00:33<00:24,  8.21s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.71it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.23it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.48it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.61it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.69it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.74it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.77it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.79it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.79it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.79it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.81it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.82it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.83it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.83it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.83it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.84it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.84it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.84it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.74it/s]
+Doing inference...:  71%|#######1  | 5/7 [00:41<00:16,  8.16s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.72it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.24it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.48it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.57it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:02<00:05,  2.66it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.70it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.73it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.75it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.78it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.79it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.80it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.82it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.82it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.83it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.83it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.82it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.83it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.83it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.84it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.73it/s]
+Doing inference...:  86%|########5 | 6/7 [00:49<00:08,  8.13s/it]
+Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
+Sample frames: 16:   5%|5         | 1/20 [00:00<00:07,  2.50it/s][A
+Sample frames: 16:  10%|#         | 2/20 [00:00<00:05,  3.26it/s][A
+Sample frames: 16:  15%|#5        | 3/20 [00:00<00:04,  3.60it/s][A
+Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.80it/s][A
+Sample frames: 16:  25%|##5       | 5/20 [00:01<00:03,  3.90it/s][A
+Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.98it/s][A
+Sample frames: 16:  35%|###5      | 7/20 [00:01<00:03,  4.03it/s][A
+Sample frames: 16:  40%|####      | 8/20 [00:02<00:02,  4.05it/s][A
+Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  4.08it/s][A
+Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  4.09it/s][A
+Sample frames: 16:  55%|#####5    | 11/20 [00:02<00:02,  4.11it/s][A
+Sample frames: 16:  60%|######    | 12/20 [00:03<00:01,  4.11it/s][A
+Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  4.12it/s][A
+Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  4.12it/s][A
+Sample frames: 16:  75%|#######5  | 15/20 [00:03<00:01,  4.12it/s][A
+Sample frames: 16:  80%|########  | 16/20 [00:04<00:00,  4.12it/s][A
+Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  4.13it/s][A
+Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  4.12it/s][A
+Sample frames: 16:  95%|#########5| 19/20 [00:04<00:00,  4.12it/s][A
+Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  4.11it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.99it/s]
+Doing inference...: 100%|##########| 7/7 [00:55<00:00,  7.28s/it]Doing inference...: 100%|##########| 7/7 [00:55<00:00,  7.87s/it]
+Restoring 107 faces...
+  0%|          | 0/107 [00:00<?, ?it/s]  2%|1         | 2/107 [00:00<00:05, 19.75it/s] 11%|#1        | 12/107 [00:00<00:01, 62.49it/s] 20%|#9        | 21/107 [00:00<00:01, 72.38it/s] 27%|##7       | 29/107 [00:00<00:01, 73.73it/s] 35%|###4      | 37/107 [00:00<00:00, 75.85it/s] 43%|####2     | 46/107 [00:00<00:00, 78.63it/s] 50%|#####     | 54/107 [00:00<00:00, 77.84it/s] 59%|#####8    | 63/107 [00:00<00:00, 78.84it/s] 67%|######7   | 72/107 [00:00<00:00, 80.34it/s] 76%|#######5  | 81/107 [00:01<00:00, 81.18it/s] 84%|########4 | 90/107 [00:01<00:00, 81.39it/s] 93%|#########2| 99/107 [00:01<00:00, 80.33it/s]100%|##########| 107/107 [00:01<00:00, 77.28it/s]

@@ -1,0 +1,138 @@
+{
+  "audio": "audio\\reels\\02-paced.wav",
+  "text": " Taught the machine a word, home, it drew a door. Behind that door was a room, and in that room, another me.",
+  "words": [
+    {
+      "word": " Taught",
+      "start": 0.0,
+      "end": 0.68,
+      "probability": 0.5741848647594452
+    },
+    {
+      "word": " the",
+      "start": 0.68,
+      "end": 0.92,
+      "probability": 0.9964717626571655
+    },
+    {
+      "word": " machine",
+      "start": 0.92,
+      "end": 1.14,
+      "probability": 0.9924319982528687
+    },
+    {
+      "word": " a",
+      "start": 1.14,
+      "end": 1.4,
+      "probability": 0.9852419495582581
+    },
+    {
+      "word": " word,",
+      "start": 1.4,
+      "end": 1.88,
+      "probability": 0.9939948916435242
+    },
+    {
+      "word": " home,",
+      "start": 2.14,
+      "end": 2.48,
+      "probability": 0.8818421363830566
+    },
+    {
+      "word": " it",
+      "start": 2.82,
+      "end": 2.9,
+      "probability": 0.9551413059234619
+    },
+    {
+      "word": " drew",
+      "start": 2.9,
+      "end": 3.06,
+      "probability": 0.997619092464447
+    },
+    {
+      "word": " a",
+      "start": 3.06,
+      "end": 3.26,
+      "probability": 0.9951452612876892
+    },
+    {
+      "word": " door.",
+      "start": 3.26,
+      "end": 3.62,
+      "probability": 0.993948221206665
+    },
+    {
+      "word": " Behind",
+      "start": 4.12,
+      "end": 4.32,
+      "probability": 0.9906641244888306
+    },
+    {
+      "word": " that",
+      "start": 4.32,
+      "end": 4.68,
+      "probability": 0.9941430687904358
+    },
+    {
+      "word": " door",
+      "start": 4.68,
+      "end": 4.86,
+      "probability": 0.9975645542144775
+    },
+    {
+      "word": " was",
+      "start": 4.86,
+      "end": 5.1,
+      "probability": 0.9950947761535645
+    },
+    {
+      "word": " a",
+      "start": 5.1,
+      "end": 5.24,
+      "probability": 0.9948775172233582
+    },
+    {
+      "word": " room,",
+      "start": 5.24,
+      "end": 5.5,
+      "probability": 0.9969583749771118
+    },
+    {
+      "word": " and",
+      "start": 5.66,
+      "end": 5.76,
+      "probability": 0.9963247179985046
+    },
+    {
+      "word": " in",
+      "start": 5.76,
+      "end": 5.88,
+      "probability": 0.9908928871154785
+    },
+    {
+      "word": " that",
+      "start": 5.88,
+      "end": 6.14,
+      "probability": 0.9976261258125305
+    },
+    {
+      "word": " room,",
+      "start": 6.14,
+      "end": 6.58,
+      "probability": 0.9991071820259094
+    },
+    {
+      "word": " another",
+      "start": 7.02,
+      "end": 7.22,
+      "probability": 0.9962312579154968
+    },
+    {
+      "word": " me.",
+      "start": 7.22,
+      "end": 7.74,
+      "probability": 0.9835532903671265
+    }
+  ]
+}

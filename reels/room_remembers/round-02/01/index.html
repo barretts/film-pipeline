@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="portrait">
+<head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=1920">
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+* { box-sizing:border-box; }
+html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:#101a20; }
+#root { position:relative; width:1080px; height:1920px; overflow:hidden; background:#101a20; }
+.stage { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:hidden; }
+.stage img,.stage video { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; }
+#poster { z-index:1; } #talk { z-index:2; } #broll,#opener { z-index:3; }
+.eyebrow { position:absolute; top:205px; left:105px; width:870px; text-align:center;
+  color:#ffd3e4; font:600 35px/1.2 "Space Mono",monospace; letter-spacing:.08em; }
+.eyebrow span { padding:5px 9px; background:rgba(10,18,22,.88); white-space:nowrap; }
+.hook { position:absolute; top:300px; left:105px; width:870px; text-align:center;
+  color:#faf3e5; font:700 74px/.99 "Archivo Black",sans-serif; letter-spacing:.015em; }
+.hook span { padding:6px 14px; background:rgba(10,18,22,.88); box-decoration-break:clone; }
+.line { position:absolute; top:1466px; left:410px; width:260px; height:2px; background:#b69379; }
+</style></head>
+<body><div data-hf-id="hf-wtqs" id="root" data-composition-id="main" data-start="0" data-duration="12.274" data-width="1080" data-height="1920">
+  <div data-hf-id="hf-frbn" class="stage" data-layout-allow-overlap="" data-layout-allow-overflow="">
+    <img data-hf-id="hf-6klo" id="poster" class="clip" data-start="0" data-duration="12.274" data-track-index="0" src="assets/poster.png" alt="">
+    <video data-hf-id="hf-4xtp" id="talk" class="clip" data-start="0.800" data-duration="9.974" data-track-index="1" src="assets/talking.mp4" muted playsinline></video>
+    <img data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:1,&quot;adjust&quot;:{&quot;exposure&quot;:-0.35,&quot;contrast&quot;:0.1,&quot;highlights&quot;:0,&quot;shadows&quot;:0,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0,&quot;saturation&quot;:-0.15},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-j44y" id="broll" class="clip" data-start="4.880" data-duration="2.500" data-track-index="2" src="assets/scene.png" alt="">
+    
+  </div>
+  <div data-hf-id="hf-gkt1" id="eyebrow" class="clip eyebrow" data-start="0" data-duration="12.274" data-track-index="3"><span data-hf-id="hf-rt4t">THE ROOM REMEMBERS / 01</span></div>
+  <div data-hf-id="hf-41l2" id="hook" class="clip hook" data-start="0" data-duration="2.200" data-track-index="4"><span data-hf-id="hf-lfi9">THIS ROOM WILL FORGET ME</span></div>
+  <div data-hf-id="hf-h9yz" id="line" class="clip line" data-start="0" data-duration="12.274" data-track-index="3"></div>
+  <div data-hf-id="hf-d7sg" id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="12.274" data-track-index="5" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+  <audio data-hf-id="hf-da5s" id="speech" class="clip" data-start="0.800" data-duration="9.974" data-track-index="6" data-volume="1" src="assets/voice.wav"></audio>
+  <audio data-hf-id="hf-gcz5" id="music" class="clip" data-start="0" data-duration="12.274" data-track-index="7" data-volume="0.12" data-fade-in="0.6" data-fade-out="0.8" src="assets/music.wav"></audio>
+  <audio data-hf-id="hf-bpbg" id="accent" class="clip" data-start="6.300" data-duration="1.200" data-track-index="8" data-volume="0.20" src="assets/accent.wav"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const timeline = gsap.timeline({ paused:true });
+timeline.fromTo(".stage", {scale:1}, {scale:1.045,duration:12.274,ease:"none"}, 0);
+timeline.fromTo("#broll", {opacity:0}, {opacity:1,duration:.16,ease:"power1.out"}, 4.880);
+timeline.to("#broll", {opacity:0,duration:.18,ease:"power1.in"}, 7.200);
+timeline.fromTo("#hook span", {opacity:1}, {opacity:0,duration:.25,ease:"power1.in"}, 1.95);
+timeline.to({}, {duration:12.274}, 0);
+window.__timelines["main"] = timeline;
+</script></body></html>

@@ -1,0 +1,41 @@
+diff --git a/scripts/inference.py b/scripts/inference.py
+index 428afb9..3386b48 100644
+--- a/scripts/inference.py
++++ b/scripts/inference.py
+@@ -20,6 +20,15 @@ from musetalk.utils.audio_processor import AudioProcessor
+ from musetalk.utils.utils import get_file_type, get_video_fps, datagen, load_all_model
+ from musetalk.utils.preprocessing import get_landmark_and_bbox, read_imgs, coord_placeholder
+ 
++def validate_video_face_tracking(coords, frame_count):
++    if frame_count <= 0:
++        raise ValueError("Moving video contains no decoded frames")
++    if len(coords) != frame_count:
++        raise ValueError(f"Face tracking returned {len(coords)} boxes for {frame_count} video frames")
++    missing = [i for i, bbox in enumerate(coords) if tuple(bbox) == (0.0, 0.0, 0.0, 0.0)]
++    if missing:
++        raise ValueError(f"Face not detected in {len(missing)} video frame(s); first missing frame: {missing[0]}")
++
+ def fast_check_ffmpeg():
+     try:
+         subprocess.run(["ffmpeg", "-version"], capture_output=True, check=True)
+@@ -159,7 +168,9 @@ def main(args):
+                 with open(crop_coord_save_path, 'wb') as f:
+                     pickle.dump(coord_list, f)
+             
+-            print(f"Number of frames: {len(frame_list)}")         
++            print(f"Number of frames: {len(frame_list)}")
++            if get_file_type(video_path) == "video":
++                validate_video_face_tracking(coord_list, len(frame_list))
+             
+             # Process each frame
+             input_latent_list = []
+@@ -240,7 +251,8 @@ def main(args):
+             shutil.rmtree(result_img_save_path)
+             os.remove(temp_vid_path)
+             
+-            shutil.rmtree(save_dir_full)
++            if get_file_type(video_path) == "video":
++                shutil.rmtree(save_dir_full)
+             if not args.saved_coord:
+                 os.remove(crop_coord_save_path)
+                     

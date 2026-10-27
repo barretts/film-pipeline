@@ -1,0 +1,10 @@
+{
+  "shots": [
+    {
+      "file": "../stills/verification/verify_f5d1cdf1.png",
+      "type": "image",
+      "duration": 4
+    }
+  ],
+  "audio": "../audio/verification/verify_f5d1cdf1.wav"
+}

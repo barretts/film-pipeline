@@ -1,0 +1,144 @@
+{
+  "audio": "audio\\reels\\03-paced.wav",
+  "text": " The machine asked what I wanted to remember. I said, a face. It showed me yours. Now tell me, have we met before?",
+  "words": [
+    {
+      "word": " The",
+      "start": 0.0,
+      "end": 0.4,
+      "probability": 0.8703429102897644
+    },
+    {
+      "word": " machine",
+      "start": 0.4,
+      "end": 0.72,
+      "probability": 0.9930222630500793
+    },
+    {
+      "word": " asked",
+      "start": 0.72,
+      "end": 1.14,
+      "probability": 0.9976497292518616
+    },
+    {
+      "word": " what",
+      "start": 1.14,
+      "end": 1.44,
+      "probability": 0.9935445785522461
+    },
+    {
+      "word": " I",
+      "start": 1.44,
+      "end": 1.58,
+      "probability": 0.9938175082206726
+    },
+    {
+      "word": " wanted",
+      "start": 1.58,
+      "end": 1.78,
+      "probability": 0.9973338842391968
+    },
+    {
+      "word": " to",
+      "start": 1.78,
+      "end": 2.0,
+      "probability": 0.9995915293693542
+    },
+    {
+      "word": " remember.",
+      "start": 2.0,
+      "end": 2.36,
+      "probability": 0.9993009567260742
+    },
+    {
+      "word": " I",
+      "start": 3.02,
+      "end": 3.08,
+      "probability": 0.8233606815338135
+    },
+    {
+      "word": " said,",
+      "start": 3.08,
+      "end": 3.36,
+      "probability": 0.9993776679039001
+    },
+    {
+      "word": " a",
+      "start": 3.58,
+      "end": 3.66,
+      "probability": 0.1246623769402504
+    },
+    {
+      "word": " face.",
+      "start": 3.66,
+      "end": 4.02,
+      "probability": 0.9658069610595703
+    },
+    {
+      "word": " It",
+      "start": 4.56,
+      "end": 4.64,
+      "probability": 0.9726013541221619
+    },
+    {
+      "word": " showed",
+      "start": 4.64,
+      "end": 4.92,
+      "probability": 0.9901453852653503
+    },
+    {
+      "word": " me",
+      "start": 4.92,
+      "end": 5.14,
+      "probability": 0.9984886646270752
+    },
+    {
+      "word": " yours.",
+      "start": 5.14,
+      "end": 5.44,
+      "probability": 0.984210729598999
+    },
+    {
+      "word": " Now",
+      "start": 5.86,
+      "end": 5.98,
+      "probability": 0.994084894657135
+    },
+    {
+      "word": " tell",
+      "start": 5.98,
+      "end": 6.22,
+      "probability": 0.9182694554328918
+    },
+    {
+      "word": " me,",
+      "start": 6.22,
+      "end": 6.5,
+      "probability": 0.9996041655540466
+    },
+    {
+      "word": " have",
+      "start": 6.82,
+      "end": 7.0,
+      "probability": 0.979681134223938
+    },
+    {
+      "word": " we",
+      "start": 7.0,
+      "end": 7.14,
+      "probability": 0.9986953139305115
+    },
+    {
+      "word": " met",
+      "start": 7.14,
+      "end": 7.3,
+      "probability": 0.9973781108856201
+    },
+    {
+      "word": " before?",
+      "start": 7.3,
+      "end": 7.66,
+      "probability": 0.9995111227035522
+    }
+  ]
+}

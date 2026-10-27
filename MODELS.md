@@ -1,38 +1,21 @@
-# MODELS: catalog ids, measurements, decisions (filled in during P1-T06 and P2)
+﻿# Model record
 
-The planned models and start settings are in CONTEXT.md §4. This file records what this PC actually ran.
+Only enter a model as usable after a local smoke test. Record the exact identifier and variant, license, role, input/settings, output path, VRAM, duration, quality, and evidence. A catalog listing or suggested model is not a successful test. Keep failed tests and their errors so the next session does not repeat an unchanged attempt.
 
-| Role | Planned model | Catalog / HF id + variant | Size GB | fits_now | Peak VRAM GB | Time per item | Status | Notes / fallback used |
-|---|---|---|---|---|---|---|---|---|
-| Writer | Qwen3.8-27B UD-Q4_K_XL | | | | | tok/s: | ☐ | fallback UD-Q3_K_XL |
-| Stills | Qwen-Image-2.1-Turbo GGUF Q4_K_M | | | | | s/image: | ☐ | |
-| Reference shots | Qwen-Image-2.1-Turbo edit/ref or Qwen-Image-Edit-2511 | | | | | s/image: | ☐ | |
-| Motion video | Wan2.2-TI2V-5B GGUF | | | | | min/clip: | ☐ | |
-| Hero video | Wan2.2-I2V-A14B GGUF Q5_K_M | | | | | min/clip: | ☐ | fallback Q4_K_M → ComfyUI |
-| Talking video | LTX-2.5 | | | | | min/clip: | ☐ | audio-driven: yes/no |
-| Separation | HTDemucs | | | | | s/clip: | ☐ | fallback demucs CLI |
-| Voice | Breeze-TTS-2 | | | | | s/line: | ☐ | |
-| Music | YuE 2 (YuE2-3B) | | | | | min/song: | ☐ | fallback YuE2-Studio app / yue2.cpp |
-| SFX + drone | MiDashengLM-Gen | | | | | s/cue: | ☐ | fallback official repo venv |
-| Transcribe | MOSS-Transcribe-Diarize | | | | | s/min audio: | ☐ | |
-| Fine-tune | Qwen3-0.6B LoRA → GGUF Q4_K_M | | | | | min/run: | ☐ | loss source: |
-| Render | HyperFrames | n/a | n/a | n/a | CPU | s per 10 s: | ☐ | |
+| Role | Model / variant | License checked | Test and evidence | Peak VRAM / time | Result / next action |
+|---|---|---|---|---|---|
+| Local coding smoke | `unsloth/Qwen3.5-0.8B-GGUF`, UD-Q5_K_XL | Not checked for production | Loaded locally, answered a small Python coding prompt, then unloaded; MCP seq 35–37 | GPU snapshot 2,621 MiB used; peak not measured | Basic inference works; autonomous coding, tool use and resume remain untested. |
+| Local coding agent smoke | `unsloth/Qwen3.5-4B-GGUF`, UD-Q4_K_XL | Not checked for production | OMP completed simple file task, passed four cases, then recovered session marker after unload/reload; MCP seq 47–51 | GPU snapshot 5,803 MiB used; peak not measured | Bounded task and context resume passed; full workflow remains unproven. |
+| Optional coding agent | OMP/Strata selector `strata-q4/qwen3.8-flash-next-ud-q4_k_xl-128k-low-ram` | Not checked | Configuration exists; no agent inference test yet | Not measured | Restart engine after media jobs; test coding, tool use and session resume. |
+| Pilot image or video | `unsloth/Lumina-Image-2.0` / FP8 | Catalog metadata says Apache-2.0; verify actual downloaded model terms before production | Download completed (seq 13), load succeeded (15), 512x512 generation failed HTTP 500 (16), unloaded (17). | Load 33.429 s; failed generation 63.991 s; peak VRAM not measured | No image produced. Root cause not established; Studio's detailed error output is unavailable. Try a different model. |
+| Pilot image | `unsloth/stable-diffusion-xl-base-1.0` | OpenRAIL++ terms reviewed; restricted-use conditions apply | `stills/pilot/sdxl-smoke.png`, 512x512, seed 41, 12 steps; MCP sequences 26–28 | Load 14.521 s, generation 5.592 s; peak VRAM not measured | Technical smoke passed; scene is brighter than requested. Unloaded after generation. |
+| Pilot sound | `audio-cpp/audio.cpp-gguf/Piper-TTS-GGUF`, default Lessac medium | Local model spec selects Lessac; its model card links a research-data agreement. Rights for final promo are unresolved. | `audio/pilot/piper-smoke.wav`; MCP sequences 4–6; 2.74 s mono, 22.05 kHz | Load 44.66 s, generation 0.68 s; peak VRAM not measured | Technical smoke only. Use a voice with clear terms or resolve rights before production. |
+| Instrumental music | `audio-cpp/audio.cpp-gguf/Stable-Audio-3-Small-Music-GGUF`, Q8 | Model card lists Stability AI Community License and Gemma Terms; confirm applicable conditions | `audio/pilot/stable-audio-music-smoke.wav`, 8 s 44.1 kHz stereo; seq 71–73 | Not measured | Non-silent local output; musical quality not auditioned. |
+| Vocal song | `audio-cpp/Yue2-3B-GGUF`, Q4 | Upstream weights CC BY-NC 4.0, attribution required | `audio/pilot/yue2-vocal-smoke.wav`, 69.639 s 48 kHz stereo; seq 74–77 | Generation 43.66 s; peak VRAM not measured | Lyric-conditioned non-silent output; listen to confirm vocals. Studio ignored duration and semantic token limits. |
+| Final production | Not selected | Not checked | Pilot not yet reviewed | Not measured | Select roles after pilot evidence |
 
-**Total downloaded:** _GB_ · **Free space left on model drive:** _GB_
+Record model substitutions and their impact on the brief in `STATUS.md`; obtain the owner's decision for a creative substitution before final production.
 
-## Production settings (override CONTEXT §5 defaults; fill in from the smoke tests)
+Piper's local `model_specs/piper_tts.json` identifies its default as `piper-en-us-lessac-medium-orig.gguf`. The [Lessac voice model card](https://huggingface.co/rhasspy/piper-voices/raw/main/en/en_US/lessac/medium/MODEL_CARD) links a [research-data agreement](https://www.cstr.ed.ac.uk/projects/blizzard/2013/lessac_blizzard2013/license.html). The relationship of those restrictions to generated speech is unresolved; do not assume the test voice is cleared for the promo.
 
-| Role | Size | Frames / fps | Quant / variant | Limits / notes |
-|---|---|---|---|---|
-| Stills | 1344×768 | — | | |
-| Motion video | 1280×704 | 121 / 24 | | |
-| Hero video | 832×480 | 81 / 16 | Q5_K_M | max hero shots: 6 |
-| Talking video | 896×512 | max frames: | | strategy A/B: |
-| Voice | — | — | | reference length: |
-
-## Fallback engines (install only when a task says so)
-
-- **ComfyUI** (Desktop or Portable, comfy.org): Wan2.2-A14B GGUF + block swap, Wan2.2-S2V, LTX-2.5 workflows. Driven through its local HTTP API. Outputs from ComfyUI are not MCP-logged, so they may not carry on-screen facts.
-- **demucs CLI** (`pip install demucs` in `.venv`): `demucs --two-stems=vocals -n htdemucs -o OUT FILE`
-- **YuE2-Studio** (community Windows app) or **yue2.cpp** GGUF (`botp/YuE2-GGUF`). The official package targets Linux; WSL2 is the last resort.
-- **MiDashengLM-Gen official repo** in its own venv (`venvs/midasheng/`), using `trust_remote_code`. Review the repo's code before running it.
+The [SDXL license](https://huggingface.co/unsloth/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md) permits use subject to its restrictions and does not itself grant trademark rights.

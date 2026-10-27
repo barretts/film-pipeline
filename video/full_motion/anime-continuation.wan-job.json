@@ -1,0 +1,23 @@
+{
+  "request": {
+    "image": "F:/film-pipeline/stills/reels/full-motion/01-continuation-start.png",
+    "image_sha256": "0df819377bbd7b2340aecfb01128d6e56832ed0b858fb253f5852a7a5cd6fa0f",
+    "prompt": "The woman slowly lifts her head and gently shifts her shoulders, looking toward the camera with calm, level eyes. Her hands and arms move subtly at her sides and her short dark hair sways softly. Keep her face and eyes consistent, her red cardigan and blue dress unchanged, and the bedroom and wristwatch coherent. Hand-drawn anime style, static camera, no cuts.",
+    "output": "F:/film-pipeline/video/full_motion/anime-continuation.mp4",
+    "size": "704x1280",
+    "frames": 89,
+    "fps": 16,
+    "steps": 16,
+    "seed": 3811
+  },
+  "phase": "complete",
+  "model": "unsloth/Wan2.2-TI2V-5B-GGUF",
+  "video_job_id": "video_237f5dd2d44f43759209fd0511b5343f",
+  "measurements": {
+    "width": 704,
+    "height": 1280,
+    "duration_s": 5.5625,
+    "fps": "16/1",
+    "frames": 89
+  }
+}

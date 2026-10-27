@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "historyId": "78aa6b01-f6d9-4844-9006-b8a722c87a94",
+  "currentRevision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+  "pendingChanges": false,
+  "files": {
+    "assets/poster.png": {
+      "hash": "33d499d339a6e30dca2bde9872f5d3d57c5aff665e9f00b1b0d7580ed5a82542",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\33\\33d499d339a6e30dca2bde9872f5d3d57c5aff665e9f00b1b0d7580ed5a82542"
+    },
+    "assets/scene.png": {
+      "hash": "5ebdf7ea680bb9f0b44b770a24da193f65b13e97205aa2d0e6e9369a1d034966",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\5e\\5ebdf7ea680bb9f0b44b770a24da193f65b13e97205aa2d0e6e9369a1d034966"
+    },
+    "assets/talking.mp4": {
+      "hash": "58c4ebd41aa4f69484c431e81b900addb5a06ab3baa16bbb3cbcaa19cc5b93dc",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\58\\58c4ebd41aa4f69484c431e81b900addb5a06ab3baa16bbb3cbcaa19cc5b93dc"
+    },
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\c1\\c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "assets/voice.wav": {
+      "hash": "d71baae86111cf92a36861c712e2c4e933871326f57c04371b43be1539c3bdb7",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\d7\\d71baae86111cf92a36861c712e2c4e933871326f57c04371b43be1539c3bdb7"
+    },
+    "compositions/captions.html": {
+      "hash": "568058c2f08781307bc27a1926738c541d665da5d3b9e5d6f629c053330f738c",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\56\\568058c2f08781307bc27a1926738c541d665da5d3b9e5d6f629c053330f738c"
+    },
+    "hyperframes.json": {
+      "hash": "ff5a8a17565ac2cb228f912143c7e3276631bae7dde81f76e751dd9caabda3b4",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\ff\\ff5a8a17565ac2cb228f912143c7e3276631bae7dde81f76e751dd9caabda3b4"
+    },
+    "index.html": {
+      "hash": "6536cd39330f16af6a563c57901080c5265da3e5087deadf72c24ffbd2db614c",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\65\\6536cd39330f16af6a563c57901080c5265da3e5087deadf72c24ffbd2db614c"
+    },
+    "meta.json": {
+      "hash": "676bed44412b4621d9962edbf238d5a00d44d965aed4a067e47d9b770a5e9aff",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\67\\676bed44412b4621d9962edbf238d5a00d44d965aed4a067e47d9b770a5e9aff"
+    },
+    "assets/music.wav": {
+      "hash": "913c06dc94d8f68581ef37c88b6605dd6e31087acc3fcc6904f131ff66823bc6",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\91\\913c06dc94d8f68581ef37c88b6605dd6e31087acc3fcc6904f131ff66823bc6"
+    },
+    "assets/accent.wav": {
+      "hash": "de7724fd2b69edb5dfb84b45cb00b3baf091a63ea2f7865f489beb05d3e03da4",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\de\\de7724fd2b69edb5dfb84b45cb00b3baf091a63ea2f7865f489beb05d3e03da4"
+    }
+  },
+  "revisions": {
+    "471f7e3b-6298-4f54-8a3c-068ec65b65c1": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793091333832,
+      "endedAt": 1793091334230,
+      "files": {
+        "assets/accent.wav": {
+          "before": null,
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\de\\de7724fd2b69edb5dfb84b45cb00b3baf091a63ea2f7865f489beb05d3e03da4"
+        },
+        "assets/music.wav": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\cf\\cf33edc47e6e0cdb3dbf3d8272db123b1a389aad9ee04b60b61e40cea4793d30",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\91\\913c06dc94d8f68581ef37c88b6605dd6e31087acc3fcc6904f131ff66823bc6"
+        },
+        "assets/talking.mp4": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\6e\\6ecb4e9af2c8d501da59c6f88c65d1dfecc9919c10baeb80b60f436d9b33f63d",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\58\\58c4ebd41aa4f69484c431e81b900addb5a06ab3baa16bbb3cbcaa19cc5b93dc"
+        },
+        "index.html": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\1b\\1bbc71700c39a145f6a038cbf31b4be9386a8cdec08880de3e2c9ae63c693796",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\fa\\fa9587bfadb1938a4fff36a25915ef265123f644dd0018ae55ce4237b8f0a201"
+        }
+      }
+    },
+    "a58a3e93-658a-471e-ae1f-c88ec969f4b6": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793091415449,
+      "endedAt": 1793091415451,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\fa\\fa9587bfadb1938a4fff36a25915ef265123f644dd0018ae55ce4237b8f0a201",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\1b\\1bba001142a7950bebbd7372de31fe4899bcb05bb695c065f85f4a37512b0e52"
+        }
+      }
+    },
+    "6ca8693b-b414-437d-8253-06ed23b8363c": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793091621563,
+      "endedAt": 1793091621594,
+      "files": {
+        "compositions/captions.html": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\49\\4932e66638690a7516741dd0f6b0dee3cf6a9567d4661e6ae07a9e8d54567f34",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\56\\568058c2f08781307bc27a1926738c541d665da5d3b9e5d6f629c053330f738c"
+        },
+        "index.html": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\1b\\1bba001142a7950bebbd7372de31fe4899bcb05bb695c065f85f4a37512b0e52",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\a5\\a5cf449d0fbb5034e262c65ba82db46b439eab6eebaa383a9d5bbdc941dd3ff5"
+        }
+      }
+    },
+    "5c656480-77b6-4f24-82fe-81950ab1f4ff": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793091706215,
+      "endedAt": 1793091706223,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\a5\\a5cf449d0fbb5034e262c65ba82db46b439eab6eebaa383a9d5bbdc941dd3ff5",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\65\\6536cd39330f16af6a563c57901080c5265da3e5087deadf72c24ffbd2db614c"
+        },
+        "meta.json": {
+          "before": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\38\\38c25c1e3ea4d7ca955e54d1563641f02b7e95c1998c2782a937473f28865c39",
+          "after": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\78aa6b01-f6d9-4844-9006-b8a722c87a94\\blobs\\67\\676bed44412b4621d9962edbf238d5a00d44d965aed4a067e47d9b770a5e9aff"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+      "id": "656dc78a-1189-4194-8965-f220840b241c"
+    },
+    "revisions": {
+      "471f7e3b-6298-4f54-8a3c-068ec65b65c1": [
+        {
+          "id": "71a08462-a897-4378-8178-81c83bc779e3",
+          "scope": "project",
+          "report": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\checks\\71a08462-a897-4378-8178-81c83bc779e3.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793091342022,
+          "contentHash": "bdc8e437d5424a099d068f5267967eed6d048f1670e71c82809e7f091f594302",
+          "revision": "471f7e3b-6298-4f54-8a3c-068ec65b65c1",
+          "inputFingerprint": "ffcc51d78ba6a8690763e8abc983b3dd178a7abdca698b74aad5db2555a1fa9c",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "6ca8693b-b414-437d-8253-06ed23b8363c": [
+        {
+          "id": "70760910-e1d7-48c5-8d72-9415e9354d6a",
+          "scope": "project",
+          "report": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\checks\\70760910-e1d7-48c5-8d72-9415e9354d6a.json",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793091627641,
+          "contentHash": "4c4c1284ae45e606c92b1abb93b087a21a6ee9b98e88f4c547fe19f54ca21af5",
+          "revision": "6ca8693b-b414-437d-8253-06ed23b8363c",
+          "inputFingerprint": "a9784cd11381a2ade4fed28d31bfb220425939bf51ab7ba714a70da81f488392",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "5c656480-77b6-4f24-82fe-81950ab1f4ff": [
+        {
+          "id": "656dc78a-1189-4194-8965-f220840b241c",
+          "scope": "project",
+          "report": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\checks\\656dc78a-1189-4194-8965-f220840b241c.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1793091712205,
+          "contentHash": "80dcad780f7f52d186d8f1be43a259e05dfde096a9628b08c4a74429c444a189",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "a6fb730c-a8ac-4c8b-a623-daa29c48317b",
+        "scope": "project",
+        "report": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\checks\\a6fb730c-a8ac-4c8b-a623-daa29c48317b.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793091057411,
+        "contentHash": "80dcad780f7f52d186d8f1be43a259e05dfde096a9628b08c4a74429c444a189",
+        "revision": null,
+        "inputFingerprint": "19d6554a8149bec1e7e0f539e1ae1887f160fe4d8c9feff0f04b98d16268c7ed",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+      "id": "9ae43566-a114-4657-80c6-00026be4057f-7"
+    },
+    "revisions": {
+      "a58a3e93-658a-471e-ae1f-c88ec969f4b6": [
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-0",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-00-at-0s.png",
+          "time": 0,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422824,
+          "contentHash": "dc9f7eeccf5b29da0b6d544693ee9024617fff842143fb8bf0c6b7eceaadd6db",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-1",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-01-at-1.5s.png",
+          "time": 1.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422824,
+          "contentHash": "2159e7efcc3f6fe1690976708c94655d70b1c6007f5ef6a500ff8ef6e20c5234",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-2",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-02-at-3.5s.png",
+          "time": 3.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "a47889c708d3da56fcaf414e93e6fa195324786df0efb9ee6d7f7cf8e7529ed1",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-3",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-03-at-5.2s.png",
+          "time": 5.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "e71879a24da22476c8c300562643b4ddfabb7c508eef50dbf3e68d9c94c9cec5",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-4",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-04-at-6.5s.png",
+          "time": 6.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "3911fa381c1b086e9816f278c64bdca2d8723792b2a281b82cb2b1bedecceb7b",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-5",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-05-at-8.5s.png",
+          "time": 8.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "8a9b04cfc44a397b2934c46595b3c52403a75cdb4623d654f8ef8fd105de990a",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-6",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-06-at-10.5s.png",
+          "time": 10.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "340b266836e820849dd7fef20749b467c0447f96c600449ae6ceaf2213707d0a",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "ae41f458-0093-4e67-9f8d-de59cd1e9613-7",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\d29a00b3-63d8-42ba-883a-edc54f47eab8\\frame-07-at-11.7s.png",
+          "time": 11.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091422825,
+          "contentHash": "c0184ed87a4b77c47a4241a337e7794fb62edf709109d68631bff05026369aac",
+          "revision": "a58a3e93-658a-471e-ae1f-c88ec969f4b6",
+          "inputFingerprint": "9f7f91ffff9447c5699ce1017203e1689401421ffaf8549e8fe7a1e1938b4326",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "5c656480-77b6-4f24-82fe-81950ab1f4ff": [
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-0",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-00-at-0s.png",
+          "time": 0,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735890,
+          "contentHash": "38df4719647ec6adb95a304c9feb263e404de3bdf9cf38dec190f66e9e70265c",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-1",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-01-at-0.8s.png",
+          "time": 0.8,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735891,
+          "contentHash": "d9fc05ec4355e3305783da3a9a101d1c1d6326b362dbfc1ca8268da0532cc10a",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-2",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-02-at-1.5s.png",
+          "time": 1.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735891,
+          "contentHash": "6dd233cda515642efed30af07af25e4c558b0271823032fa5a9df60e4757b801",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-3",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-03-at-3.5s.png",
+          "time": 3.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735891,
+          "contentHash": "d58e4f73f34519faef3dc255f502f6cb1b8fc5749add99caf7a3a79838a42fef",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-4",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-04-at-5.2s.png",
+          "time": 5.2,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735891,
+          "contentHash": "3534be4c3e7e3a805d4be9b55bc36b939850e8538b49617845c2a2f44b59df99",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-5",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-05-at-6.5s.png",
+          "time": 6.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735891,
+          "contentHash": "f024a00c02beeb7123ec29fdc4918b8b83cc8cba26e52af53f3c84056536aec4",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-6",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-06-at-8.5s.png",
+          "time": 8.5,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735892,
+          "contentHash": "9988dbdb7fb0494c5df9539f7fb4d164cccb8bf59b82016defb2856663a6f418",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "9ae43566-a114-4657-80c6-00026be4057f-7",
+          "image": "F:\\film-pipeline\\reels\\room_remembers\\episodes\\01\\.hyperframes\\artifacts\\snapshots\\0d33bea0-e611-4507-b011-334a148d676a\\frame-07-at-11.7s.png",
+          "time": 11.7,
+          "metadata": {
+            "width": 1080,
+            "height": 1920,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1793091735892,
+          "contentHash": "b65a8badd435fb7c9206d22cb01efc7fbd3e76f1abce4bc7c69359d1e3cd526f",
+          "revision": "5c656480-77b6-4f24-82fe-81950ab1f4ff",
+          "inputFingerprint": "84cd0c686379e7fe9ce41185044ba5a32b7006eadd7a6961c3aaa2bdf2a9df1d",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": []
+  }
+}

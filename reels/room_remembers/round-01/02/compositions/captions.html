@@ -1,0 +1,23 @@
+<template>
+<style>
+  #root { position:absolute; inset:0; pointer-events:none; }
+  .caption { position:absolute; top:1224px; left:146px; width:788px; text-align:center; z-index:20; }
+  .caption-text { display:inline; padding:9px 15px 11px; box-decoration-break:clone;
+    background:rgba(10,18,22,.88); color:#fffaf0; font:600 48px/1.32 "Inter",sans-serif;
+    letter-spacing:.005em; }
+</style>
+<div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+<div id="caption-0" class="clip caption" data-start="0.800" data-duration="1.060" data-track-index="0"><span class="caption-text">I taught the machine</span></div>
+<div id="caption-1" class="clip caption" data-start="1.860" data-duration="1.420" data-track-index="0"><span class="caption-text">a word: home.</span></div>
+<div id="caption-2" class="clip caption" data-start="3.480" data-duration="0.940" data-track-index="0"><span class="caption-text">It drew a door.</span></div>
+<div id="caption-3" class="clip caption" data-start="4.920" data-duration="1.380" data-track-index="0"><span class="caption-text">Behind that door was a room.</span></div>
+<div id="caption-4" class="clip caption" data-start="6.380" data-duration="0.780" data-track-index="0"><span class="caption-text">And in that room...</span></div>
+<div id="caption-5" class="clip caption" data-start="7.740" data-duration="0.480" data-track-index="0"><span class="caption-text">another me.</span></div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const captionsTimeline = gsap.timeline({ paused:true });
+captionsTimeline.to({}, { duration:12.000 }, 0);
+window.__timelines["captions"] = captionsTimeline;
+</script>
+</template>

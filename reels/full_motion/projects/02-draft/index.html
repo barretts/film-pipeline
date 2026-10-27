@@ -1,0 +1,8 @@
+<!doctype html><html lang="en" data-resolution="portrait"><head><meta charset="utf-8"><meta name="viewport" content="width=1080,height=1920"><script src="assets/vendor/gsap.min.js"></script><style>
+*{box-sizing:border-box}html,body,#root{margin:0;width:1080px;height:1920px;overflow:hidden;background:#101a20}#root{position:relative}#talk{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+</style></head><body><div id="root" data-composition-id="main" data-start="0" data-duration="8.014" data-width="1080" data-height="1920">
+<video id="talk" class="clip" data-start="0" data-duration="8.014" data-track-index="0" src="assets/talking.mp4" muted playsinline></video>
+<div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="8.014" data-track-index="1" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+<audio id="speech" class="clip" data-start="0" data-duration="8.014" data-track-index="2" data-volume="1" src="assets/voice.wav"></audio>
+<audio id="music" class="clip" data-start="0" data-duration="8.014" data-track-index="3" data-volume="0.12" data-fade-in="0.6" data-fade-out="0.8" src="assets/music.wav"></audio>
+</div><script>window.__timelines=window.__timelines||{};const tl=gsap.timeline({paused:true});tl.to({},{duration:8.014},0);window.__timelines["main"]=tl;</script></body></html>

@@ -1,0 +1,225 @@
+{
+  "version": 1,
+  "historyId": "a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb",
+  "currentRevision": null,
+  "pendingChanges": false,
+  "files": {
+    "assets/vendor/gsap.min.js": {
+      "hash": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\c1\\c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280"
+    },
+    "assets/voice.wav": {
+      "hash": "d37fcdf47f588a724b8f75567729e6d58cb613e83fc102045f9b2ea14f24fa6a",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\d3\\d37fcdf47f588a724b8f75567729e6d58cb613e83fc102045f9b2ea14f24fa6a"
+    },
+    "compositions/captions.html": {
+      "hash": "4ca7ee61f62978a66cc0aed02ab65330808e0e18a927ea8a3d5ce7a809de8b5b",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\4c\\4ca7ee61f62978a66cc0aed02ab65330808e0e18a927ea8a3d5ce7a809de8b5b"
+    },
+    "hyperframes.json": {
+      "hash": "ff5a8a17565ac2cb228f912143c7e3276631bae7dde81f76e751dd9caabda3b4",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\ff\\ff5a8a17565ac2cb228f912143c7e3276631bae7dde81f76e751dd9caabda3b4"
+    },
+    "index.html": {
+      "hash": "8016d3b0c79091b856544162532a571f8d86b36b0210f5059927a3d372c841e6",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\80\\8016d3b0c79091b856544162532a571f8d86b36b0210f5059927a3d372c841e6"
+    },
+    "input-review.json": {
+      "hash": "37ec480e128b3d8f196883a97ba4686b768ba7e1737423150d436264408956d5",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\37\\37ec480e128b3d8f196883a97ba4686b768ba7e1737423150d436264408956d5"
+    },
+    "meta.json": {
+      "hash": "9e0963782b10802c09a125583f0c16b2cb958860d1ace378cbb5eb320beede69",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\9e\\9e0963782b10802c09a125583f0c16b2cb958860d1ace378cbb5eb320beede69"
+    },
+    "package.json": {
+      "hash": "e7f27a6dd5c1136a5693e435e46389f52cde91be4e173777fa06be6dbd3f859b",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\e7\\e7f27a6dd5c1136a5693e435e46389f52cde91be4e173777fa06be6dbd3f859b"
+    },
+    "assets/music.wav": {
+      "hash": "913c06dc94d8f68581ef37c88b6605dd6e31087acc3fcc6904f131ff66823bc6",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\91\\913c06dc94d8f68581ef37c88b6605dd6e31087acc3fcc6904f131ff66823bc6"
+    },
+    "assets/talking.mp4": {
+      "hash": "f694caf2a44b7c193cffab78acd6ac612b2f110aed5af463b51c996f6f7f58e6",
+      "content": "C:\\Users\\barrett\\.cache\\hyperframes\\history\\a8bd22aa-5bc0-4c4e-a11d-1bff2b1725cb\\blobs\\f6\\f694caf2a44b7c193cffab78acd6ac612b2f110aed5af463b51c996f6f7f58e6"
+    }
+  },
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "8352e14c-27d0-4b45-bedd-2de2fda34050"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "8352e14c-27d0-4b45-bedd-2de2fda34050",
+        "scope": "project",
+        "report": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\checks\\8352e14c-27d0-4b45-bedd-2de2fda34050.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793110853389,
+        "contentHash": "dbaf3edb8aaa3c1a32782f9d9aca0dde3f243dbbc79c2cd8466c688989ca4303",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-4"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-0",
+        "image": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\snapshots\\5a490e25-7424-4742-9ca5-728ce8064011\\beat-01-at-0.841s.png",
+        "time": 0.841,
+        "metadata": {
+          "width": 1080,
+          "height": 1920,
+          "zoomScale": 1,
+          "browserGpuMode": "software",
+          "review": {
+            "role": "beat",
+            "label": "t=0.841"
+          },
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793110961671,
+        "contentHash": "de66e09e5a0b8a922580603c43d5d16647d0ee7dc87eb40d0eba714339cf0060",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-1",
+        "image": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\snapshots\\5a490e25-7424-4742-9ca5-728ce8064011\\beat-02-at-2.524s.png",
+        "time": 2.524,
+        "metadata": {
+          "width": 1080,
+          "height": 1920,
+          "zoomScale": 1,
+          "browserGpuMode": "software",
+          "review": {
+            "role": "beat",
+            "label": "t=2.524"
+          },
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793110961671,
+        "contentHash": "ef69654633e467a63291f0c03579eef6af82edde9e3a3f8a22a9ac1ccdbd9ceb",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-2",
+        "image": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\snapshots\\5a490e25-7424-4742-9ca5-728ce8064011\\beat-03-at-4.206s.png",
+        "time": 4.206,
+        "metadata": {
+          "width": 1080,
+          "height": 1920,
+          "zoomScale": 1,
+          "browserGpuMode": "software",
+          "review": {
+            "role": "beat",
+            "label": "t=4.206"
+          },
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793110961671,
+        "contentHash": "93a8e7c38a8f50c4e6d069b72a5a5f839136ca8a32426da28adb8134443a1a95",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-3",
+        "image": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\snapshots\\5a490e25-7424-4742-9ca5-728ce8064011\\beat-04-at-5.888s.png",
+        "time": 5.888,
+        "metadata": {
+          "width": 1080,
+          "height": 1920,
+          "zoomScale": 1,
+          "browserGpuMode": "software",
+          "review": {
+            "role": "beat",
+            "label": "t=5.888"
+          },
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793110961671,
+        "contentHash": "1eac558bc9a6691d78eefefd34d0475b547e0e851f803786ebb3b571566a49e7",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "a7f6f245-3fbd-4574-ad0e-ab1cecb75172-4",
+        "image": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\.hyperframes\\artifacts\\snapshots\\5a490e25-7424-4742-9ca5-728ce8064011\\beat-05-at-7.571s.png",
+        "time": 7.571,
+        "metadata": {
+          "width": 1080,
+          "height": 1920,
+          "zoomScale": 1,
+          "browserGpuMode": "software",
+          "review": {
+            "role": "beat",
+            "label": "t=7.571"
+          },
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793110961671,
+        "contentHash": "f93512b820ac2ea9f89b5418453770efb48867fa9814efc75c3506b0612bb74c",
+        "revision": null,
+        "inputFingerprint": "f5e7e78ea0eca998c3cc2d7ab20c686e69d03eac02aa3567b71e093c2cc73e88",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "renders": {
+    "latest": {
+      "id": "d3058fa9-c62a-456a-ae98-e4141d27ead4",
+      "completedAt": 1793111026223,
+      "output": "F:\\film-pipeline\\reels\\full_motion\\projects\\03-draft\\renders\\reel.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
+}

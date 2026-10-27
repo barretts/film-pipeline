@@ -1,0 +1,23 @@
+<template>
+<style>
+  #root { position:absolute; inset:0; pointer-events:none; }
+  .caption { position:absolute; top:1224px; left:146px; width:788px; text-align:center; z-index:20; }
+  .caption-text { display:inline; padding:9px 15px 11px; box-decoration-break:clone;
+    background:rgba(10,18,22,.88); color:#fffaf0; font:600 48px/1.32 "Inter",sans-serif;
+    letter-spacing:.005em; }
+</style>
+<div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+<div id="caption-0" class="clip caption" data-start="0.800" data-duration="1.300" data-track-index="0"><span class="caption-text">The machine asked</span></div>
+<div id="caption-1" class="clip caption" data-start="2.100" data-duration="1.340" data-track-index="0"><span class="caption-text">what I wanted to remember.</span></div>
+<div id="caption-2" class="clip caption" data-start="3.980" data-duration="1.120" data-track-index="0"><span class="caption-text">I said: a face.</span></div>
+<div id="caption-3" class="clip caption" data-start="5.580" data-duration="0.920" data-track-index="0"><span class="caption-text">It showed me yours.</span></div>
+<div id="caption-4" class="clip caption" data-start="6.700" data-duration="1.000" data-track-index="0"><span class="caption-text">Now tell me...</span></div>
+<div id="caption-5" class="clip caption" data-start="7.760" data-duration="0.840" data-track-index="0"><span class="caption-text">have we met before?</span></div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const captionsTimeline = gsap.timeline({ paused:true });
+captionsTimeline.to({}, { duration:12.000 }, 0);
+window.__timelines["captions"] = captionsTimeline;
+</script>
+</template>

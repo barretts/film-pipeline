@@ -1,0 +1,7 @@
+﻿{
+    "task":  {
+                 "result_name":  "talking-crop.mp4",
+                 "audio_path":  "F:/film-pipeline/jobs/anime_pose_experiment/voice.wav",
+                 "video_path":  "F:/film-pipeline/jobs/anime_pose_experiment/source.mp4"
+             }
+}

@@ -1,13 +1,13 @@
 <#
   check-film-pc.ps1
   Read-only readiness check for the local AI film pipeline
-  (Claude Code + Unsloth Studio MCP + local models + HyperFrames).
+  (local coding client + Unsloth Studio MCP + local models + HyperFrames).
 
   It makes NO changes to your PC. It reports:
     - GPU, VRAM, driver, CUDA version and PCIe link
     - RAM, CPU, disks (free space, SSD/HDD)
     - Windows settings that matter (page file, long paths, Developer Mode, HF_HOME)
-    - Whether the needed tools are installed (git, node 22+, ffmpeg, python, claude, unsloth)
+    - Whether common tools are installed (git, node 22+, ffmpeg, python, claude, unsloth)
   ...and ends with an [OK] / [FIX] / [NOTE] list.
 
   Run it from PowerShell in the folder that contains this file:
@@ -337,8 +337,8 @@ else {
 }
 if (-not $tools.ffmpeg.found) { $warnings.Add('FFmpeg missing:   winget install --id Gyan.FFmpeg -e') }
 if (-not $tools.py.found -and -not $tools.python.found) { $notes.Add('Python missing (needed for mix/QA helper scripts): winget install --id Python.Python.3.12 -e') }
-if (-not $tools.claude.found) { $warnings.Add('Claude Code missing:  irm https://claude.ai/install.ps1 | iex') }
-if (-not $tools.unsloth.found) { $warnings.Add('Unsloth Studio missing:  winget install --id UnslothAI.Unsloth -e   (then: unsloth mcp add claude-code)') }
+if (-not $tools.claude.found) { $notes.Add('Claude Code not found; select a compatible local coding client for this workflow.') }
+if (-not $tools.unsloth.found) { $warnings.Add('Unsloth Studio command not found; check the desktop installation and its local API.') }
 if ($nvGpus.Count -gt 0) { $notes.Add("NVIDIA driver $($nvGpus[0].driver): update to the latest Game Ready or Studio driver before installing models.") }
 
 Write-Section 'Verdict'
@@ -347,7 +347,7 @@ foreach ($w in $warnings) { Write-Host ('  [FIX]  ' + $w) -ForegroundColor Yello
 foreach ($n in $notes)    { Write-Host ('  [NOTE] ' + $n) -ForegroundColor Gray }
 if ($warnings.Count -eq 0) {
     Write-Host ''
-    Write-Host '  Nothing blocking. Next: continue in STATUS.md (P0-T02)' -ForegroundColor Green
+    Write-Host '  No checker warnings. Continue from STATUS.md and handoff.md.' -ForegroundColor Green
 }
 
 if ($Json) {

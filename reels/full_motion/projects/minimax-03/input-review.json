@@ -1,0 +1,509 @@
+{
+  "voice_seconds": 8.412292,
+  "timeline_seconds": 8.412292,
+  "audio_correlation": 0.9999168729850635,
+  "face_exclusion": [
+    0.22,
+    0.1,
+    0.56,
+    0.28
+  ],
+  "motion_windows": [
+    {
+      "start": 0.0,
+      "duration": 2.0,
+      "classification": "localized_change_detected",
+      "sampled_frames": 8,
+      "usable_pairs": 7,
+      "active_pairs": 6,
+      "pairs": [
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            0
+          ],
+          "alignment_confidence": 0.6623782936097066,
+          "mean_abs_delta": 0.897712230682373,
+          "changed_fraction": 0.005634335413121573,
+          "active": false
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            0
+          ],
+          "alignment_confidence": 0.482910736034227,
+          "mean_abs_delta": 1.5965967178344727,
+          "changed_fraction": 0.023180185290224996,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -1
+          ],
+          "alignment_confidence": 0.2519631117169685,
+          "mean_abs_delta": 3.052901268005371,
+          "changed_fraction": 0.04698113923570263,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            2,
+            -1
+          ],
+          "alignment_confidence": 0.09355702110908172,
+          "mean_abs_delta": 7.51374626159668,
+          "changed_fraction": 0.1631099319414004,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -1
+          ],
+          "alignment_confidence": 0.12307580043520032,
+          "mean_abs_delta": 6.224450588226318,
+          "changed_fraction": 0.1235816477553034,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -1
+          ],
+          "alignment_confidence": 0.11381985266799452,
+          "mean_abs_delta": 7.538082122802734,
+          "changed_fraction": 0.14215779287313574,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            1
+          ],
+          "alignment_confidence": 0.16412585442844463,
+          "mean_abs_delta": 9.6151762008667,
+          "changed_fraction": 0.18158703654510266,
+          "active": true
+        }
+      ],
+      "limitations": [
+        "Only translation and median exposure change are compensated.",
+        "Zoom, rotation, lighting, flicker, overlays, background deformation, bad face exclusion and tracking errors can mimic motion.",
+        "A detected change does not prove natural body motion, lip sync, identity or visual quality; inspect the continuous shot."
+      ]
+    },
+    {
+      "start": 2.0,
+      "duration": 2.0,
+      "classification": "localized_change_detected",
+      "sampled_frames": 8,
+      "usable_pairs": 6,
+      "active_pairs": 6,
+      "pairs": [
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            0
+          ],
+          "alignment_confidence": 0.2914315475057421,
+          "mean_abs_delta": 5.765588760375977,
+          "changed_fraction": 0.0977311401020987,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            0
+          ],
+          "alignment_confidence": 0.3309204054063627,
+          "mean_abs_delta": 3.737710475921631,
+          "changed_fraction": 0.07947473594062232,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            0
+          ],
+          "alignment_confidence": 0.18685894655610225,
+          "mean_abs_delta": 4.732343673706055,
+          "changed_fraction": 0.10649919116947379,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -2
+          ],
+          "alignment_confidence": 0.12532358568258958,
+          "mean_abs_delta": 5.58273983001709,
+          "changed_fraction": 0.12472864379022737,
+          "active": true
+        },
+        {
+          "usable": false,
+          "scene_cut_suspected": true,
+          "translation_pixels_xy": [
+            39,
+            44
+          ],
+          "alignment_confidence": 0.06066922706794042,
+          "mean_abs_delta": 41.68198776245117,
+          "changed_fraction": 0.7524231355517846,
+          "active": false
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            2,
+            2
+          ],
+          "alignment_confidence": 0.16215475884160616,
+          "mean_abs_delta": 7.984950065612793,
+          "changed_fraction": 0.17282164081191634,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            1
+          ],
+          "alignment_confidence": 0.34928891678464696,
+          "mean_abs_delta": 5.40616512298584,
+          "changed_fraction": 0.12311394629283014,
+          "active": true
+        }
+      ],
+      "limitations": [
+        "Only translation and median exposure change are compensated.",
+        "Zoom, rotation, lighting, flicker, overlays, background deformation, bad face exclusion and tracking errors can mimic motion.",
+        "A detected change does not prove natural body motion, lip sync, identity or visual quality; inspect the continuous shot."
+      ]
+    },
+    {
+      "start": 4.0,
+      "duration": 2.0,
+      "classification": "localized_change_detected",
+      "sampled_frames": 8,
+      "usable_pairs": 7,
+      "active_pairs": 7,
+      "pairs": [
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -1
+          ],
+          "alignment_confidence": 0.13551276183545918,
+          "mean_abs_delta": 3.291260242462158,
+          "changed_fraction": 0.06434290918750711,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -3,
+            -6
+          ],
+          "alignment_confidence": 0.14181272915778326,
+          "mean_abs_delta": 9.918691635131836,
+          "changed_fraction": 0.22492856439058034,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -3,
+            4
+          ],
+          "alignment_confidence": 0.11703133543818953,
+          "mean_abs_delta": 10.597319602966309,
+          "changed_fraction": 0.24550523329746649,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            1
+          ],
+          "alignment_confidence": 0.5270489360768362,
+          "mean_abs_delta": 3.52286434173584,
+          "changed_fraction": 0.07096504876475276,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            -3
+          ],
+          "alignment_confidence": 0.32812085932420504,
+          "mean_abs_delta": 5.26350212097168,
+          "changed_fraction": 0.10799602492068952,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -1,
+            -3
+          ],
+          "alignment_confidence": 0.28113689227193484,
+          "mean_abs_delta": 6.9497151374816895,
+          "changed_fraction": 0.15591335795629424,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            2
+          ],
+          "alignment_confidence": 0.4674131268027191,
+          "mean_abs_delta": 4.332025527954102,
+          "changed_fraction": 0.09172792017366797,
+          "active": true
+        }
+      ],
+      "limitations": [
+        "Only translation and median exposure change are compensated.",
+        "Zoom, rotation, lighting, flicker, overlays, background deformation, bad face exclusion and tracking errors can mimic motion.",
+        "A detected change does not prove natural body motion, lip sync, identity or visual quality; inspect the continuous shot."
+      ]
+    },
+    {
+      "start": 6.0,
+      "duration": 2.0,
+      "classification": "localized_change_detected",
+      "sampled_frames": 8,
+      "usable_pairs": 7,
+      "active_pairs": 7,
+      "pairs": [
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -1,
+            -4
+          ],
+          "alignment_confidence": 0.1781759688665517,
+          "mean_abs_delta": 9.856690406799316,
+          "changed_fraction": 0.2041044848157229,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -2,
+            8
+          ],
+          "alignment_confidence": 0.0950927551879595,
+          "mean_abs_delta": 16.84145736694336,
+          "changed_fraction": 0.32514986590944944,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            8,
+            8
+          ],
+          "alignment_confidence": 0.11162771574423853,
+          "mean_abs_delta": 16.560771942138672,
+          "changed_fraction": 0.3368248100225919,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -3,
+            -5
+          ],
+          "alignment_confidence": 0.14033871939355885,
+          "mean_abs_delta": 10.525819778442383,
+          "changed_fraction": 0.2232475947378755,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            0
+          ],
+          "alignment_confidence": 0.06154470419540624,
+          "mean_abs_delta": 15.411170959472656,
+          "changed_fraction": 0.2671234180226473,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            10
+          ],
+          "alignment_confidence": 0.10940129959555134,
+          "mean_abs_delta": 13.458924293518066,
+          "changed_fraction": 0.250853478046374,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            2
+          ],
+          "alignment_confidence": 0.34429049794619065,
+          "mean_abs_delta": 5.851354122161865,
+          "changed_fraction": 0.09679323608942378,
+          "active": true
+        }
+      ],
+      "limitations": [
+        "Only translation and median exposure change are compensated.",
+        "Zoom, rotation, lighting, flicker, overlays, background deformation, bad face exclusion and tracking errors can mimic motion.",
+        "A detected change does not prove natural body motion, lip sync, identity or visual quality; inspect the continuous shot."
+      ]
+    },
+    {
+      "start": 6.412292000000001,
+      "duration": 2.0,
+      "classification": "localized_change_detected",
+      "sampled_frames": 8,
+      "usable_pairs": 7,
+      "active_pairs": 7,
+      "pairs": [
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            7,
+            10
+          ],
+          "alignment_confidence": 0.0841538247335289,
+          "mean_abs_delta": 17.720415115356445,
+          "changed_fraction": 0.344847426281722,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            1
+          ],
+          "alignment_confidence": 0.19263337036314174,
+          "mean_abs_delta": 6.999484539031982,
+          "changed_fraction": 0.12626532717063296,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            -4,
+            -5
+          ],
+          "alignment_confidence": 0.05415556094606575,
+          "mean_abs_delta": 17.156749725341797,
+          "changed_fraction": 0.32014232061672265,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            4,
+            8
+          ],
+          "alignment_confidence": 0.09346946912809365,
+          "mean_abs_delta": 17.137136459350586,
+          "changed_fraction": 0.29679443622846635,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            1,
+            4
+          ],
+          "alignment_confidence": 0.17929773820520045,
+          "mean_abs_delta": 7.021159648895264,
+          "changed_fraction": 0.13734386161360695,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            0
+          ],
+          "alignment_confidence": 0.5572489441424616,
+          "mean_abs_delta": 3.119720220565796,
+          "changed_fraction": 0.0442238608432596,
+          "active": true
+        },
+        {
+          "usable": true,
+          "scene_cut_suspected": false,
+          "translation_pixels_xy": [
+            0,
+            0
+          ],
+          "alignment_confidence": 0.2603895800598522,
+          "mean_abs_delta": 4.079693794250488,
+          "changed_fraction": 0.059009264511249764,
+          "active": true
+        }
+      ],
+      "limitations": [
+        "Only translation and median exposure change are compensated.",
+        "Zoom, rotation, lighting, flicker, overlays, background deformation, bad face exclusion and tracking errors can mimic motion.",
+        "A detected change does not prove natural body motion, lip sync, identity or visual quality; inspect the continuous shot."
+      ]
+    }
+  ],
+  "note": "Pixel changes do not prove actor movement, lip sync, or visual quality; inspect footage."
+}
