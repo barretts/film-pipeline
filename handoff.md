@@ -1,104 +1,75 @@
 # Handoff — Local AI short-film pipeline for oh-my-pi
 
-Written 2026-10-24 against `main` at `8585f5c` (`P1-T02: block pending host MCP reload`). The working tree was clean before this documentation update. Canonical project root: **F:/film-pipeline**. The older C:/code/local-agent-mode-sessions/outputs copy is stale.
+Written 2026-10-26 against `main` at `6fd2f90` (`P1-T03 DONE`). Canonical project root: **F:/film-pipeline** (the `C:/code/local-agent-mode-sessions/outputs` copy is stale). This document replaces the 2026-10-24 handoff, which was written at `8585f5c` and is now superseded.
 
-This update verifies OMP configuration and MCP connectivity only. Earlier production, hardware, model, and render results remain recorded in the task logs; they were not rerun here. This handoff change is uncommitted.
+## Supersessions (the previous handoff was stale — corrected here)
+
+1. **P1-T02 is DONE**, not BLOCKED. OMP MCP connects and authenticates (23 tools), `studio_status` returns, `unsloth doctor --mcp` is OK. The old "block pending host MCP reload" / Codex-connection note no longer applies.
+2. **P1-T03 is DONE** and **live-verified**. The "OMP logging compatibility is unverified" concern is resolved: a logging hook is installed and proven to fire on real calls from a standard OMP CLI session (see below). The truth-rule contract it enforces is unchanged.
+3. The MCP server id in `mcp.json` is **`unsloth-studio`**, but the tool names the hook sees live are **`mcp__unsloth_studio_<tool>`** — server and tool both underscore-sanitized, joined by a single `_`. This single fact was the root cause of P1-T03's parser bug; it is now handled.
 
 ## Start here
 
-Continue the local AI short-film task package in `START_HERE.md`, `CONTEXT.md`, `STATUS.md`, and `tasks/*.md`, using **oh-my-pi (OMP)**. The user explicitly requested OMP and its Unsloth MCP setup. The setup is now verified; do not repeat API-key creation or wait for Codex to connect.
+Continue the task package in `START_HERE.md`, `CONTEXT.md`, `STATUS.md`, and `tasks/*.md`, using **oh-my-pi (OMP)**. Take the first `STATUS.md` row whose `Needs` are DONE/SKIPPED (currently **P1-T04**). Stop at every ✋ / `[HUMAN]` gate. Record a Result of ≤15 words in `STATUS.md`; full detail to `logs/tasks/<ID>.md`. Commit after each DONE/BLOCKED row.
 
-**ONE task at a time.** No parallel agents, background GPU jobs, or interleaved work. Preserve every human checkpoint and task dependency. An agent model must not occupy the film's GPU; follow START_HERE.md's agent-runtime constraint.
+**ONE task at a time.** No parallel agents, background GPU jobs, or interleaved work. An agent model must not occupy the film's GPU (START_HERE.md agent-runtime constraint).
 
-### The three things to do first
+## Verified OMP MCP setup (re-check before production, not re-derived daily)
 
-1. Read `CLAUDE.md`, `START_HERE.md`, `CONTEXT.md`, `STATUS.md`, this handoff, and `logs/tasks/P1-T02.md`. The Codex-specific resume instructions and missing-key claims in those older task records are superseded by the verified OMP setup below. Record the client change when resuming P1-T02; do not pretend the original Codex connection criterion passed.
-2. Start OMP in the canonical project, then reload/test MCP in that session:
-   ```powershell
-   Set-Location 'F:\film-pipeline'
-   omp
-   ```
-   In OMP, run `/mcp reload`, then `/mcp test unsloth-studio`. Leave Studio running. A named OMP profile has separate user configuration; this setup is for the default profile.
-3. Resume **P1-T02**: call the discovered `studio_status` tool once, summarize server name and free GPU memory in `TOOLS.md` and the task log, and rerun the task's `unsloth doctor --mcp` check. Inspect installed help before assuming doctor supports OMP registration. Update the task wording/result to the user-authorized OMP client, then update STATUS and commit only after the applicable completion criteria pass. If doctor cannot validate OMP, record the precise limitation and the native OMP connection evidence; do not invent a passing doctor result.
+- Server `unsloth-studio`, `type: http`, `enabled: true`, endpoint `http://127.0.0.1:8888/mcp/`.
+- Config: default-profile `C:/Users/barrett/.omp/agent/mcp.json`. It stores the command that reads the Windows **User**-scope `UNSLOTH_API_KEY` — never the key itself. **Never print the key value.**
+- Studio local health: `http://127.0.0.1:8888/api/health` → `{"status":"healthy"}`. `/mcp test unsloth-studio` reports 23 tools. `unsloth doctor --mcp` OK. Server reported `unsloth-studio v2026.10.8`.
+- **No `timeout` key is set on the server entry** (verified). OMP's default MCP timeout (~60 s) is shorter than long Studio jobs (image/video generation, training, export can wait 240 s+). Adding `"timeout": 0` to that entry is HELD behind a ✋ because it edits the auth-bearing config file — get explicit approval before changing it, and do it **before the first long P2 job**.
 
-## Verified OMP MCP setup
+## MCP logging hook — now in place (P1-T03)
 
-Checked 2026-10-24, including a fresh test from **F:/film-pipeline**:
+The hook is the pipeline's truth source. On-screen facts come from `logs/mcp_calls.jsonl` + `logs/mcp_raw/` — never hand-author or repair them, and never claim pre-hook diagnostics were captured by it.
 
-- Installed client: `omp/18.12.6`.
-- Default-profile user config: `C:/Users/barrett/.omp/agent/mcp.json`.
-- Server: `unsloth-studio`, `type: http`, `enabled: true`.
-- Endpoint: `http://127.0.0.1:8888/mcp/`.
-- The Windows User environment contains `UNSLOTH_API_KEY`; only presence/format/equality were checked, never its value printed.
-- Authorization uses OMP's command-based header resolution. The config contains this command, not the credential:
-  ```json
-  "Authorization": "!powershell.exe -NoProfile -NonInteractive -Command \"'Bearer ' + [Environment]::GetEnvironmentVariable('UNSLOTH_API_KEY','User')\""
-  ```
-- OMP's own `/mcp test unsloth-studio` returned:
-  ```text
-  Server "unsloth-studio" connected (23 tools).
-  ```
-  The RPC diagnostic exited 0 and reported `agentInvoked: false`; it did not invoke an AI model or generate media.
-- Advertised tools: `studio_status`, `list_models`, `load_model`, `unload_model`, `plan_load`, `download_model`, `chat`, `embed`, `system_one`, `generate_image`, `generate_audio`, `transcribe`, `analyze_audio`, `generate_video`, `run_recipe`, `get_job`, `datasets`, `start_training`, `list_training_runs`, `export_model`, `list_media`, `voices`, `cancel`.
-
-Tool discovery proves connection and authentication, not successful execution of every tool. Inspect OMP's actual mounted tool names and schemas; do not assume Codex/Claude naming conventions.
-
-### Repeat the connection check without a model turn
-
-Run in Windows PowerShell from the project folder:
-
-```powershell
-'{"id":"unsloth-check","type":"prompt","message":"/mcp test unsloth-studio"}' |
-  omp --mode rpc --no-ui --no-session --allow-home --no-extensions --no-skills --no-rules |
-  ForEach-Object {
-    try {
-      $frame = $_ | ConvertFrom-Json
-      if ($frame.type -in @('response', 'command_output', 'prompt_result', 'notice')) {
-        $frame | ConvertTo-Json -Depth 12 -Compress
-      }
-    } catch {}
-  }
-```
-
-The discovery-only flags above belong to this diagnostic, not the normal OMP launch. Expected output is the connection message plus a successful response with `agentInvoked: false`.
+- **Only standard OMP CLI is hookable.** An agent-mode harness (this `local-agent-mode-sessions` client) exposes Studio MCP as `write`→`xd://mcp__unsloth_studio_<tool>` host-bridge devices, which do **not** emit `tool_call`/`tool_result` (see `omp://docs/hooks.md`) and therefore fire no hooks. Standard OMP CLI registers each MCP tool as an AgentTool and fires `tool_call`/`tool_result` on every call. **Run MCP-dependent / hook-verifying work in a standard `omp` session launched from `F:\film-pipeline`** (the hook is discovered from `<cwd>/.omp/hooks/post/` — wrong cwd = no hook = empty log).
+- **Hook:** `.omp/hooks/post/unsloth-log.ts` (committed shape from `cd4f56a`). Passive `pre`/`post`/`fail` handlers filter `toolName.startsWith("mcp__unsloth")` and pipe UTF-8 JSON to `tools/log_mcp.py`. Correlation uses a per-tool FIFO id (`<toolName>#N`) rather than `toolCallId`, because `toolCallId` is not guaranteed on `tool_call`. `duration_s` comes from the `pre` timestamp paired with the matching `post`/`fail`.
+- **Redactor:** `tools/log_mcp.py` (stdlib only). Reads stdin as UTF-8 bytes (Windows safety). Redacts credential-shaped keys (`SECRET_KEY_RE`, plus `*_token`/`*_secret`/`*_api_key`) and `sk-unsloth-*`; drops base64 blobs; truncates. Writes the compact line to `logs/mcp_calls.jsonl` (append-locked) and the full payload to `logs/mcp_raw/<seq>_<tool>.json`. `split_server_tool()` maps the live name `mcp__unsloth_studio_<tool>` → `server="unsloth-studio"` + short `tool` (handles the hyphen `unsloth-studio__<tool>` form too; multi-underscore tools like `list_training_runs` keep their full name).
+- **Evidence:** offline regression `logs/tasks/p1t03_hooktest.ts` (throwaway temp log via `FILM_LOG_DIR`) fires the real tool names → **14/14 green** (args captured from `tool_result.input`, `api_key`→`<redacted>`, no raw secret, UTF-8 `café × “q”`, ok true/false, numeric `duration_s`, bash ignored). A live standard-OMP-CLI run fired both calls and logged them (success + failure, correct `duration_s`, raw archived, no keys, no `hook_errors.log`). **If a future session changes the hook or `log_mcp.py`, re-run that regression and, for a hook change, one live `studio_status` call.**
 
 ## Where the task package stands
 
-As read at `8585f5c`, STATUS.md records P0, P1-T01, P1-T07, and P1-T08 as DONE. P1-T02 is BLOCKED with an outdated Codex connection reason; subsequent Studio-dependent tasks are TODO. Those earlier DONE results were not reverified in this update; use their task logs before relying on measurements.
+| Row | Status | Note |
+|---|---|---|
+| P0-T01…T04 | DONE | Hardware, prereqs, Windows settings + model drive (HF_HOME=`F:\hf`), venv + git scaffold |
+| P1-T01 | DONE | Studio installed + HTTP 200; idle auto-unload 60 s; residency controls off |
+| P1-T02 | DONE | MCP connected (23 tools), `studio_status` OK, doctor OK, server `unsloth-studio` v2026.10.8 |
+| P1-T03 | DONE | Logging hook live-verified; `log_mcp.py` server/tool parser fixed |
+| P1-T07 | DONE | HyperFrames render recipe; starter MP4 ffprobe-verified; `RENDER_CMD` in `TOOLS.md` |
+| P1-T08 | DONE | `tools/contact_sheet.py` (images + video frames, ≤1600 px, ≤16 tiles) |
+| P1-T04 → T06 | TODO | Next sequential work (all trace back to P1-T03, now unblocked) |
 
-**P1-T02 is not yet claimed DONE:** OMP connection/tool discovery is verified, but this update did not call `studio_status`, fill the TOOLS header, rerun doctor, or change the task/status records.
+Prior DONE rows were not re-measured in this update; trust their task logs before reusing a number.
 
-After P1-T02, continue sequentially through P1-T03 logging, P1-T04 VRAM sampler/report, P1-T05 tool reference, and P1-T06 model mapping. Follow the task dependencies for smoke tests, stack review, CPU tooling, pilot, production, and post. Do not pre-build P3 tooling before its real-asset prerequisites exist.
+## Next task: P1-T04 (VRAM sampler + MCP report) — `tasks/P1-T04-vram-sampler-report.md`
 
-## OMP logging compatibility is the next setup concern
+Two **stdlib-only Python** scripts, no GPU model load:
+- `tools/vram_sampler.py` — poll `nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu` every `--interval` s (default 1.0), append `epoch_s,used_mib,total_mib,util_pct` to `logs/vram.csv` (header when new, flush each line, rotate at 50 MB, survive `nvidia-smi` errors with an empty row, clean Ctrl+C). Options `--interval --out --once --nvsmi`.
+- `tools/mcp_report.py` — join `logs/mcp_calls.jsonl` with `logs/vram*.csv`; peak VRAM per call = max `used_mib` in `[t_start − interval, t_end + interval]` (use `t_end − 1 − interval` when `t_start` is null); widen job windows (`generate_video`, `start_training`, `export_model`, `run_recipe`) to the last call sharing the job/queue id; `--last --since --tool --job --seq-only --json-out`; emit a ≤40-row Markdown table (`seq|tool|key args|ok|dur s|peak VRAM GB|window s`) + ≤3 summary lines, never raw results.
+- **Synthetic test** with known numbers (a 0.3 s call, a job id spanning 3 calls) asserting peaks, the job window, that a sub-second call still gets a peak, and `--seq-only` output. Record it in `logs/tasks/P1-T04.md`. Every later task takes its numbers and `mcp_seq` from `mcp_report.py`, never by reading the raw log.
 
-P1-T03 was written for a Claude Code hook (`templates/claude-settings.json` and `tools/log_mcp.py`). OMP connectivity does **not** prove that this hook runs in OMP. Inspect P1-T03 and OMP's supported extension/hook interface, adapt the logging path with the required human review, and verify that MCP calls actually produce the required records before model/media work.
+After P1-T04: **P1-T05** fill `TOOLS.md` (Needs P1-T03), **P1-T06** `MODELS.md` + large model downloads ~150–250 GB (Needs P1-T05; heavy disk, ✋ around licensing/downloads), then **P2** model smoke tests (✋ **P2-T15** stack review), **P3** CPU tooling (build only after real P2 assets exist), **P4** pilot ✋, **P5** pre-prod ✋, **P6** production, **P7** post ✋.
 
-Keep the truth-rule contract: on-screen facts come from `logs/mcp_calls.jsonl` / `logs/mcp_raw/`; do not hand-author or repair those evidence logs. Do not claim pre-logging diagnostics were captured by the production hook. If changing the client requires adapting other Claude-specific tasks, make the adaptation explicit and preserve each task's outputs and human gates.
+## GPU contention — resolve before the first P2 model load
 
-## Operating constraints
+`studio_status` hardware last showed ≈ **15.2–15.3 / 16.0 GB VRAM already used outside Studio** (external process contention on the 4060 Ti). One model at a time is the rule, but with only ~1 GB free nothing loads. **Free the GPU (close the competing process / release VRAM) and re-check `studio_status` before any P2 load.** P1-T04 needs no model and is unaffected.
 
-- Read CONTEXT.md for the complete rules. One GPU model at a time; inspect `studio_status` before loads. Any documented audio exception must satisfy its stated free-memory condition.
-- Local generation goes through Studio MCP. Preserve model/lane decisions and ask at every marked human checkpoint; do not infer an undecided choice from the earlier handoff.
-- Never print, paste, or store the API key in files, chat, or logs. The OMP config only stores the command that reads the existing User environment value.
-- Use absolute Windows paths with forward slashes in Studio arguments, e.g. `F:/film-pipeline/stills/...`; preserve relative paths inside manifests as specified.
-- Windows PowerShell is the verified shell for this update. Use PowerShell syntax; do not assume an OMP tool named `bash` executes Git Bash. Run project Python with `& 'F:\film-pipeline\.venv\Scripts\python.exe'` when needed.
-- Keep noisy output in task-specific files. Never dump/search raw MCP logs; use `tools/mcp_report.py` when available. Review images through contact sheets within the task's tile limit.
-- Preserve the specified film media standards in CONTEXT.md and existing HyperFrames launch recipe in TOOLS.md. No renders, model downloads, GPU loads, installations, hooks, or production changes were performed in this handoff update.
+## Operating constraints (still in force)
 
-## What I could not verify
+- Read `CONTEXT.md` for the full rules. One GPU model in VRAM at a time; inspect `studio_status` before every load. Any documented audio exception must meet its stated free-memory condition.
+- Local generation goes through Studio MCP only. Preserve model/lane decisions; ask at every ✋ checkpoint; do not infer an undecided choice.
+- Never print, paste, or store the API key in files, chat, or logs. `mcp.json` stores only the command that reads the User-env value.
+- Use absolute forward-slash Windows paths in Studio arguments (`F:/film-pipeline/...`); keep manifest-internal paths relative as specified.
+- **Context budget (§9):** never `cat`/`tail`/`grep` `logs/mcp_calls.jsonl` or `logs/mcp_raw/` except the single allowed `tail -n 1`. Use `tools/mcp_report.py` (once P1-T04 lands) for call summaries. Review images only as contact sheets ≤16 tiles via `tools/contact_sheet.py`. Keep noisy output in task-specific files.
+- Shell note: the project Python convention is `.venv/Scripts/python.exe`. In the agent-mode harness shell (MSYS bash), the venv/system `py` are not exec-able directly — run Python via `powershell -NoProfile -Command "py -3 ..."` or the venv exe by full path. The hook runs `py -3` and Studio tools resolve paths on the Studio host (this machine).
 
-- The receiving interactive OMP session has not been observed; reload and retest there. Only a fresh default-profile OMP RPC process was tested.
-- `studio_status` data, free VRAM, active model/job state, Studio residency settings, and doctor status were not checked in this update. Reestablish them before production.
-- OMP logging-hook compatibility is unverified. Its cheapest proof is an approved hook plus an actual harmless MCP call that produces the required log record.
-- Historical hardware, render, model, license, and task-completion claims were not rerun. Their recorded evidence remains in the project files; this update does not certify them.
+## What could not be verified here (re-check, do not assume)
 
-## Corrections to the previous handoff
+- The live two-line P1-T03 evidence was produced in a **separate standard-OMP-CLI session**, not this harness (which cannot fire the hook). Its truth-log lines remain in `logs/`; re-verify the fixed parser with one live `studio_status` if you want fresh confirmation (expect `server:"unsloth-studio"`, `tool:"studio_status"`), but do not hand-edit the log.
+- Current VRAM, loaded/resident models, active jobs, Studio residency settings, and `doctor` status were not re-sampled this update; re-establish them at the start of the next Studio-dependent task.
+- Historical hardware, render, model, and license claims from P0/P1-T01/T07/T08 were not re-run; their evidence is in the task logs.
 
-1. The previous handoff told the human to persist the key and restart Codex. User-scope key presence and an authenticated OMP connection are now verified. Resume in OMP instead.
-2. A Codex host check returned `enabled: false` with disabled reason `requirements (enterprise-managed requirements Pilot (e11244ca-d99e-4ef2-931a-f8602fec6ab6))`. This was observed earlier in this session, not rerun for this document. Do not treat the Codex restriction as a Studio outage or assume an OMP change enables Codex.
-3. An earlier Windows listener check incorrectly suggested no server was running. Authenticated HTTP/MCP responses and OMP's successful connection refute that conclusion. Use a real MCP test for this endpoint.
-4. An initial OMP header using `Bearer ${UNSLOTH_API_KEY}` returned 401 in OMP's native test. The command-based header above passed the same test. The interpolation failure's internal mechanism was not established; retain the verified working form.
-5. OMP tool discovery does not complete P1-T02 or P1-T03. The required status call, task-record updates, and logging verification remain the receiving agent's work.
-
-Checked and confirmed for this update: canonical repository/branch/tip, clean pre-edit tree, default-profile OMP config without a literal key, installed OMP version, and successful 23-tool discovery from the film-pipeline folder.
+Confirmed for this update: canonical root/branch/tip (`6fd2f90`), default-profile `mcp.json` has no literal key and no `timeout` key, P1-T02/P1-T03 completion records match their task logs, and `log_mcp.py` parses every observed tool-name form (verified directly + 14/14 offline regression).
