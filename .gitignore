@@ -65,3 +65,27 @@ comfy-local/custom_nodes/MiniMax_H3_Semantic_Bridge/
 # Project-local runtime downloads and generated job data
 local-runtime/
 local-film-jobs/
+
+# Generated film assets, job outputs and review artifacts
+/audio/*
+!/audio/reels/
+/audio/reels/*
+!/audio/reels/sfx/
+/audio/reels/sfx/*
+!/audio/reels/sfx/README.md
+!/audio/reels/sfx/make_cues.py
+/captions/
+/stills/
+/video/
+/mix/
+/logs/
+/render/reels/
+/render/.hyperframes/
+/render_preview/renders/
+/render_preview/.hyperframes/
+/reels/full_motion/projects/
+/reels/room_remembers/episodes/
+/jobs/anchor-comparison/
+/jobs/anime_pose_experiment/
+/comfy-local/input/
+/comfy-local/output/

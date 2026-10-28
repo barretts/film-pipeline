@@ -1,1 +1,0 @@
-{"tool_name":"mcp__unsloth_studio__selftest","tool_use_id":"t1","tool_input":{"api_key":"sk-unsloth-TEST","max_tokens":64,"note":"café × “q”"},"tool_response":{"ok":true,"data":{"media_url":"F:/film-pipeline/stills/x.png","count":3}}}

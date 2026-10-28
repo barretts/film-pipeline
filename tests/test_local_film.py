@@ -4,6 +4,16 @@ from unittest.mock import patch
 from local_film import pipeline
 
 class LocalFilmTests(unittest.TestCase):
+ def test_state_save_retries_transient_windows_sharing_collision(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   path=Path(tmp)/'state.json';pipeline.atomic(path,{'status':'old'});replace=pipeline.os.replace;calls=[]
+   def collide_once(source,target):
+    calls.append(target)
+    if len(calls)==1:raise PermissionError('file temporarily open')
+    return replace(source,target)
+   with patch.object(pipeline.os,'name','nt'),patch.object(pipeline.os,'replace',side_effect=collide_once),patch.object(pipeline.time,'sleep'):
+    pipeline.atomic(path,{'status':'new'})
+   self.assertEqual(pipeline.load(path),{'status':'new'});self.assertEqual(len(calls),2)
  def test_script_preserved_across_parts(self):
   text='First scene.\n\nSecond scene, exactly as written.'
   self.assertEqual(pipeline.script_parts(text),['First scene.','Second scene, exactly as written.'])

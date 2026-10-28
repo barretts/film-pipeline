@@ -1,4 +1,4 @@
-﻿# Local film pipeline
+# Local film pipeline
 
 Build and run a film on this Windows PC. The current target is the personal Unsloth Studio promo in `brief.md`; the same workflow should also work with a different brief. Coding and media-model inference must run locally. Internet access is allowed for setup, model downloads, and research.
 
@@ -11,3 +11,5 @@ A local coding model and media models may take turns on the same GPU. Strata is 
 ## Unattended local film jobs
 
 For the local prompt form, offline planner and voice, MiniMax H3 speech-driven rendering, continuations, assembly and review reports, see [LOCAL_FILM_INSTALL_GUIDE.md](LOCAL_FILM_INSTALL_GUIDE.md). Start the form with `python -m local_film.server` after setting up the isolated dependencies. The guide distinguishes the tested machine from untested fresh-machine installation steps. Older workflows remain available.
+
+For a short, practical walkthrough, see [HOW_TO_MAKE_A_VIDEO.md](HOW_TO_MAKE_A_VIDEO.md).

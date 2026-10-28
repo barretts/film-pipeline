@@ -1,385 +1,0 @@
-Input video path: F:\film-pipeline\jobs\latent-mpa7mgq9\crop-0.mp4
-Input audio path: F:\film-pipeline\jobs\latent-mpa7mgq9\voice-0.wav
-Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
-Initial seed: 1247
-video in 25 FPS, audio idx in 50FPS
-Affine transforming 43 faces...
-  0%|          | 0/43 [00:00<?, ?it/s]  5%|4         | 2/43 [00:00<00:02, 19.16it/s] 28%|##7       | 12/43 [00:00<00:00, 64.58it/s] 51%|#####1    | 22/43 [00:00<00:00, 79.23it/s] 74%|#######4  | 32/43 [00:00<00:00, 86.11it/s] 98%|#########7| 42/43 [00:00<00:00, 90.87it/s]100%|##########| 43/43 [00:00<00:00, 81.89it/s]
-Doing inference...:   0%|          | 0/3 [00:00<?, ?it/s]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.10it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.48it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:09,  1.72it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.89it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.06it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.21it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.36it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.48it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.58it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.65it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.70it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.74it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.77it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.79it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.81it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.81it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.82it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.47it/s]
-Doing inference...:  33%|###3      | 1/3 [00:09<00:18,  9.37s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.71it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.23it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.47it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.60it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.68it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.73it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.75it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.79it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.80it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.81it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.81it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.82it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.73it/s]
-Doing inference...:  67%|######6   | 2/3 [00:17<00:08,  8.61s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:09,  2.08it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:06,  2.71it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:05,  3.00it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:05,  3.16it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:04,  3.26it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:01<00:04,  3.32it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:03,  3.36it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:02<00:03,  3.39it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:02<00:03,  3.40it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:02,  3.42it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:03<00:02,  3.43it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:03<00:02,  3.41it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:03<00:02,  3.42it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:04<00:01,  3.40it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:04<00:01,  3.41it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:04<00:01,  3.42it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:05<00:00,  3.43it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:05<00:00,  3.43it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:05<00:00,  3.43it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:06<00:00,  3.44it/s][ASample frames: 16: 100%|##########| 20/20 [00:06<00:00,  3.33it/s]
-Doing inference...: 100%|##########| 3/3 [00:24<00:00,  7.71s/it]Doing inference...: 100%|##########| 3/3 [00:24<00:00,  8.03s/it]
-Restoring 45 faces...
-  0%|          | 0/45 [00:00<?, ?it/s]  2%|2         | 1/45 [00:00<00:05,  8.37it/s] 20%|##        | 9/45 [00:00<00:00, 45.90it/s] 38%|###7      | 17/45 [00:00<00:00, 58.94it/s] 56%|#####5    | 25/45 [00:00<00:00, 66.70it/s] 76%|#######5  | 34/45 [00:00<00:00, 72.57it/s] 93%|#########3| 42/45 [00:00<00:00, 73.68it/s]100%|##########| 45/45 [00:00<00:00, 66.07it/s]
-DWPose bridge consumed 43 tracked frames
-Input video path: F:\film-pipeline\jobs\latent-mpa7mgq9\crop-1.mp4
-Input audio path: F:\film-pipeline\jobs\latent-mpa7mgq9\voice-1.wav
-Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
-Initial seed: 1247
-video in 25 FPS, audio idx in 50FPS
-Affine transforming 42 faces...
-  0%|          | 0/42 [00:00<?, ?it/s]  5%|4         | 2/42 [00:00<00:02, 19.25it/s] 33%|###3      | 14/42 [00:00<00:00, 76.50it/s] 60%|#####9    | 25/42 [00:00<00:00, 88.53it/s] 88%|########8 | 37/42 [00:00<00:00, 97.48it/s]100%|##########| 42/42 [00:00<00:00, 89.88it/s]
-Doing inference...:   0%|          | 0/3 [00:00<?, ?it/s]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.09it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.47it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:09,  1.71it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.90it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.07it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.22it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.37it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.49it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.58it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.66it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.70it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.74it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.76it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.78it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.80it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.81it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.82it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.81it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.47it/s]
-Doing inference...:  33%|###3      | 1/3 [00:09<00:18,  9.34s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.70it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.22it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.46it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.59it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:05,  2.67it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.72it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.75it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.78it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.81it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.82it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.82it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.83it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.82it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.83it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.73it/s]
-Doing inference...:  67%|######6   | 2/3 [00:17<00:08,  8.60s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:08,  2.28it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:06,  2.96it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:00<00:05,  3.28it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.45it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:04,  3.55it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.62it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:03,  3.67it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:02<00:03,  3.69it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  3.71it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  3.72it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:03<00:02,  3.74it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:03<00:02,  3.71it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  3.71it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  3.73it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:04<00:01,  3.72it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:04<00:01,  3.73it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  3.72it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  3.69it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:05<00:00,  3.68it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.65it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.61it/s]
-Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.47s/it]Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.85s/it]
-Restoring 44 faces...
-  0%|          | 0/44 [00:00<?, ?it/s]  7%|6         | 3/44 [00:00<00:01, 27.56it/s] 30%|##9       | 13/44 [00:00<00:00, 67.01it/s] 52%|#####2    | 23/44 [00:00<00:00, 78.94it/s] 75%|#######5  | 33/44 [00:00<00:00, 83.35it/s] 95%|#########5| 42/44 [00:00<00:00, 83.43it/s]100%|##########| 44/44 [00:00<00:00, 78.11it/s]
-DWPose bridge consumed 42 tracked frames
-Input video path: F:\film-pipeline\jobs\latent-mpa7mgq9\crop-2.mp4
-Input audio path: F:\film-pipeline\jobs\latent-mpa7mgq9\voice-2.wav
-Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
-Initial seed: 1247
-video in 25 FPS, audio idx in 50FPS
-Affine transforming 42 faces...
-  0%|          | 0/42 [00:00<?, ?it/s]  5%|4         | 2/42 [00:00<00:02, 19.87it/s] 33%|###3      | 14/42 [00:00<00:00, 76.20it/s] 62%|######1   | 26/42 [00:00<00:00, 94.16it/s] 90%|######### | 38/42 [00:00<00:00, 101.30it/s]100%|##########| 42/42 [00:00<00:00, 93.12it/s] 
-Doing inference...:   0%|          | 0/3 [00:00<?, ?it/s]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.09it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.47it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:09,  1.72it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.91it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.08it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.24it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.39it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.51it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.60it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.66it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.71it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.74it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.76it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.78it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.80it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.80it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.47it/s]
-Doing inference...:  33%|###3      | 1/3 [00:09<00:18,  9.31s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.72it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.23it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.47it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.60it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:05,  2.67it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.72it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.76it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.77it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.79it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.80it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.81it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.82it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.83it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.73it/s]
-Doing inference...:  67%|######6   | 2/3 [00:17<00:08,  8.59s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:08,  2.25it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:06,  2.95it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:00<00:05,  3.27it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.44it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:04,  3.55it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.61it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:03,  3.66it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:02<00:03,  3.68it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  3.70it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  3.72it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:03<00:02,  3.73it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:03<00:02,  3.73it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  3.73it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  3.74it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:04<00:01,  3.75it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:04<00:01,  3.75it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  3.74it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  3.74it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:05<00:00,  3.74it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.74it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.63it/s]
-Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.45s/it]Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.83s/it]
-Restoring 44 faces...
-  0%|          | 0/44 [00:00<?, ?it/s]  5%|4         | 2/44 [00:00<00:02, 19.09it/s] 27%|##7       | 12/44 [00:00<00:00, 65.27it/s] 48%|####7     | 21/44 [00:00<00:00, 76.07it/s] 68%|######8   | 30/44 [00:00<00:00, 78.14it/s] 89%|########8 | 39/44 [00:00<00:00, 80.93it/s]100%|##########| 44/44 [00:00<00:00, 75.79it/s]
-DWPose bridge consumed 42 tracked frames
-Input video path: F:\film-pipeline\jobs\latent-mpa7mgq9\crop-3.mp4
-Input audio path: F:\film-pipeline\jobs\latent-mpa7mgq9\voice-3.wav
-Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
-Initial seed: 1247
-video in 25 FPS, audio idx in 50FPS
-Affine transforming 42 faces...
-  0%|          | 0/42 [00:00<?, ?it/s]  5%|4         | 2/42 [00:00<00:02, 19.14it/s] 36%|###5      | 15/42 [00:00<00:00, 80.67it/s] 67%|######6   | 28/42 [00:00<00:00, 100.01it/s] 93%|#########2| 39/42 [00:00<00:00, 101.81it/s]100%|##########| 42/42 [00:00<00:00, 93.40it/s] 
-Doing inference...:   0%|          | 0/3 [00:00<?, ?it/s]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:17,  1.08it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.46it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:09,  1.71it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.90it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.07it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.22it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.36it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.49it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.59it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.65it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.70it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.74it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.76it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.78it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.80it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.81it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.81it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.46it/s]
-Doing inference...:  33%|###3      | 1/3 [00:09<00:18,  9.35s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:11,  1.71it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.22it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.47it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.60it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:05,  2.67it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.72it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.76it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.77it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.79it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.80it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.81it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.81it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.82it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.82it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.82it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.81it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.73it/s]
-Doing inference...:  67%|######6   | 2/3 [00:17<00:08,  8.61s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:08,  2.27it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:06,  2.96it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:00<00:05,  3.27it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.44it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:04,  3.55it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.62it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:03,  3.66it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:02<00:03,  3.69it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  3.71it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  3.73it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:03<00:02,  3.73it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:03<00:02,  3.74it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  3.75it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  3.75it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:04<00:01,  3.74it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:04<00:01,  3.75it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  3.76it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  3.75it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:05<00:00,  3.74it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.75it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.63it/s]
-Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.46s/it]Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.84s/it]
-Restoring 44 faces...
-  0%|          | 0/44 [00:00<?, ?it/s]  7%|6         | 3/44 [00:00<00:01, 27.45it/s] 32%|###1      | 14/44 [00:00<00:00, 69.17it/s] 52%|#####2    | 23/44 [00:00<00:00, 75.97it/s] 73%|#######2  | 32/44 [00:00<00:00, 78.92it/s] 93%|#########3| 41/44 [00:00<00:00, 81.29it/s]100%|##########| 44/44 [00:00<00:00, 76.46it/s]
-DWPose bridge consumed 42 tracked frames
-Input video path: F:\film-pipeline\jobs\latent-mpa7mgq9\crop-4.mp4
-Input audio path: F:\film-pipeline\jobs\latent-mpa7mgq9\voice-4.wav
-Loaded checkpoint path: F:\film-pipeline\tools\LatentSync\checkpoints\latentsync_unet.pt
-Initial seed: 1247
-video in 25 FPS, audio idx in 50FPS
-Affine transforming 42 faces...
-  0%|          | 0/42 [00:00<?, ?it/s]  5%|4         | 2/42 [00:00<00:02, 19.00it/s] 33%|###3      | 14/42 [00:00<00:00, 74.64it/s] 60%|#####9    | 25/42 [00:00<00:00, 88.48it/s] 86%|########5 | 36/42 [00:00<00:00, 94.28it/s]100%|##########| 42/42 [00:00<00:00, 87.20it/s]
-Doing inference...:   0%|          | 0/3 [00:00<?, ?it/s]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:18,  1.05it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:01<00:12,  1.42it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:10,  1.66it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:02<00:08,  1.85it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:02<00:07,  2.02it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:03<00:06,  2.18it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:03<00:05,  2.32it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.45it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:04<00:04,  2.56it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:04<00:03,  2.64it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:05<00:03,  2.69it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:05<00:02,  2.73it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:05<00:02,  2.76it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:06<00:02,  2.77it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:06<00:01,  2.80it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:07<00:01,  2.81it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:07<00:00,  2.81it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:07<00:00,  2.82it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.82it/s][ASample frames: 16: 100%|##########| 20/20 [00:08<00:00,  2.44it/s]
-Doing inference...:  33%|###3      | 1/3 [00:09<00:18,  9.38s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:10,  1.74it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:08,  2.24it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:01<00:06,  2.47it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:06,  2.60it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:05,  2.68it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:02<00:05,  2.73it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:02<00:04,  2.76it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:03<00:04,  2.78it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:03<00:03,  2.80it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:04<00:03,  2.80it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:04<00:02,  2.77it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:04<00:02,  2.79it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:05<00:02,  2.79it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:05<00:01,  2.80it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:05<00:01,  2.78it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:06<00:01,  2.79it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:06<00:00,  2.80it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:06<00:00,  2.80it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.80it/s][ASample frames: 16: 100%|##########| 20/20 [00:07<00:00,  2.72it/s]
-Doing inference...:  67%|######6   | 2/3 [00:17<00:08,  8.64s/it]
-Sample frames: 16:   0%|          | 0/20 [00:00<?, ?it/s][A
-Sample frames: 16:   5%|5         | 1/20 [00:00<00:08,  2.33it/s][A
-Sample frames: 16:  10%|#         | 2/20 [00:00<00:05,  3.12it/s][A
-Sample frames: 16:  15%|#5        | 3/20 [00:00<00:04,  3.50it/s][A
-Sample frames: 16:  20%|##        | 4/20 [00:01<00:04,  3.71it/s][A
-Sample frames: 16:  25%|##5       | 5/20 [00:01<00:03,  3.83it/s][A
-Sample frames: 16:  30%|###       | 6/20 [00:01<00:03,  3.92it/s][A
-Sample frames: 16:  35%|###5      | 7/20 [00:01<00:03,  3.97it/s][A
-Sample frames: 16:  40%|####      | 8/20 [00:02<00:02,  4.01it/s][A
-Sample frames: 16:  45%|####5     | 9/20 [00:02<00:02,  4.03it/s][A
-Sample frames: 16:  50%|#####     | 10/20 [00:02<00:02,  4.04it/s][A
-Sample frames: 16:  55%|#####5    | 11/20 [00:02<00:02,  4.06it/s][A
-Sample frames: 16:  60%|######    | 12/20 [00:03<00:01,  4.06it/s][A
-Sample frames: 16:  65%|######5   | 13/20 [00:03<00:01,  4.07it/s][A
-Sample frames: 16:  70%|#######   | 14/20 [00:03<00:01,  4.07it/s][A
-Sample frames: 16:  75%|#######5  | 15/20 [00:03<00:01,  4.08it/s][A
-Sample frames: 16:  80%|########  | 16/20 [00:04<00:00,  4.09it/s][A
-Sample frames: 16:  85%|########5 | 17/20 [00:04<00:00,  4.08it/s][A
-Sample frames: 16:  90%|######### | 18/20 [00:04<00:00,  4.07it/s][A
-Sample frames: 16:  95%|#########5| 19/20 [00:04<00:00,  4.08it/s][A
-Sample frames: 16: 100%|##########| 20/20 [00:05<00:00,  4.08it/s][ASample frames: 16: 100%|##########| 20/20 [00:05<00:00,  3.94it/s]
-Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.26s/it]Doing inference...: 100%|##########| 3/3 [00:23<00:00,  7.71s/it]
-Restoring 43 faces...
-  0%|          | 0/43 [00:00<?, ?it/s]  5%|4         | 2/43 [00:00<00:02, 19.55it/s] 26%|##5       | 11/43 [00:00<00:00, 60.09it/s] 49%|####8     | 21/43 [00:00<00:00, 74.79it/s] 70%|######9   | 30/43 [00:00<00:00, 79.30it/s] 91%|######### | 39/43 [00:00<00:00, 80.56it/s]100%|##########| 43/43 [00:00<00:00, 74.58it/s]
-DWPose bridge consumed 42 tracked frames

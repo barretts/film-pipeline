@@ -4,9 +4,9 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent.parent
 RUNTIME=ROOT/'local-runtime'
 OPENER=urllib.request.build_opener(urllib.request.ProxyHandler({}))
-SCHEMA={"type":"object","properties":{"character":{"type":"string"},"shots":{"type":"array","items":{"type":"object","properties":{"scene":{"type":"string"},"action":{"type":"string"},"prompt":{"type":"string"}},"required":["scene","action","prompt"],"additionalProperties":False}}},"required":["character","shots"],"additionalProperties":False}
+SCHEMA={"type":"object","properties":{"character":{"type":"string"},"shots":{"type":"array","items":{"type":"object","properties":{"scene":{"type":"string"},"action":{"type":"string"},"continuation_action":{"type":"string"},"prompt":{"type":"string"}},"required":["scene","action","continuation_action","prompt"],"additionalProperties":False}}},"required":["character","shots"],"additionalProperties":False}
 
-def plan(brief,script_parts,style,log_path,has_reference=False):
+def plan(brief,script_parts,style,log_path,has_reference=False,segment_instructions=''):
  exe=RUNTIME/'llama'/'llama-server.exe';model=RUNTIME/'models'/'Qwen3.5-4B-Q4_K_M.gguf'
  if not exe.is_file() or not model.is_file():raise FileNotFoundError('Local planner runtime or model missing; see installation guide')
  with socket.socket() as s:s.bind(('127.0.0.1',0));port=s.getsockname()[1]
@@ -27,11 +27,14 @@ def plan(brief,script_parts,style,log_path,has_reference=False):
            'Return exactly one shot per numbered script part, in the same order. '
            'Describe a visually consistent adult character and clear filmable actions. '
            'The prompt must include appearance, setting, style, action, and speaking to camera. '
+           'For continuation_action, describe what happens after the first action, without restarting or repeating it. '
+           'Instructions for every segment are mandatory constraints for all shots and continuations. Do not contradict them or invent camera movements. '
            'Do not invent additional shots or narration.')
    if has_reference:system+=' A reference image is provided and is authoritative: preserve its person, clothing, colors and styling. Do not invent hair, costume or visual features; describe them only as the character from the reference image.'
    user='Creative brief: '+brief+'\nVisual style: '+style+'\nScript parts:\n'+'\n'.join(f'{i+1}. {part}' for i,part in enumerate(script_parts))
+   if segment_instructions.strip():user+='\nInstructions for every segment (authoritative):\n'+segment_instructions
    schema=copy.deepcopy(SCHEMA);schema['properties']['shots'].update(minItems=len(script_parts),maxItems=len(script_parts));schema['properties']['character']['minLength']=15
-   for field,minimum in [('scene',12),('action',12),('prompt',30)]:schema['properties']['shots']['items']['properties'][field]['minLength']=minimum
+   for field,minimum in [('scene',12),('action',12),('continuation_action',12),('prompt',30)]:schema['properties']['shots']['items']['properties'][field]['minLength']=minimum
    payload={'model':'local-qwen','messages':[{'role':'system','content':system},{'role':'user','content':user}], 'temperature':0.2,'max_tokens':1500,'chat_template_kwargs':{'enable_thinking':False},'response_format':{'type':'json_schema','json_schema':{'name':'shot_plan','schema':schema}}}
    for attempt in range(2):
     req=urllib.request.Request(url+'/v1/chat/completions',data=json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
@@ -39,7 +42,7 @@ def plan(brief,script_parts,style,log_path,has_reference=False):
     try:data=json.loads(answer['choices'][0]['message']['content'])
     except (json.JSONDecodeError,KeyError,IndexError,TypeError):
      payload['messages'].append({'role':'user','content':'Correction: return only a valid JSON object matching the schema.'});continue
-    if isinstance(data.get('character'),str) and len(data['character'].strip())>=15 and len(data.get('shots',[]))==len(script_parts) and all(all(isinstance(s.get(k),str) and len(s[k].strip())>=m for k,m in [('scene',12),('action',12),('prompt',30)]) for s in data['shots']):return data
+    if isinstance(data.get('character'),str) and len(data['character'].strip())>=15 and len(data.get('shots',[]))==len(script_parts) and all(all(isinstance(s.get(k),str) and len(s[k].strip())>=m for k,m in [('scene',12),('action',12),('continuation_action',12),('prompt',30)]) for s in data['shots']):return data
     payload['messages'].append({'role':'user','content':f'Correction: exactly {len(script_parts)} shots are required. Return all required fields.'})
    raise ValueError('Planner failed to return one valid shot per script part after two attempts')
   finally:
