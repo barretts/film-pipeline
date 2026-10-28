@@ -2,6 +2,7 @@
 import argparse,contextlib,copy,hashlib,json,math,os,re,secrets,shutil,struct,subprocess,sys,tempfile,time,urllib.request,urllib.error,uuid
 from pathlib import Path
 from . import planner
+from .references import character_reference_guidance
 ROOT=Path(__file__).resolve().parent.parent
 BASE=ROOT/'comfy-local';JOBS=ROOT/'local-film-jobs';RUNTIME=ROOT/'local-runtime';FPS=24;FRAMES=124;SEGMENT=FRAMES/FPS
 FFMPEG_BIN=RUNTIME/'ffmpeg'/'ffmpeg-8.0.1-essentials_build'/'bin'
@@ -98,6 +99,8 @@ def validate(req):
  instructions=req.get('segment_instructions','')
  if not isinstance(instructions,str) or len(instructions)>2000:raise JobError('Instructions for every segment must be text of at most 2000 characters')
  req['segment_instructions']=instructions
+ creativity=req.get('reference_creativity',0)
+ if type(creativity) not in (int,float) or not math.isfinite(creativity) or not 0<=creativity<=100:raise JobError('Character reference creativity must be a number from 0 to 100')
  frames=req.get('segment_frames',FRAMES);overlap=req.get('continuation_overlap_frames',0)
  if type(frames) is not int or frames not in (124,141):raise JobError('Segment frames must be 124 or 141')
  if type(overlap) is not int or overlap not in (0,22):raise JobError('Continuation overlap must be 0 or 22 frames')
@@ -151,7 +154,7 @@ def save(job,state):atomic(job/'state.json',state)
 def make_plan(job,state):
  if (job/'plan.json').exists():return load(job/'plan.json')
  req=load(job/'request.json');parts=script_parts(req['script']);state['status']='planning';save(job,state)
- started=time.time();result=planner.plan(req['brief'],parts,req['style'],job/'planner.log',has_reference=bool(req['staged_references']),segment_instructions=req.get('segment_instructions',''))
+ started=time.time();result=planner.plan(req['brief'],parts,req['style'],job/'planner.log',has_reference=bool(req['staged_references']),segment_instructions=req.get('segment_instructions',''),reference_creativity=req.get('reference_creativity',0))
  shots=[]
  for i,(text,visual) in enumerate(zip(parts,result['shots'])):
   shots.append({'id':f'shot-{i+1:02}','narration':text,'character':result['character'],**visual,'estimated_seconds':max(2,round(len(text.split())/2.5,1)),'continuation_boundaries_seconds':[]})
@@ -262,9 +265,12 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
    if duration(outfile)>0 and any(x['codec_type']=='audio' for x in media(outfile)['streams']):return outfile
   except Exception:raise JobError('Existing segment is invalid; do not overwrite: '+str(outfile))
  graph=load(BASE/'ref2va-audio-comparison-graph.json');w,h=internal_size(req['width'],req['height'])
+ creative_start=not index and ref and bool(req.get('staged_references')) and req.get('reference_creativity',0)>0
  if index:
   action=shot.get('continuation_action') or 'Continue forward naturally from the current pose and situation, completing the scene without restarting earlier actions.'
   prompt=f"Continue seamlessly from the previous final frame. {action} Keep the same character, clothing and setting. Do not restart or repeat actions already completed. The character speaks the supplied recording naturally with precise lip movement."
+ elif creative_start:
+  prompt=f"{shot['character']} {shot['scene']} {shot['action']} {shot['prompt']} Visual style: {req['style']}. {character_reference_guidance(req['reference_creativity'])} The character speaks the supplied recording naturally with precise lip movement."
  elif ref:
   prompt=f"The same character from the reference image keeps the exact face, hair, clothing, colors and setting. {shot['action']} The character speaks the supplied recording naturally with precise lip movement. Preserve the original character and scene."
  else:
@@ -283,13 +289,18 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
  graph['136']['inputs']['filename_prefix']=f"local-film/{state['job_id']}/{key}"
  # Continuations use the distilled first-frame guide. Reference conditioning
  # alone does not anchor the tail frame and can restart the object's action.
- if req.get('staged_object_reference') and not index:
-  obj=Path(req['staged_object_reference']['path']);name=f"lf-{state['job_id']}-object{obj.suffix.lower()}";dest=BASE/'input'/name
-  if not dest.exists():shutil.copyfile(obj,dest)
-  graph['161']={'class_type':'LoadImage','inputs':{'image':name}}
-  inputs={'clip':['13',0],'vae':['11',0],'audio_vae':['24',0],'width':w,'height':h,'length':req.get('segment_frames',FRAMES),'ref_image_size':'match','ref_images.ref_image_0':['142',0] if ref else ['161',0]}
-  if ref:inputs['ref_images.ref_image_1']=['161',0]
-  picture=2 if ref else 1;inputs['prompt']=prompt+f" Use <Picture {picture}> as the visual reference for {req.get('object_description') or 'the object in the scene'}."
+ if not index and (req.get('staged_object_reference') or creative_start):
+  if req.get('staged_object_reference'):
+   obj=Path(req['staged_object_reference']['path']);name=f"lf-{state['job_id']}-object{obj.suffix.lower()}";dest=BASE/'input'/name
+   if not dest.exists():shutil.copyfile(obj,dest)
+   graph['161']={'class_type':'LoadImage','inputs':{'image':name}}
+  char_image=['5',0] if creative_start else ['142',0]
+  inputs={'clip':['13',0],'vae':['11',0],'audio_vae':['24',0],'width':w,'height':h,'length':req.get('segment_frames',FRAMES),'ref_image_size':'match','ref_images.ref_image_0':char_image if ref else ['161',0]}
+  inputs['prompt']=prompt
+  if creative_start:inputs['prompt']+=' Use <Picture 1> as the character reference according to the creative guidance above.'
+  if req.get('staged_object_reference'):
+   if ref:inputs['ref_images.ref_image_1']=['161',0]
+   picture=2 if ref else 1;inputs['prompt']+=f" Use <Picture {picture}> as the visual reference for {req.get('object_description') or 'the object in the scene'}."
   graph['157']={'class_type':'MiniMaxH3ReferenceToVideo','inputs':inputs}
   graph['160']={'class_type':'SenseNovaH3DistilledBridge','inputs':{'conditioning':['157',0],'distilled_adapter':'MiniMaxH3_SemanticBridge_v1.safetensors','alpha':0.15,'magnitude_match':'per_token'}}
   graph['19']['inputs']['positive']=['160',0]

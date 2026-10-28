@@ -1,12 +1,13 @@
 """Local planning with a CPU llama.cpp server; no remote inference."""
 import copy,json,os,socket,subprocess,time,urllib.request
 from pathlib import Path
+from .references import character_reference_guidance
 ROOT=Path(__file__).resolve().parent.parent
 RUNTIME=ROOT/'local-runtime'
 OPENER=urllib.request.build_opener(urllib.request.ProxyHandler({}))
 SCHEMA={"type":"object","properties":{"character":{"type":"string"},"shots":{"type":"array","items":{"type":"object","properties":{"scene":{"type":"string"},"action":{"type":"string"},"continuation_action":{"type":"string"},"prompt":{"type":"string"}},"required":["scene","action","continuation_action","prompt"],"additionalProperties":False}}},"required":["character","shots"],"additionalProperties":False}
 
-def plan(brief,script_parts,style,log_path,has_reference=False,segment_instructions=''):
+def plan(brief,script_parts,style,log_path,has_reference=False,segment_instructions='',reference_creativity=0):
  exe=RUNTIME/'llama'/'llama-server.exe';model=RUNTIME/'models'/'Qwen3.5-4B-Q4_K_M.gguf'
  if not exe.is_file() or not model.is_file():raise FileNotFoundError('Local planner runtime or model missing; see installation guide')
  with socket.socket() as s:s.bind(('127.0.0.1',0));port=s.getsockname()[1]
@@ -30,7 +31,9 @@ def plan(brief,script_parts,style,log_path,has_reference=False,segment_instructi
            'For continuation_action, describe what happens after the first action, without restarting or repeating it. '
            'Instructions for every segment are mandatory constraints for all shots and continuations. Do not contradict them or invent camera movements. '
            'Do not invent additional shots or narration.')
-   if has_reference:system+=' A reference image is provided and is authoritative: preserve its person, clothing, colors and styling. Do not invent hair, costume or visual features; describe them only as the character from the reference image.'
+   if has_reference:
+    if reference_creativity>0:system+=' A character reference will be supplied to the video model. You cannot see it. Do not claim to observe its features. '+character_reference_guidance(reference_creativity)
+    else:system+=' A reference image is provided and is authoritative: preserve its person, clothing, colors and styling. Do not invent hair, costume or visual features; describe them only as the character from the reference image.'
    user='Creative brief: '+brief+'\nVisual style: '+style+'\nScript parts:\n'+'\n'.join(f'{i+1}. {part}' for i,part in enumerate(script_parts))
    if segment_instructions.strip():user+='\nInstructions for every segment (authoritative):\n'+segment_instructions
    schema=copy.deepcopy(SCHEMA);schema['properties']['shots'].update(minItems=len(script_parts),maxItems=len(script_parts));schema['properties']['character']['minLength']=15
