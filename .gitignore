@@ -61,3 +61,7 @@ comfy-local/custom_nodes/ComfyUI-VideoHelperSuite/
 comfy-local/custom_nodes/ComfyUI_Nvidia_VFX_Nodes/
 comfy-local/custom_nodes/Comfyui-Memory_Cleanup/
 comfy-local/custom_nodes/MiniMax_H3_Semantic_Bridge/
+
+# Project-local runtime downloads and generated job data
+local-runtime/
+local-film-jobs/

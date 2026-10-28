@@ -1,6 +1,6 @@
-﻿import httpx
+import httpx
 from pathlib import Path
-p=Path(r'F:\film-pipeline\comfy-local\downloads\torch-2.11.0+cu130-cp313-cp313-win_amd64.whl');p.parent.mkdir(exist_ok=True)
+p=Path(__file__).resolve().parent.parent/'comfy-local'/'downloads'/'torch-2.11.0+cu130-cp313-cp313-win_amd64.whl';p.parent.mkdir(exist_ok=True)
 u='https://download.pytorch.org/whl/cu130/torch-2.11.0%2Bcu130-cp313-cp313-win_amd64.whl'
 with httpx.Client(trust_env=False,follow_redirects=True,timeout=120) as c:
  with c.stream('GET',u) as r:

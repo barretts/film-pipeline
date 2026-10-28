@@ -7,3 +7,7 @@ Start with [START_HERE.md](START_HERE.md), then read [STATUS.md](STATUS.md) and 
 The project is not a finished film pipeline yet. The first production target is a short pilot that proves a real image or video, sound, and final playable render before committing to the full film. It is not enough to produce a test pattern and call the pilot complete.
 
 A local coding model and media models may take turns on the same GPU. Strata is optional; the owner has authorized stopping it when its resources are needed. Persist work before switching. See `START_HERE.md` for the handoff and recovery procedure.
+
+## Unattended local film jobs
+
+For the local prompt form, offline planner and voice, MiniMax H3 speech-driven rendering, continuations, assembly and review reports, see [LOCAL_FILM_INSTALL_GUIDE.md](LOCAL_FILM_INSTALL_GUIDE.md). Start the form with `python -m local_film.server` after setting up the isolated dependencies. The guide distinguishes the tested machine from untested fresh-machine installation steps. Older workflows remain available.

@@ -1,0 +1,365 @@
+{
+  "prompt": [
+    19,
+    "2228e6ff-3076-4fca-b502-8a45a43dea25",
+    {
+      "5": {
+        "class_type": "LoadImage",
+        "inputs": {
+          "image": "ref2va-furry-fox-tail.png"
+        }
+      },
+      "142": {
+        "class_type": "ImageResizeKJv2",
+        "inputs": {
+          "image": [
+            "5",
+            0
+          ],
+          "width": 704,
+          "height": 1280,
+          "upscale_method": "lanczos",
+          "keep_proportion": "crop",
+          "pad_color": "0, 0, 0",
+          "crop_position": "center",
+          "divisible_by": 32,
+          "device": "cpu"
+        }
+      },
+      "128": {
+        "class_type": "DiffusionModelLoaderKJ",
+        "inputs": {
+          "model_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+          "weight_dtype": "default",
+          "compute_dtype": "default",
+          "patch_cublaslinear": false,
+          "sage_attention": "disabled",
+          "enable_fp16_accumulation": false
+        }
+      },
+      "13": {
+        "class_type": "CLIPLoader",
+        "inputs": {
+          "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+          "type": "minimax",
+          "device": "default"
+        }
+      },
+      "11": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+        }
+      },
+      "24": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+        }
+      },
+      "157": {
+        "class_type": "MiniMaxH3DistilledImageToVideo",
+        "inputs": {
+          "clip": [
+            "13",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ],
+          "prompt": "Continue the same scene and character seamlessly from the reference frame. Polished expressive animated feature film, one adult anthropomorphic female fox with russet fur, white muzzle, expressive amber eyes, pointed fox ears and a fluffy tail, wearing a dark teal coat and scarf, standing in a warmly lit old radio room. She turns from a glowing vintage radio toward the camera, steps forward and gestures with one hand as her ears and tail move naturally. She speaks the supplied voice recording with natural precise muzzle and mouth movements, expressive eyes, and subtle head and shoulder motion. Mysterious atmosphere, consistent character and clothing, detailed fur, cinematic light, no text. Continue naturally from the previous moment, maintaining wardrobe, setting, and lighting.",
+          "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+          "alpha": 0.15,
+          "magnitude_match": "per_token",
+          "width": 704,
+          "height": 1280,
+          "length": 124,
+          "first_frame": [
+            "142",
+            0
+          ]
+        }
+      },
+      "154": {
+        "class_type": "LoraLoaderModelOnly",
+        "inputs": {
+          "model": [
+            "128",
+            0
+          ],
+          "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+          "strength_model": 1.0
+        }
+      },
+      "159": {
+        "class_type": "Ref2VAVSAGatePatch",
+        "inputs": {
+          "model": [
+            "154",
+            0
+          ],
+          "gate_file": "fasth3_vsa_gate.safetensors",
+          "sparsity": 0.75
+        }
+      },
+      "158": {
+        "class_type": "MiniMaxH3SigmaShift",
+        "inputs": {
+          "model": [
+            "159",
+            0
+          ],
+          "shift_video": 6.0,
+          "shift_audio": 3.0
+        }
+      },
+      "9": {
+        "class_type": "BasicScheduler",
+        "inputs": {
+          "model": [
+            "158",
+            0
+          ],
+          "scheduler": "sgm_uniform",
+          "steps": 4,
+          "denoise": 1.0
+        }
+      },
+      "149": {
+        "class_type": "VRAMCleanup",
+        "inputs": {
+          "anything": [
+            "19",
+            3
+          ],
+          "offload_model": true,
+          "offload_cache": false
+        }
+      },
+      "150": {
+        "class_type": "RAMCleanup",
+        "inputs": {
+          "anything": [
+            "149",
+            0
+          ],
+          "clean_file_cache": false,
+          "clean_processes": false,
+          "clean_dlls": false,
+          "retry_times": 3
+        }
+      },
+      "16": {
+        "class_type": "BasicGuider",
+        "inputs": {
+          "model": [
+            "158",
+            0
+          ],
+          "conditioning": [
+            "150",
+            0
+          ]
+        }
+      },
+      "156": {
+        "class_type": "KSamplerSelect",
+        "inputs": {
+          "sampler_name": "er_sde"
+        }
+      },
+      "130": {
+        "class_type": "RandomNoise",
+        "inputs": {
+          "noise_seed": 4720
+        }
+      },
+      "14": {
+        "class_type": "SamplerCustomAdvanced",
+        "inputs": {
+          "noise": [
+            "130",
+            0
+          ],
+          "guider": [
+            "16",
+            0
+          ],
+          "sampler": [
+            "156",
+            0
+          ],
+          "sigmas": [
+            "9",
+            0
+          ],
+          "latent_image": [
+            "19",
+            0
+          ]
+        }
+      },
+      "10": {
+        "class_type": "VAEDecode",
+        "inputs": {
+          "samples": [
+            "14",
+            0
+          ],
+          "vae": [
+            "11",
+            0
+          ]
+        }
+      },
+      "139": {
+        "class_type": "VRAMCleanup",
+        "inputs": {
+          "anything": [
+            "14",
+            0
+          ],
+          "offload_model": true,
+          "offload_cache": false
+        }
+      },
+      "23": {
+        "class_type": "VAEDecodeAudio",
+        "inputs": {
+          "samples": [
+            "139",
+            0
+          ],
+          "vae": [
+            "24",
+            0
+          ]
+        }
+      },
+      "136": {
+        "class_type": "VHS_VideoCombine",
+        "inputs": {
+          "images": [
+            "10",
+            0
+          ],
+          "audio": [
+            "19",
+            1
+          ],
+          "frame_rate": 24.0,
+          "loop_count": 0,
+          "filename_prefix": "ref2va-new-reels/furry-fox-continuation",
+          "format": "video/h264-mp4",
+          "pix_fmt": "yuv420p",
+          "crf": 19,
+          "save_metadata": true,
+          "trim_to_audio": false,
+          "pingpong": false,
+          "save_output": true
+        }
+      },
+      "18": {
+        "class_type": "LoadAudio",
+        "inputs": {
+          "audio": "minimax-03-narration.wav"
+        }
+      },
+      "19": {
+        "class_type": "LCH3AudioSync",
+        "inputs": {
+          "latent": [
+            "157",
+            1
+          ],
+          "positive": [
+            "157",
+            0
+          ],
+          "audio_vae": [
+            "24",
+            0
+          ],
+          "audio": [
+            "18",
+            0
+          ],
+          "start_seconds": 5.166666666666667,
+          "when_short": "silence"
+        }
+      }
+    },
+    {
+      "client_id": "ref2va-extended-reels",
+      "create_time": 1793148746973
+    },
+    [
+      "149",
+      "150",
+      "139",
+      "136"
+    ]
+  ],
+  "outputs": {
+    "136": {
+      "gifs": [
+        {
+          "filename": "furry-fox-continuation_00001-audio.mp4",
+          "subfolder": "ref2va-new-reels",
+          "type": "output",
+          "format": "video/h264-mp4",
+          "frame_rate": 24.0,
+          "workflow": "furry-fox-continuation_00001.png",
+          "fullpath": "F:\\film-pipeline\\comfy-local\\output\\ref2va-new-reels\\furry-fox-continuation_00001-audio.mp4"
+        }
+      ]
+    }
+  },
+  "status": {
+    "status_str": "success",
+    "completed": true,
+    "messages": [
+      [
+        "execution_start",
+        {
+          "prompt_id": "2228e6ff-3076-4fca-b502-8a45a43dea25",
+          "timestamp": 1793149219896
+        }
+      ],
+      [
+        "execution_cached",
+        {
+          "nodes": [
+            "128",
+            "13",
+            "11",
+            "24",
+            "154",
+            "159",
+            "158",
+            "9",
+            "156"
+          ],
+          "prompt_id": "2228e6ff-3076-4fca-b502-8a45a43dea25",
+          "timestamp": 1793149219917
+        }
+      ],
+      [
+        "execution_success",
+        {
+          "prompt_id": "2228e6ff-3076-4fca-b502-8a45a43dea25",
+          "timestamp": 1793149466768
+        }
+      ]
+    ]
+  },
+  "meta": {
+    "136": {
+      "node_id": "136",
+      "display_node": "136",
+      "parent_node": null,
+      "real_node_id": "136"
+    }
+  }
+}

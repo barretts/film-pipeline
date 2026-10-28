@@ -9,7 +9,11 @@ for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding='utf-8', errors='replace')
 
 root = Path(__file__).resolve().parent.parent / 'comfy-local'
-source = Path(r'E:\SwarmUI\dlbackend\comfy\ComfyUI')
+source = Path(os.environ.get('LOCAL_FILM_COMFY', r'E:\SwarmUI\dlbackend\comfy\ComfyUI'))
+if not (source / 'main.py').is_file():
+    source = Path(__file__).resolve().parent.parent / 'local-runtime' / 'ComfyUI'
+if not (source / 'main.py').is_file():
+    raise FileNotFoundError('ComfyUI not found; set LOCAL_FILM_COMFY to its source directory')
 for name in ('input', 'output', 'temp', 'user', 'models', 'cache', 'torch', 'triton'):
     (root / name).mkdir(parents=True, exist_ok=True)
 os.environ.update({'PYTHONDONTWRITEBYTECODE': '1', 'PYTHONNOUSERSITE': '1',
