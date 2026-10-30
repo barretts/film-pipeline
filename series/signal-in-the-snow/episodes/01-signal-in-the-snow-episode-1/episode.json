@@ -1,0 +1,116 @@
+{
+  "id": "01-signal-in-the-snow-episode-1",
+  "number": 1,
+  "title": "Signal in the Snow - Episode 1",
+  "target_seconds": 60.0,
+  "shots": [
+    {
+      "id": "shot-01",
+      "scene": "One night, frost bites the control room glass.",
+      "setting": "Control Room",
+      "action": "Kate monitors screens; James analyzes waveforms.",
+      "continuation_action": "Carry the moment forward toward: Monitors flash red; James runs to the door.. Do not restart or repeat actions already completed.",
+      "prompt": "Control Room. Medium shot, locked camera. Kate: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.. James: New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin. Man in his late twenties, dark curly hair under an ear-flap hat, clean-shaven angular face, orange-red survival suit over thermal layers.. Kate monitors screens; James analyzes waveforms. Visual style: Cold blue-white cinematic realism with warm lamp accents, 35mm grain..",
+      "characters": [
+        "kate",
+        "james"
+      ],
+      "speakers": [
+        "kate",
+        "james"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "James, the cadence is wrong. It sounds like a heartbeat."
+        },
+        {
+          "character": "james",
+          "text": "No, Kate. It's a name. Someone is calling us."
+        }
+      ],
+      "narration": "James, the cadence is wrong. It sounds like a heartbeat. No, Kate. It's a name. Someone is calling us.",
+      "character": "Kate and James",
+      "continuation_boundaries_seconds": []
+    },
+    {
+      "id": "shot-02",
+      "scene": "Two, the frequency spikes, turning static into a scream.",
+      "setting": "Control Room",
+      "action": "Monitors flash red; James runs to the door.",
+      "continuation_action": "Carry the moment forward toward: Snow fills the frame; Kate watches in horror.. Do not restart or repeat actions already completed.",
+      "prompt": "Control Room. Medium shot, locked camera. Kate: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.. James: New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin. Man in his late twenties, dark curly hair under an ear-flap hat, clean-shaven angular face, orange-red survival suit over thermal layers.. Monitors flash red; James runs to the door. Visual style: Cold blue-white cinematic realism with warm lamp accents, 35mm grain..",
+      "characters": [
+        "kate",
+        "james"
+      ],
+      "speakers": [
+        "kate",
+        "james"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "James, stay back! The signal is locking on!"
+        },
+        {
+          "character": "james",
+          "text": "I have to see who is out there. I know that voice."
+        }
+      ],
+      "narration": "James, stay back! The signal is locking on! I have to see who is out there. I know that voice.",
+      "character": "Kate and James",
+      "continuation_boundaries_seconds": []
+    },
+    {
+      "id": "shot-03",
+      "scene": "Three, James bursts into the blizzard and vanishes instantly.",
+      "setting": "Reinforced Glass Door",
+      "action": "Snow fills the frame; Kate watches in horror.",
+      "continuation_action": "Carry the moment forward toward: Kate straps on a radio; the hum grows louder.. Do not restart or repeat actions already completed.",
+      "prompt": "Reinforced Glass Door. Medium shot, locked camera. Kate: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.. James: New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin. Man in his late twenties, dark curly hair under an ear-flap hat, clean-shaven angular face, orange-red survival suit over thermal layers.. Snow fills the frame; Kate watches in horror. Visual style: Cold blue-white cinematic realism with warm lamp accents, 35mm grain..",
+      "characters": [
+        "kate",
+        "james"
+      ],
+      "speakers": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "James! No! The ice is humming right now."
+        }
+      ],
+      "narration": "James! No! The ice is humming right now.",
+      "character": "Kate and James",
+      "continuation_boundaries_seconds": []
+    },
+    {
+      "id": "shot-04",
+      "scene": "Four, Kate alone, packing gear as the post shakes.",
+      "setting": "Control Room",
+      "action": "Kate straps on a radio; the hum grows louder.",
+      "continuation_action": "Reach the episode's final position: Kate stands alone in the freezing control room, the radio crackling with James's location, pulling her toward the humming ice edge. Hold it as the closing frame without restarting.",
+      "prompt": "Control Room. Medium shot, locked camera. Kate: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.. Kate straps on a radio; the hum grows louder. Visual style: Cold blue-white cinematic realism with warm lamp accents, 35mm grain..",
+      "characters": [
+        "kate"
+      ],
+      "speakers": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "He is gone, but the signal found him. I must follow."
+        }
+      ],
+      "narration": "He is gone, but the signal found him. I must follow.",
+      "character": "Kate",
+      "continuation_boundaries_seconds": []
+    }
+  ],
+  "synopsis": "Kate and James track an impossible frequency until James vanishes into the blizzard as the signal locks onto his coordinates.",
+  "ending_state": "Kate stands alone in the freezing control room, the radio crackling with James's location, pulling her toward the humming ice edge.",
+  "next_hook": "Episode 2: Kate ventures onto the shifting membrane, where the ice reveals a submerged structure and a voice calls out from beneath the crust."
+}

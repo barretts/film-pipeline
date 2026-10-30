@@ -1,0 +1,16 @@
+{
+  "id": "james",
+  "name": "James",
+  "description": "New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin.",
+  "appearance": "Man in his late twenties, dark curly hair under an ear-flap hat, clean-shaven angular face, orange-red survival suit over thermal layers.",
+  "voice_model": "en_US-joe-medium.onnx",
+  "voice_sample": "audition-joe.wav",
+  "portrait": "portrait.png",
+  "ref_images": [
+    "portrait.png",
+    "refs/frame-01.png",
+    "refs/frame-02.png",
+    "refs/frame-03.png"
+  ],
+  "ref_mode": "portrait-only"
+}

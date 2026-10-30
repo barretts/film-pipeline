@@ -1,0 +1,16 @@
+{
+  "id": "kate",
+  "name": "Kate",
+  "description": "Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact.",
+  "appearance": "Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.",
+  "voice_model": "en_US-kristin-medium.onnx",
+  "voice_sample": "audition-kristin.wav",
+  "portrait": "portrait.png",
+  "ref_images": [
+    "portrait.png",
+    "refs/frame-01.png",
+    "refs/frame-02.png",
+    "refs/frame-03.png"
+  ],
+  "ref_mode": "orbit"
+}
