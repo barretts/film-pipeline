@@ -86,6 +86,20 @@ On this machine, the first 73-frame portrait test took about 11 minutes 31 secon
 
 An existing OMP configuration points to an optional Strata server on `127.0.0.1:1234`. Its configured selector is `omp --model strata-q4/qwen3.8-flash-next-ud-q4_k_xl-128k-low-ram`; a 32K selector is also configured. After Studio jobs are finished and its GPU models unloaded, use Strata's existing UI to restart its engine, then launch OMP from this project. A supervisor still answered on port 1234 after the engine stopped, so check the UI before launching another server. The selector and model configuration were inspected but local coding inference and resume have not been tested.
 
+## Multi-episode series pipeline (branch `series`)
+
+Entry points (run from the repo root with `.venv` or system Python; the two download tools need an interpreter that has `httpx`, e.g. `venvs/wav2lip-env/Scripts/python.exe`):
+
+```
+python tools/make_series.py new-show --id <slug> --title T --logline L --brief B --style S --episodes 3
+python tools/create_character.py --show <slug> --slug <char> --audition
+python tools/create_character.py --show <slug> --slug <char> --name N --voice <piper-voice> --description D --appearance A --add-to-show [--portrait path.png]
+python tools/make_series.py new-episode --show <slug> --number N --brief B --duration 90
+python tools/make_series.py run --show <slug> --episode <dir-or-number> [--seed S] [--queue]
+```
+
+`new-show` drafts cast and arc with the CPU writer (`local-runtime/models/Qwen3.5-9B-UD-Q4_K_XL.gguf`, llama.cpp `-ngl 0`; never `-ngl 99`), writes `series/<id>/{show.json,arc.md,cast.md,writer.jsonl}` and tries a Studio FLUX `cards/title-bg.png` (fallback: solid card background). `create_character.py --audition` synthesizes every downloaded piper voice for the owner to pick; `--create` renders three Studio portrait candidates and refuses until the owner reruns with `--portrait`; the reference orbit uses `tools/minimax_speech.py submit` with `--frames 73` because the installed validator requires `(frames-5) % 17 == 0` (73; an earlier 69-frame plan value is invalid). Episode renders refuse to plan N>1 before episode N-1 has rendered (`continuity.json` with an existing `final_frame`). Series renders pass cast portraits as H3 reference images plus a `SenseNovaH3DistilledBridge` (alpha 0.15) and, for continuation segments, `MiniMaxH3AddGuide` at frame 0; the GPU idle threshold for series segments is 7,000 MiB because the H3 stack keeps roughly 15 GB resident, everything else still waits for 12,000 MiB. Quality scoring is not implemented for series jobs.
+
 ## Provenance
 
 `logs/mcp_calls.jsonl` and `logs/mcp_raw/` contain historical captured call evidence. Do not edit or invent entries. The hook applies only where the client actually emits compatible events. A successful generation without verified capture may be used as media, but it does not prove an on-screen factual claim. Store job IDs, output paths and inspection results in the handoff or a project record, without secrets or large payloads.
