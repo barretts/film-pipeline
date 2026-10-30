@@ -13,7 +13,7 @@ Updated 2026-10-27. `handoff.md` is the current resume point. Outcomes are not c
 | Pilot review | Awaiting owner | Review `render/pilot.mp4`: room is brighter than the brief, square image is pillarboxed, and voice quality needs listening. |
 | Reusable production pipeline | Not started | Extend the proven pilot path to another brief and production requirements. |
 | Promo film and review | Not started | Produce the film from `brief.md`; obtain owner review of the final render. |
-| Multi-episode series system | Implemented, unit-tested; sample arc at owner gate | `MULTI_EPISODE_SERIES_PIPELINE_PLAN.md` built on branch `series` (uncommitted): data model, CPU writer, character tools, pipeline series mode, entry points; 135-test suite green (3 pre-existing cv2 errors only). `signal-in-the-snow` new-show + character auditions/portrait candidates pending owner approval. |
+| Multi-episode series system | Implemented, unit-tested; sample arc at owner gate | `MULTI_EPISODE_SERIES_PIPELINE_PLAN.md` built on branch `series`: data model, CPU writer, character tools, pipeline series mode, entry points; 135-test suite green (3 pre-existing cv2 errors only). `signal-in-the-snow` drafted (arc/cast/title-bg); kate+james auditions and three portrait candidates each rendered (`series/characters/*/portrait-candidate-*.png`); creation paused at owner portrait/voice approval - rerun `tools/create_character.py --create ... --portrait <chosen>` after picks. Strata stopped 2026-10-29 for the portrait renders (owner-authorized); ComfyUI untouched. |
 
 ## Decisions
 
