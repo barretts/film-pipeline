@@ -1,0 +1,66 @@
+0.00.377.664 I srv  llama_server: initializing ...
+0.00.377.681 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.377.909 I srv  init_listene: The UI is disabled
+0.00.377.910 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.378.070 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.388.300 I srv    load_model: loading model 'F:\film-pipeline\local-runtime\models\Qwen3.5-9B-UD-Q4_K_XL.gguf'
+0.07.077.947 I cmn          init: llama threadpool init, n_threads = 16
+0.12.848.387 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+0.12.872.180 I srv  server_run_i: model loaded
+0.12.872.547 I srv  server_on_li: listening on http://127.0.0.1:59822
+0.13.040.826 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.13.042.615 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.18.609.784 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    184, progress = 0.98, t =   5.57 s / 33.05 tokens per second
+0.30.861.704 I slot print_timing: id  0 | task 0 | n_gen =    100, tg =   8.25 t/s, tg_3s =   8.33 t/s
+0.33.964.876 I slot print_timing: id  0 | task 0 | n_gen =    123, tg =   8.08 t/s, tg_3s =   7.41 t/s
+0.37.005.531 I slot print_timing: id  0 | task 0 | n_gen =    147, tg =   8.05 t/s, tg_3s =   7.89 t/s
+0.40.108.633 I slot print_timing: id  0 | task 0 | n_gen =    171, tg =   8.00 t/s, tg_3s =   7.73 t/s
+0.43.126.320 I slot print_timing: id  0 | task 0 | n_gen =    195, tg =   8.00 t/s, tg_3s =   7.95 t/s
+0.46.164.091 I slot print_timing: id  0 | task 0 | n_gen =    220, tg =   8.02 t/s, tg_3s =   8.23 t/s
+0.49.194.681 I slot print_timing: id  0 | task 0 | n_gen =    245, tg =   8.04 t/s, tg_3s =   8.25 t/s
+0.51.724.191 I slot print_timing: id  0 | task 0 | prompt eval time =    5819.28 ms /   188 tokens (   30.95 ms per token,    32.31 tokens per second)
+0.51.724.202 I slot print_timing: id  0 | task 0 |        eval time =   32862.15 ms /   266 tokens (  124.01 ms per token,     8.06 tokens per second)
+0.51.724.204 I slot print_timing: id  0 | task 0 |       total time =   38681.43 ms /   454 tokens
+0.51.724.205 I slot print_timing: id  0 | task 0 |    graphs reused =        264
+0.51.724.206 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+0.51.724.257 I slot      release: id  0 | task 0 | stop processing: n_tokens = 453, truncated = 0
+{"time": 1793333782.3839927, "event": "response", "attempt": 0, "content": "{\n  \"recurring\": [\n    {\n      \"slug\": \"kate\",\n      \"name\": \"Kate\",\n      \"role\": \"Senior operator who has spent a decade at the post and maintains the station's fragile reality.\"\n    },\n    {\n      \"slug\": \"james\",\n      \"name\": \"James\",\n      \"role\": \"New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin.\"\n    }\n  ],\n  \"episode\": [\n    {\n      \"number\": 1,\n      \"name\": \"Drift\",\n      \"role\": \"Local guide hired to transport Kate and James to the first anomaly coordinate on the ice sheet.\"\n    },\n    {\n      \"number\": 2,\n      \"name\": \"Vance\",\n      \"role\": \"Former meteorologist stranded by the storm who reveals the signal matches a lost expedition from 1912.\"\n    },\n    {\n      \"number\": 3,\n      \"name\": \"Silas\",\n      \"role\": \"The mysterious figure who appears at the signal's source and claims to be the one who sent it.\"\n    }\n  ]\n}"}
+0.00.028.617 I srv  llama_server: initializing ...
+0.00.028.632 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.028.859 I srv  init_listene: The UI is disabled
+0.00.028.863 I srv  init_listene: Use --ui/--no-ui (or deprecated --webui/--no-webui) to enable/disable
+0.00.029.014 W srv  server_setup: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.035.185 I srv    load_model: loading model 'F:\film-pipeline\local-runtime\models\Qwen3.5-9B-UD-Q4_K_XL.gguf'
+0.03.428.162 I cmn          init: llama threadpool init, n_threads = 16
+0.04.837.202 I srv    load_model: initializing, n_slots = 1, n_ctx_slot = 8192, kv_unified = 'false'
+0.04.845.904 I srv  server_run_i: model loaded
+0.04.845.915 I srv  server_on_li: listening on http://127.0.0.1:59879
+0.05.515.073 I slot get_availabl: id  0 | task -1 | selected slot by LRU, n_tokens = 0, t_last = -1
+0.05.515.487 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.12.574.619 I slot print_timing: id  0 | task 0 | prompt processing, n_tokens =    210, progress = 0.98, t =   7.06 s / 29.75 tokens per second
+0.27.681.623 I slot print_timing: id  0 | task 0 | n_gen =    100, tg =   6.72 t/s, tg_3s =   6.79 t/s
+0.30.691.180 I slot print_timing: id  0 | task 0 | n_gen =    121, tg =   6.77 t/s, tg_3s =   6.98 t/s
+0.33.730.330 I slot print_timing: id  0 | task 0 | n_gen =    141, tg =   6.74 t/s, tg_3s =   6.58 t/s
+0.36.758.538 I slot print_timing: id  0 | task 0 | n_gen =    161, tg =   6.72 t/s, tg_3s =   6.60 t/s
+0.39.765.260 I slot print_timing: id  0 | task 0 | n_gen =    181, tg =   6.71 t/s, tg_3s =   6.65 t/s
+0.42.878.955 I slot print_timing: id  0 | task 0 | n_gen =    202, tg =   6.72 t/s, tg_3s =   6.74 t/s
+0.46.021.082 I slot print_timing: id  0 | task 0 | n_gen =    223, tg =   6.71 t/s, tg_3s =   6.68 t/s
+0.49.057.420 I slot print_timing: id  0 | task 0 | n_gen =    243, tg =   6.70 t/s, tg_3s =   6.59 t/s
+0.52.118.994 I slot print_timing: id  0 | task 0 | n_gen =    263, tg =   6.69 t/s, tg_3s =   6.53 t/s
+0.55.176.562 I slot print_timing: id  0 | task 0 | n_gen =    283, tg =   6.68 t/s, tg_3s =   6.54 t/s
+0.58.298.010 I slot print_timing: id  0 | task 0 | n_gen =    303, tg =   6.66 t/s, tg_3s =   6.41 t/s
+1.01.314.337 I slot print_timing: id  0 | task 0 | n_gen =    323, tg =   6.66 t/s, tg_3s =   6.63 t/s
+1.04.391.653 I slot print_timing: id  0 | task 0 | n_gen =    344, tg =   6.67 t/s, tg_3s =   6.82 t/s
+1.07.434.278 I slot print_timing: id  0 | task 0 | n_gen =    365, tg =   6.68 t/s, tg_3s =   6.90 t/s
+1.10.485.139 I slot print_timing: id  0 | task 0 | n_gen =    386, tg =   6.69 t/s, tg_3s =   6.88 t/s
+1.13.626.347 I slot print_timing: id  0 | task 0 | n_gen =    407, tg =   6.69 t/s, tg_3s =   6.69 t/s
+1.16.628.445 I slot print_timing: id  0 | task 0 | n_gen =    427, tg =   6.69 t/s, tg_3s =   6.66 t/s
+1.19.717.242 I slot print_timing: id  0 | task 0 | n_gen =    447, tg =   6.68 t/s, tg_3s =   6.48 t/s
+1.22.759.931 I slot print_timing: id  0 | task 0 | n_gen =    467, tg =   6.68 t/s, tg_3s =   6.57 t/s
+1.24.067.564 I slot print_timing: id  0 | task 0 | prompt eval time =    7440.71 ms /   214 tokens (   34.77 ms per token,    28.76 tokens per second)
+1.24.067.578 I slot print_timing: id  0 | task 0 |        eval time =   71111.31 ms /   474 tokens (  150.34 ms per token,     6.65 tokens per second)
+1.24.067.580 I slot print_timing: id  0 | task 0 |       total time =   78552.02 ms /   688 tokens
+1.24.067.581 I slot print_timing: id  0 | task 0 |    graphs reused =        471
+1.24.067.583 I slot print_timing: id  0 | task 0 |   graph reallocs =          0    /     0        (same size) / (changed size)
+1.24.067.646 I slot      release: id  0 | task 0 | stop processing: n_tokens = 687, truncated = 0
+{"time": 1793333867.9316335, "event": "response", "attempt": 0, "content": "{\n  \"episodes\": [\n    {\n      \"number\": 1,\n      \"brief\": \"In a cramped, frost-bitten control room bathed in the sterile glow of monitors and the warm amber of desk lamps, operators Elias and Mara spend a sleepless night tracking an impossible frequency that pulses with a rhythmic, human-like cadence, only for Elias to vanish into the blizzard outside the reinforced glass just as the signal shifts from noise to a distinct, repeating phrase that sounds suspiciously like a name.\",\n      \"ending_note\": \"Elias is gone, but the signal has locked onto his location, pulling the remaining operator, Mara, toward the coordinates where the ice begins to hum in response.\"\n    },\n    {\n      \"number\": 2,\n      \"brief\": \"Mara, now the sole guardian of the post, packs supplies and ventures alone onto the endless white expanse, her breath pluming in the sub-zero air as she follows the triangulated path Elias left behind, discovering that the ice beneath her boots is not frozen water but a shifting, translucent membrane that vibrates in sympathy with the radio waves she carries in her pocket.\",\n      \"ending_note\": \"The membrane reveals a submerged structure beneath the ice, and Mara's radio crackles with a voice that is unmistakably Elias's, telling her to stop moving forward because the signal is no longer coming from the post, but from inside the structure itself.\"\n    },\n    {\n      \"number\": 3,\n      \"brief\": \"Pushed by the voice of her missing partner, Mara breaches the translucent ice barrier and descends into a cavernous, subterranean chamber where the air is thick with static and the walls are lined with thousands of dormant receivers, only to find that the signal is not an intrusion but a broadcast originating from a massive, dormant machine buried deep within the polar crust, which suddenly ignites with a blinding white light that consumes the chamber and the operator within.\",\n      \"ending_note\": \"The machine has fully activated, broadcasting the signal across the globe, and the final shot holds on the empty radio post back at the surface, where a new pair of operators sits in silence, waiting for the next impossible call.\"\n    }\n  ]\n}"}
