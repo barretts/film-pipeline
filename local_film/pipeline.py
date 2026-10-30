@@ -188,10 +188,14 @@ def make_plan(job,state):
  if (job/'plan.json').exists():return load(job/'plan.json')
  req=load(job/'request.json')
  if req.get('kind')=='series':
-  from . import series,characters as registry
+  from . import series,characters as registry,writer
   root=Path(req['series_root']);show_obj=registry.load_show(root,req['show']);episode_obj=registry.load_episode(root,req['show'],req['episode']);cast=registry.load_cast(root,show_obj)
   continuity=series.last_continuity(root,req['show'],episode_obj['number'])
   if episode_obj['number']>1 and not continuity:raise JobError(f"Episode {episode_obj['number']} needs continuity.json from episode {episode_obj['number']-1}; render the previous episode first")
+  # Owner waived rights checks (closed prototype), but model + version per asset class is
+  # recorded here; review/settings.json is a copy of this request for future public review.
+  req['provenance']={'writer_model':writer.MODEL.name,'writer':'llama.cpp CPU llama-server (-ngl 0), local_film/writer.py','piper':'Rhasspy piper 1.6.0 local-runtime/piper/piper/piper.exe','voices':{slug:cast[slug]['voice_model'] for slug in cast},'video_model':'MiniMaxH3ReferenceToVideo (ComfyUI 0.38 native node; comfy-local/minimax-ref2va-audio-graph.json)','image_model':'unsloth/FLUX.2-klein-4B via Studio MCP (title/end cards)'}
+  atomic(job/'request.json',req)
   for shot in episode_obj['shots']:
    if not shot.get('narration'):shot['narration']=' '.join(line['text'] for line in shot['dialogue'])
    if not shot.get('character'):shot['character']=' and '.join(cast[slug].get('name',slug) for slug in shot['characters'])

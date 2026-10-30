@@ -123,6 +123,9 @@ class SeriesJobCreationTests(unittest.TestCase):
   self.assertEqual(plan['final_frame'],'')
   shot=plan['shots'][0];self.assertEqual(shot['narration'],'Do you hear that?');self.assertEqual(shot['character'],'Alice')
   self.assertIn('subject_definitions:',shot['series_prompt']);self.assertIn('series_refs',shot)
+  prov=json.loads((job/'request.json').read_text(encoding='utf8'))['provenance']
+  self.assertEqual(prov['writer_model'],'Qwen3.5-9B-UD-Q4_K_XL.gguf');self.assertEqual(prov['voices'],{'alice':'en_US-amy-medium.onnx','bob':'en_US-amy-medium.onnx'})
+  self.assertIn('MiniMaxH3ReferenceToVideo',prov['video_model']);self.assertIn('FLUX',prov['image_model'])
   self.assertEqual(json.loads((job/'plan.json').read_text(encoding='utf8')),plan)
  def test_make_plan_blocks_number_two_without_continuity(self):
   make_episode(self.root,number=2,episode_id='02-the-answer')
