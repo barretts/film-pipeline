@@ -92,7 +92,40 @@ def local_path(value):
   if ctypes.windll.kernel32.GetDriveTypeW(path.anchor)==4:raise JobError('Network drives are not supported; copy the file locally')
  return path
 
+def validate_series(req):
+ root=Path(req.get('series_root') or ROOT/'series')
+ from . import characters as registry
+ show=req.get('show');episode=req.get('episode')
+ if not isinstance(show,str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]*',show):raise JobError('Series show slug is required')
+ if not episode:raise JobError('Series episode is required')
+ show_obj=registry.load_show(root,show);episode_obj=registry.load_episode(root,show,episode)
+ for key,expected in(('show_path',root/show),('episode_path',Path(episode_obj['_dir']))):
+  value=str(req.get(key) or '')
+  if not value or Path(value).resolve()!=Path(expected).resolve():raise JobError('Series request '+key+' does not match the registry: '+value)
+ w=int(req.get('width',show_obj['width']));h=int(req.get('height',show_obj['height']));fps=int(req.get('fps',show_obj['fps']))
+ if not (256<=w<=3840 and 256<=h<=3840 and w%2==0 and h%2==0):raise JobError('Output dimensions must be even and between 256 and 3840')
+ if fps!=24:raise JobError('Series video frame rate must be 24 fps')
+ target=float(req.get('duration_seconds',0) or 0)
+ if not math.isfinite(target) or target<0 or target>300:raise JobError('Series duration must be 0 (automatic) or at most 300 seconds')
+ instructions=req.get('segment_instructions','')
+ if not isinstance(instructions,str) or len(instructions)>2000:raise JobError('Instructions for every segment must be text of at most 2000 characters')
+ frames=req.get('segment_frames',FRAMES);overlap=req.get('continuation_overlap_frames',0)
+ if type(frames) is not int or frames not in (124,141):raise JobError('Segment frames must be 124 or 141')
+ if type(overlap) is not int or overlap not in (0,22):raise JobError('Continuation overlap must be 0 or 22 frames')
+ seed_mode=req.get('seed_mode','custom' if 'seed' in req else 'random')
+ if seed_mode not in ('random','custom'):raise JobError('Seed mode must be random or custom')
+ if seed_mode=='custom' or req.get('seed') is not None:
+  seed=req.get('seed')
+  if type(seed) is not int or not 0<=seed<=4294967295:raise JobError('Seed must be a whole number from 0 to 4294967295')
+ before=float(req.get('speech_before_seconds',0) or 0);after=float(req.get('speech_after_seconds',0) or 0)
+ if not all(math.isfinite(x) and 0<=x<=30 for x in (before,after)):raise JobError('Speech pauses must each be between 0 and 30 seconds')
+ req.update(kind='series',width=w,height=h,fps=fps,duration_seconds=target,segment_frames=frames,continuation_overlap_frames=overlap,
+  segment_instructions=instructions,seed_mode=seed_mode,references=[],series_root=str(root),style=show_obj['style'],
+  speech_before_seconds=before,speech_after_seconds=after)
+ return req
+
 def validate(req):
+ if req.get('kind')=='series':return validate_series(req)
  for k in ['brief','script','style']:
   if not isinstance(req.get(k),str) or not req[k].strip():raise JobError(k+' is required')
  if len(req['brief'])>4000 or len(req['script'])>6000 or len(req['style'])>300:raise JobError('Brief, script or style exceeds the local planner limit')
@@ -141,7 +174,7 @@ def create(req):
  for i,ref in enumerate(req['references']):
   source=local_path(ref);dest=job/'references'/f'{i:02}{source.suffix.lower()}';dest.parent.mkdir(exist_ok=True);shutil.copy2(source,dest);refs.append({'path':str(dest),'original':str(source),'sha256':hash_file(dest)})
  req['staged_references']=refs
- if req['object_reference']:
+ if req.get('object_reference'):
   source=local_path(req['object_reference']);dest=job/'references'/('object'+source.suffix.lower());dest.parent.mkdir(exist_ok=True);shutil.copy2(source,dest);req['staged_object_reference']={'path':str(dest),'original':str(source),'sha256':hash_file(dest)}
  if req.get('music'):
   source=local_path(req['music']);dest=job/'music'/('source'+source.suffix.lower());dest.parent.mkdir(exist_ok=True);shutil.copy2(source,dest);req['staged_music']=str(dest)
@@ -153,7 +186,21 @@ def save(job,state):atomic(job/'state.json',state)
 
 def make_plan(job,state):
  if (job/'plan.json').exists():return load(job/'plan.json')
- req=load(job/'request.json');parts=script_parts(req['script']);state['status']='planning';save(job,state)
+ req=load(job/'request.json')
+ if req.get('kind')=='series':
+  from . import series,characters as registry
+  root=Path(req['series_root']);show_obj=registry.load_show(root,req['show']);episode_obj=registry.load_episode(root,req['show'],req['episode']);cast=registry.load_cast(root,show_obj)
+  continuity=series.last_continuity(root,req['show'],episode_obj['number'])
+  if episode_obj['number']>1 and not continuity:raise JobError(f"Episode {episode_obj['number']} needs continuity.json from episode {episode_obj['number']-1}; render the previous episode first")
+  for shot in episode_obj['shots']:
+   if not shot.get('narration'):shot['narration']=' '.join(line['text'] for line in shot['dialogue'])
+   if not shot.get('character'):shot['character']=' and '.join(cast[slug].get('name',slug) for slug in shot['characters'])
+  plan={'brief':req['brief'],'style':show_obj['style'],'segment_instructions':'','planner_model':'series-writer','series':True,'show':req['show'],
+   'episode':episode_obj['id'],'number':episode_obj['number'],'title':episode_obj['title'],'next_hook':episode_obj.get('next_hook',''),
+   'ending_state':episode_obj.get('ending_state',''),'final_frame':str(continuity.get('final_frame') or ''),'shots':episode_obj['shots'],'created':time.time()}
+  series.build_prompts(plan,show_obj,cast)
+  atomic(job/'plan.json',plan);log(state,'plan_created',shots=len(plan['shots']),series=req['show'],episode=episode_obj['id']);save(job,state);return plan
+ parts=script_parts(req['script']);state['status']='planning';save(job,state)
  started=time.time();result=planner.plan(req['brief'],parts,req['style'],job/'planner.log',has_reference=bool(req['staged_references']),segment_instructions=req.get('segment_instructions',''),reference_creativity=req.get('reference_creativity',0))
  shots=[]
  for i,(text,visual) in enumerate(zip(parts,result['shots'])):
@@ -230,7 +277,7 @@ def ensure_server():
    except urllib.error.URLError:time.sleep(3)
   raise JobError('ComfyUI did not start within 180 seconds; inspect '+str(log_path))
 
-def wait_idle(state,job):
+def wait_idle(state,job,min_free=12000):
  deadline=time.time()+7200;unloaded=False
  while time.time()<deadline:
   check_cancel(job)
@@ -243,11 +290,11 @@ def wait_idle(state,job):
    try:
     r=run_cmd(['nvidia-smi','--query-gpu=memory.free','--format=csv,noheader,nounits']);free=int(r.stdout.decode().strip().splitlines()[0])
    except Exception as e:raise JobError('Cannot query NVIDIA GPU memory with nvidia-smi') from e
-   if free>=12000:return
+   if free>=min_free:return
    state['gpu_free_mib']=free
   if state.get('status')!='waiting_for_gpu':state['status']='waiting_for_gpu';save(job,state)
   time.sleep(10)
- raise JobError('Timed out after two hours waiting for an idle ComfyUI and 12000 MiB free GPU memory')
+ raise JobError(f'Timed out after two hours waiting for an idle ComfyUI and {min_free} MiB free GPU memory')
 
 def locate(id):
  history=api('/history/'+id)
@@ -266,7 +313,11 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
   except Exception:raise JobError('Existing segment is invalid; do not overwrite: '+str(outfile))
  graph=load(BASE/'ref2va-audio-comparison-graph.json');w,h=internal_size(req['width'],req['height'])
  creative_start=not index and ref and bool(req.get('staged_references')) and req.get('reference_creativity',0)>0
- if index:
+ series_prompt=shot.get('series_prompt')
+ if series_prompt:
+  # Series prompts arrive as complete official six-section H3 texts from series.build_prompts.
+  prompt=shot['series_continuation'] if index else series_prompt
+ elif index:
   action=shot.get('continuation_action') or 'Continue forward naturally from the current pose and situation, completing the scene without restarting earlier actions.'
   prompt=f"Continue seamlessly from the previous final frame. {action} Keep the same character, clothing and setting. Do not restart or repeat actions already completed. The character speaks the supplied recording naturally with precise lip movement."
  elif creative_start:
@@ -280,16 +331,34 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
  if ref:
   ref=Path(ref);name=f"lf-{state['job_id']}-{key}{ref.suffix.lower()}";dest=BASE/'input'/name
   if not dest.exists():shutil.copyfile(ref,dest)
-  graph['5']['inputs']['image']=name;graph['157']['inputs']['first_frame']=['142',0]
- else:graph['157']['inputs'].pop('first_frame',None)
+  graph['5']['inputs']['image']=name
+  if not series_prompt:graph['157']['inputs']['first_frame']=['142',0]
+ else:
+  if not series_prompt:graph['157']['inputs'].pop('first_frame',None)
  voice=Path(shot['voice']);audio_name=f"lf-{state['job_id']}-{shot['id']}.wav";audio_dest=BASE/'input'/audio_name
  if not audio_dest.exists():shutil.copyfile(voice,audio_dest)
  span=req.get('segment_frames',FRAMES)/FPS;overlap=req.get('continuation_overlap_frames',0)/FPS
  graph['18']['inputs']['audio']=audio_name;graph['19']['inputs']['start_seconds']=index*(span-overlap);graph['130']['inputs']['noise_seed']=int(req.get('seed',2801))+int(shot['id'][-2:])*100+index
  graph['136']['inputs']['filename_prefix']=f"local-film/{state['job_id']}/{key}"
+ # Series: master-portrait reference conditioning rides every segment.
+ # Continuations still anchor the tail frame (5->142->AddGuide) so the action
+ # cannot restart between segments; ReferenceToVideo has no first_frame input.
+ if series_prompt:
+  inputs={'clip':['13',0],'vae':['11',0],'audio_vae':['24',0],'width':w,'height':h,'length':req.get('segment_frames',FRAMES),'ref_image_size':'match','prompt':prompt}
+  for slot,portrait in enumerate((shot.get('series_refs') or [])[:9]):
+   p=Path(portrait);name=f"lf-{state['job_id']}-cast-{slot:02}{p.suffix.lower()}";dest=BASE/'input'/name
+   if not dest.exists():shutil.copyfile(p,dest)
+   node=str(170+slot);graph[node]={'class_type':'LoadImage','inputs':{'image':name}}
+   inputs[f'ref_images.ref_image_{slot}']=[node,0]
+  graph['157']={'class_type':'MiniMaxH3ReferenceToVideo','inputs':inputs}
+  graph['160']={'class_type':'SenseNovaH3DistilledBridge','inputs':{'conditioning':['157',0],'distilled_adapter':'MiniMaxH3_SemanticBridge_v1.safetensors','alpha':0.15,'magnitude_match':'per_token'}}
+  graph['19']['inputs']['positive']=['160',0]
+  if index:
+   graph['163']={'class_type':'MiniMaxH3AddGuide','inputs':{'positive':['160',0],'latent':['157',1],'vae':['11',0],'image':['142',0],'frame_idx':0}}
+   graph['19']['inputs']['positive']=['163',0]
  # Continuations use the distilled first-frame guide. Reference conditioning
  # alone does not anchor the tail frame and can restart the object's action.
- if not index and (req.get('staged_object_reference') or creative_start):
+ if not index and not series_prompt and (req.get('staged_object_reference') or creative_start):
   if req.get('staged_object_reference'):
    obj=Path(req['staged_object_reference']['path']);name=f"lf-{state['job_id']}-object{obj.suffix.lower()}";dest=BASE/'input'/name
    if not dest.exists():shutil.copyfile(obj,dest)
@@ -323,7 +392,10 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
   status,entry=locate(prompt_id)
   if status=='unknown':raise JobError(f'Unknown outcome for {key} ({prompt_id}); inspect ComfyUI history and outputs before retrying')
  else:
-  wait_idle(state,job);record['status']='submitting';record['started']=time.time();state['status']='rendering';save(job,state)
+  # Series episodes keep the ~15 GB resident H3 stack (int8 model + convrot fp16 VAE
+  # + nvfp4 text encoder streaming) warm between segments; demanding 12 GB free would
+  # force-evict it mid-chain via /free, so a lower floor suffices once ComfyUI is idle.
+  wait_idle(state,job,7000 if series_prompt else 12000);record['status']='submitting';record['started']=time.time();state['status']='rendering';save(job,state)
   try:
    result=api('/prompt',{'prompt':graph,'prompt_id':prompt_id,'client_id':'local-film-'+state['job_id']});record['status']='submitted';save(job,state)
   except Exception:
@@ -429,6 +501,7 @@ def quality(job,plan,req,segments,output):
    tests.append(entry);previous=path
  report={'output':str(output),'duration_seconds':duration(output),'dimensions':[video.get('width'),video.get('height')] if video else None,'checks':tests,'assembled_audio_checks':assembled_audio_checks,'flags':flags,'limitations':['Visual change and motion scores can be affected by camera moves and lighting.','Automated checks cannot judge acting, facial identity, phoneme-level lip sync, story quality, or music suitability. Human playback review is required.']}
  if req.get('staged_object_reference'):report['limitations'].append('Object-reference conditioning is experimental; inspect object fidelity and continuation joins.')
+ if req.get('kind')=='series':report['limitations'].append('Series identity relies on master-portrait reference conditioning plus tail-frame guides; spot-check the cast across first and last shot on the contact sheet.')
  atomic(job/'review'/'quality.json',report)
  lines=['# Local film quality report','',f"Output: {output.name}",f"Duration: {report['duration_seconds']:.2f} seconds",f"Resolution: {req['width']} x {req['height']}",'','## Flags']+[('- '+x) for x in flags or ['No automated flags; human review is still required.']]+['','## Assembled narration checks']+[f"- {t['shot']}: source correlation {t['correlation']}" for t in assembled_audio_checks]+['','## Segment checks']+[f"- {t['segment']}: audio correlation {t['source_audio_correlation']}, sampled motion {t['motion']['mean_difference']}, join difference {t.get('join_mean_difference', 'n/a')}" for t in tests]+['','## Limits']+['- '+x for x in report['limitations']]
  (job/'review'/'quality.md').write_text('\n'.join(lines)+'\n',encoding='utf8');return report
@@ -456,7 +529,12 @@ def _run_one(job,plan_only,open_folder):
     ids.append(shot['id'])
    if len(ids)!=len(set(ids)):raise JobError('Plan shot ids must be unique')
    if plan_only:state['status']='planned';save(job,state);return state
-   state['status']='voicing';save(job,state);plan=voice(job,state,plan)
+   state['status']='voicing';save(job,state)
+   if req.get('kind')=='series':
+    from . import series,characters as registry
+    root=Path(req['series_root']);cast=registry.load_cast(root,registry.load_show(root,req['show']))
+    plan=series.voice_tracks(plan,cast,job,float(req['speech_before_seconds']),float(req['speech_after_seconds']),state)
+   else:plan=voice(job,state,plan)
    check_cancel(job);ensure_server();segments=[];shared_ref=req['staged_references'][0]['path'] if req['staged_references'] else None
    with locked(JOBS/'gpu.lock',wait=True):
     for shot_index,shot in enumerate(plan['shots']):
@@ -471,6 +549,9 @@ def _run_one(job,plan_only,open_folder):
       if req.get('continuation_overlap_frames',0):motion_ref=extract_motion_tail(path,job/'references'/f"{shot['id']}-{i:02}-motion.mp4",req)
       aligned=trim_overlap(path,job/'segments-aligned'/path.name,part) if part['trim_start'] else path
       segments.append((aligned,part['seconds']))
+   if req.get('kind')=='series':
+    # Two 2.0 s title/end cards ride the same assemble machinery as segments.
+    segments=series.card_segments(plan,job,req,registry.load_show(Path(req['series_root']),req['show']),cast,segments)
    q=api('/queue')
    if not q.get('queue_running') and not q.get('queue_pending'):
     try:api('/free',{'unload_models':True,'free_memory':True})
@@ -486,6 +567,7 @@ def _run_one(job,plan_only,open_folder):
     target=previews/(p.stem+'-contact.jpg')
     if not target.exists():run_cmd(['ffmpeg','-y','-v','error','-i',p,'-vf','fps=2,scale=180:-1,tile=4x3','-frames:v','1',target])
    atomic(review/'prompts.json',{k:v['graph']['157']['inputs']['prompt'] for k,v in state['segments'].items()})
+   if req.get('kind')=='series':series.save_continuity(job,req['episode_path'],req['show_path'],plan.get('ending_state',''))
    check_cancel(job);state['status']='complete';state['completed']=time.time();state['output']=str(output);state['quality_flags']=report['flags'];save(job,state);shutil.copy2(job/'state.json',review/'generation-state.json')
    if open_folder and os.name=='nt':
     try:subprocess.Popen(['explorer.exe',str(review)],creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
