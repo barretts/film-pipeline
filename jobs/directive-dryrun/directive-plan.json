@@ -1,0 +1,18 @@
+{
+  "status": "planned",
+  "mode": "dry",
+  "takes": [
+    "one_scene_extension-pursuit-take1"
+  ],
+  "guide_pending": [],
+  "projected_state_after": {
+    "james": "missing_offscreen",
+    "kate": "advancing_into_storm_with_radio",
+    "event": "following_signal"
+  },
+  "commitments": {
+    "ledger": "unchanged",
+    "gpu": "zero calls",
+    "media": "nothing staged or overwritten"
+  }
+}
