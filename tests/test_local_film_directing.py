@@ -1,9 +1,12 @@
+import contextlib
 import json
 import shutil
 import tempfile
+import time
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import patch, Mock
 
 from local_film import directing as D
 from local_film import pipeline as P
@@ -76,7 +79,22 @@ class ValidatorTests(unittest.TestCase):
   D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
  def test_reentry_without_flag_rejected(self):
   first=beat();second=beat(id='rescue',before=dict(first['after']),after={'james':'inside','kate':'inside'},on_screen_cast=['kate','james'],action='James staggers back inside.')
-  with self.assertRaisesRegex(D.DirectiveError,'cannot be on screen'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+  with self.assertRaisesRegex(D.DirectiveError,'cannot go from departed to present'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+ def test_offscreen_departure_erasure_rejected(self):
+  # Codex finding 3: a Kate-only beat must not flip James gone->present off screen.
+  first=beat();second=beat(id='erase_departure',before=dict(first['after']),after={'james':'inside','kate':'inside'},on_screen_cast=['kate'],action='Kate listens alone.')
+  with self.assertRaisesRegex(D.DirectiveError,'off-screen james cannot change state'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+ def test_established_state_key_cannot_vanish(self):
+  first=beat();second=beat(id='forget',before=dict(first['after']),after={'kate':'outside'},on_screen_cast=['kate'],action='Kate watches the door.')
+  with self.assertRaisesRegex(D.DirectiveError,'james dropped out of the after state map'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+ def test_duplicate_re_entry_rejected(self):
+  first=beat();second=beat(id='rescue',before=dict(first['after']),after={'james':'inside','kate':'inside'},on_screen_cast=['kate','james'],re_entry_cast=['james','james'],action='James staggers back inside.')
+  with self.assertRaisesRegex(D.DirectiveError,'duplicate slugs in re_entry_cast'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+ def test_non_cast_state_keys_may_change_offscreen(self):
+  # 'event' is narrative state, not an actor: off-screen updates stay legal.
+  first=beat(before={'james':'inside','kate':'inside','event':'alarm'},after={'james':'missing_offscreen','kate':'inside','event':'alarm'})
+  second=beat(id='listen',before=dict(first['after']),after={'james':'missing_offscreen','kate':'inside','event':'silence'},on_screen_cast=['kate'],action='Kate listens.')
+  D.validate(D.normalize_plan(plan(beats=[first,second],initial_state={'james':'inside','kate':'inside','event':'alarm'})),set(CAST))
  def test_reentry_must_end_present(self):
   first=beat();second=beat(id='rescue',before=dict(first['after']),after={'james':'missing_outside','kate':'inside'},on_screen_cast=['kate','james'],re_entry_cast=['james'],action='James staggers toward the door.')
   with self.assertRaisesRegex(D.DirectiveError,'must end present'):D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
@@ -240,12 +258,30 @@ def _api_for(job,source):
  return api
 
 class OrchestratorTests(unittest.TestCase):
- def _run(self,mode,overrides=None,gates=None,plan_overrides=None,expect_error=None):
-  tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup)
-  job,source=_fixture(tmp.name)
-  beats=[beat()]
+ def _patch_lifecycle(self):
+  # Managed mode owns GPU hardware: stub the process-level operations so tests exercise
+  # the lifecycle (queue idle check, Strata kill, free, guaranteed verified restore) with zero real side effects.
+  # If the caller already mocked an attribute (e.g. an external probe whose counters must see the
+  # calls), keep that mock active instead of shadowing it with a private one.
+  if not isinstance(D.subprocess.run,Mock):
+   p=patch.object(D.subprocess,'run');self.proc=p.start();self.proc.return_value=type('r',(),{'returncode':0})();self.addCleanup(p.stop)
+  else:self.proc=D.subprocess.run
+  if not isinstance(D.P.locked,Mock):
+   lock=patch.object(D.P,'locked');self.lock=lock.start();self.lock.side_effect=lambda *a,**k:contextlib.nullcontext();self.addCleanup(lock.stop)
+  else:self.lock=D.P.locked
+  if not isinstance(D.P.OPENER,Mock):
+   opener=patch.object(D.P,'OPENER');self.opener=opener.start();self.addCleanup(opener.stop)
+  if not isinstance(D.time,SimpleNamespace):
+   tm=patch.object(D,'time',new=SimpleNamespace(sleep=lambda s:None,monotonic=time.monotonic,strftime=time.strftime));tm.start();self.addCleanup(tm.stop)
+ def _run(self,mode,overrides=None,gates=None,plan_overrides=None,expect_error=None,reuse=None,api=None,beats_list=None,proc_returns=None):
+  if reuse:tmp,job=reuse;source_path=job.parent/'src'
+  else:
+   tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup);job,source=_fixture(tmp.name);source_path=source
+  self._patch_lifecycle()
+  if proc_returns:self.proc.side_effect=[type('r',(),{'returncode':code})() for code in proc_returns]
+  beats=[beat()] if beats_list is None else beats_list
   if overrides:beats[0].update(overrides)
-  raw=plan(beats=beats,source_job=str(source),**(plan_overrides or {}))
+  raw=plan(beats=beats,source_job=str(source_path),**(plan_overrides or {}))
   plan_path=Path(tmp.name)/'plan.json';plan_path.write_text(json.dumps(raw),encoding='utf8')
   gates=gates or [{'decision':'approve','evidence':['ok']}]
   state={'n':0}
@@ -254,11 +290,12 @@ class OrchestratorTests(unittest.TestCase):
    if decision is None:raise D.DirectiveError('gate called beyond provided reviews')
    return decision
   api_calls=[]
-  def api(path,payload=None):
+  def default_api(path,payload=None):
    api_calls.append(path)
    if path=='/queue':return {'queue_running':[],'queue_pending':[]}
    if path=='/prompt':(job/'rendered.mp4').write_bytes(b'mp4');return {}
    return {}
+  use_api=api or default_api
   def locate(prompt_id):
    return 'history',{'status':{'status_str':'success'},'outputs':{'136':{'videos':[{'filename':'out.mp4','subfolder':''}]}}}
   with patch.object(D.C,'load_show',return_value=SHOW),patch.object(D.C,'load_cast',return_value=CAST),\
@@ -267,7 +304,7 @@ class OrchestratorTests(unittest.TestCase):
    submit.side_effect=lambda plan_value,record,*a,**k:(record.update(output=str(job/'rendered.mp4')),record)[1]
    if mode=='managed':
     try:
-     result=D.run_directive(plan_path,job,mode='managed',gate=gate,assemble=lambda j,s:(j/'assembled.mp4'),api=api,locate=locate,log=lambda *a:None)
+     result=D.run_directive(plan_path,job,mode='managed',gate=gate,assemble=lambda j,s:(j/'assembled.mp4'),api=use_api,locate=locate,log=lambda *a:None)
     except D.DirectiveError as error:
      if not expect_error:raise
      self.assertIn(expect_error,str(error));result={'error':str(error)}
@@ -326,6 +363,85 @@ class OrchestratorTests(unittest.TestCase):
     D.submit_take({'id':'t'},record,SHOW,CAST,job,api=lambda *a,**k:(_ for _ in ()).throw(AssertionError('api touched')))
   self.assertEqual(existing.read_bytes(),b'approved')
 
+ def test_managed_lifecycle_locks_queue_check_kill_and_verified_restore(self):
+  tmp,job,result,submit=self._run('managed')
+  self.assertEqual([c.args[0].name for c in self.lock.call_args_list],['pipeline.lock','gpu.lock'])
+  cmds=[' '.join(str(part) for part in c.args[0]) for c in self.proc.call_args_list]
+  self.assertEqual(len(cmds),2)
+  self.assertIn('kill-strata.ps1',cmds[0]);self.assertIn('run.ps1',cmds[1]);self.assertIn('-RestoreOnly',cmds[1])
+  lifecycle=json.loads((job/'gpu-lifecycle.json').read_text(encoding='utf8'))
+  self.assertEqual(lifecycle['restore_exit'],0);self.assertTrue(lifecycle['strata_restored'])
+ def test_managed_restore_guaranteed_after_rejection(self):
+  tmp,job,result,submit=self._run('managed',gates=[{'decision':'reject','reason':'identity drift'}],expect_error='downstream beats were not rendered')
+  cmds=[' '.join(str(part) for part in c.args[0]) for c in self.proc.call_args_list]
+  self.assertEqual(len(cmds),2);self.assertIn('-RestoreOnly',cmds[1])
+  self.assertTrue((job/'gpu-restore.log').exists())
+ def test_managed_restore_failure_surfaces(self):
+  tmp,job,result,submit=self._run('managed',expect_error='Strata restoration failed',proc_returns=[0,1])
+ def test_managed_refuses_busy_queue_before_touching_anything(self):
+  def busy(path,payload=None):
+   if path=='/queue':return {'queue_running':[[9,'someone-else']],'queue_pending':[]}
+   raise AssertionError('no other endpoint may be touched while busy')
+  tmp,job,result,submit=self._run('managed',api=busy,expect_error='refusing to take ownership')
+  self.assertEqual(self.proc.call_count,0);submit.assert_not_called()
+  self.assertFalse((job/'gpu-lifecycle.json').exists())
+ def test_dry_mode_never_touches_gpu_ownership(self):
+  tmp,job,result,submit=self._run('dry')
+  self.assertEqual(self.proc.call_count,0);self.assertEqual(self.lock.call_count,0)
+ def test_zero_retry_budget_rejects_without_second_render(self):
+  tmp,job,result,submit=self._run('managed',gates=[{'decision':'retry','correction':'changed camera','reason':'framing'},{'decision':'approve','evidence':['ok']}],plan_overrides={'max_changed_retries':0},expect_error='changed-retry budget exhausted')
+  self.assertEqual(len(submit.call_args_list),1)
+  ledger=json.loads((job/'story_state.json').read_text(encoding='utf8'))
+  self.assertEqual([e['decision'] for e in ledger['entries']],['reject'])
+  self.assertIn('changed-retry budget exhausted',ledger['entries'][0]['reason'])
+ def _seed_ledger(self,job,entries):P.atomic(job/'story_state.json',{'initial_state':{'james':'inside','kate':'inside'},'entries':entries})
+ def test_resume_renders_only_next_unapproved_beat_with_restored_guide(self):
+  first=beat()
+  second=beat(id='pursuit',before={'james':'missing_offscreen','kate':'inside'},after={'james':'missing_offscreen','kate':'outside'},on_screen_cast=['kate'],action='Kate follows his tracks.')
+  tmp,job,result,submit=self._run('dry',beats_list=[first,second])
+  tail=job/'t-exit-take1-tail.png';tail.write_bytes(b'png');output=job/'t-exit-take1.mp4';output.write_bytes(b'mp4')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'take_name':'t-exit-take1','decision':'approve','after':first['after'],'output':str(output),'tail':str(tail),'cast_at_end':['james','kate'],'evidence':['ok']}])
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),beats_list=[first,second],gates=[{'decision':'approve','evidence':['ok']}])
+  self.assertEqual(len(submit2.call_args_list),1)
+  record=submit2.call_args_list[0].args[1]
+  self.assertEqual(record['beat'],'pursuit');self.assertEqual(record['take'],1);self.assertEqual(record['guide'],str(tail))
+  ledger=json.loads((job/'story_state.json').read_text(encoding='utf8'))
+  self.assertEqual([e['beat'] for e in ledger['entries']],['exit','pursuit'])
+  approved=json.loads((job/'result.json').read_text(encoding='utf8'))['beats']
+  self.assertEqual([b['beat'] for b in approved],['exit','pursuit'])
+ def test_finalize_only_after_all_beats_approved(self):
+  tmp,job,result,submit=self._run('dry')
+  tail=job/'t-exit-take1-tail.png';tail.write_bytes(b'png');output=job/'t-exit-take1.mp4';output.write_bytes(b'mp4')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'take_name':'t-exit-take1','decision':'approve','after':beat()['after'],'output':str(output),'tail':str(tail),'cast_at_end':['james','kate'],'evidence':['ok']}])
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),gates=[{'decision':'never-called'}])
+  submit2.assert_not_called()
+  result_json=json.loads((job/'result.json').read_text(encoding='utf8'))
+  self.assertEqual(result_json['status'],'awaiting_owner_playback')
+  self.assertIn('t-exit-take1.mp4',result_json['inputs_sha256'])
+ def test_resume_refuses_plan_revision_after_approval(self):
+  tmp,job,result,submit=self._run('dry')
+  tail=job/'t-exit-take1-tail.png';tail.write_bytes(b'png');output=job/'t-exit-take1.mp4';output.write_bytes(b'mp4')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'take_name':'t-exit-take1','decision':'approve','after':beat()['after'],'output':str(output),'tail':str(tail),'cast_at_end':['james','kate'],'evidence':['ok']}])
+  revised=beat(after={'james':'missing_at_tree_line','kate':'inside'})
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),beats_list=[revised],expect_error='does not match this plan revision')
+  submit2.assert_not_called()
+ def test_resume_after_recorded_retry_resumes_with_persisted_correction(self):
+  tmp,job,result,submit=self._run('dry')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'decision':'retry','correction':'lock the camera','reason':'extra man'}])
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),gates=[{'decision':'approve','evidence':['ok']}])
+  record=submit2.call_args_list[0].args[1]
+  self.assertEqual((record['take'],record['correction']),(2,'lock the camera'))
+ def test_resume_after_recorded_retry_enforces_exhausted_budget(self):
+  tmp,job,result,submit=self._run('dry')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'decision':'retry','correction':'lock the camera','reason':'extra man'}])
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),gates=[{'decision':'retry','correction':'again','reason':'still wrong'}],expect_error='changed-retry budget exhausted')
+  self.assertEqual(len(submit2.call_args_list),1)
+ def test_resume_refuses_prior_rejection(self):
+  tmp,job,result,submit=self._run('dry')
+  self._seed_ledger(job,[{'beat':'exit','take':1,'decision':'reject','reason':'identity drift'}])
+  tmp2,job2,result2,submit2=self._run('managed',reuse=(tmp,job),gates=[{'decision':'never-called'}],expect_error='was rejected')
+  submit2.assert_not_called()
+
 class SubmitGuardTests(unittest.TestCase):
  def test_queue_busy_refuses_before_any_mutation(self):
   with tempfile.TemporaryDirectory() as tmp:
@@ -353,7 +469,63 @@ class SubmitGuardTests(unittest.TestCase):
     with self.assertRaisesRegex(D.DirectiveError,'timed out'):
      D.submit_take({'id':'t'},record,SHOW,CAST,job,api=api,locate=lambda pid:('running',None),clock=lambda:next(times),sleep=lambda s:None,timeout_s=30)
    self.assertIn('/interrupt',calls)
+   self.assertEqual(calls.count('/prompt'),1)
    status=json.loads((job/'t-x-take1.json').read_text(encoding='utf8'))['status']
    self.assertEqual(status,'submitted')
+
+class SubmitReconcileTests(unittest.TestCase):
+ def test_existing_submitted_prompt_is_reconciled_not_resubmitted(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   job=Path(tmp);name='existing-take'
+   record={'take_name':name,'graph':template(),'guide':None,'audio':'silence','on_screen_cast':[]}
+   D.P.atomic(job/(name+'.json'),{'status':'submitted','prompt_id':'original-prompt-id'})
+   sent=[]
+   def api(path,payload=None):
+    if path=='/prompt':sent.append(payload['prompt_id']);return {}
+    raise AssertionError('no endpoint may be touched during reconcile: '+path)
+   with patch.object(D,'silence_wav') as silence,patch.object(D.shutil,'copy2') as copy:
+    out=D.submit_take({'id':'t'},record,SHOW,CAST,job,api=api,locate=lambda pid:('history',{'status':{'status_str':'success'},'outputs':{'136':{'gifs':[{'filename':'fake.mp4'}]}}}),clock=lambda:0,sleep=lambda s:None)
+   self.assertEqual(sent,[]);silence.assert_not_called()
+   self.assertEqual(copy.call_args.args[1],job/(name+'.mp4'))
+   self.assertEqual(out['prompt_id'],'original-prompt-id')
+   persisted=json.loads((job/(name+'.json')).read_text(encoding='utf8'))
+   self.assertEqual((persisted['prompt_id'],persisted['status']),('original-prompt-id','complete'))
+ def test_existing_failed_prompt_refuses_without_new_submission(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   job=Path(tmp);name='existing-take'
+   record={'take_name':name,'graph':template(),'guide':None,'audio':'silence','on_screen_cast':[]}
+   D.P.atomic(job/(name+'.json'),{'status':'submitted','prompt_id':'original-prompt-id'})
+   def api(path,payload=None):raise AssertionError('no endpoint: '+path)
+   with self.assertRaisesRegex(D.DirectiveError,'Render failed'):
+    D.submit_take({'id':'t'},record,SHOW,CAST,job,api=api,locate=lambda pid:('history',{'status':{'status_str':'error'}}),clock=lambda:0,sleep=lambda s:None)
+   persisted=json.loads((job/(name+'.json')).read_text(encoding='utf8'))
+   self.assertEqual((persisted['prompt_id'],persisted['status']),('original-prompt-id','failed'))
+ def test_take_record_without_prompt_id_refuses_ambiguous_outcome(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   job=Path(tmp);name='existing-take'
+   record={'take_name':name,'graph':template(),'guide':None,'audio':'silence','on_screen_cast':[]}
+   D.P.atomic(job/(name+'.json'),{'status':'submitting'})
+   def api(path,payload=None):raise AssertionError('no endpoint may confirm an ambiguous outcome: '+path)
+   with self.assertRaisesRegex(D.DirectiveError,'without a prompt_id'):
+    D.submit_take({'id':'t'},record,SHOW,CAST,job,api=api,locate=lambda pid:('unknown',None),clock=lambda:0,sleep=lambda s:None)
+
+class LifecycleIsolationRegressionTests(unittest.TestCase):
+ def test_default_process_runner_respects_runtime_mock(self):
+  # A mock bypass must fail safely instead of executing the real shutdown script.
+  with patch.object(D.subprocess,'run') as run,patch.object(D.subprocess,'Popen',side_effect=AssertionError('real process escaped the mock')),patch.object(D.P,'locked',side_effect=lambda *a,**k:contextlib.nullcontext()),patch.object(D.P,'OPENER'):
+   run.return_value=SimpleNamespace(returncode=0)
+   with D.gpu_session(api=lambda *a,**k:{'queue_running':[],'queue_pending':[]},sleep=lambda s:None,log=lambda *a:None):pass
+  self.assertEqual(run.call_count,2)
+  self.assertIn('kill-strata.ps1',str(run.call_args_list[0]))
+  self.assertIn('-RestoreOnly',str(run.call_args_list[1]))
+
+ def test_memory_release_failure_still_restores_strata(self):
+  with patch.object(D.P,'locked',side_effect=lambda *a,**k:contextlib.nullcontext()),patch.object(D.P,'OPENER') as opener:
+   opener.open.side_effect=RuntimeError('memory release failed')
+   run=unittest.mock.Mock(return_value=SimpleNamespace(returncode=0))
+   with self.assertRaisesRegex(RuntimeError,'memory release failed'):
+    with D.gpu_session(api=lambda *a,**k:{'queue_running':[],'queue_pending':[]},run=run,sleep=lambda s:None,log=lambda *a:None):pass
+  self.assertEqual(run.call_count,2)
+  self.assertIn('-RestoreOnly',str(run.call_args_list[1]))
 
 if __name__=='__main__':unittest.main()

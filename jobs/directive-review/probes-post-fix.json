@@ -1,0 +1,41 @@
+{
+  "managed_lifecycle": {
+    "render_calls": 1,
+    "subprocess_calls": 2,
+    "lock_calls": 2
+  },
+  "zero_retry_budget": {
+    "render_calls": 1,
+    "refused": "story acceptance failed at exit: changed-retry budget exhausted (0); downstream beats were not rendered",
+    "ledger": {
+      "initial_state": {
+        "james": "inside",
+        "kate": "inside"
+      },
+      "entries": [
+        {
+          "beat": "exit",
+          "take": 1,
+          "decision": "reject",
+          "reason": "review requested another retry; changed-retry budget exhausted"
+        }
+      ]
+    }
+  },
+  "previous_submission": {
+    "original_prompt_id": "original-prompt-id",
+    "new_submissions": [],
+    "history_lookups": [
+      "original-prompt-id"
+    ],
+    "persisted": "original-prompt-id",
+    "persisted_status": "complete"
+  },
+  "departure_erasure": {
+    "validated": false,
+    "refused": "erase_departure: off-screen james cannot change state ('missing_offscreen' to 'inside'); only on-screen action may change an actor state"
+  },
+  "resume_after_approval": {
+    "error": "exit: before state no longer matches the committed story state"
+  }
+}
