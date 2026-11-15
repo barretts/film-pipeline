@@ -26,9 +26,15 @@ Baseline (Phase 0, for comparison):
 - Guide: `guide/depth.mp4` — Blender 5.2 EEVEE Z pass, Normalize compositor. CHECKED frame 60: range 50-59, stdev 1.8, near-flat dark grey. UNUSABLE as rendered (background infinity compresses range). MapRange node does not exist in Blender 5.2 compositor; re-render with Math-node clamp (11-depth)/6 planned.
 - Status: NOT RUN — guide failed verification.
 
-### V3 — room-only guide
+### V3 — room-only guide, V1 prompt, cap 22, alpha 0.15 — RENDERED, ARTIFACT GONE, WINNER
 - Guide: `guide/room-only.mp4` — Workbench, characters hidden. Frame 60 verified: room, door, desk, lamp only (small ball at desk is the lamp).
-- Status: TBD
+- Prompt ID: 6edc70b2-1d94-4474-b9f8-c8d2dc1ce3c1. Execution 1794738516986-1794738827404, 5m10s.
+- Output: `comfy-local/output/phase0/V3-room-only_00001.mp4` (5.167s, 1280x704, 124f)
+- Motion: walk 1/1, dolly 1/1, Kate head turn 1/1 (f05: James at the desk, Kate looking up at him).
+- Character: GOOD — same James (orange suit, hood up) and Kate (navy jacket, lanyard, silver-streaked hair).
+- Door: CORRECT — door at ~28% at t=0, far left at t=2, matching the guide and B1b. Keeps B1b's blocking accuracy.
+- Artifact: PASS by Barrett's bar — NO orange egg, no white egg, no capsule, no flat guide pixels in the final frames. f01 is the raw room-only guide frame (flat empty room, tan door) for the first ~0.9s, same as B1b/V1 f01, but there is no character shape to copy; by f03 the room is fully photoreal.
+- Verdict: WINNER. Room-only guide keeps B1b's door/blocking and removes the artifact entirely. This is the Lane B recipe: guide the camera + set only, characters from reference images + prompt.
 
 ### V4 — white silhouettes on black, V1 prompt, cap 22, alpha 0.15 — RENDERED, WHITE EGG STILL PRESENT (first ~2s only)
 - Prompt ID: 6d7bc7f5-e66f-42c2-8acb-0b4b14c08e41 (retry; first attempt a4e405e4 failed in the sampler with OSError Errno 22, tqdm stdout flush in ComfyUI's logger — infra, not the guide; fixed by restarting ComfyUI with stdout redirected to `comfy/comfy-laneb.log`). Execution 1794737356018-1794737696700, 5m41s.
