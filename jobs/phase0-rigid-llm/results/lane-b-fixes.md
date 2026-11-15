@@ -24,9 +24,13 @@ Baseline (Phase 0, for comparison):
 - Guide: `guide/room-only.mp4` — Workbench, characters hidden. Frame 60 verified: room, door, desk, lamp only (small ball at desk is the lamp).
 - Status: TBD
 
-### V4 — white silhouettes on black
-- Guide: `guide/silhouette.mp4` — Workbench FLAT, characters white, room black. Frame 60 verified: clean white egg shapes on black, no orange, no color.
-- Status: TBD
+### V4 — white silhouettes on black, V1 prompt, cap 22, alpha 0.15 — RENDERED, WHITE EGG STILL PRESENT (first ~2s only)
+- Prompt ID: 6d7bc7f5-e66f-42c2-8acb-0b4b14c08e41 (retry; first attempt a4e405e4 failed in the sampler with OSError Errno 22, tqdm stdout flush in ComfyUI's logger — infra, not the guide; fixed by restarting ComfyUI with stdout redirected to `comfy/comfy-laneb.log`). Execution 1794737356018-1794737696700, 5m41s.
+- Output: `comfy-local/output/phase0/V4-silhouette_00001.mp4` (5.167s, 1280x704, 124f)
+- Motion: walk 1/1, dolly 1/1, Kate head turn 1/1.
+- Character: GOOD — same James (orange suit, hood up) and Kate (navy jacket, lanyard).
+- Guide literalness: FAILED, but differently. f01 is literally the raw silhouette frame; f03 shows a real James and Kate PLUS a white egg centre frame in front of the window; f05 is CLEAN — no egg, James at the desk, Kate looking up at him. The literal copy only lasts as long as the anchored clip (~0.9s for 22 frames, visibly fading by t=3s); after that prompt continuation takes over.
+- Verdict: colour was never the problem — AddGuide copies ANY guide shape literally for the anchored duration. Shorter anchor = shorter artifact. This is the case for V5 (start/end, 1-frame anchors) and V6 (cap 5).
 
 ### V5 — start/end AddGuide only
 - Mode: start_end in lane-b-variant.py — 1-frame first guide frame at 0, 1-frame last at 123, chained AddGuide nodes.
