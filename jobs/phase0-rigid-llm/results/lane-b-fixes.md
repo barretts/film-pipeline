@@ -36,6 +36,15 @@ Baseline (Phase 0, for comparison):
 - Artifact: PASS by Barrett's bar — NO orange egg, no white egg, no capsule, no flat guide pixels in the final frames. f01 is the raw room-only guide frame (flat empty room, tan door) for the first ~0.9s, same as B1b/V1 f01, but there is no character shape to copy; by f03 the room is fully photoreal.
 - Verdict: WINNER. Room-only guide keeps B1b's door/blocking and removes the artifact entirely. This is the Lane B recipe: guide the camera + set only, characters from reference images + prompt.
 
+### V11 — no guide at all (mode none), V1 prompt, alpha 0.15 — RENDERED, CLEANEST SHOT OF THE RUN
+- Prompt ID: 91bdcc83-59dd-4d85-a4e4-27349c0ef29a. Execution 1794738874253-1794739118176, 4m04s (fastest yet — no guide VSA prefix).
+- Output: `comfy-local/output/phase0/V11-no-guide_00001.mp4` (5.167s, 1280x704, 124f)
+- Motion: walk 1/1, dolly 1/1, Kate head turn 1/1 (f05: James at the desk, Kate looking up at him).
+- Character: EXCELLENT — same James (orange suit, hood up) and Kate (navy jacket, lanyard, silver-streaked hair).
+- Door: frame left at t=0, James entering through it with snow outside; blocking (enter left, cross to Kate at desk right) matches the blockout, though the camera path is prompt-invented, not the exact Blender path.
+- Artifact: PASS — zero guide pixels by construction (no AddGuide at all), and no flat-room flash at f01 either, unlike V3 which starts on the raw guide frame. Photoreal from frame 1.
+- Verdict: CO-WINNER, cleanest of the run. For a simple cross-room walk, prompt + reference images are enough — the Blender guide was not needed for this shot. V3 remains the controlled answer when the exact Blender camera path must be preserved; V11 is the answer when the blocking can be prompt-driven. Lane B's guide is a fallback for shots where the camera path must be exact, not a default.
+
 ### V4 — white silhouettes on black, V1 prompt, cap 22, alpha 0.15 — RENDERED, WHITE EGG STILL PRESENT (first ~2s only)
 - Prompt ID: 6d7bc7f5-e66f-42c2-8acb-0b4b14c08e41 (retry; first attempt a4e405e4 failed in the sampler with OSError Errno 22, tqdm stdout flush in ComfyUI's logger — infra, not the guide; fixed by restarting ComfyUI with stdout redirected to `comfy/comfy-laneb.log`). Execution 1794737356018-1794737696700, 5m41s.
 - Output: `comfy-local/output/phase0/V4-silhouette_00001.mp4` (5.167s, 1280x704, 124f)
