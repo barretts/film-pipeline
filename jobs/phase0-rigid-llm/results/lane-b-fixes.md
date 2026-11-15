@@ -100,3 +100,11 @@ Comparison images: `results/compare-guide-b1b-v5b-f01.png`, `...-f03.png`, `...-
 - `CompositorNodeMapRange` does not exist in 5.2. Use Math nodes: (11 - depth) / 6, clamped.
 - `scene.eevee.use_soft_shadows` does not exist; use `scene.eevee.use_shadows`.
 - Workbench variants render ~18s; EEVEE variants ~63-68s for 124 frames.
+
+### V12 — edge guide, V1 prompt, cap 22, alpha 0.15 — RENDERED, NEW ARTIFACT: BLACK SILHOUETTE
+- Prompt ID: 0f16c4a1-3351-4bd9-86bc-5318fe6acb21. Execution 1794739239421-1794739557805, 5m18s.
+- Output: `comfy-local/output/phase0/V12-edge_00001.mp4` (5.167s, 1280x704, 124f)
+- Motion: walk 1/1, dolly 1/1, Kate head turn 1/1 (f05: James at the desk, Kate looking up at him).
+- Character: GOOD — same James (orange suit, hood up) and Kate (navy jacket, lanyard).
+- Artifact: FAIL by Barrett's bar — no orange egg, but the edge-map James outline was copied as a SOLID BLACK SILHOUETTE of a walking man, centre frame in every shot (f03 in front of the window, f05 standing behind Kate in front of the radio racks). The model treats an edge outline as a dark figure. f01 is literally the edge map (white with thin black lines).
+- Verdict: edge is not a non-literal guide — it is a literal guide in a different colour. Do not use edge. The only guides that pass are ones with no character shapes at all (room-only) or no guide at all.
