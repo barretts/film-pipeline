@@ -9,6 +9,10 @@ Modes:
   start_end — two AddGuide nodes: 1-frame first guide frame at 0, 1-frame last at 123
   chunked   — two AddGuide nodes: 22f guide at 0, 22f guide (frames 103-124) at 102
   none      — no AddGuide; conditioning straight from the bridge (prompt + refs only)
+  photo_first — one AddGuide: a single photoreal PNG (--first-frame) anchored at frame 0.
+    V11c test: does a photoreal first frame kill the grey-Kate cold-start morph?
+    Anchor is V11 frame 24 (fully photoreal); note it shows James already inside,
+    so blocking starts mid-walk — this tests the mechanism, not the final blocking.
 Guide can be any mp4 under film-pipeline; it is copied into comfy-local/input.
 Prompt is read from --prompt-file (UTF-8). Seed default 5002.
 """
@@ -116,6 +120,17 @@ def build_graph(args, prompt):
         graph["19"]["inputs"]["positive"] = ["164", 0]
     elif args.mode == "none":
         graph["19"]["inputs"]["positive"] = ["160", 0]
+    elif args.mode == "photo_first":
+        if not args.first_frame:
+            raise ValueError("photo_first mode needs --first-frame <path under film-pipeline>")
+        first_src = ROOT / args.first_frame
+        if not first_src.is_file():
+            raise FileNotFoundError(f"first-frame image missing: {first_src}")
+        first = copy_in(first_src, f"lane-b-{args.variant}-first.png")
+        graph["180"] = {"class_type": "LoadImage", "inputs": {"image": first}}
+        resize("142", "180")
+        addguide("163", "160", "142", 0)
+        graph["19"]["inputs"]["positive"] = ["163", 0]
     else:
         raise ValueError("unknown mode: " + args.mode)
 
@@ -135,7 +150,8 @@ def main():
     p.add_argument("--prompt-file")
     p.add_argument("--take", required=True)
     p.add_argument("--bridge-alpha", type=float, default=0.15)
-    p.add_argument("--mode", choices=["full", "start_end", "chunked", "none"], default="full")
+    p.add_argument("--mode", choices=["full", "start_end", "chunked", "none", "photo_first"], default="full")
+    p.add_argument("--first-frame", default=None)
     p.add_argument("--seed", type=int, default=SEED)
     p.add_argument("--denoise", type=float, default=None)
     p.add_argument("--steps", type=int, default=None)
@@ -159,7 +175,7 @@ def main():
     state = {"phase": "submitting", "created": t0, "seed": args.seed, "frames": FRAMES,
              "variant": args.variant, "mode": args.mode, "guide": args.guide, "cap": args.cap,
              "bridge_alpha": args.bridge_alpha, "denoise": args.denoise, "steps": args.steps,
-             "prompt": prompt, "take": args.take, "graph": graph}
+             "prompt": prompt, "take": args.take, "graph": graph, "first_frame": args.first_frame}
     state_file.write_text(json.dumps(state, indent=2))
     result = api("/prompt", {"prompt": graph, "client_id": f"film-pipeline-lane-b-{args.variant}"})
     state.update({"phase": "submitted", "prompt_id": result["prompt_id"],
