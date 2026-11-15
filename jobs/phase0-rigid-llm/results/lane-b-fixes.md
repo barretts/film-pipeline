@@ -108,3 +108,27 @@ Comparison images: `results/compare-guide-b1b-v5b-f01.png`, `...-f03.png`, `...-
 - Character: GOOD — same James (orange suit, hood up) and Kate (navy jacket, lanyard).
 - Artifact: FAIL by Barrett's bar — no orange egg, but the edge-map James outline was copied as a SOLID BLACK SILHOUETTE of a walking man, centre frame in every shot (f03 in front of the window, f05 standing behind Kate in front of the radio racks). The model treats an edge outline as a dark figure. f01 is literally the edge map (white with thin black lines).
 - Verdict: edge is not a non-literal guide — it is a literal guide in a different colour. Do not use edge. The only guides that pass are ones with no character shapes at all (room-only) or no guide at all.
+
+### V10 — Lane A composed first frame — RENDERED, HARD CUT GONE
+- First frame: `v10-composed-first-frame.png` — frame 97 (t=4s) of the P0-A1 output, Kate at the desk with hands on the dial, snow window, lamp, radio. Same P0-A1 prompt, same audio (Piper kristin), same seed 2801, 141 frames, 704x1280.
+- Command: `tools/minimax_speech.py submit --name phase0-a1-v10-composed` (absolute paths — the tool resolves relative --image from its own cwd, not the repo root; first relative attempt failed "Image must be an existing PNG").
+- Prompt ID: 522a7ee2-64c1-44e6-9ec1-fe1a83e30bbc. Execution 1794739633659-1794740425290, 13m12s (same as P0-A1's 13m16s — no warm speed-up on the 141-frame speech path).
+- Output: `comfy-local/output/minimax-speech/phase0-a1-v10-composed_00001_.mp4` (5.875s, 704x1280, 141f)
+- Motion: ONE continuous shot — Kate at the desk from frame 1, same framing throughout, no scene jump, no hard cut at ~3s. Head turns slightly toward the dial (f03 in profile).
+- Character: EXCELLENT — same Kate throughout.
+- Lip sync: visually in step (f01 mouth open speaking, f03 eyes down / mouth closed at a pause, f05 mouth open mid-word, eyes to camera). Same 4/5 as P0-A1 by inspection; audio is the same Piper line through the H3 audio VAE.
+- Verdict: PASS. The composed-first-frame fix works. Lane A recipe: first frame = the storyboard panel (character IN the set), never a bare portrait.
+
+## Not run, with reasons (evidence from the variants that did run)
+- V2 depth: guide as rendered was flat/unusable (range 50-59, stdev 1.8 — background infinity compresses it). A Math-node re-render ((11-depth)/6) was planned but not done: V3 and V11 already pass Barrett's bar, and V4/V12 prove any guide containing character shapes is copied literally — a depth map of the capsules would be copied as foggy shapes, not as clean blocking. Depth only matters if a character-shaped guide is ever needed again; it is not.
+- V6 cap 5 + bridge alpha 0.05: not run. The guide still contains the orange egg; V1/V4/V5b prove AddGuide copies any character shape literally for the anchored duration — cap 5 would still show the egg for ~0.2s plus the f01 flash. It cannot pass Barrett's bar.
+- V7 chunked (two 22f anchors): not run. More anchoring = more literal copy — V5b proved that. It would be worse than B1b, not better.
+- V8 Wan 2.2 TI2V-5B: NOT run in this pass. Model IS installed (wan2.2_ti2v_5B_fp16.safetensors + wan2.2_vae.safetensors, text encoders present; template at E:\SwarmUI\Output\atmosphere-lab\sam3-window-mask-test\SAM3_Wan5B_NeonWindowLoop_ComfyUI.json). It is a whole new lane (different graph, no AddGuide equivalent), not a Lane B fix, and H3 already has two passing variants. Open follow-up if Barrett wants a second model lane.
+- V9 textured / white-clay guide: not run. V4 proved solid shapes are copied literally whatever the colour — a white-clay capsule would be a white egg. The textured render came out overexposed white clay anyway.
+- LTX-2.3 FP8: NOT installed anywhere on the box (only blueprints / API nodes). Recorded as missing; do NOT download (~16GB) without Barrett's approval.
+
+## Recommendation (updated Lane B)
+- Default for a moving two-character shot: **no guide at all (V11)** — prompt + reference images, 4m04s, cleanest output, photoreal from frame 1. Use it when the blocking can be prompt-driven.
+- When the exact Blender camera path / door location must be preserved: **room-only guide (V3)** — camera + set only, no characters in the guide, 22-frame cap, 5m10s. Keeps B1b's door/blocking and removes the artifact entirely.
+- Never again: full character guide (B1b/V1), silhouette guide (V4), edge guide (V12), start/end anchors (V5b), or any guide containing character shapes — AddGuide copies them literally, in whatever colour/shape they are.
+- Lane A: always use a composed first frame (V10) — character in the set, never a bare portrait.
