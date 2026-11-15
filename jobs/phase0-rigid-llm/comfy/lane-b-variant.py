@@ -90,11 +90,20 @@ def build_graph(args, prompt):
         addguide("163", "160", "142", 0)
         graph["19"]["inputs"]["positive"] = ["163", 0]
     elif args.mode == "start_end":
-        vhs("162", 1, 0)
-        resize("142", "162")
+        # VHS_LoadVideo with cap 1 returns an empty batch (V5 failed in ImageResizeKJv2:
+        # "stack expects a non-empty TensorList"). Use LoadImage on the guide PNGs instead.
+        first_src = JOB / "guide" / "frames" / "frame_0001.png"
+        last_src = JOB / "guide" / "frames" / "frame_0124.png"
+        for pth in (first_src, last_src):
+            if not pth.is_file():
+                raise FileNotFoundError(f"guide frame missing: {pth}")
+        first = copy_in(first_src, f"lane-b-{args.variant}-first.png")
+        last = copy_in(last_src, f"lane-b-{args.variant}-last.png")
+        graph["180"] = {"class_type": "LoadImage", "inputs": {"image": first}}
+        resize("142", "180")
         addguide("163", "160", "142", 0)
-        vhs("165", 1, 123)
-        resize("143", "165")
+        graph["181"] = {"class_type": "LoadImage", "inputs": {"image": last}}
+        resize("143", "181")
         addguide("164", "163", "143", 123)
         graph["19"]["inputs"]["positive"] = ["164", 0]
     elif args.mode == "chunked":

@@ -35,9 +35,14 @@ Baseline (Phase 0, for comparison):
 - Guide literalness: FAILED, but differently. f01 is literally the raw silhouette frame; f03 shows a real James and Kate PLUS a white egg centre frame in front of the window; f05 is CLEAN — no egg, James at the desk, Kate looking up at him. The literal copy only lasts as long as the anchored clip (~0.9s for 22 frames, visibly fading by t=3s); after that prompt continuation takes over.
 - Verdict: colour was never the problem — AddGuide copies ANY guide shape literally for the anchored duration. Shorter anchor = shorter artifact. This is the case for V5 (start/end, 1-frame anchors) and V6 (cap 5).
 
-### V5 — start/end AddGuide only
-- Mode: start_end in lane-b-variant.py — 1-frame first guide frame at 0, 1-frame last at 123, chained AddGuide nodes.
-- Status: TBD
+### V5 — start/end AddGuide only — FAILED, REGRESSION
+- First attempt (V5): VHS_LoadVideo cap 1 returns an empty batch — ImageResizeKJv2 RuntimeError "stack expects a non-empty TensorList". Fixed in lane-b-variant.py: start/end now uses LoadImage on guide/frames/frame_0001.png and frame_0124.png.
+- Retry (V5b): Prompt ID 64b680c3-576b-40bc-83a7-c7332835ad69. Execution 1794738157934-1794738417654, 4m20s (faster — 1-frame anchors).
+- Output: `comfy-local/output/phase0/V5b-start-end_00001.mp4` (5.167s, 1280x704, 124f)
+- Motion: walk 1/1, dolly 1/1 — but in a FLAT guide world, not the photoreal room. The end-frame anchor at 123 appears to pull the whole clip toward the guide's flat grey look.
+- Character: James good; Kate present at the desk (f05, looking at James) but small / partly obscured by the egg.
+- Artifact: FAIL by Barrett's bar — orange egg front-and-centre in EVERY frame, larger and more dominant than V1/V4, directly in front of Kate at f05. Worse than the 22-frame cap.
+- Verdict: start/end anchors are worse, not better. Do not use.
 
 ### V6 — strength / denoise tweak
 - Plan: cap 5 (minimum valid AddGuide clip) + bridge alpha 0.05, original guide, V1 prompt.
