@@ -37,25 +37,87 @@
 
 ## Lane B — P0-B1 "James crosses to Kate" (blockout-guided video-to-video)
 
+Two attempts. B1 = full 124-frame guide (as designed). B1b = retry with the guide capped
+at 22 frames (the repo's proven motion_ref overlap value).
+
+### B1 (full guide) — STALLED, no output
 - Render command: `jobs\phase0-rigid-llm\comfy\p0-b1-build-graph.py submit`
-  (graph built from `comfy-local\ref2va-audio-comparison-graph.json`: node 157 replaced with
-  MiniMaxH3ReferenceToVideo, Kate+James refs; node 160 SenseNovaH3DistilledBridge; node 162
-  VHS_LoadVideo full 124-frame Blender guide, format H3; node 163 MiniMaxH3AddGuide frame_idx 0)
-- Take name: phase0-b1-james-crosses
-- Output file:
 - Prompt ID: e055d589-99bd-4b37-8cc3-8910c91144ed. Submitted 02:43:14 CST.
-- Guide render time (Blender): 18 s for 124 frames + still (Workbench, 1280x704). Two script
-  fixes needed first (Blender 5.2 layered-action API; parenting a child to a scaled object
-  displaced James's head to the ceiling — fixed by keyframing head/face locations directly).
-- H3 render time (submit to finished):
-- Human minutes (hands-on, excluding render wait):
-- Duration / resolution / fps (ffprobe):
-- Motion survival: (did James walk left to right? did the camera dolly right track him?
-  did Kate turn her head in the last 1.5 s? score each 0/1 and note what the model invented instead)
-- Character consistency: (James orange suit + hat, Kate navy jacket vs portraits? two characters kept distinct?)
-- Guide transfer: (does the output blocking match the Blender guide frame-for-frame, or only the first frame?)
-- Verdict:
+- Blocker (exact): sampler stuck at 0/4 "Model Initializing" for 30 min. GPU idle at 38 W /
+  38 C with 15.8 GB resident (not computing). `/interrupt` had no effect — the sampler was
+  hung inside node execution. ComfyUI had to be killed by taskkill (PID 25208). Cause,
+  from the log: the 124-frame guide batch is a 32,560-token prefix (VSA geometry line:
+  prefix=(1889, 32560, 414, 880, 880, 414)); sampler init never got past it. No output file.
+- Render time: 30+ min, no result. Human minutes: ~20 min (diagnosis, interrupt, taskkill, restart).
+
+### B1b (22-frame guide cap) — RENDERED
+- Render command: `jobs\phase0-rigid-llm\comfy\p0-b1b-build-graph.py submit`
+  (identical graph except VHS_LoadVideo frame_load_cap 22, new take name/state file)
+- Take name: phase0-b1b-james-crosses
+- Output file: `comfy-local\output\phase0\b1b-james-crosses_00001.mp4` (1,790,345 bytes)
+  (+ `b1b-james-crosses_00001-audio.mp4`, `b1b-james-crosses_00001.png`)
+- Prompt ID: 308f034e-6421-4d25-ad1d-26f96f146bd2. Submitted 03:12:17 CST, success ~03:18:11 CST.
+- Render time (submit to finished): 5 min 56 s (ComfyUI timestamps: execution_start
+  1794733937833 → execution_success 1794734294296). Model init 58 s + 4 sampler steps
+  x ~57 s/step + VAE decode. Fresh server after the B1 kill, so this includes model load.
+- Human minutes (hands-on, excluding render wait): ~15 min (variant script, submit, polls).
+  Lane B total hands-on across B1+B1b + Blender: ~60 min (Blender ~25 min incl. two API fixes
+  and a re-render; graph builder ~15 min; submit/poll/stall diagnosis ~20 min).
+- Duration / resolution / fps (ffprobe): 5.167 s, 1280x704, 24 fps, 124 frames, h264, video only.
+- Motion survival, scored per element (1 = survived, 0 = did not):
+  - James walks door-left to desk-right: 1. A real James in an orange-red survival suit
+    enters through the door (t=1 s), crosses the room (t=2-3 s) and arrives at the desk (t=4 s).
+  - Camera dollies right tracking him: 1. Framing moves right across the clip; the desk,
+    windows and lamp enter frame as he crosses. The dolly is real, not a static shot.
+  - Kate turns her head toward him in the last 1.5 s: 1. She looks down at her papers at
+    t=3 s and looks up at him at t=4 s.
+  - BUT: all three survived via the text prompt + the guide's first second, not via the
+    full guide — the 22-frame cap only anchors the opening ~0.9 s; the rest is prompt-driven
+    continuation. Do not read this as "the full guide transferred".
+- Character consistency: GOOD. Same James throughout (orange suit, young man) and same Kate
+  (face, silver-streaked hair, navy jacket, lanyard) — two characters kept distinct, no
+  face-swapping. One miss: James wears his hood up, not the ear-flap hat from his portrait.
+- Guide transfer: FAILED, literally. The guide's orange capsule was preserved as a literal
+  floating orange egg in the centre of every frame (t=0 through t=4 s), while the model
+  generated a separate real James walking beside it. AddGuide transfers the guide's
+  pixels/layout faithfully — it does NOT interpret a blob as "a person walks here". The
+  capsule's screen position even matches the guide (centre, camera-tracked). The shot is
+  unusable as-is because of the artifact. The set transferred in spirit (grey room became
+  a photoreal radio room with racks, windows, desk, lamp), but the flat grey floor/walls
+  of the guide are still visible as flat grey.
+- Verdict: LANE B WORKS MECHANICALLY, FAILS AS A GUIDE. The capped-guide render proves the
+  ReferenceToVideo + AddGuide + bridge stack runs on this box in ~6 min. But a flat-colour
+  blob blockout is the wrong guide format: the model copies the blobs as objects. Phase 1
+  must change the guide, not the lane: render the blockout as depth / normals / edges
+  (nothing solid-coloured to copy), or mask the characters out of the guide (room-only
+  guide + prompt for the characters), or use the guide for the first frame + camera path
+  only. Also: never submit a full-length guide — cap it (22 frames worked; the cap between
+  22 and 124 that stalls init is unmeasured, find it in Phase 1 if a longer guide is wanted).
 
 ## Phase 1 lane-split recommendation
 
-- (Write after both scores are in. Which lane is default, which shots earn Lane B, what Phase 1 builds first.)
+- Default lane is Lane A (keyframe image-to-video via the proven minimax_speech path):
+  it renders, holds character, and syncs lips. Fix first: feed it a composed first frame
+  (storyboard panel — character in the set), not a bare portrait, or the mid-clip scene
+  jump recurs. Budget 10-15 min/shot cold, less warm.
+- Lane B is NOT the default for blocking. It earns a shot only when the blocking/camera
+  cannot be described in text — and only with a non-literal guide (depth/normal/edge or
+  room-only) capped at ~22 frames, after Phase 1 measures the guide-length stall threshold.
+  Do not build Phase 1 around full-length video guides; the H3 AddGuide path cannot take
+  them on this box (32k-token prefix stalls sampler init, GPU idle).
+- Phase 1 build order: (1) composed-first-frame Lane A (storyboard panel as first frame
+  + character refs via ReferenceToVideo) and re-test the scene jump; (2) Lane B guide-format
+  experiment (depth render vs room-only render, capped guide) on the same two-character
+  shot; (3) only then the contracts/schemas automation. Do not automate either lane before
+  its guide/first-frame format is proven — automation would just mass-produce the two
+  failure modes found here (scene jump, blob leak).
+
+## Timing log (all CST 2026-11-15, file-cabinet)
+
+- 02:19 Piper kristin line 5.94 s; silence track 5.17 s
+- 02:23 Blender guide rendered, 17.8 s (after two script fixes; final run 18.0 s)
+- 02:28:58 Lane A submitted (prompt 11215c83); 02:42:16 success — 13 min 16 s
+- 02:43:14 Lane B full-guide submitted (prompt e055d589); stalled 0/4, killed ~03:13 (30+ min, no output)
+- 03:12:17 Lane B capped-guide submitted (prompt 308f034e); ~03:18:11 success — 5 min 56 s
+- Commits on branch phase0-rigid-llm: 839a517 (draft), 43cde93 (audio + 141 frames),
+  bfc7cb1 (Blender fixes), 0c005aa (Lane A scored, Lane B submitted), e5dcdab (B1 stall + B1b script)
