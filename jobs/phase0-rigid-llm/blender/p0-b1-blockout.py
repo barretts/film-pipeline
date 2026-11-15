@@ -57,7 +57,19 @@ def key(obj, frame, loc=None, rot=None, linear=True):
         obj.rotation_euler = rot
         obj.keyframe_insert(data_path="rotation_euler", frame=frame)
     if linear:
-        for fc in obj.animation_data.action.fcurves:
+        # Blender 5.x layered actions: fcurves live in layer strips' channelbags,
+        # one channelbag per action slot: strip.channelbag(slot).fcurves.
+        action = obj.animation_data.action
+        fcurves = []
+        for layer in action.layers:
+            for strip in layer.strips:
+                for slot in action.slots:
+                    try:
+                        cb = strip.channelbag(slot)
+                    except Exception:
+                        continue
+                    fcurves.extend(cb.fcurves)
+        for fc in fcurves:
             for kp in fc.keyframe_points:
                 kp.interpolation = "LINEAR"
 
@@ -100,19 +112,27 @@ ball("Lamp", (3.6, 2.3, 1.05), (0.12, 0.12, 0.12), yellow)
 kate_body = ball("KateBody", (3.2, 1.55, 0.62), (0.42, 0.36, 0.62), navy)
 kate_head = ball("KateHead", (3.2, 1.55, 1.32), (0.21, 0.21, 0.21), skin)
 face = box("KateFace", (3.2, 1.32, 1.32), (0.13, 0.03, 0.15), cream)
-face.parent = kate_head
-# Head turn: face plate starts facing camera (-Y), turns to face James (-X) frames 90-124.
+# Head turn, marked by the face plate orbiting the head: front (facing camera, -Y)
+# at frame 90, west side (facing James, -X) at frame 124. No parenting: the head
+# and body spheres are scaled objects, and parenting a child to a scaled object
+# distorts the child's offset (that bug left James's head floating at the ceiling).
 key(kate_head, 1, rot=(0, 0, 0))
 key(kate_head, 90, rot=(0, 0, 0))
 key(kate_head, 124, rot=(0, 0, math.radians(-80)))
+key(face, 1, loc=(3.2, 1.32, 1.32))
+key(face, 90, loc=(3.2, 1.32, 1.32))
+key(face, 124, loc=(2.97, 1.55, 1.32))
 
 # James (C02): walks door (x=-3.6) to desk (x=+2.0) along y=0, frames 1-100.
+# Head is keyframed with the same walk, not parented (see note above).
 james_body = ball("JamesBody", (-3.6, 0, 0.88), (0.34, 0.34, 0.88), orange)
 james_head = ball("JamesHead", (-3.6, 0, 1.82), (0.23, 0.23, 0.23), skin)
-james_head.parent = james_body
 key(james_body, 1, loc=(-3.6, 0, 0.88))
 key(james_body, 100, loc=(2.0, 0, 0.88))
 key(james_body, 124, loc=(2.0, 0, 0.88))
+key(james_head, 1, loc=(-3.6, 0, 1.82))
+key(james_head, 100, loc=(2.0, 0, 1.82))
+key(james_head, 124, loc=(2.0, 0, 1.82))
 
 # Camera: dolly right, tracking James via TRACK_TO.
 bpy.ops.object.camera_add(location=(-0.5, -7.0, 1.6))
@@ -140,10 +160,8 @@ scene.display.shading.light = "STUDIO"
 scene.display.shading.color_type = "MATERIAL"
 scene.display.shading.show_shadows = False
 scene.display.shading.show_cavity = False
-scene.render.image_settings.file_format = "FFMPEG"
-scene.render.ffmpeg.format = "MPEG4"
-scene.render.ffmpeg.codec = "H264"
-scene.render.ffmpeg.constant_rate_factor = "MEDIUM"
+# Note: Blender 5.2 removed FFMPEG from image_settings.file_format; the guide is
+# rendered as a PNG sequence and assembled to mp4 with ffmpeg below.
 
 os.makedirs(GUIDE_DIR, exist_ok=True)
 bpy.ops.wm.save_as_mainfile(filepath=BLEND_PATH)
@@ -154,10 +172,22 @@ scene.render.filepath = FRAME1_PNG
 scene.frame_set(1)
 bpy.ops.render.render(write_still=True)
 
-# Full guide video.
-scene.render.image_settings.file_format = "FFMPEG"
-scene.render.filepath = GUIDE_MP4
+# Full guide as a PNG image sequence (Blender 5.2 no longer accepts FFMPEG as an
+# image_settings file_format), then assemble to mp4 with ffmpeg.
+frames_dir = os.path.join(GUIDE_DIR, "frames")
+os.makedirs(frames_dir, exist_ok=True)
+scene.render.filepath = os.path.join(frames_dir, "frame_")
 bpy.ops.render.render(animation=True)
+
+import subprocess
+
+ffmpeg = subprocess.run(
+    ["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS),
+     "-i", os.path.join(frames_dir, "frame_%04d.png"),
+     "-c:v", "libx264", "-pix_fmt", "yuv420p", GUIDE_MP4],
+    capture_output=True, text=True)
+if ffmpeg.returncode != 0:
+    raise RuntimeError("ffmpeg guide assembly failed: " + ffmpeg.stderr[-500:])
 
 print("PHASE0-BLENDER-OK blend=%s guide=%s frame1=%s seconds=%.1f"
       % (BLEND_PATH, GUIDE_MP4, FRAME1_PNG, time.time() - t0))
