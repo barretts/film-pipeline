@@ -121,3 +121,15 @@ at 22 frames (the repo's proven motion_ref overlap value).
 - 03:12:17 Lane B capped-guide submitted (prompt 308f034e); ~03:18:11 success — 5 min 56 s
 - Commits on branch phase0-rigid-llm: 839a517 (draft), 43cde93 (audio + 141 frames),
   bfc7cb1 (Blender fixes), 0c005aa (Lane A scored, Lane B submitted), e5dcdab (B1 stall + B1b script)
+
+## Lane B fix run — 2026-11-15, local only, no cloud (full record: results/lane-b-fixes.md)
+Barrett's bar: motion/characters/framing all pass — the ONLY blocker was the orange guide artifact in front of Kate, and the 3D scene is a guide only, never to appear in the final output. B1b vs V5b frame comparison (guide | B1b | V5b at t=0,2,4s, results/compare-guide-b1b-v5b-f0*.png) verified Barrett right: B1b's door matches the guide (far left ~5% at t=2); V5b's door is displaced right ~20-25% of frame width and oversized, James ~1s behind, and V5b leaks MORE of the flat 3D room, not less.
+- V1 prompt-mapping (TikTok <Video 1>/<Picture N> style, cap 22): 5m41s, motion 1/1, orange egg in every frame. Prompt cannot override AddGuide's latent anchor.
+- V4 white silhouettes: 5m41s, white egg first ~2s, clean by f05. Colour was never the problem.
+- V5b start/end anchors (1-frame first+last): 4m20s, REGRESSION — egg in every frame, whole clip pulled toward the flat guide, door displaced.
+- V3 room-only guide: 5m10s, WINNER — no egg, door correct, motion 1/1, Kate head turn lands. Guide the camera + set only.
+- V11 no guide at all: 4m04s, CO-WINNER, cleanest shot of the run — photoreal from frame 1, motion survives on prompt + refs alone.
+- V12 edge guide: 5m18s, FAIL — edge outline became a solid black silhouette man centre frame.
+- V10 Lane A composed first frame (frame 97 of P0-A1 as first frame): 13m12s, PASS — one continuous shot, hard cut gone, lip sync 4/5.
+- Not run: V2 depth (guide flat/unusable; two passing variants exist), V6 cap 5 (egg still in guide), V7 chunked (more anchoring = worse), V8 Wan 2.2 (installed, open follow-up — whole new lane, not a Lane B fix), V9 textured (solid shapes copy literally), LTX (not installed, do not download ~16GB without approval).
+- Updated Lane B recommendation: default no-guide (V11) when blocking can be prompt-driven; room-only guide (V3) when the exact Blender camera path must be preserved. Never a guide containing character shapes. Lane A: composed first frame always.
