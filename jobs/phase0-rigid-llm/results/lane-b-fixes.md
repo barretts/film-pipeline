@@ -68,6 +68,17 @@ Baseline (Phase 0, for comparison):
 - Plan: same Kate shot, first frame = a composed Kate-in-set frame (from P0-A1 desk phase), not bare portrait. Test whether the ~3s hard cut disappears.
 - Status: TBD
 
+## B1b vs V5b — frame comparison, verified empirically (2026-11-15)
+Frames extracted at fps=1 (t=0,2,4s) from guide, B1b, V5b, composited guide | B1b | V5b.
+Comparison images: `results/compare-guide-b1b-v5b-f01.png`, `...-f03.png`, `...-f05.png`.
+
+- t=0: Guide door is at ~28% frame width, behind the egg; James at the door. B1b reproduces it faithfully (egg at ~28%, door frame behind it, no real James yet). V5b shows a real James entering through an OPEN door at frame left (~5-15%) — a plausible door, but NOT the guide door: it is in the side wall, and V5b's egg is at ~60% (vs guide ~30%), with windows invented on the right that are not in the guide at t=0. V5b's framing is already shifted right at t=0.
+- t=2: Guide door at far left (~5-10%), egg centre (~30%), Kate blue egg at desk right (~75%). B1b matches: real James at ~5-15% walking past the door frame at ~5%, egg at ~35%. V5b: door at ~25-35% (tan, large), egg at ~60%, James at ~25%. V5b's door is displaced right by ~20-25% of frame width (~250-320px at 1280) vs guide/B1b, and oversized.
+- t=4: Guide egg ~30%, Kate blue egg at desk ~65%. B1b matches: James arrived at the desk (~10%), Kate centre (~55%) looking up at him, egg ~35%. V5b: James still mid-stride at ~30% (has not arrived, ~1s behind), egg ~60%, Kate at desk right (~80%). Whole V5b framing shifted right ~30% vs guide.
+- Guide leakage: V5b is WORSE, not cleaner. The entire flat 3D room persists in all V5b frames — flat grey walls/floor, tan door panel, cartoon windows with blue sky/snow, wooden desk. B1b's room becomes photoreal by t=4 (radio racks, windows, lamp, desk). The end-frame anchor at 123 appears to pull the whole clip toward the flat guide.
+- Verdict: Barrett is CORRECT — B1b wins on door location (by ~20-25% frame width at t=2) and on walk timing (James arrives by t=4 in B1b, still mid-stride in V5b). Start/end anchors trade spatial accuracy for nothing: they do not remove the artifact, they shift the framing and increase guide leakage. Do not use start/end.
+- Implication: the winning variant must keep B1b's 22-frame capped guide (the thing that preserves door/blocking) while removing ALL guide pixels from the final. Candidates, in order: room-only guide (no characters to copy, V3 running), edge guide (outlines only, no solid pixels), no-guide (prompt + refs only, V11), depth (grayscale, no solid colour).
+
 ## Guide-format notes (Blender 5.2.2)
 - Engine enum is `BLENDER_EEVEE`, not `BLENDER_EEVEE_NEXT`.
 - Compositor node tree is `scene.compositing_node_group` (new node group), not `scene.node_tree`; Composite node is `NodeGroupOutput`.
