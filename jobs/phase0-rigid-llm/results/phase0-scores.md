@@ -128,8 +128,21 @@ Barrett's bar: motion/characters/framing all pass — the ONLY blocker was the o
 - V4 white silhouettes: 5m41s, white egg first ~2s, clean by f05. Colour was never the problem.
 - V5b start/end anchors (1-frame first+last): 4m20s, REGRESSION — egg in every frame, whole clip pulled toward the flat guide, door displaced.
 - V3 room-only guide: 5m10s, WINNER — no egg, door correct, motion 1/1, Kate head turn lands. Guide the camera + set only.
-- V11 no guide at all: 4m04s, CO-WINNER, cleanest shot of the run — photoreal from frame 1, motion survives on prompt + refs alone.
+- V11 no guide at all: 4m04s, CO-WINNER, cleanest shot of the run — photoreal from frame 1, motion survives on prompt + refs alone. CORRECTION (2026-11-15, investigation + fix tests): NOT photoreal from frame 1 — Kate is a grey polygon frames 0-8, fully photoreal from frame ~24. The prompt still mentioned a blockout that was never fed in. See V11b below.
 - V12 edge guide: 5m18s, FAIL — edge outline became a solid black silhouette man centre frame.
 - V10 Lane A composed first frame (frame 97 of P0-A1 as first frame): 13m12s, PASS — one continuous shot, hard cut gone, lip sync 4/5.
 - Not run: V2 depth (guide flat/unusable; two passing variants exist), V6 cap 5 (egg still in guide), V7 chunked (more anchoring = worse), V8 Wan 2.2 (installed, open follow-up — whole new lane, not a Lane B fix), V9 textured (solid shapes copy literally), LTX (not installed, do not download ~16GB without approval).
 - Updated Lane B recommendation: default no-guide (V11) when blocking can be prompt-driven; room-only guide (V3) when the exact Blender camera path must be preserved. Never a guide containing character shapes. Lane A: composed first frame always.
+
+## V11 grey-Kate fix tests + FINALS — 2026-11-15, local only (full record: results/lane-b-fixes.md)
+- V11b prompt rewrite (all blockout language removed, same V11 setup, seed 5002, mode none): 4m56s (295.73 s). **WINNER — grey Kate GONE.** Kate fully photoreal from frame 0. Cause confirmed: the V1 prompt told the model a blockout existed that it never saw, and the model hallucinated a grey mannequin Kate. Motion 1/1, door left, James with correct ear-flap hat, Kate looks up by ~frame 72. Prompt ID c1bf3011-5755-4f1f-a502-58d61910d52e.
+- V11c photoreal first-frame anchor (V11b prompt + AddGuide, V11 frame 24 anchored at frame 0, new `photo_first` mode): 4m14s (254.08 s). **Frame 0 also fixed** — Kate photoreal from frame 0 — but the camera overshoots: by frame 123 Kate is out of frame, shot ends close on James alone. Not a final. Prompt ID 7a43cd52-5d2d-4adb-8ea4-86df56408c1d.
+- Updated Lane B default: **V11b — no guide, no blockout language in the prompt.** Never mention a blockout in a prompt unless a guide video is actually fed in.
+- FINALS (comfy-local/output/phase0/, audio versions alongside, frame 0/1/5/10 checked):
+  - `V11b-no-blockout_FINAL.mp4` — no trim, 124f, 5.167 s, the winner.
+  - `V11-no-guide_FINAL.mp4` — trim at frame 24 (1.00 s), 100f, 4.167 s.
+  - `V3-room-only_FINAL.mp4` — trim at frame 69 (2.875 s; frame 68 still flat, frame 69 first fully photoreal), 55f, 2.292 s.
+  - `V10-composed_FINAL.mp4` — no trim, 141f, 5.875 s.
+  - ffmpeg commands in results/lane-b-fixes.md and results/video-guide.md.
+- Per-video lane + tech guide: results/video-guide.md — every video, lane first, tech second.
+- ComfyUI stopped after the runs; GPU back to 825 MiB, 33°C, 6.78 W. Strata never touched.

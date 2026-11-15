@@ -128,7 +128,38 @@ Comparison images: `results/compare-guide-b1b-v5b-f01.png`, `...-f03.png`, `...-
 - LTX-2.3 FP8: NOT installed anywhere on the box (only blueprints / API nodes). Recorded as missing; do NOT download (~16GB) without Barrett's approval.
 
 ## Recommendation (updated Lane B)
-- Default for a moving two-character shot: **no guide at all (V11)** — prompt + reference images, 4m04s, cleanest output, photoreal from frame 1. Use it when the blocking can be prompt-driven.
+- Default for a moving two-character shot: **no guide at all, with the blockout language stripped from the prompt (V11b)** — prompt + reference images, 4m56s, photoreal from frame 0. Use it when the blocking can be prompt-driven.
 - When the exact Blender camera path / door location must be preserved: **room-only guide (V3)** — camera + set only, no characters in the guide, 22-frame cap, 5m10s. Keeps B1b's door/blocking and removes the artifact entirely.
 - Never again: full character guide (B1b/V1), silhouette guide (V4), edge guide (V12), start/end anchors (V5b), or any guide containing character shapes — AddGuide copies them literally, in whatever colour/shape they are.
+- **Never mention a blockout in a prompt unless a guide video is actually fed in.** The V1 prompt's "<Video 1> is an untextured basic-shape 3D blockout" line, with no Video 1 supplied, made the model hallucinate a grey mannequin Kate for frames 0-8 (see V11b below).
 - Lane A: always use a composed first frame (V10) — character in the set, never a bare portrait.
+
+## V11 grey-Kate fix tests + FINALS — 2026-11-15 (this run, local only)
+Investigation (results/v11-first-frame-investigation.md) found V11's Kate is a flat grey/white faceted polygon frames 0-8, resolving 9-10, fully photoreal from frame ~24 — and that no guide was wired into V11, but the V1 prompt still told the model a blockout existed. Two candidate causes: (1) model cold-start / early-frame under-resolution, (2) the prompt hallucinating a blockout it never saw. Tests, same shot, same seed 5002, bridge alpha 0.15, 124f 1280x704:
+
+### V11b — prompt rewrite (no blockout language) — RENDERED, WINNER, GREY KATE GONE
+- Prompt: jobs/phase0-rigid-llm/prompts/V11b-no-blockout-prompt.txt — plain blocking, no "<Video 1>", no "blockout", no "untextured basic-shape", no "blockout figures". Mode `none` (no AddGuide), same as V11.
+- Prompt ID c1bf3011-5755-4f1f-a502-58d61910d52e. Execution 295.73 s (4m56s).
+- Output: comfy-local/output/phase0/V11b-no-blockout_00001.mp4 (+ -audio), 5.167 s, 124f.
+- Frame 0-10 check: **Kate fully photoreal from frame 0.** No grey polygon at any frame. Cause (2) confirmed, cause (1) ruled out as the main cause — the prompt was hallucinating the blockout.
+- Motion 1/1: James enters left door, crosses to Kate, camera dollies right, Kate looks up at him by frame ~72. Door at frame left, matches B1b/V11. Characters: James wears the correct ear-flap hat (not hood up as in V11), Kate writing at desk then looking up. Both in frame at frame 123.
+- Verdict: **new default Lane B.** This replaces V11 as the recommended no-guide shot.
+
+### V11c — composed photoreal first frame (V10 recipe) — RENDERED, FRAME 0 FIXED, BLOCKING DRIFTS
+- Prompt: same V11b no-blockout prompt. Mode `photo_first` (new in lane-b-variant.py): one AddGuide, a single photoreal PNG — V11 frame 24, Kate fully photoreal at desk, James inside the door — anchored at frame 0.
+- Prompt ID 7a43cd52-5d2d-4adb-8ea4-86df56408c1d. Execution 254.08 s (4m14s).
+- Output: comfy-local/output/phase0/V11c-photo-first_00001.mp4 (+ -audio), 5.167 s, 124f.
+- Frame 0-10 check: **Kate fully photoreal from frame 0.** The photoreal anchor also kills the grey morph.
+- Motion: walk/dolly/head turn all present, but the blocking drifts — the anchor was V11 frame 24, already camera-right of the start, and the model kept dolling right from there. By frame 123 the camera is close on James in profile and Kate is out of frame entirely. James wears his hood up, not the ear-flap hat.
+- Verdict: mechanism confirmed (photoreal first frame → photoreal frame 0), but NOT a final — it loses the two-shot ending. A production version would need a photoreal first frame matching the shot's start composition, not frame 24. V11b is the better shot, no anchor needed.
+
+### FINALS — everything fully rendered, no guide pixels
+All in comfy-local/output/phase0/, audio versions alongside, each final's frame 0, 1, 5, 10 checked by eye. Frame extracts in results/final-check/ (*FINAL-check-f*.png).
+- V11b-no-blockout_FINAL.mp4 (+ -audio) — **the winner, no trim.** 124f, 5.167 s. Stream copy of V11b. `ffmpeg -i V11b-no-blockout_00001.mp4 -c copy V11b-no-blockout_FINAL.mp4`
+- V11-no-guide_FINAL.mp4 (+ -audio) — trimmed at frame 24 (1.00 s), first fully photoreal frame of the original V11. 100f, 4.167 s. Video: `trim=start_frame=24,setpts=PTS-STARTPTS`, libx264 crf 18. Audio: `atrim=start=1.0`.
+- V3-room-only_FINAL.mp4 (+ -audio) — trimmed at frame 69 (2.875 s), first fully photoreal frame of V3. Verified frame by frame: frame 68 still flat grey walls / white ceiling, frame 69 walls gain panel seams, ceiling goes dark, lamp appears. 55f, 2.292 s. James mid-walk, Kate at desk, head turn still in the cut (~1.1 s in). Video: `trim=start_frame=69,setpts=PTS-STARTPTS`, libx264 crf 18. Audio: `atrim=start=2.875`.
+- V10-composed_FINAL.mp4 — **no trim.** Stream copy of minimax-speech/phase0-a1-v10-composed_00001_.mp4. 141f, 5.875 s, 704x1280, audio already in the file.
+- Per-video lane + tech guide: results/video-guide.md (Barrett asked "what lane" — every video, lane first, tech second).
+
+## Correction to the fix run's V11 claim
+The fix run scored V11 as "photoreal from frame 1". That was wrong — the scorer sampled at 1 fps and never looked at frames 0-8. V11 is photoreal from frame ~24, not frame 1. V3's "fully photoreal by f03" was also overstated — at t=2 s (frame 48) V3 is only partly photoreal; fully photoreal from frame 69. Both corrections are in results/v11-first-frame-investigation.md and in the finals above. Every variant now gets a frame 0-10 check, not a 1-fps check.
