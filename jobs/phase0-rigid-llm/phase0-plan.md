@@ -38,8 +38,10 @@ Do NOT build Phase 1–4 automation in this folder.
 ### P0-A1 — Lane A (keyframe image-to-video, default). "Kate: the signal is holding"
 Kate medium close-up at the radio desk, static camera, dialogue to camera.
 First frame: `series/characters/kate/portrait.png`. Audio: Piper kristin TTS (see script.json).
-Model: MiniMax H3 ref2va via `tools/minimax_speech.py`. 124 frames @24 fps = 5.17 s,
-704x1280, seed 2801. Take name: `phase0-a1-kate-radio`.
+Model: MiniMax H3 ref2va via `tools/minimax_speech.py`. 141 frames @24 fps = 5.88 s,
+704x1280, seed 2801. Take name: `phase0-a1-kate-radio`. (141 frames, not 124: the Piper
+line measured 5.94 s, longer than a 124-frame 5.17 s segment; 141 = 17*8+5, the next
+valid frame count, covers 5.88 s of it.)
 
 ### P0-B1 — Lane B (blockout-guided video-to-video). "James crosses to Kate"
 Wide landscape 1280x704. James enters through the station door (frame left), walks to
