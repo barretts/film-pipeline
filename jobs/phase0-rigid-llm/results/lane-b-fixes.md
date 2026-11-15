@@ -1,5 +1,8 @@
 # Lane B fix run — local only, no cloud. Measured on file-cabinet, 2026-11-15. Do not invent numbers.
 
+## Barrett's rule (2026-11-15, restated on V5b)
+The 3D scene is only ever a guide. It should not be in the final output anywhere. Motion, characters, framing pass; the artifact must be gone entirely.
+
 ## Barrett's bar (2026-11-15, after watching B1b / V1 / V4)
 Motion, characters, framing all pass — "all 3 were good". The ONLY blocker is the thing that stays in frame: the orange guide artifact goes in front of Kate and should not be there at all. Pass/fail for this fix run is therefore: **is the orange/white guide artifact gone ENTIRELY?** Not improved, not shorter — gone. Score the artifact explicitly per variant.
 
@@ -43,6 +46,7 @@ Baseline (Phase 0, for comparison):
 - Character: James good; Kate present at the desk (f05, looking at James) but small / partly obscured by the egg.
 - Artifact: FAIL by Barrett's bar — orange egg front-and-centre in EVERY frame, larger and more dominant than V1/V4, directly in front of Kate at f05. Worse than the 22-frame cap.
 - Verdict: start/end anchors are worse, not better. Do not use.
+- Barrett's take (2026-11-15, on V5b-start-end_00001-audio): "It just showed up. It looks good, but the other Lane B was better because it got the door location right." So V5b is good overall, but B1b (22-frame capped guide) wins on door location / spatial accuracy. Target for the remaining variants: keep B1b's door/blocking accuracy while removing ALL guide pixels from the final — not just the orange egg, any 3D-scene pixels.
 
 ### V6 — strength / denoise tweak
 - Plan: cap 5 (minimum valid AddGuide clip) + bridge alpha 0.05, original guide, V1 prompt.
