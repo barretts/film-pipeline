@@ -25,7 +25,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]  # jobs/phase0-rigid-llm/comfy -> film-pipeline
 BASE = ROOT / "comfy-local"
 JOB = ROOT / "jobs" / "phase0-rigid-llm"
 ADDRESS = "http://127.0.0.1:8191"
