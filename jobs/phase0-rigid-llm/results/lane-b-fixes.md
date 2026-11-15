@@ -1,5 +1,8 @@
 # Lane B fix run — local only, no cloud. Measured on file-cabinet, 2026-11-15. Do not invent numbers.
 
+## Barrett's bar (2026-11-15, after watching B1b / V1 / V4)
+Motion, characters, framing all pass — "all 3 were good". The ONLY blocker is the thing that stays in frame: the orange guide artifact goes in front of Kate and should not be there at all. Pass/fail for this fix run is therefore: **is the orange/white guide artifact gone ENTIRELY?** Not improved, not shorter — gone. Score the artifact explicitly per variant.
+
 Source: TikTok workflow `comfy/API_Minimax_Max_TrainScene.json` (H3 Max cloud reference-to-video, 768P, duration 15, 5 images, switches off, LoadVideo UNPLUGGED — video_1 null). Used as prompt/format reference only. Local runs use MiniMax H3 ReferenceToVideo + SenseNova bridge + MiniMaxH3AddGuide via `comfy/lane-b-variant.py`.
 
 Baseline (Phase 0, for comparison):
