@@ -146,3 +146,81 @@ Barrett's bar: motion/characters/framing all pass — the ONLY blocker was the o
   - ffmpeg commands in results/lane-b-fixes.md and results/video-guide.md.
 - Per-video lane + tech guide: results/video-guide.md — every video, lane first, tech second.
 - ComfyUI stopped after the runs; GPU back to 825 MiB, 33°C, 6.78 W. Strata never touched.
+
+## Story shots P0-B2 / P0-B3 — S1 "They listen together" and S2 "Kate turns to James" — 2026-11-15, local only (full record: results/video-guide.md)
+The next two shots in sequence after B1, continuing the same story (B1 ends with James standing beside the desk). NOT the standalone S1-kate-tunes-dial / S2-kate-window-mug scenarios from the first brief — Barrett corrected that before anything was submitted; those prompts were never written or run. Both shots use the V11b winner workflow exactly: `lane-b-variant.py submit --mode none --bridge-alpha 0.15 --seed 5002`, prompt + Kate/James portraits only, no AddGuide, no guide video, no blockout language, 124f, 24 fps, 1280x704, silence audio `p0-b1-silence.wav` (so each render has an `-audio` version straight out of ComfyUI — no separate audio post-step). Prompts verbatim in `jobs/phase0-rigid-llm/prompts/S1-listen-together.txt` and `S2-kate-turns-to-james.txt`. No manual tweaking, no re-renders, no trims. Frame extracts (0, 1, 5, 10, 24, 72, 123) in `results/s1-s2-check/`; the 0/1/5/10 set also in `results/final-check/` under the FINAL names. Frame-extraction helper: `jobs/phase0-rigid-llm/extract-frames.ps1` (the inline `select='eq(n,..)'` filter does not survive the SSH → cmd → PowerShell quoting layers; a script file does).
+- ComfyUI launch note: `Start-Process` from an SSH session dies when the session closes (PID 43768, empty log — same failure as the A1 run). This run launched it detached via WMI `Win32_Process.Create` with `cmd /c "... > comfy-s1-s2.log 2>&1"` (PID 45664); it survived the SSH disconnect and served both renders. That is the launch method to use from SSH. (Invoke-WebRequest to 127.0.0.1:8191 hangs from the SSH session — proxy handling; use curl.exe or the variant tool's own urllib calls instead.)
+- GPU at start: 919 MiB, 30°C, 5.63 W, 4% — idle. Port 1234 listening turned out to be only the Tailscale Serve forwarder (tailscaled.exe); the Strata API returned nothing, no Strata/llama process exists, model not loaded. Strata was never running and never touched.
+
+### S1 — P0-B2 "They listen together" — RENDERED, DUPLICATE KATE
+- Render command: `jobs\phase0-rigid-llm\comfy\lane-b-variant.py submit --variant S1-listen-together --mode none --bridge-alpha 0.15 --seed 5002 --prompt-file jobs\phase0-rigid-llm\prompts\S1-listen-together.txt --take phase0\S1-listen-together`
+- Take name: phase0/S1-listen-together
+- Output file: `comfy-local\output\phase0\S1-listen-together_00001.mp4` (2,270,374 bytes)
+  (+ `S1-listen-together_00001-audio.mp4`, `S1-listen-together_00001.png`)
+- Prompt ID: 04a44b80-a4d4-438b-8e47-b78bbc2f2033. Submitted 12:50:13 CST, success 12:54:57 CST.
+- Render time: 4m44s (284.39 s execution: 1794768613533 → 1794768897926).
+- Duration / resolution / fps (ffprobe): 5.167 s, 1280x704, 24 fps, 124 frames, h264 (+ AAC audio in the -audio version).
+- Motion survival, scored per element (1 = survived, 0 = did not):
+  - Steady medium two-shot, then slow push-in toward the radio: 1. Framing tightens steadily
+    f0 → f123; the wall clock and the lamp leave frame. A real push-in, not a static shot.
+  - Kate turns the dial a fraction, then holds still: 1. Her hand moves to the dial by f10
+    and is clearly turning it at f24/f72.
+  - Kate nods once toward James in the last 1.5 s, without looking away from the radio: 0.5.
+    At f123 she smiles slightly with her hand at the dial, but her head is still toward the
+    radio — no clear nod toward James.
+  - James does not move from the desk: 1. He stays beside the desk, leaning in, all clip.
+- Character consistency: FAIL on count, GOOD otherwise. James is correct — orange-red suit,
+  ear-flap hat (not hood up), same face throughout. But Kate is duplicated: a second
+  silver-haired woman in a navy jacket with a lanyard sits at frame left in profile for
+  frames 0–~100, so the clip has three figures in a two-character shot. The push-in nearly
+  crops the duplicate out by f123 (only part of her face remains at the far left edge), but
+  she is present through most of the clip. This duplication never happened in B1/V11b.
+- Set: consistent WITHIN the clip — polar radio room, warm lamp right, snow windows, brass/green
+  radio, pencil cup, same walls throughout. No grey polygon, no egg, no guide pixels, photoreal
+  from frame 0.
+- Verdict: NOT SHIPPABLE as-is. Motion, camera and frame 0 all pass, but an extra Kate breaks
+  the shot and the "no additional characters" line. No re-render (verbatim-prompt run, no
+  tweaking). The duplicate-Kate failure is the thing to watch for in the next two-shot.
+- Final: `S1-listen-together_FINAL.mp4` (+ `-audio`) — stream copy, no trim. Listed as a final
+  for completeness; the verdict above stands.
+
+### S2 — P0-B3 "Kate turns to James" — RENDERED, USABLE WITH CAVEATS
+- Render command: `jobs\phase0-rigid-llm\comfy\lane-b-variant.py submit --variant S2-kate-turns-to-james --mode none --bridge-alpha 0.15 --seed 5002 --prompt-file jobs\phase0-rigid-llm\prompts\S2-kate-turns-to-james.txt --take phase0\S2-kate-turns-to-james`
+- Take name: phase0/S2-kate-turns-to-james
+- Output file: `comfy-local\output\phase0\S2-kate-turns-to-james_00001.mp4` (2,359,200 bytes)
+  (+ `S2-kate-turns-to-james_00001-audio.mp4`, `S2-kate-turns-to-james_00001.png`)
+- Prompt ID: 40f05557-338d-4a3d-a6b5-f386b9307b5f. Submitted ~12:56:24 CST, success 13:00:39 CST.
+- Render time: 4m15s (255.40 s execution: 1794768984530 → 1794769239934).
+- Duration / resolution / fps (ffprobe): 5.167 s, 1280x704, 24 fps, 124 frames, h264 (+ AAC audio in the -audio version).
+- Motion survival, scored per element (1 = survived, 0 = did not):
+  - Camera dollies left slowly, circling slightly around the desk toward Kate: 1, mostly in
+    the second half. Between f24 and f72 the viewpoint rotates around the desk (clock travels
+    across the top of frame, lamp moves to the right edge, the window behind James comes into
+    view). Frames 0–24 are nearly static.
+  - Kate turns in her chair away from the radio to face James: 1. Clearly turned by f72,
+    looking up at him, held through f123.
+  - Kate gestures once toward the radio with her right hand: 0.5. Her hand is off the radio
+    by f72, but no single clear gesture toward it is visible in the sampled frames.
+  - Kate holds his gaze; James steps back half a step and nods in the last 1.5 s: 0.5. The
+    mutual gaze clearly lands (f72–f123, her looking up at him, him looking down at her);
+    James reads as a half-step back with a slight smile/head tilt at f123, but no crisp
+    discrete nod is visible in the stills.
+- Character consistency: GOOD on count, one miss on costume. Two characters only, no
+  duplication; Kate correct throughout (navy jacket, cream sweater, lanyard with brass ring,
+  silver-streaked hair). James: orange-red suit and face correct, but his hood is UP, not
+  the ear-flap hat from his portrait — the same miss as V11/B1b. (S1 got the hat right;
+  the hat is a coin flip across the no-guide runs: V11b and S1 correct, V11/B1b/V11c/S2 hood up.)
+- Set: consistent WITHIN the clip — same room, lamp, radio console throughout; photoreal from
+  frame 0, no grey polygon, no egg, no guide pixels. BUT the room does NOT match S1's room
+  (or B1's): S2 is white fabric/tent walls and ceiling with a big rectangular window and a
+  map on the wall; S1 is wood panelling with a sloped beamed ceiling. Cross-shot set
+  continuity fails.
+- Verdict: USABLE WITH CAVEATS. The turn-and-gaze beat is the strongest character moment of
+  the no-guide runs, and this is the only S1/S2 shot with the correct character count. The
+  hood and the set mismatch are the problems; neither is fixable by trimming.
+- Final: `S2-kate-turns-to-james_FINAL.mp4` (+ `-audio`) — stream copy, no trim.
+
+## Timing log, continued (all CST 2026-11-15, file-cabinet)
+
+- 12:50:13 S1 submitted (prompt 04a44b80); 12:54:57 success — 4 min 44 s
+- 12:56:24 S2 submitted (prompt 40f05557); 13:00:39 success — 4 min 15 s

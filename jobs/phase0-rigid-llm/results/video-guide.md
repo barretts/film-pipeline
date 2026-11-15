@@ -2,6 +2,8 @@
 
 Plain-language guide for Barrett. Every video from Phase 0 and the Lane B fix run, same shot unless noted: "James crosses to Kate" — James enters the polar station radio room through the door at frame left, walks to Kate at the radio desk at frame right, camera dollies right, Kate looks up at him. 124 frames, 24 fps, 5.17 s, 1280×704, unless noted.
 
+Two further shots continue the story after B1 — P0-B2 "They listen together" and P0-B3 "Kate turns to James" — in their own section below. Same 124 frames, 24 fps, 5.17 s, 1280×704, same V11b no-guide workflow.
+
 "Lane" means how the shot was driven. "Tech" means the model, the guide, and the prompt. What worked / what didn't is a secondary note under each one.
 
 Lanes used here:
@@ -77,6 +79,26 @@ All Lane B videos below run locally on the 4060 Ti (16 GB) in ComfyUI, model Min
 
 ---
 
+## The next two story shots (P0-B2, P0-B3) — continuing from B1
+
+Same film, "Signal in the Snow", scene S01. B1 ends with James standing beside the desk; these two are the next shots in sequence. Both use the V11b winner workflow exactly — Lane B, no-guide, prompt + Kate and James reference portraits only, MiniMax H3 ReferenceToVideo, SenseNova bridge alpha 0.15, 4-step turbo sampler, seed 5002, mode `none`, no AddGuide, no guide video, no blockout language in the prompt. Silence audio (`p0-b1-silence.wav`) via the H3 audio VAE, so each render has an `-audio` version alongside. No manual tweaking, no re-renders. Prompts are verbatim in `jobs/phase0-rigid-llm/prompts/S1-listen-together.txt` and `S2-kate-turns-to-james.txt`. Frame extracts (0, 1, 5, 10, 24, 72, 123) in `results/s1-s2-check/`; the 0/1/5/10 set is also in `results/final-check/` under the FINAL names.
+
+### `S1-listen-together_00001.mp4` (+ `-audio`) — P0-B2, "They listen together"
+- **Lane:** Lane B, no-guide.
+- **Tech:** V11b workflow as-is. Prompt: Kate seated at the desk right, right hand on the dial; James beside the desk centre, leaning in to listen; steady medium two-shot, then a slow push-in toward the radio; Kate turns the dial a fraction, holds still, nods once toward James in the last 1.5 s without looking away from the radio; James does not move from the desk. Render 4m44s (284.39 s execution). Prompt ID 04a44b80-a4d4-438b-8e47-b78bbc2f2033.
+- **What worked:** photoreal from frame 0 — no grey polygon, no egg, no guide pixels. The push-in is real (framing tightens steadily f0 → f123; the wall clock and lamp leave frame). Kate's dial turn lands (hand moves to the dial by f10, clearly turning it at f24/f72). James stays at the desk, leaning in, and wears the correct ear-flap hat (not hood up). The room is a consistent polar radio room throughout: warm lamp right, snow windows, brass/green radio, pencil cup.
+- **What didn't:** **Kate is duplicated.** A second silver-haired woman in a navy jacket with a lanyard sits at frame left in profile for frames 0–~100 — three figures in a two-character shot. The push-in nearly crops her out by f123 (only part of her face remains at the far left edge), but she is present through most of the clip. The final nod is also only partial: at f123 Kate smiles slightly with her hand at the dial, but her head is still toward the radio — no clear nod toward James.
+- **Verdict:** not shippable as-is. The motion, camera and photoreal frame 0 all pass, but an extra Kate breaks the shot and the "no additional characters" line. No re-render was done (verbatim-prompt run, no tweaking). The duplicate-Kate failure is new — B1/V11b never duplicated a character — and it is the thing to watch for in the next two-shot.
+
+### `S2-kate-turns-to-james_00001.mp4` (+ `-audio`) — P0-B3, "Kate turns to James"
+- **Lane:** Lane B, no-guide.
+- **Tech:** V11b workflow as-is. Prompt: Kate seated at the desk right; James beside the desk centre, facing Kate; camera dollies left slowly, circling slightly around the desk toward Kate; Kate turns in her chair away from the radio to face James, gestures once toward the radio with her right hand, holds his gaze; James steps back half a step and nods in the last 1.5 s. Render 4m15s (255.40 s execution). Prompt ID 40f05557-338d-4a3d-a6b5-f386b9307b5f.
+- **What worked:** photoreal from frame 0 — no grey polygon, no egg, no guide pixels. Two characters only, no duplication. The beat of the shot lands: Kate turns in her chair to face James (clearly by f72, held through f123), looking up at him, and they hold each other's gaze to the end; James reads as a half-step back with a slight smile/head tilt at f123. The dolly left / circling is real, mostly in the second half — between f24 and f72 the viewpoint rotates around the desk (clock travels across the top of frame, lamp moves to the right edge, the window behind James comes into view). Within-shot consistency is good: same room, same lamp, same radio console throughout.
+- **What didn't:** James wears his hood up, not the ear-flap hat from his portrait — the same miss as V11/B1b (S1 got the hat right, S2 didn't). The gesture toward the radio and the discrete nod are only partial in the sampled frames: her hand is off the radio by f72 but no single clear gesture toward it is visible, and the nod reads as a head tilt/smile rather than a crisp nod. **The set does not match S1's room** (or B1's): S2's room is white fabric/tent walls and ceiling with a big rectangular window and a map on the wall; S1's is wood panelling with a sloped beamed ceiling. Same film, different rooms — cross-shot set continuity fails.
+- **Verdict:** usable with caveats. The two-shot beat (Kate turns, they hold the gaze) is the strongest character moment of the no-guide runs, and it is the only S1/S2 shot with the correct character count. The hood and the set mismatch are the problems; neither is fixable by trimming.
+
+---
+
 ## The dialogue shot (Kate at the radio) — Lane A
 
 ### `phase0-a1-kate-radio_00001_.mp4` (in `comfy-local/output/minimax-speech/`)
@@ -101,6 +123,8 @@ Made with ffmpeg trim + re-encode (libx264, same 24 fps). Audio versions trimmed
 - `V11-no-guide_FINAL.mp4` (+ `-audio`) — trimmed to start at frame 24 (1.00 s), the first fully photoreal frame of the original V11. 100 frames, 4.167 s. James entering left, Kate photoreal at desk. Audio trimmed 1.0 s.
 - `V3-room-only_FINAL.mp4` (+ `-audio`) — trimmed to start at frame 69 (2.875 s), the first fully photoreal frame of V3 (verified frame by frame: frame 68 still flat grey walls / white ceiling, frame 69 walls gain panel seams, ceiling goes dark, lamp appears). 55 frames, 2.292 s. James mid-walk at left, Kate at desk right, head turn still in the cut (~1.1 s in). Audio trimmed 2.875 s.
 - `V10-composed_FINAL.mp4` — **no trim needed; V10 is photoreal from frame 0.** Stream copy of `minimax-speech/phase0-a1-v10-composed_00001_.mp4`, 141 frames, 5.875 s, 704×1280, audio already in the file.
+- `S1-listen-together_FINAL.mp4` (+ `-audio`) — **no trim; S1 is photoreal from frame 0.** Stream copy of the S1 render, 124 frames, 5.167 s, 1280×704. Listed as a final for completeness, but **not shippable as-is** — Kate is duplicated for most of the clip (see the P0-B2 entry above).
+- `S2-kate-turns-to-james_FINAL.mp4` (+ `-audio`) — **no trim; S2 is photoreal from frame 0.** Stream copy of the S2 render, 124 frames, 5.167 s, 1280×704. Usable with caveats — the turn-and-gaze beat lands, but James's hood is up (not the ear-flap hat) and the set does not match S1's room (see the P0-B3 entry above).
 
 ffmpeg commands used (on file-cabinet, from `F:\film-pipeline`):
 ```
@@ -111,6 +135,10 @@ ffmpeg -i comfy-local\output\phase0\V11b-no-blockout_00001-audio.mp4 -c copy com
 ffmpeg -i comfy-local\output\phase0\V3-room-only_00001.mp4 -vf trim=start_frame=69,setpts=PTS-STARTPTS -c:v libx264 -pix_fmt yuv420p -crf 18 comfy-local\output\phase0\V3-room-only_FINAL.mp4
 ffmpeg -i comfy-local\output\phase0\V3-room-only_00001-audio.mp4 -vf trim=start_frame=69,setpts=PTS-STARTPTS -af atrim=start=2.875,asetpts=PTS-STARTPTS -c:v libx264 -pix_fmt yuv420p -crf 18 -c:a aac comfy-local\output\phase0\V3-room-only_FINAL-audio.mp4
 ffmpeg -i comfy-local\output\minimax-speech\phase0-a1-v10-composed_00001_.mp4 -c copy comfy-local\output\phase0\V10-composed_FINAL.mp4
+ffmpeg -i comfy-local\output\phase0\S1-listen-together_00001.mp4 -c copy comfy-local\output\phase0\S1-listen-together_FINAL.mp4
+ffmpeg -i comfy-local\output\phase0\S1-listen-together_00001-audio.mp4 -c copy comfy-local\output\phase0\S1-listen-together_FINAL-audio.mp4
+ffmpeg -i comfy-local\output\phase0\S2-kate-turns-to-james_00001.mp4 -c copy comfy-local\output\phase0\S2-kate-turns-to-james_FINAL.mp4
+ffmpeg -i comfy-local\output\phase0\S2-kate-turns-to-james_00001-audio.mp4 -c copy comfy-local\output\phase0\S2-kate-turns-to-james_FINAL-audio.mp4
 ```
 
 ## How to read this guide — lane, in one line
@@ -128,6 +156,8 @@ ffmpeg -i comfy-local\output\minimax-speech\phase0-a1-v10-composed_00001_.mp4 -c
 | `V11c-photo-first_00001` | Lane B, photoreal first-frame anchor | V11b prompt + AddGuide, V11 frame 24 at frame 0, 4m14s |
 | `phase0-a1-kate-radio_00001_` | Lane A, keyframe image-to-video | Bare portrait first frame, Piper voice, seed 2801, 13m16s |
 | `phase0-a1-v10-composed_00001_` | Lane A, keyframe image-to-video | Composed first frame (Kate at desk), same audio/seed, 13m12s |
+| `S1-listen-together_00001` | Lane B, no-guide | P0-B2 "They listen together", push-in, Kate dial turn, 4m44s — Kate duplicated, not shippable |
+| `S2-kate-turns-to-james_00001` | Lane B, no-guide | P0-B3 "Kate turns to James", dolly left, turn-and-gaze beat lands, 4m15s — James hood up, set ≠ S1 |
 
 ## Not run, and why
 
