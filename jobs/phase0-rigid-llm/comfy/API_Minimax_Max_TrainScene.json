@@ -1,0 +1,1184 @@
+{
+  "id": "c23969d8-7734-4984-ac92-ee71859d3c74",
+  "revision": 0,
+  "last_node_id": 28,
+  "last_link_id": 56,
+  "nodes": [
+    {
+      "id": 2,
+      "type": "SaveVideo",
+      "pos": [
+        -1720,
+        4140
+      ],
+      "size": [
+        740,
+        150
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "video/Minimax_h3_max",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/Minimax_h3_max",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
+    },
+    {
+      "id": 4,
+      "type": "MinimaxHailuo03ReferenceNode",
+      "pos": [
+        -2160,
+        4140
+      ],
+      "size": [
+        400,
+        444
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "model.prompt"
+          },
+          "link": 15
+        },
+        {
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "name": "model.reference_images.image_2",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 31
+        },
+        {
+          "name": "model.reference_images.image_3",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 41
+        },
+        {
+          "name": "model.reference_images.image_4",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 42
+        },
+        {
+          "name": "model.reference_images.image_5",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": 43
+        },
+        {
+          "name": "model.reference_images.image_6",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            2,
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MinimaxHailuo03ReferenceNode"
+      },
+      "widgets_values": [
+        "MiniMax H3 Max",
+        "",
+        "768P",
+        "adaptive",
+        15,
+        "balanced",
+        "high",
+        2719868943,
+        "randomize",
+        false
+      ],
+      "widgets_values_named": {
+        "model": "MiniMax H3 Max",
+        "model.prompt": "",
+        "model.resolution": "768P",
+        "model.ratio": "adaptive",
+        "model.duration": 15,
+        "model.prompt_expansion_mode": "balanced",
+        "model.reference_detail": "high",
+        "seed": 2719868943,
+        "control_after_generate": "randomize",
+        "watermark": false
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 7,
+      "type": "MinimaxHailuo03ContextIRNode",
+      "pos": [
+        -2170,
+        4830
+      ],
+      "size": [
+        400,
+        240
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "model.prompt"
+          },
+          "link": 22
+        },
+        {
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            17
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MinimaxHailuo03ContextIRNode"
+      },
+      "widgets_values": [
+        "MiniMax H3",
+        "",
+        12,
+        "adaptive"
+      ],
+      "widgets_values_named": {
+        "model": "MiniMax H3",
+        "model.prompt": "",
+        "model.duration": 12,
+        "model.ratio": "adaptive"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 8,
+      "type": "SaveText",
+      "pos": [
+        -1710,
+        4830
+      ],
+      "size": [
+        750,
+        650
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 23
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveText"
+      },
+      "widgets_values": [
+        "H3_prompt",
+        "txt"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "H3_prompt",
+        "format": "txt"
+      }
+    },
+    {
+      "id": 10,
+      "type": "MinimaxHailuo03RegenerateNode",
+      "pos": [
+        -830,
+        4570
+      ],
+      "size": [
+        400,
+        260
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model.prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "model.prompt"
+          },
+          "link": 12
+        },
+        {
+          "name": "model.reference_images.image_1",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "model.reference_videos.video_1",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": null
+        },
+        {
+          "name": "model.reference_audios.audio_1",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 10
+        },
+        {
+          "name": "first_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "last_frame",
+          "shape": 7,
+          "type": "IMAGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "MinimaxHailuo03RegenerateNode"
+      },
+      "widgets_values": [
+        "MiniMax H3",
+        "",
+        "2K",
+        false
+      ],
+      "widgets_values_named": {
+        "model": "MiniMax H3",
+        "model.prompt": "",
+        "model.resolution": "2K",
+        "watermark": false
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 11,
+      "type": "SaveVideo",
+      "pos": [
+        -311.4604169607933,
+        4334.106878430408
+      ],
+      "size": [
+        1420.3413344294718,
+        1164.6990330865742
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "video/Minimax_h3_max",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "video/Minimax_h3_max",
+        "format": "auto",
+        "format.codec": "auto",
+        "codec": "auto"
+      }
+    },
+    {
+      "id": 12,
+      "type": "ComfySwitchNode",
+      "pos": [
+        -2100,
+        5340
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "switch"
+          },
+          "link": 26
+        },
+        {
+          "name": "on_false",
+          "shape": 7,
+          "type": "STRING",
+          "link": 21
+        },
+        {
+          "name": "on_true",
+          "shape": 7,
+          "type": "STRING",
+          "link": 17
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "STRING",
+          "links": [
+            15,
+            23
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+        false
+      ],
+      "widgets_values_named": {
+        "switch": false
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 13,
+      "type": "ComfySwitchNode",
+      "pos": [
+        -750,
+        4990
+      ],
+      "size": [
+        270,
+        110
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "switch"
+          },
+          "link": 25
+        },
+        {
+          "name": "on_false",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": 29
+        },
+        {
+          "name": "on_true",
+          "shape": 7,
+          "type": "VIDEO",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "VIDEO",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+        false
+      ],
+      "widgets_values_named": {
+        "switch": false
+      },
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 14,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        -2721.5162755053148,
+        5420.538103724104
+      ],
+      "size": [
+        410,
+        340
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            21,
+            22
+          ]
+        }
+      ],
+      "title": "Text (Prompt)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "<Video 1> is an untextured basic-shape 3D blockout. Follow its exact camera movement, framing, timing, object placement, and animation while transforming the basic shapes into the illustrated world from the reference images.\n\n<Picture 1> is the exterior location viewed from above. Use it as the reference for the environment, train exterior, colors, and cartoon art style. Preserve the “comfy” lettering on the train’s front sign.\n\n<Picture 2> and <Picture 3> are the character references. Use these designs for the people in the scene, matching them to the blockout figures by position and action. The blockout figures are uncolored, so do not use color to identify them. Preserve their faces, outfits, proportions, and accessories. Do not display the character-sheet labels.\n\n<Picture 4> is the train interior reference. Use it for the seating, windows, overhead hand straps, and interior details, keeping everything consistent with the exterior.\n\n<Picture 5> is the main character’s cap and C-logo reference. Match the cap and reproduce the specific C emblem clearly on its front. Keep its shape, color, and placement consistent throughout.\n\nThe train is ALREADY MOVING at a steady cruising speed from the very first frame. No stationary opening or gradual startup. Follow the camera path and sequence from <Video 1>, with the scenery passing naturally outside the train.\n\nStanding passengers hold the overhead hanging hand straps with natural, secure grips. Their bodies and the straps sway subtly with the train’s movement.\n\nWhen the camera reveals the main character, He remains asleep until the train stops during the final moments.\n\nThe train decelerates, and the scenery outside slows consistently until it stops. The final stopping motion gives him a small, sudden jolt that wakes him. He opens his eyes, takes the headphones off his ears and lowers them around his neck, then looks around with a subtle, amused smirk. His cap stays on throughout. Fit this reaction into the ending without changing the camera path or adding a cut.\n\n\nMaintain the references’ cohesive anime-inspired cartoon style, soft pastel colors, delicate ink outlines, watercolor textures, and gentle shading throughout. Keep all characters and environments visually consistent.\n\nPreserve the blockout’s camera movement and all other actions, with the specified passenger behavior and final waking reaction. Do not introduce additional characters, camera moves, cuts, or unrelated actions."
+      ],
+      "widgets_values_named": {
+        "value": "<Video 1> is an untextured basic-shape 3D blockout. Follow its exact camera movement, framing, timing, object placement, and animation while transforming the basic shapes into the illustrated world from the reference images.\n\n<Picture 1> is the exterior location viewed from above. Use it as the reference for the environment, train exterior, colors, and cartoon art style. Preserve the “comfy” lettering on the train’s front sign.\n\n<Picture 2> and <Picture 3> are the character references. Use these designs for the people in the scene, matching them to the blockout figures by position and action. The blockout figures are uncolored, so do not use color to identify them. Preserve their faces, outfits, proportions, and accessories. Do not display the character-sheet labels.\n\n<Picture 4> is the train interior reference. Use it for the seating, windows, overhead hand straps, and interior details, keeping everything consistent with the exterior.\n\n<Picture 5> is the main character’s cap and C-logo reference. Match the cap and reproduce the specific C emblem clearly on its front. Keep its shape, color, and placement consistent throughout.\n\nThe train is ALREADY MOVING at a steady cruising speed from the very first frame. No stationary opening or gradual startup. Follow the camera path and sequence from <Video 1>, with the scenery passing naturally outside the train.\n\nStanding passengers hold the overhead hanging hand straps with natural, secure grips. Their bodies and the straps sway subtly with the train’s movement.\n\nWhen the camera reveals the main character, He remains asleep until the train stops during the final moments.\n\nThe train decelerates, and the scenery outside slows consistently until it stops. The final stopping motion gives him a small, sudden jolt that wakes him. He opens his eyes, takes the headphones off his ears and lowers them around his neck, then looks around with a subtle, amused smirk. His cap stays on throughout. Fit this reaction into the ending without changing the camera path or adding a cut.\n\n\nMaintain the references’ cohesive anime-inspired cartoon style, soft pastel colors, delicate ink outlines, watercolor textures, and gentle shading throughout. Keep all characters and environments visually consistent.\n\nPreserve the blockout’s camera movement and all other actions, with the specified passenger behavior and final waking reaction. Do not introduce additional characters, camera moves, cuts, or unrelated actions."
+      }
+    },
+    {
+      "id": 17,
+      "type": "MarkdownNote",
+      "pos": [
+        -3800,
+        4090
+      ],
+      "size": [
+        580,
+        1220
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Guide",
+      "properties": {},
+      "widgets_values": [
+        "## How this graph is wired\n\nThis is a MiniMax H3 Max **reference-to-video** template. It has **one required path** and **two optional stages**. You choose whether to run the optional stages. Both start **off**.\n\nOn the canvas, two nodes are marked **red**. Those are **Switch** nodes. Each is the on/off gate for an optional stage, driven by a boolean in the **Feature Flags** group.\n\n### 1. Video generation (required)\n\n**MiniMax H3 Reference to Video** is the core. It always runs. Feed it **Text (Prompt)** and your references (this template starts with **Load Image** as image_1). You can add more images, a reference video, or audio. The first **Save Video** is the first-pass output.\n\n### 2. Prompt enhance (optional)\n\n**Boolean (Prompt Enhance)** feeds the red **Switch** in **Prompt Enhancer (Optional)**.\n\n- Set it to `true` to rewrite the prompt with **MiniMax H3 Context IR (Prompt Enhancer)** before generation.\n- Leave it `false` to send your raw prompt straight to video generation.\n\n### 3. Video upscale (optional)\n\n**Boolean (Upscale to 2K)** feeds the red **Switch** in **Upscale Video to 2K (Optional)**.\n\n- Set it to `true` to run **MiniMax H3 Regenerate to 2K** on the first-pass video.\n- Leave it `false` to save the first-pass video as-is.\n\nUpscale **only accepts 768P** source video. If you turn this stage on, generate at **768P**. Other resolutions are not supported by **MiniMax H3 Regenerate to 2K**.\n\nYou can enable section 2, section 3, both, or neither.\n\n### Duration must match\n\nKeep **duration** the same on every MiniMax node you actually use (generation, prompt enhance, and upscale). The clip length must match across those stages. If one node is 5s and another is 6s, enhance or upscale will be out of sync with the generated video.\n\n### Extra inputs must be duplicated\n\nThe generate node, the prompt-enhance node, and the upscale node do **not** share extra context automatically.\n\n**Load Image** is already wired into all three as image_1. If you add more inputs (another **Load Image**, a reference video, audio, or any extra output you plug into generation), **also plug the same wires into**:\n\n- **MiniMax H3 Context IR (Prompt Enhancer)**, so prompt enhance sees the same references\n- **MiniMax H3 Regenerate to 2K**, so upscale sees the same references\n\nIf you only wire extras into generation, enhance and upscale will run without that context and the result will drift."
+      ],
+      "widgets_values_named": {
+        "text": "## How this graph is wired\n\nThis is a MiniMax H3 Max **reference-to-video** template. It has **one required path** and **two optional stages**. You choose whether to run the optional stages. Both start **off**.\n\nOn the canvas, two nodes are marked **red**. Those are **Switch** nodes. Each is the on/off gate for an optional stage, driven by a boolean in the **Feature Flags** group.\n\n### 1. Video generation (required)\n\n**MiniMax H3 Reference to Video** is the core. It always runs. Feed it **Text (Prompt)** and your references (this template starts with **Load Image** as image_1). You can add more images, a reference video, or audio. The first **Save Video** is the first-pass output.\n\n### 2. Prompt enhance (optional)\n\n**Boolean (Prompt Enhance)** feeds the red **Switch** in **Prompt Enhancer (Optional)**.\n\n- Set it to `true` to rewrite the prompt with **MiniMax H3 Context IR (Prompt Enhancer)** before generation.\n- Leave it `false` to send your raw prompt straight to video generation.\n\n### 3. Video upscale (optional)\n\n**Boolean (Upscale to 2K)** feeds the red **Switch** in **Upscale Video to 2K (Optional)**.\n\n- Set it to `true` to run **MiniMax H3 Regenerate to 2K** on the first-pass video.\n- Leave it `false` to save the first-pass video as-is.\n\nUpscale **only accepts 768P** source video. If you turn this stage on, generate at **768P**. Other resolutions are not supported by **MiniMax H3 Regenerate to 2K**.\n\nYou can enable section 2, section 3, both, or neither.\n\n### Duration must match\n\nKeep **duration** the same on every MiniMax node you actually use (generation, prompt enhance, and upscale). The clip length must match across those stages. If one node is 5s and another is 6s, enhance or upscale will be out of sync with the generated video.\n\n### Extra inputs must be duplicated\n\nThe generate node, the prompt-enhance node, and the upscale node do **not** share extra context automatically.\n\n**Load Image** is already wired into all three as image_1. If you add more inputs (another **Load Image**, a reference video, audio, or any extra output you plug into generation), **also plug the same wires into**:\n\n- **MiniMax H3 Context IR (Prompt Enhancer)**, so prompt enhance sees the same references\n- **MiniMax H3 Regenerate to 2K**, so upscale sees the same references\n\nIf you only wire extras into generation, enhance and upscale will run without that context and the result will drift."
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 18,
+      "type": "PrimitiveBoolean",
+      "pos": [
+        -2124.714802628737,
+        5722.792386676682
+      ],
+      "size": [
+        270,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "Boolean (Prompt Enhance)",
+      "properties": {
+        "Node name for S&R": "PrimitiveBoolean"
+      },
+      "widgets_values": [
+        false
+      ],
+      "widgets_values_named": {
+        "value": false
+      }
+    },
+    {
+      "id": 19,
+      "type": "PrimitiveBoolean",
+      "pos": [
+        -2124.714802628737,
+        5872.792386676682
+      ],
+      "size": [
+        270,
+        90
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "Boolean (Upscale to 2K)",
+      "properties": {
+        "Node name for S&R": "PrimitiveBoolean"
+      },
+      "widgets_values": [
+        false
+      ],
+      "widgets_values_named": {
+        "value": false
+      }
+    },
+    {
+      "id": 21,
+      "type": "MarkdownNote",
+      "pos": [
+        -3113.2708864707806,
+        5468.478172310782
+      ],
+      "size": [
+        290,
+        118.78125
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Requirement for Video Upscale",
+      "properties": {},
+      "widgets_values": [
+        "Upscale only accepts **768P** source video. Generate at 768P if you turn on **Boolean (Upscale to 2K)**. Other resolutions are not supported."
+      ],
+      "widgets_values_named": {
+        "text": "Upscale only accepts **768P** source video. Generate at 768P if you turn on **Boolean (Upscale to 2K)**. Other resolutions are not supported."
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 22,
+      "type": "MarkdownNote",
+      "pos": [
+        -4170,
+        4090
+      ],
+      "size": [
+        340,
+        430
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Note: Input Assset",
+      "properties": {},
+      "widgets_values": [
+        "## Input Asset\n\n- [burdened_warrior_in_dreamscape.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/burdened_warrior_in_dreamscape.png)\n\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      ],
+      "widgets_values_named": {
+        "text": "## Input Asset\n\n- [burdened_warrior_in_dreamscape.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/burdened_warrior_in_dreamscape.png)\n\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n"
+      },
+      "color": "#222",
+      "bgcolor": "#000"
+    },
+    {
+      "id": 23,
+      "type": "LoadImage",
+      "pos": [
+        -2703.4592178177227,
+        4142.809275120716
+      ],
+      "size": [
+        370,
+        390
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "0b416917a2288d6947429819b4eece092c65fab81c2b72bb5bc9515645ccd1d0.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "0b416917a2288d6947429819b4eece092c65fab81c2b72bb5bc9515645ccd1d0.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 24,
+      "type": "LoadImage",
+      "pos": [
+        -3097.6808222921436,
+        4573.509857621938
+      ],
+      "size": [
+        370,
+        390
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            31
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "02e06907a55f84976f174c9765cad4de380cab737ca1887eb4a75bcd18358081.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "02e06907a55f84976f174c9765cad4de380cab737ca1887eb4a75bcd18358081.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 25,
+      "type": "LoadImage",
+      "pos": [
+        -3100.8799817270383,
+        5010.72907289113
+      ],
+      "size": [
+        370,
+        390
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            42
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "6ad1fe93fb4a91b8a9a363bd6914cbb79741121765a368e207bff6da5da4e14d.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "6ad1fe93fb4a91b8a9a363bd6914cbb79741121765a368e207bff6da5da4e14d.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 26,
+      "type": "LoadImage",
+      "pos": [
+        -2697.6558112352486,
+        5027.497079814262
+      ],
+      "size": [
+        282.798828125,
+        102
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            43
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "5856c6169821582ea0aa062723a98a33229a4cc356fde902377b128faa03c33d.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "5856c6169821582ea0aa062723a98a33229a4cc356fde902377b128faa03c33d.png",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 27,
+      "type": "LoadVideo",
+      "pos": [
+        -3118.8398177451354,
+        4137.625278552546
+      ],
+      "size": [
+        329.0833435058594,
+        380.54998779296875
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "f6733c19ae8384ea8ef0584fae92f70600d581d44d2883623a19c63e73102887.mp4",
+        "image"
+      ],
+      "widgets_values_named": {
+        "file": "f6733c19ae8384ea8ef0584fae92f70600d581d44d2883623a19c63e73102887.mp4",
+        "upload": "image"
+      }
+    },
+    {
+      "id": 28,
+      "type": "LoadImage",
+      "pos": [
+        -2690.4663541006453,
+        4578.572459336274
+      ],
+      "size": [
+        370,
+        390
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            41
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "92af1f33f0c2b146d0c9383ef8e025b81687b910b175798286e8c2d33e5decf9.png",
+        "image"
+      ],
+      "widgets_values_named": {
+        "image": "92af1f33f0c2b146d0c9383ef8e025b81687b910b175798286e8c2d33e5decf9.png",
+        "upload": "image"
+      }
+    }
+  ],
+  "links": [
+    [
+      23,
+      12,
+      0,
+      8,
+      0,
+      "STRING"
+    ],
+    [
+      2,
+      4,
+      0,
+      2,
+      0,
+      "VIDEO"
+    ],
+    [
+      20,
+      13,
+      0,
+      11,
+      0,
+      "VIDEO"
+    ],
+    [
+      21,
+      14,
+      0,
+      12,
+      1,
+      "STRING"
+    ],
+    [
+      17,
+      7,
+      0,
+      12,
+      2,
+      "STRING"
+    ],
+    [
+      26,
+      18,
+      0,
+      12,
+      0,
+      "BOOLEAN"
+    ],
+    [
+      29,
+      4,
+      0,
+      13,
+      1,
+      "VIDEO"
+    ],
+    [
+      18,
+      10,
+      0,
+      13,
+      2,
+      "VIDEO"
+    ],
+    [
+      25,
+      19,
+      0,
+      13,
+      0,
+      "BOOLEAN"
+    ],
+    [
+      15,
+      12,
+      0,
+      4,
+      0,
+      "STRING"
+    ],
+    [
+      30,
+      23,
+      0,
+      4,
+      1,
+      "IMAGE"
+    ],
+    [
+      31,
+      24,
+      0,
+      4,
+      2,
+      "IMAGE"
+    ],
+    [
+      41,
+      28,
+      0,
+      4,
+      3,
+      "IMAGE"
+    ],
+    [
+      42,
+      25,
+      0,
+      4,
+      4,
+      "IMAGE"
+    ],
+    [
+      43,
+      26,
+      0,
+      4,
+      5,
+      "IMAGE"
+    ],
+    [
+      22,
+      14,
+      0,
+      7,
+      0,
+      "STRING"
+    ],
+    [
+      12,
+      8,
+      0,
+      10,
+      0,
+      "STRING"
+    ],
+    [
+      10,
+      2,
+      0,
+      10,
+      4,
+      "VIDEO"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Prompt Enhancer (Optional)",
+      "bounding": [
+        -2200,
+        4750,
+        1270,
+        840
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "User Inputs",
+      "bounding": [
+        -3160,
+        4060,
+        940.1182572053576,
+        1735.9779094023525
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Upscale Video to 2K (Optional)",
+      "bounding": [
+        -900,
+        4060,
+        1400,
+        1540
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "Create Video (Core)",
+      "bounding": [
+        -2200,
+        4060,
+        1270,
+        670
+      ],
+      "color": "#A88",
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "Feature Flags",
+      "bounding": [
+        -2164.714802628737,
+        5642.792386676682,
+        350,
+        360
+      ],
+      "color": "#3f789e",
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5206871310685943,
+      "offset": [
+        3477.0418095410055,
+        -3769.4757786815176
+      ]
+    },
+    "frontendVersion": "1.61.2",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

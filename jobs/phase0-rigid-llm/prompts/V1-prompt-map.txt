@@ -1,0 +1,11 @@
+<Video 1> is an untextured basic-shape 3D blockout. Follow its exact camera movement, framing, timing, object placement, and animation while transforming the basic shapes into the polar station radio room from the reference images.
+
+<Picture 1> is Kate, a woman in her late forties with short silver-streaked brown hair, navy wool work jacket over a cream sweater, brass ring on a lanyard. <Picture 2> is James, a man in his late twenties, dark curly hair under an ear-flap hat, orange-red survival suit over thermal layers.
+
+Use these designs for the people in the scene, matching them to the blockout figures by position and action. The blockout figures are uncolored, so do not use color to identify them. Preserve their faces, outfits, proportions, and accessories. Do not display any labels.
+
+James enters through the door at frame left and walks across the room to Kate, seated at the radio desk at frame right. The camera dollies right, tracking James, keeping him centre frame. Kate turns her head toward him as he arrives in the last 1.5 seconds. James stops beside the desk.
+
+Maintain the reference images' realistic style and the warm lamp light from the right with cool snow fill from the window. Keep both characters and the room visually consistent throughout.
+
+Preserve the blockout's camera movement and all other actions. Do not introduce additional characters, camera moves, cuts, or unrelated actions.
