@@ -44,9 +44,10 @@ def split_cuts(text):
     return [text[a:b].strip() for a,b in zip(positions, positions[1:]) if text[a:b].strip()]
 
 
-def get_beats(story, count, seed, cache):
+def get_beats(story, count, seed, cache, planner=None):
+    ask_model = planner or ask
     explicit = split_cuts(story)
-    cast = ask(CAST_INSTRUCTION, story, CAST_SCHEMA, seed, cache, 1400, check_cast)
+    cast = ask_model(CAST_INSTRUCTION, story, CAST_SCHEMA, seed, cache, 1400, check_cast)
     if len(explicit) > 1 or count == 1:
         if count and len(explicit) != count:
             raise ValueError(f"The script supplies {len(explicit)} cuts; --shots requests {count}")
@@ -68,7 +69,7 @@ def get_beats(story, count, seed, cache):
         def check_coverage(answer):
             if not all(isinstance(answer[k],str) and answer[k].strip() for k in keys):
                 raise ValueError("Every shot needs a visible direction")
-        expanded = ask(instruction,story,schema,seed,cache,160*n,check_coverage)
+        expanded = ask_model(instruction,story,schema,seed,cache,160*n,check_coverage)
         return cast,[expanded[k] for k in keys]
     # Prefer cutting before a new named action, keeping an attributed voice or pronoun with its antecedent.
     boundaries = [0]
@@ -86,7 +87,8 @@ def get_beats(story, count, seed, cache):
     return cast,[" ".join(sentences[a:b]) for a,b in zip(boundaries,boundaries[1:])]
 
 
-def setup(cast, story, seed, cache):
+def setup(cast, story, seed, cache, planner=None):
+    ask_model = planner or ask
     people, places = [a["name"] for a in cast["people"]], [a["name"] for a in cast["places"]]
     wardrobe = record(coat=choice(PALETTE), hair=choice(["black","brown","gray"]), cap=choice(["none",*PALETTE]))
     space = record(kind=choice(["office","radio_room","interior","street","snow_exterior"]),
@@ -95,7 +97,7 @@ def setup(cast, story, seed, cache):
     instruction = ("Choose a simple physical set for each named place and stable wardrobe for each visible actor. "
                    "Honor explicitly stated garment and door colors. Use cap none unless headwear is described. "
                    "street is outdoors; snow_exterior is outdoors in snow. Use the same door color on both sides.")
-    answer = ask(instruction, json.dumps({"script":story,"people":cast["people"],"places":cast["places"]}),
+    answer = ask_model(instruction, json.dumps({"script":story,"people":cast["people"],"places":cast["places"]}),
                  schema, seed, cache, 650, lambda s: None)
     looks = {}
     for p in cast["people"]:
@@ -118,9 +120,10 @@ def setup(cast, story, seed, cache):
     return looks, sets
 
 
-def direct(story, count, seed, cache):
-    cast, beats = get_beats(story, count, seed, cache)
-    people, sets = setup(cast, story, seed, cache)
+def direct(story, count, seed, cache, planner=None):
+    ask_model = planner or ask
+    cast, beats = get_beats(story, count, seed, cache, planner)
+    people, sets = setup(cast, story, seed, cache, planner)
     actor = record(action=choice(ROLES), mark=choice(MARKS), to=choice(MARKS),
                    face=choice(["carry","front","door","work","left","right",*people]),
                    pose=choice(POSES))
@@ -142,7 +145,7 @@ def direct(story, count, seed, cache):
             s = answer[k]
             if s["focus"] in people and s["cast"][s["focus"]]["action"]=="absent":
                 raise ValueError(f"{k}: the camera's subject must be present")
-    choices = ask(instruction, json.dumps(source), record(**{k:shot for k in keys}), seed, cache,
+    choices = ask_model(instruction, json.dumps(source), record(**{k:shot for k in keys}), seed, cache,
                   250+len(keys)*(100+72*len(people)), check)
     shots, continuity, last_subject = [], {}, None
     for k, beat in zip(keys,beats):

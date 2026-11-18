@@ -20,6 +20,20 @@ The default is five shots for a short brief. More quoted turns can increase that
 
 This version supports 1–16 shots, up to one new speaking turn per shot, and two bundled English voices. Most requested takes last five seconds. A long line can extend its shot. An across-cut delivery can continue into the next picture. A fixed local check can order one extra take for a black picture, a freeze or a possible internal cut. Character identity, the meaning of an action and the accuracy of lip movement still need to be judged by watching the result.
 
+## Generate one steered shot with OpenRouter
+
+This opt-in command uses GPT-6 Luna to cast and block the script, renders the complete editable Blender draft on CPU, and sends the selected shot's moving color guide to HeyGen Video. Run it from the TakeFive folder. Set `OPENROUTER_API_KEY` or pass `--env-file` with the path to your existing key file.
+
+```powershell
+.\Make-OpenRouter-Shot.cmd .\examples\snow.txt --shots 7 --shot shot05 --temporary-link
+```
+
+HeyGen requires an HTTPS video reference. With `cloudflared` installed, `--temporary-link` serves the single guide at a random path for the duration of the render. The process closes the link on exit. For your own storage, run with `--prepare-only`, host the printed guide and rerun with `--reference-url` and its address. The command checks the hosted bytes before submitting a job.
+
+The full draft is in `output\openrouter\snow\draft.mp4`. The selected shot directory contains the original provider MP4, a comparison with Blender on the left, and a receipt with the prompt, reference checksum, job ID, and reported usage. The same command reuses a finished shot or resumes an accepted job. Changing the script, guide, prompt, seed, resolution or model can create a new paid take. The provider clip retains its native soundtrack. The local film editor handles dialogue across cuts.
+
+Pass an edited plan JSON instead of the script to reuse cast and blocking, or pass the directory of an already rendered Blender take. Choose a different shot with `--shot`, and use `--out` to select the project output directory.
+
 ## Directed reference films
 
 The dispatch-office and earlier snow productions used individually prepared shot directions and references. Their launchers replay those productions.

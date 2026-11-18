@@ -155,6 +155,8 @@ def main():
     p.add_argument("--seed",type=int,default=71937)
     p.add_argument("--runtime",type=Path,default=Path(os.environ.get("TAKEFIVE_RUNTIME",ROOT/"runtime")))
     p.add_argument("--plan-only",action="store_true")
+    p.add_argument("--planner-model",help="Use this OpenRouter text model for casting and blocking")
+    p.add_argument("--env-file",type=Path,help="Read OPENROUTER_API_KEY from this file")
     p.add_argument("--blend",type=Path,help="Render edited rigs or cameras from this existing stage.blend")
     args = p.parse_args()
     os.environ.update(CUDA_VISIBLE_DEVICES="-1",HIP_VISIBLE_DEVICES="-1",ROCR_VISIBLE_DEVICES="-1")
@@ -169,8 +171,14 @@ def main():
     else:
         if not raw.strip():
             p.error("The script is empty")
-        print("Directing the script with the local CPU planner.",flush=True)
-        plan = direct(raw,args.shots,args.seed,ROOT/"work"/"steering-language")
+        if args.planner_model:
+            from openrouter_client import CloudPlanner, OpenRouter, save
+            planner = CloudPlanner(OpenRouter(args.env_file), args.planner_model)
+            plan = direct(raw,args.shots,args.seed,out/"planner-cache",planner.ask)
+            save(out/("planner-"+digest(plan)[:12]+".json"), {"model":planner.model,"requests":planner.receipts})
+        else:
+            print("Directing the script with the local CPU planner.",flush=True)
+            plan = direct(raw,args.shots,args.seed,ROOT/"work"/"steering-language")
     validate(plan)
     plan_path = out/("plan-"+digest(plan)[:12]+".json")
     dump(plan_path,plan)
