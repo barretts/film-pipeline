@@ -95,6 +95,28 @@ def ensure_job(router, folder, request, url, receipt):
     return receipt
 
 
+def edit_to_timeline(source, target, seconds, meta):
+    """Use the first visible frame as time zero and shift its native audio by the same amount."""
+    video = next(s for s in meta["streams"] if s["codec_type"] == "video")
+    start = float(video.get("start_time", 0))
+    frames = seconds * 24
+    tracks = ["-map", "0:v:0", "-vf", f"setpts=PTS-STARTPTS,fps=24,trim=end_frame={frames}"]
+    if any(s["codec_type"] == "audio" for s in meta["streams"]):
+        tracks += ["-map", "0:a:0", "-af",
+                   f"asetpts=PTS-({start})/TB,aresample=first_pts=0,apad,atrim=duration={seconds}",
+                   "-c:a", "aac", "-b:a", "192k"]
+    ffmpeg("-copyts", "-i", source, *tracks, "-t", seconds, "-c:v", "libx264", "-threads", 4, "-crf", 16,
+           "-pix_fmt", "yuv420p", "-movflags", "+faststart", target)
+    out = probe(target)
+    stream = next(s for s in out["streams"] if s["codec_type"] == "video")
+    actual = int(stream["nb_frames"])
+    if actual != frames or stream["avg_frame_rate"] != "24/1":
+        raise ValueError(f"The provider footage yielded {actual} of the requested {frames} editorial frames")
+    if any(abs(float(s["duration"])-seconds) > 0.025 for s in out["streams"]):
+        raise ValueError("The conformed streams do not end together on the requested cut")
+    return {"frames":actual, "fps":24, "seconds":seconds, "source_video_start_seconds":start}
+
+
 def complete_job(router, folder, receipt, guide):
     path = folder/"receipt.json"
     job = receipt.get("job", {})
@@ -114,27 +136,37 @@ def complete_job(router, folder, receipt, guide):
             print(f"OpenRouter job {job['id']}: {update['status']}", flush=True)
         job.update(update)
         save(path, receipt)
-    target, comparison = folder/"render.mp4", folder/"comparison.mp4"
-    if all(f.is_file() and checksum(f) == receipt.get("media", {}).get(f.name) for f in (target, comparison)):
+    target, edit, comparison = (folder/name for name in ("render.mp4", "edit.mp4", "comparison.mp4"))
+    media = receipt.setdefault("media", {})
+    if receipt.get("video", {}).get("frames") and all(
+            f.is_file() and checksum(f) == media.get(f.name) for f in (target, edit, comparison)):
         return
     with staging(folder) as scratch:
-        result = scratch/"render.mp4"
-        router.download(endpoint + "/content?index=0", result)
-        meta = probe(result)
+        if not target.is_file() or checksum(target) != media.get(target.name):
+            result = scratch/"render.mp4"
+            router.download(endpoint + "/content?index=0", result)
+            subprocess.run([binary("ffmpeg"), "-v", "error", "-xerror", "-i", str(result), "-f", "null", "-"], check=True)
+            os.replace(result, target)
+            media[target.name] = checksum(target)
+            save(path, receipt)
+        meta = probe(target)
         video = next(s for s in meta["streams"] if s["codec_type"] == "video")
         duration = float(video.get("duration") or meta["format"]["duration"])
-        if abs(duration-receipt["request"]["duration"]) > 0.15:
-            raise ValueError(f"Received {duration}s for a {receipt['request']['duration']}s shot")
-        subprocess.run([binary("ffmpeg"), "-v", "error", "-xerror", "-i", str(result), "-f", "null", "-"], check=True)
+        frame_count = video.get("nb_frames")
+        if not str(frame_count).isdigit():
+            frame_count = subprocess.check_output([binary("ffprobe"), "-v", "error", "-select_streams", "v:0",
+                        "-count_frames", "-show_entries", "stream=nb_read_frames", "-of", "csv=p=0", str(target)], text=True).strip()
+        timing = edit_to_timeline(target, scratch/edit.name, receipt["request"]["duration"], meta)
         tile = "fps=24,scale=768:432:force_original_aspect_ratio=decrease:force_divisible_by=2,pad=768:432:(ow-iw)/2:(oh-ih)/2,setsar=1"
-        ffmpeg("-i", guide, "-i", result, "-filter_complex", f"[0:v]{tile}[a];[1:v]{tile}[b];[a][b]hstack=shortest=1[v]",
+        ffmpeg("-i", guide, "-i", scratch/edit.name, "-filter_complex", f"[0:v]{tile}[a];[1:v]{tile}[b];[a][b]hstack=shortest=1[v]",
                "-map", "[v]", "-map", "1:a?", "-c:v", "libx264", "-crf", 16, "-threads", 4,
-               "-pix_fmt", "yuv420p", "-c:a", "aac", "-movflags", "+faststart", scratch/"comparison.mp4")
-        os.replace(result, target)
+               "-pix_fmt", "yuv420p", "-c:a", "copy", "-movflags", "+faststart", scratch/"comparison.mp4")
+        os.replace(scratch/edit.name, edit)
         os.replace(scratch/"comparison.mp4", comparison)
-    receipt["media"] = {f.name: checksum(f) for f in (target, comparison)}
+    media.update({f.name: checksum(f) for f in (edit, comparison)})
+    receipt["edit"] = timing
     receipt["video"] = {"seconds": duration, "width":video["width"], "height":video["height"],
-                        "fps":video["avg_frame_rate"], "frames":video.get("nb_frames"),
+                        "fps":video["avg_frame_rate"], "frames":int(frame_count),
                         "audio":[s["codec_name"] for s in meta["streams"] if s["codec_type"]=="audio"]}
     save(path, receipt)
 
@@ -197,7 +229,7 @@ def run(args):
             print(f"Submitting {args.video_model} with the {seconds}s moving guide: {guide}", flush=True)
             receipt = ensure_job(router, folder, request, url, receipt)
             complete_job(router, folder, receipt, guide)
-    print(f"Render: {folder/'render.mp4'}\nGuide and render: {folder/'comparison.mp4'}\nReceipt: {folder/'receipt.json'}", flush=True)
+    print(f"Edited shot: {folder/'edit.mp4'}\nProvider original: {folder/'render.mp4'}\nGuide and render: {folder/'comparison.mp4'}\nReceipt: {folder/'receipt.json'}", flush=True)
 
 
 if __name__ == "__main__":

@@ -1,18 +1,24 @@
 """Provide HTTPS access to exactly one Blender MP4 for the lifetime of a render."""
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 import hashlib
+from http.client import HTTPSConnection
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from ipaddress import IPv4Address
+import json
 import os
 from pathlib import Path
 from queue import Empty, Queue
 import re
 import secrets
 import shutil
+import socket
+import ssl
 import subprocess
 import threading
 import time
+import urllib.error
 import urllib.request
-from urllib.parse import urlsplit
+from urllib.parse import urlencode, urlsplit
 
 
 def file_handler(route, data):
@@ -62,14 +68,45 @@ def file_handler(route, data):
     return GuideHandler
 
 
-def verify_url(url, guide):
-    if urlsplit(url).scheme != "https":
+def read_tunnel_via_cloudflare(parts, limit):
+    # A new quick-tunnel name can be negatively cached by the Windows resolver.
+    host = parts.hostname
+    query = urlencode({"name":host, "type":"A"})
+    dns = urllib.request.Request("https://cloudflare-dns.com/dns-query?" + query,
+                                 headers={"Accept":"application/dns-json"})
+    with urllib.request.urlopen(dns, timeout=10) as response:
+        records = json.load(response)
+    address = next((a["data"] for a in records.get("Answer", [])
+                    if a["type"] == 1 and IPv4Address(a["data"]).is_global), None)
+    if not address:
+        raise OSError(f"Cloudflare DNS has no public A record yet (status {records.get('Status')})")
+    # Pin only the connection address. TLS still validates the tunnel's original hostname.
+    context = ssl.create_default_context()
+    with closing(HTTPSConnection(host, timeout=12, context=context)) as client:
+        with socket.create_connection((address, 443), timeout=12) as tcp:
+            client.sock = context.wrap_socket(tcp, server_hostname=host)
+            client.request("GET", parts.path)
+            with client.getresponse() as response:
+                if response.status != 200:
+                    raise OSError(f"Cloudflare returned HTTP {response.status} for the guide")
+                return response.read(limit)
+
+
+def verify_url(url, guide, *, quick_tunnel=False):
+    parts = urlsplit(url)
+    if parts.scheme != "https":
         raise ValueError("The video reference must have an HTTPS URL")
-    with urllib.request.urlopen(url, timeout=15) as response:
-        size = guide.stat().st_size
-        other = response.read(size+1)
-        if len(other) != size or hashlib.sha256(other).digest() != hashlib.sha256(guide.read_bytes()).digest():
-            raise ValueError("The HTTPS reference does not contain the exported guide MP4")
+    size = guide.stat().st_size
+    try:
+        with urllib.request.urlopen(url, timeout=15) as response:
+            other = response.read(size+1)
+    except urllib.error.URLError as error:
+        if (not quick_tunnel or not isinstance(error.reason, socket.gaierror)
+                or not re.fullmatch(r"[a-z0-9-]+\.trycloudflare\.com", parts.hostname or "")):
+            raise
+        other = read_tunnel_via_cloudflare(parts, size+1)
+    if len(other) != size or hashlib.sha256(other).digest() != hashlib.sha256(guide.read_bytes()).digest():
+        raise ValueError("The HTTPS reference does not contain the exported guide MP4")
 
 
 @contextmanager
@@ -103,14 +140,15 @@ def temporary_link(guide):
         if not origin:
             raise RuntimeError("Cloudflare exited before creating the temporary link")
         url = origin + route
-        for attempt in range(15):
+        deadline = time.monotonic() + 120
+        while True:
             try:
-                verify_url(url, guide)
+                verify_url(url, guide, quick_tunnel=True)
                 break
-            except (OSError, ValueError):
-                if attempt == 14:
-                    raise RuntimeError("The temporary HTTPS link did not serve the guide") from None
-                time.sleep(2)
+            except (OSError, ValueError) as error:
+                if time.monotonic() >= deadline:
+                    raise RuntimeError(f"The temporary HTTPS link did not serve the guide: {error}") from None
+                time.sleep(3)
         yield url
     finally:
         if tunnel is not None:

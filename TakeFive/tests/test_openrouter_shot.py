@@ -2,17 +2,56 @@ import json
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
 from pathlib import Path
+import socket
+import subprocess
 from tempfile import TemporaryDirectory
 from threading import Thread
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
+import urllib.error
+import numpy as np
 
 from steering.openrouter_client import CloudPlanner, LUNA
-from steering.openrouter_shot import ensure_job
-from steering.reference_link import file_handler
+from steering.openrouter_shot import edit_to_timeline, ensure_job
+from steering.reference_link import file_handler, verify_url
+from takefive.production import ffmpeg, probe
+from takefive.script import binary
 
 
 class OpenRouterShotTests(unittest.TestCase):
+    def test_provider_overrun_cuts_picture_and_sound_on_the_editor_frame(self):
+        with TemporaryDirectory() as work:
+            original, edit = (Path(work)/n for n in ("original.mp4", "edit.mp4"))
+            ffmpeg("-f", "lavfi", "-i", "testsrc2=size=96x64:rate=24:duration=1.167",
+                   "-f", "lavfi", "-i", "sine=frequency=400:duration=0.86,adelay=500:all=1", "-vf", "setpts=PTS+2",
+                   "-fps_mode:v", "passthrough", "-c:v", "libx264", "-c:a", "aac", original)
+            result = edit_to_timeline(original, edit, 1, probe(original))
+            self.assertEqual(result["frames"], 24)
+            self.assertAlmostEqual(result["source_video_start_seconds"], 2/24, delta=0.001)
+            for stream in probe(edit)["streams"]:
+                self.assertAlmostEqual(float(stream["start_time"]), 0, places=4)
+                self.assertAlmostEqual(float(stream["duration"]), 1, places=3)
+            samples = subprocess.check_output([binary("ffmpeg"), "-v", "error", "-i", str(edit), "-map", "0:a:0",
+                                               "-ac", "1", "-ar", "16000", "-f", "s16le", "pipe:1"])
+            onset = np.flatnonzero(np.abs(np.frombuffer(samples, dtype="<i2").astype(int)) > 500)[0] / 16000
+            self.assertAlmostEqual(onset, 0.5-result["source_video_start_seconds"], delta=0.01)
+
+    def test_quick_link_dns_recovery_still_checks_exact_video_bytes(self):
+        stale = urllib.error.URLError(socket.gaierror(11001, "unknown host"))
+        url = "https://example.trycloudflare.com/one/guide.mp4"
+        with TemporaryDirectory() as work:
+            guide = Path(work)/"guide.mp4"
+            guide.write_bytes(b"the guide")
+            with patch("steering.reference_link.urllib.request.urlopen", side_effect=stale), \
+                    patch("steering.reference_link.read_tunnel_via_cloudflare", return_value=guide.read_bytes()) as fetch:
+                verify_url(url, guide, quick_tunnel=True)
+                self.assertEqual(fetch.call_args.args[0].hostname, "example.trycloudflare.com")
+                fetch.return_value = b"wrong"
+                with self.assertRaisesRegex(ValueError, "exact|exported guide"):
+                    verify_url(url, guide, quick_tunnel=True)
+                with self.assertRaises(urllib.error.URLError):
+                    verify_url("https://example.org/guide.mp4", guide, quick_tunnel=True)
+
     def test_accepted_or_interrupted_submission_is_never_posted_twice(self):
         for interrupted in (False, True):
             with self.subTest(interrupted=interrupted), TemporaryDirectory() as work:
