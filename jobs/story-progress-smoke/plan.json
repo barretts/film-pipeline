@@ -1,0 +1,120 @@
+{
+  "status": "tested_failed_at_exit_gate",
+  "source_job": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03",
+  "preserve_opening": [
+    "shot-01-00",
+    "shot-01-01"
+  ],
+  "initial_state": {
+    "james": "inside_control_room",
+    "kate": "inside_control_room",
+    "event": "signal_recognized"
+  },
+  "generation": {
+    "frames": 124,
+    "fps": 24,
+    "seed": 2801,
+    "max_initial_renders": 3,
+    "max_changed_retries": 1,
+    "retry_rule": "Stop at first failed beat; at most one documented prompt/guide correction, never an unchanged blind retry."
+  },
+  "beats": [
+    {
+      "id": "exit",
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "inside_control_room",
+        "kate": "inside_control_room",
+        "event": "signal_recognized"
+      },
+      "action": "James leaves the console, crosses the open doorway and disappears into opaque blowing snow; Kate remains inside. Finish with James absent from view.",
+      "after": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "james_disappeared"
+      },
+      "on_screen_cast": [
+        "kate",
+        "james"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [],
+      "audio": "silence",
+      "acceptance": [
+        "James visibly crosses the threshold",
+        "James is absent at the end",
+        "Kate does not leave with him"
+      ]
+    },
+    {
+      "id": "recognition",
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "james_disappeared"
+      },
+      "action": "Kate looks through the snow-filled doorway and calls for James. No James in foreground, background, reflections or screen images.",
+      "after": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "loss_confirmed"
+      },
+      "on_screen_cast": [
+        "kate"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "James! No! The ice is humming right now."
+        }
+      ],
+      "audio": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03\\voices\\shot-03.wav",
+      "acceptance": [
+        "James stays absent throughout",
+        "Kate responds to his absence",
+        "Speech and lip sync remain intelligible"
+      ]
+    },
+    {
+      "id": "decision",
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "loss_confirmed"
+      },
+      "action": "Kate lifts the portable radio and secures its strap, then turns toward the exit with resolve. James remains missing.",
+      "after": {
+        "james": "missing_outside",
+        "kate": "ready_to_follow",
+        "event": "pursuit_decided"
+      },
+      "on_screen_cast": [
+        "kate"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "He is gone, but the signal found him. I must follow."
+        }
+      ],
+      "audio": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03\\voices\\shot-04.wav",
+      "acceptance": [
+        "Kate visibly readies the radio",
+        "James does not reappear",
+        "Ends on a new committed action, not another reaction close-up"
+      ]
+    }
+  ],
+  "promotion_gate": "User reviews the assembled opening plus three beats with audio; only then integrate or render a full episode.",
+  "gpu_lifecycle": "Check idle queues; stop Strata only for bounded media generation; always unload idle renderer models and run the verified restore path on success, failure or timeout; OMP continuation remains manual."
+}

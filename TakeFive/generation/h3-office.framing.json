@@ -1,0 +1,11 @@
+{
+  "manager": {
+    "for_take": "d2cf3c46d7207a20f111aa5659de6e60b72a1cf7d0ac641da0fb8caf2c1e3e97",
+    "crop": [0, 0.155, 0.76, 0.76],
+    "reaction_lead": {
+      "source_frame": 98,
+      "resume_frame": 34,
+      "blend_frames": 3
+    }
+  }
+}

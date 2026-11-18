@@ -1,0 +1,17 @@
+{
+  "frames": 672,
+  "seconds": 28.0,
+  "fps": 24,
+  "width": 1280,
+  "height": 720,
+  "audio": "aac",
+  "sample_rate": 48000,
+  "rendered_shots": [
+    "arrival",
+    "employee",
+    "manager",
+    "departure",
+    "street"
+  ],
+  "elapsed_seconds": 124.2
+}

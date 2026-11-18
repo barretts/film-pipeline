@@ -1,0 +1,96 @@
+{
+  "status": "rendered_visual_gates_passed_owner_review_pending",
+  "source_job": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03",
+  "preserve_opening": [
+    "shot-01-00",
+    "shot-01-01"
+  ],
+  "initial_state": {
+    "james": "inside_control_room",
+    "kate": "inside_control_room",
+    "event": "signal_recognized"
+  },
+  "generation": {
+    "frames": 124,
+    "fps": 24,
+    "seed": 2801,
+    "max_initial_renders": 2,
+    "max_changed_retries": 1,
+    "retry_rule": "Stop at first failed beat; at most one documented prompt/guide correction, never an unchanged blind retry."
+  },
+  "beats": [
+    {
+      "id": "recognition",
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "james_disappeared"
+      },
+      "action": "Deliberate cut to Kate ALONE inside the polar station, after James has left through the exterior door. Starting from the supplied frame, Kate raises her head and turns her gaze toward the off-screen exit on her left, calling for James in alarm. Keep a three-quarter view of her face so her mouth is visible; her attention stays on the exit, not the camera. No other person is visible anywhere. James is outside and must not appear in the room, background, doorway, reflection or screen. End with Kate looking toward the empty exit, having received no answer.",
+      "after": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "loss_confirmed"
+      },
+      "on_screen_cast": [
+        "kate"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "James! No! The ice is humming right now."
+        }
+      ],
+      "audio": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03\\voices\\shot-03.wav",
+      "acceptance": [
+        "Kate is the only visible person throughout",
+        "Kate visibly raises/turns her head and calls toward the off-screen exit",
+        "No James or new character appears",
+        "The supplied speech is present and not truncated"
+      ]
+    },
+    {
+      "id": "decision",
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "missing_outside",
+        "kate": "inside_control_room",
+        "event": "loss_confirmed"
+      },
+      "action": "Kate, still ALONE inside the station, decisively takes a small portable radio into her right hand, then turns her shoulders toward the off-screen exit on the left to leave. This is a new action after calling for James, not another search or surprised reaction. Keep her face and the radio visible in a fixed medium shot. No other person enters, and James remains outside off-screen. End with the radio visibly held and Kate committed to going after him.",
+      "after": {
+        "james": "missing_outside",
+        "kate": "ready_to_follow",
+        "event": "pursuit_decided"
+      },
+      "on_screen_cast": [
+        "kate"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [
+        {
+          "character": "kate",
+          "text": "He is gone, but the signal found him. I must follow."
+        }
+      ],
+      "audio": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03\\voices\\shot-04.wav",
+      "acceptance": [
+        "Kate stays alone throughout",
+        "A portable radio becomes visibly held",
+        "Kate turns toward leaving rather than returning to a searching reaction",
+        "The supplied speech is present and not truncated"
+      ]
+    }
+  ],
+  "promotion_gate": "Owner playback review of the assembled opening, reused exit, Kate-alone reaction and decision; no production integration before review.",
+  "gpu_lifecycle": "Check idle queues; stop Strata only for bounded media generation; always unload idle renderer models and run the verified restore path on success, failure or timeout; OMP continuation remains manual.",
+  "experiment": "planned_cut_after_exit",
+  "reused_exit": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2.mp4",
+  "first_guide": "F:\\film-pipeline\\jobs\\story-cut-smoke\\kate-alone-guide.png"
+}

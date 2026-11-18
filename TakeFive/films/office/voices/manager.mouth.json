@@ -1,0 +1,82 @@
+[
+  {
+    "start": 0.0,
+    "end": 0.03,
+    "value": "X"
+  },
+  {
+    "start": 0.03,
+    "end": 0.14,
+    "value": "E"
+  },
+  {
+    "start": 0.14,
+    "end": 0.21,
+    "value": "C"
+  },
+  {
+    "start": 0.21,
+    "end": 0.28,
+    "value": "E"
+  },
+  {
+    "start": 0.28,
+    "end": 0.35,
+    "value": "B"
+  },
+  {
+    "start": 0.35,
+    "end": 0.43,
+    "value": "A"
+  },
+  {
+    "start": 0.43,
+    "end": 0.65,
+    "value": "C"
+  },
+  {
+    "start": 0.65,
+    "end": 1.03,
+    "value": "B"
+  },
+  {
+    "start": 1.03,
+    "end": 1.15,
+    "value": "A"
+  },
+  {
+    "start": 1.15,
+    "end": 1.26,
+    "value": "C"
+  },
+  {
+    "start": 1.26,
+    "end": 1.47,
+    "value": "F"
+  },
+  {
+    "start": 1.47,
+    "end": 1.61,
+    "value": "B"
+  },
+  {
+    "start": 1.61,
+    "end": 1.68,
+    "value": "E"
+  },
+  {
+    "start": 1.68,
+    "end": 1.76,
+    "value": "A"
+  },
+  {
+    "start": 1.76,
+    "end": 2.0,
+    "value": "C"
+  },
+  {
+    "start": 2.0,
+    "end": 2.09,
+    "value": "X"
+  }
+]

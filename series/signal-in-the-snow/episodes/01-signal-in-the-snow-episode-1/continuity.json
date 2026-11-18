@@ -1,0 +1,10 @@
+{
+  "number": 1,
+  "ending_state": "Kate stands alone in the freezing control room, the radio crackling with James's location, pulling her toward the humming ice edge.",
+  "next_hook": "Episode 2: Kate ventures onto the shifting membrane, where the ice reveals a submerged structure and a voice calls out from beneath the crust.",
+  "final_frame": "F:\\film-pipeline\\series\\signal-in-the-snow\\episodes\\01-signal-in-the-snow-episode-1\\final-frame.png",
+  "cast_refs": {
+    "kate": "F:\\film-pipeline\\series\\characters\\kate\\portrait.png",
+    "james": "F:\\film-pipeline\\series\\characters\\james\\portrait.png"
+  }
+}

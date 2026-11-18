@@ -1,0 +1,11 @@
+{
+  "python": "C:/path/to/ltx-environment/Scripts/python.exe",
+  "checkpoint": "D:/models/ltx-2.5-distilled.safetensors",
+  "gemma": "D:/models/local-gemma-text-encoder",
+  "upscaler": "D:/models/ltx-2.5-spatial-upscaler.safetensors",
+  "layout_lora": "D:/models/ltx-2.5-22b-ic-lora-layout-to-render-1.0.safetensors",
+  "width": 1024,
+  "height": 576,
+  "seed": 7624,
+  "style": "Handcrafted stop-motion film. Warm daylight, painted timber and muted teal."
+}

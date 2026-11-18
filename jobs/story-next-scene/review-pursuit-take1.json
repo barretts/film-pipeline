@@ -1,0 +1,15 @@
+{
+  "decision": "approve",
+  "evidence": [
+    "Six-frame sheet and sixteen intermediate-frame audit show Kate as sole person",
+    "Exterior station and snow are visible",
+    "Black portable radio with long antenna remains carried",
+    "Kate walks away from the station into the snowy exterior, ending farther from the entrance",
+    "No return to indoor conversation or prior reaction beat"
+  ],
+  "limitations": [
+    "Snowfall/wind are less pronounced than the requested blizzard",
+    "Perceived identity, prop fidelity, motion and edit rhythm remain for owner playback review",
+    "Sampled frames are not an every-frame artifact guarantee"
+  ]
+}

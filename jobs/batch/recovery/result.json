@@ -1,0 +1,43 @@
+{
+  "status": "complete",
+  "elapsed_seconds": 18.83,
+  "existing_media_unchanged": true,
+  "sha256": {
+    "review\\assembled.mp4": "f9111ba915e093b65ee76671c5254819f762d4ab8af77e47912afb9b6274474b",
+    "segments\\shot-01-00.mp4": "912001efa3de7d2c1f1704accffb74bbcd8067b3ab055081ed2c811d3f85366a",
+    "segments\\shot-01-01.mp4": "21d992e5bc8f585d951cd36ea62f72aa06139e7c4cc01fdb0bbea3b129df27cf",
+    "segments\\shot-01-02.mp4": "05b2600a7f9f6dd6591860aaf86e8871def59f8410d4365e686362dc7c0a9583",
+    "segments\\shot-01-03.mp4": "577da6d2311bb2b67602d0cc1981834192c0e6b9fccb454a81d9eae341eb5b49",
+    "segments\\shot-01-04.mp4": "efa280de393d04b89201674eda5060893c9a9b04ad04d6f38d24a85999b67b04",
+    "segments\\shot-02-00.mp4": "62f57496a829a1e28588949ffe22d81553d23feb9b77d07faa39740acc2d8c9e",
+    "segments\\shot-02-01.mp4": "1374ce90a8b2b2cd16f668dd5d44460983fd7546e006c719bace901ff0974f8f",
+    "segments\\shot-02-02.mp4": "6baef8195137a3e320a6f51d3bd7b3f1ca2886dbef9ff38398b685967b5f2c40",
+    "segments\\shot-02-03.mp4": "deae18e307ddb3f641a9ef0cca6a7b4af2ffe897d2d654c2a01b2fb50f8d78e6",
+    "segments\\shot-03-00.mp4": "538d7b428c5d6128e6b3782c96b84132418fabbb42f28779c94d452238d63f1b",
+    "segments\\shot-03-01.mp4": "7ebf672fbcec94a20d376a42e13d5a79223db047b352246f8ac6659d70baa9ec",
+    "segments\\shot-04-00.mp4": "85829b16ae3597d47b7dbd0f751e13e502375c213ef35cd611b67c9b67a8346b",
+    "segments\\shot-04-01.mp4": "24ce14126283455af53d9055ff6c0f23a7d24f6548265705fc4c3b1b274312bc",
+    "segments\\shot-04-02.mp4": "c023a30b55603224fbace87a8026b49d9fd878be6076b57e3af1a1e80f3d2055"
+  },
+  "quality_flags": [
+    "shot-02: assembled narration may be missing, truncated or out of sync",
+    "shot-03: assembled narration may be missing, truncated or out of sync",
+    "shot-04: assembled narration may be missing, truncated or out of sync",
+    "shot-01-00.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-01-01.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-01-03.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-02-00.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-02-01.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-02-02.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-02-03.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-03-00.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-03-01.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-04-00.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-04-01.mp4: large visual change within shot; review character, clothing and scene consistency",
+    "shot-04-02.mp4: sampled frames appear unusually static; review motion"
+  ],
+  "continuity": "F:\\film-pipeline\\series\\signal-in-the-snow\\episodes\\01-signal-in-the-snow-episode-1\\continuity.json",
+  "continuity_frame_source": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03\\segments\\shot-04-02.mp4",
+  "tests": "96 local-film tests passed",
+  "rechecked_media_unchanged": true
+}

@@ -12,5 +12,5 @@
     "refs/frame-02.png",
     "refs/frame-03.png"
   ],
-  "ref_mode": "portrait-only"
+  "ref_mode": "orbit"
 }

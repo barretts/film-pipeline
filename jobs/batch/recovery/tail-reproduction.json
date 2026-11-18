@@ -1,0 +1,18 @@
+{
+  "command": [
+    "ffmpeg",
+    "-y",
+    "-v",
+    "warning",
+    "-sseof",
+    "-0.042",
+    "-i",
+    "local-film-jobs\\20261030-123636-7525ee03\\review\\assembled.mp4",
+    "-frames:v",
+    "1",
+    "jobs\\batch\\recovery\\original-seek.png"
+  ],
+  "exit": 0,
+  "output_exists": false,
+  "stderr": "[vf#0:0 @ 000002110889f6c0] No filtered frames for output stream, trying to initialize anyway.\n[out#0/image2 @ 00000211088880c0] Output file is empty, nothing was encoded(check -ss / -t / -frames parameters if used)\n"
+}

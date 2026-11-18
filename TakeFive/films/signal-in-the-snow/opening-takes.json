@@ -1,0 +1,43 @@
+{
+  "kateRecognition": {
+    "key": "7ab563200ab34ef047b96fef5727c3c24cd9f877ec8aa8eade47bce41b2f0ac4",
+    "sha256": "ba65e50e19ae01d9d146725004c866fefdae77029c7ba82e033d6cb70724c8ec",
+    "references": {
+      "kate": "74b4822e7d552f9a9ddd70825467a3efc1a3a7bff8a047df8e4bef0c1f41dfa9",
+      "radioWarning": "0d47c4b37a991e65d7b93cb57360a42acb178cf45080ad0589f1cec46d093eca",
+      "station": "a6d692c10caad681465183f7d35cdf02915d4cebbcd4e2310622bfc9adfe8008"
+    }
+  },
+  "doorLatch": {
+    "key": "6c07da4400ab49c6025c4ec379d9d9bcfa92d80038651ee9cf39f48fa623a0a3",
+    "sha256": "c97c7bab8d1f182eeec7f8675f0ea11eb445a8be57ad34186130d340eafb8461",
+    "references": {
+      "doorDetail": "7c427c2972ed1880d16438ef4b1532a665f2caad23c05de2100cf31ac9bdfebe",
+      "jamesChoice": "8b749729755a7415c64d61e36e4890ad54893403c6372446224a7019fd4fe5fe"
+    }
+  },
+  "emptyDoorway": {
+    "key": "2ba46231e6280ac7a21afb218ca32025d9e88da544024464be7d012859bfad94",
+    "sha256": "891632e31e6a5a390267bb55b20eb28c55425344b1332dbea3a4d14f6b4ddff0",
+    "references": {
+      "doorDetail": "7c427c2972ed1880d16438ef4b1532a665f2caad23c05de2100cf31ac9bdfebe",
+      "radioWarning": "0d47c4b37a991e65d7b93cb57360a42acb178cf45080ad0589f1cec46d093eca"
+    }
+  },
+  "kateAlone": {
+    "key": "ab96792614a2ec34f2885714012714a86697201c2c5321974d862ffb8d3c3d3e",
+    "sha256": "b57aa2dcf1806a636ed2ebcc59d1c8eed2537e924d760669170e64e3fbc01e0a",
+    "references": {
+      "kateRecognition": "ba65e50e19ae01d9d146725004c866fefdae77029c7ba82e033d6cb70724c8ec",
+      "station": "a6d692c10caad681465183f7d35cdf02915d4cebbcd4e2310622bfc9adfe8008"
+    }
+  },
+  "warningReturns": {
+    "key": "3d40701a0a4ab9105767970c62ed4848286bbd11c255ef694c2369e95e72094d",
+    "sha256": "0242ede4384f98af741a5bc073b838613f28eba347798d0169ba03831218150d",
+    "references": {
+      "kateRecognition": "ba65e50e19ae01d9d146725004c866fefdae77029c7ba82e033d6cb70724c8ec",
+      "radioWarning": "0d47c4b37a991e65d7b93cb57360a42acb178cf45080ad0589f1cec46d093eca"
+    }
+  }
+}

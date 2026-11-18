@@ -1,0 +1,13 @@
+{
+  "frames": 672,
+  "seconds": 28.0,
+  "fps": 24,
+  "width": 1280,
+  "height": 720,
+  "audio": "aac",
+  "sample_rate": 48000,
+  "rendered_shots": [
+    "manager"
+  ],
+  "elapsed_seconds": 54.5
+}

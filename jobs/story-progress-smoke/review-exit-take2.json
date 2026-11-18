@@ -1,0 +1,14 @@
+{
+  "decision": "reject",
+  "reason": "James crosses the exterior threshold into snow and Kate stays inside, but James remains clearly visible at the end. Opaque-whiteout disappearance was not achieved; one changed retry has been used.",
+  "observed_passes": [
+    "Exterior snow replaces interior corridor",
+    "James moves away through threshold",
+    "Kate remains inside"
+  ],
+  "observed_failures": [
+    "James remains visible through final sampled frame",
+    "Camera ends with a posed close-up of Kate rather than sustained attention to the loss"
+  ],
+  "next_beats": "not_rendered"
+}

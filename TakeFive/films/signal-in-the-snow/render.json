@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "renderer": "Signal in the Snow audio edit",
+  "width": 1280,
+  "timing": {
+    "fps": 24,
+    "rate": 48000,
+    "starts": [
+      0,
+      120,
+      240,
+      360,
+      480,
+      600,
+      744
+    ],
+    "lengths": [
+      120,
+      120,
+      120,
+      120,
+      120,
+      144,
+      168
+    ],
+    "frames": 912
+  },
+  "shot_keys": {}
+}

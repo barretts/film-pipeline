@@ -1,0 +1,36 @@
+{
+  "format": 1,
+  "renderer": "Blender Workbench",
+  "width": 1280,
+  "timing": {
+    "fps": 24,
+    "rate": 48000,
+    "starts": [
+      0,
+      120,
+      240,
+      432,
+      552
+    ],
+    "lengths": [
+      120,
+      120,
+      192,
+      120,
+      120
+    ],
+    "frames": 672,
+    "speech_samples": {
+      "employee": 349987,
+      "manager": 552000
+    },
+    "bridge_seconds": 0.95
+  },
+  "shot_keys": {
+    "arrival": "250d2af1e2877e83e61ae87e4bd6b1968f9b42a99aff8532504876598d5a3275",
+    "employee": "7630e0a3d4992a7a4e40d7303307e669c9f9d77655fc503e39b68306ecc37b6b",
+    "manager": "fbf524e90dcf7289b2c92e6b7855bf6d4f2c35e8054067466e858e26aef7258a",
+    "departure": "913ccc351a72f17d8c3ac6fdf08266ed4a0425eed7265df621544f944737401a",
+    "street": "b8f8a0970105495db7e5478a85e3f5010db5f91b636d270d3462f545fcbaf32d"
+  }
+}

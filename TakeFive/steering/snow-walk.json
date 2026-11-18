@@ -1,0 +1,10 @@
+{
+  "actor": "james",
+  "camera": "wide",
+  "from_mark": "radio",
+  "to_mark": "exit",
+  "start_frame": 6,
+  "arrive_frame": 72,
+  "description": "A locked-off wide side view. The technician walks across the floor from the radio console at screen left toward the closed door at screen right. He remains in full-body profile. His weight shifts naturally from boot to boot.",
+  "keyframes": [{"frame": 49, "direction": "Keep his mid-stride pose and the exact frame composition. Give him a distinctive mustard-yellow ribbed wool beanie."}]
+}

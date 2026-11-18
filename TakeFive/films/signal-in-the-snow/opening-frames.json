@@ -1,0 +1,25 @@
+{
+  "width": 1024, "height": 576,
+  "shots": {
+    "kateRecognition": {
+      "seed": 73511, "references": ["kate", "radioWarning", "station"],
+      "prompt": "Live-action still from a realistic Antarctic radio-station drama. Single medium close-up of the exact silver-streaked, short-haired older woman in reference one, seated at the wooden radio desk in references two and three. She wears her navy wool jacket, cream sweater and brass ring on a lanyard. Her lined face is fully visible, lips resting together, eyes directed down toward the receiver just outside the lower left edge. Frame her slightly right of center in a three-quarter view looking camera-left. The frosted steel-framed window gives cool blue fill; the desk lamp gives warm side light. The compact vintage black radio, with amber dial, just enters the lower left foreground. Only one person. Cinematic landscape photograph, ordinary proportions, clean frame, no writing over the image."
+    },
+    "doorLatch": {
+      "seed": 73512, "references": ["doorDetail", "jamesChoice"],
+      "prompt": "Cut to a tightly framed photographic action insert of the same closed blue-grey steel polar-station door as reference one. Fill the entire landscape frame with the worn metal door, its vertical seam and its simple horizontal silver lever handle. A SINGLE black insulated glove and the forearm in an orange-red polar survival sleeve enter from the left. The gloved fingers are poised just above the handle, about to take it. The rest of the man in reference two is completely outside the crop. Close, tactile 50 mm film photography. Cool interior light and the same amber practical highlight glancing along the metal. Sharp handle and knuckles. No faces, no graphics, no titles."
+    },
+    "emptyDoorway": {
+      "seed": 73513, "references": ["doorDetail", "radioWarning"],
+      "prompt": "Live-action empty doorway at the same polar radio station. Camera inside the blue-grey metal cabin looking squarely out through a fully OPEN human-sized steel exterior door. The dark blue-grey door leaf with its silver lever is swung aside against the RIGHT jamb. The open aperture and threshold, clearly framed by two vertical jambs and lintel, reveal wind-driven powder blowing across a bright empty snowfield fading into white. Bare scuffed linoleum in the near foreground. The cool painted steel and faint amber interior lamp glow are from the reference photographs. This is a wide view of the doorway, with the snow visible all the way to the ground, not a window. Entirely unoccupied on both sides. Still from a grounded, realistic film."
+    },
+    "kateAlone": {
+      "seed": 73514, "references": ["kateRecognition", "station"],
+      "prompt": "A reverse angle on the SAME seated woman from reference one, her same short silver-streaked hair, navy work jacket, cream sweater and brass pendant in the same polar radio room. Single medium shot from near the radio desk, chest and face in view. Instead of studying the receiver she has just looked toward the unoccupied doorway off frame to her LEFT, anxious but restrained. One seated woman only, lips at rest, no reflection of anyone else. Warm practical desk light on her cheek against an icy blue frosted window, scuffed steel walls and the same wooden desktop. Match her age, face, hair and clothes. Live-action photograph, no text."
+    },
+    "warningReturns": {
+      "seed": 73515, "references": ["kateRecognition", "radioWarning"],
+      "prompt": "Intimate live-action close-up at the very same polar station. Keep exactly the woman's face, short grey-streaked hair, cream sweater and navy jacket from the first reference. In three-quarter profile facing left, Kate sits beside the old black radio with the glowing amber tuning window from the second reference. The black gooseneck desk microphone is close to her mouth but her mouth, nose and chin remain completely visible. Her hand rests beside the transmit key on the wooden desk. Keep both her face and the familiar microphone in one composition. A warm lamp rim against cold frosted blue glass. She is alone and her lips are gently together. Natural photographic lighting, realistic texture, no captions."
+    }
+  }
+}

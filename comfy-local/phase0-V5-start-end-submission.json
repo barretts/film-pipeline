@@ -1,0 +1,421 @@
+{
+  "phase": "submitted",
+  "created": 1794737810.945304,
+  "seed": 5002,
+  "frames": 124,
+  "variant": "V5-start-end",
+  "mode": "start_end",
+  "guide": "jobs/phase0-rigid-llm/guide/p0-b1-guide.mp4",
+  "cap": 22,
+  "bridge_alpha": 0.15,
+  "denoise": null,
+  "steps": null,
+  "prompt": "<Video 1> is an untextured basic-shape 3D blockout. Follow its exact camera movement, framing, timing, object placement, and animation while transforming the basic shapes into the polar station radio room from the reference images.\n\n<Picture 1> is Kate, a woman in her late forties with short silver-streaked brown hair, navy wool work jacket over a cream sweater, brass ring on a lanyard. <Picture 2> is James, a man in his late twenties, dark curly hair under an ear-flap hat, orange-red survival suit over thermal layers.\n\nUse these designs for the people in the scene, matching them to the blockout figures by position and action. The blockout figures are uncolored, so do not use color to identify them. Preserve their faces, outfits, proportions, and accessories. Do not display any labels.\n\nJames enters through the door at frame left and walks across the room to Kate, seated at the radio desk at frame right. The camera dollies right, tracking James, keeping him centre frame. Kate turns her head toward him as he arrives in the last 1.5 seconds. James stops beside the desk.\n\nMaintain the reference images' realistic style and the warm lamp light from the right with cool snow fill from the window. Keep both characters and the room visually consistent throughout.\n\nPreserve the blockout's camera movement and all other actions. Do not introduce additional characters, camera moves, cuts, or unrelated actions.",
+  "take": "phase0/V5-start-end",
+  "graph": {
+    "142": {
+      "class_type": "ImageResizeKJv2",
+      "inputs": {
+        "image": [
+          "162",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "upscale_method": "lanczos",
+        "keep_proportion": "crop",
+        "pad_color": "0, 0, 0",
+        "crop_position": "center",
+        "divisible_by": 32,
+        "device": "cpu"
+      }
+    },
+    "128": {
+      "class_type": "DiffusionModelLoaderKJ",
+      "inputs": {
+        "model_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default",
+        "compute_dtype": "default",
+        "patch_cublaslinear": false,
+        "sage_attention": "disabled",
+        "enable_fp16_accumulation": false
+      }
+    },
+    "13": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "11": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    "24": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    "157": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "length": 124,
+        "ref_image_size": "match",
+        "ref_images.ref_image_0": [
+          "170",
+          0
+        ],
+        "ref_images.ref_image_1": [
+          "171",
+          0
+        ],
+        "prompt": "<Video 1> is an untextured basic-shape 3D blockout. Follow its exact camera movement, framing, timing, object placement, and animation while transforming the basic shapes into the polar station radio room from the reference images.\n\n<Picture 1> is Kate, a woman in her late forties with short silver-streaked brown hair, navy wool work jacket over a cream sweater, brass ring on a lanyard. <Picture 2> is James, a man in his late twenties, dark curly hair under an ear-flap hat, orange-red survival suit over thermal layers.\n\nUse these designs for the people in the scene, matching them to the blockout figures by position and action. The blockout figures are uncolored, so do not use color to identify them. Preserve their faces, outfits, proportions, and accessories. Do not display any labels.\n\nJames enters through the door at frame left and walks across the room to Kate, seated at the radio desk at frame right. The camera dollies right, tracking James, keeping him centre frame. Kate turns her head toward him as he arrives in the last 1.5 seconds. James stops beside the desk.\n\nMaintain the reference images' realistic style and the warm lamp light from the right with cool snow fill from the window. Keep both characters and the room visually consistent throughout.\n\nPreserve the blockout's camera movement and all other actions. Do not introduce additional characters, camera moves, cuts, or unrelated actions."
+      }
+    },
+    "154": {
+      "class_type": "LoraLoaderModelOnly",
+      "inputs": {
+        "model": [
+          "128",
+          0
+        ],
+        "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+        "strength_model": 1.0
+      }
+    },
+    "159": {
+      "class_type": "Ref2VAVSAGatePatch",
+      "inputs": {
+        "model": [
+          "154",
+          0
+        ],
+        "gate_file": "fasth3_vsa_gate.safetensors",
+        "sparsity": 0.75
+      }
+    },
+    "158": {
+      "class_type": "MiniMaxH3SigmaShift",
+      "inputs": {
+        "model": [
+          "159",
+          0
+        ],
+        "shift_video": 6.0,
+        "shift_audio": 3.0
+      }
+    },
+    "9": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "scheduler": "sgm_uniform",
+        "steps": 4,
+        "denoise": 1.0
+      }
+    },
+    "149": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "19",
+          3
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "150": {
+      "class_type": "RAMCleanup",
+      "inputs": {
+        "anything": [
+          "149",
+          0
+        ],
+        "clean_file_cache": false,
+        "clean_processes": false,
+        "clean_dlls": false,
+        "retry_times": 3
+      }
+    },
+    "16": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "conditioning": [
+          "150",
+          0
+        ]
+      }
+    },
+    "156": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "er_sde"
+      }
+    },
+    "130": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 5002
+      }
+    },
+    "14": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "130",
+          0
+        ],
+        "guider": [
+          "16",
+          0
+        ],
+        "sampler": [
+          "156",
+          0
+        ],
+        "sigmas": [
+          "9",
+          0
+        ],
+        "latent_image": [
+          "19",
+          0
+        ]
+      }
+    },
+    "10": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ]
+      }
+    },
+    "139": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "14",
+          0
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "23": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "139",
+          0
+        ],
+        "vae": [
+          "24",
+          0
+        ]
+      }
+    },
+    "136": {
+      "class_type": "VHS_VideoCombine",
+      "inputs": {
+        "images": [
+          "10",
+          0
+        ],
+        "audio": [
+          "19",
+          1
+        ],
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "phase0/V5-start-end",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true
+      }
+    },
+    "18": {
+      "class_type": "LoadAudio",
+      "inputs": {
+        "audio": "phase0-b1-silence.wav"
+      }
+    },
+    "19": {
+      "class_type": "LCH3AudioSync",
+      "inputs": {
+        "latent": [
+          "157",
+          1
+        ],
+        "positive": [
+          "164",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "audio": [
+          "18",
+          0
+        ],
+        "start_seconds": 0.0,
+        "when_short": "silence"
+      }
+    },
+    "170": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "phase0-b1-kate.png"
+      }
+    },
+    "171": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "phase0-b1-james.png"
+      }
+    },
+    "160": {
+      "class_type": "SenseNovaH3DistilledBridge",
+      "inputs": {
+        "conditioning": [
+          "157",
+          0
+        ],
+        "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+        "alpha": 0.15,
+        "magnitude_match": "per_token"
+      }
+    },
+    "162": {
+      "class_type": "VHS_LoadVideo",
+      "inputs": {
+        "video": "lane-b-V5-start-end-guide.mp4",
+        "force_rate": 24,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 1,
+        "skip_first_frames": 0,
+        "select_every_nth": 1,
+        "format": "H3"
+      }
+    },
+    "163": {
+      "class_type": "MiniMaxH3AddGuide",
+      "inputs": {
+        "positive": [
+          "160",
+          0
+        ],
+        "latent": [
+          "157",
+          1
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "image": [
+          "142",
+          0
+        ],
+        "frame_idx": 0
+      }
+    },
+    "165": {
+      "class_type": "VHS_LoadVideo",
+      "inputs": {
+        "video": "lane-b-V5-start-end-guide.mp4",
+        "force_rate": 24,
+        "custom_width": 0,
+        "custom_height": 0,
+        "frame_load_cap": 1,
+        "skip_first_frames": 123,
+        "select_every_nth": 1,
+        "format": "H3"
+      }
+    },
+    "143": {
+      "class_type": "ImageResizeKJv2",
+      "inputs": {
+        "image": [
+          "165",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "upscale_method": "lanczos",
+        "keep_proportion": "crop",
+        "pad_color": "0, 0, 0",
+        "crop_position": "center",
+        "divisible_by": 32,
+        "device": "cpu"
+      }
+    },
+    "164": {
+      "class_type": "MiniMaxH3AddGuide",
+      "inputs": {
+        "positive": [
+          "163",
+          0
+        ],
+        "latent": [
+          "157",
+          1
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "image": [
+          "143",
+          0
+        ],
+        "frame_idx": 123
+      }
+    }
+  },
+  "prompt_id": "c94d2583-4278-46ef-8492-157b6c92ffde",
+  "submit_seconds": 0.1529092788696289,
+  "response": {
+    "prompt_id": "c94d2583-4278-46ef-8492-157b6c92ffde",
+    "number": 1,
+    "node_errors": {}
+  }
+}

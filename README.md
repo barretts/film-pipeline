@@ -1,5 +1,11 @@
 # Local film pipeline
 
+## CPU-only short-film workflow
+
+The active work track is the local **Signal in the Snow** short. See [CPU_FILM_WORKFLOW.md](CPU_FILM_WORKFLOW.md) for its Toonflow node, local model, timed animatic, reviews, API and CLI. Start with `.\.venv\Scripts\python.exe tools/start_cpu_film.py`. This entry point leaves GPU services alone; real shot generation is deferred.
+
+The original promo brief and previous series/media remain available below.
+
 Build and run a film on this Windows PC. The current target is the personal Unsloth Studio promo in `brief.md`; the same workflow should also work with a different brief. Coding and media-model inference must run locally. Internet access is allowed for setup, model downloads, and research.
 
 Start with [START_HERE.md](START_HERE.md), then read [STATUS.md](STATUS.md) and [handoff.md](handoff.md). Those files describe what has actually been done and the exact next action. `CONTEXT.md` holds the constraints, `TOOLS.md` the verified interfaces, and `MODELS.md` the measured model choices.

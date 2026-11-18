@@ -1,5 +1,17 @@
 ﻿# Status
 
+## Owner stop - 2026-11-17
+
+The owner requested killing Python processes and explicitly said not to restart. Verified Python process count after shutdown: zero; GPU memory: 832 MiB / 16380 MiB. ComfyUI, the film review backend, Studio, Strata Python processes and the OMP Python runner were stopped. Do not restart services or resume rendering without a new owner instruction. Both initial pilots are saved. The owner approved James and authorized a locked-first-frame radio retry, but that retry was not started and the latest take-review decisions were not yet recorded in the project database. Preserve the existing prompt IDs and outputs if later resumed.
+
+## GPU launch staging — 2026-11-17
+
+GPU phase authorized and running. Local FLUX.2-klein generated the radio setting and James frame; the owner approved the radio candidate 1 and corrected James candidate 2, and approved running both pilots. Bindings and authentic Studio call evidence are saved under `film-projects/gpuLaunch/signal-20261117/execution-1/`. All 24 required live ComfyUI node classes and model choices passed preflight. James's five-second landscape speech pilot is running as prompt `8698d13b-868c-4980-a91b-a2e001c7cae7`; observed GPU use reached 100% and 15487 MiB. Radio action pilot follows sequentially. No video take is approved yet. The earlier CPU-only restriction below is superseded for this owner-authorized GPU phase.
+
+## CPU short-film track — 2026-11-17
+
+CPU-only implementation and checks complete: durable project API/worker, local writer/voices, timing animatic, Toonflow node/tool, software assembly, immutable image review and a separate opt-in rendering/recovery worker tested with fakes. **219 guarded tests pass**; builds/types, installed-plugin hashes, actual account-free CPU agent/tool paths and the software-rendered review UI pass. The owner approved **Signal in the Snow** story/timing. The real project is revision **10**, `awaiting-gpu`, with two prepared requests and **zero submitted/rendered takes**. Required generated images, real GPU pilots and take/final-film reviews remain. See [CPU_FILM_WORKFLOW.md](CPU_FILM_WORKFLOW.md) and [the checkpoint](docs/handoff/cpuFilmSession.md). GPU residency/services remain untouched.
+
 Updated 2026-10-27. `handoff.md` is the current resume point. Outcomes are not complete until their evidence is recorded and, where requested, reviewed.
 
 | Outcome | State | Evidence / next step |

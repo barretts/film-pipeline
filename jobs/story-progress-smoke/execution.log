@@ -1,0 +1,19 @@
+15:05:09 Stopping Strata for bounded experiment
+15:05:31 Submitted story-progress-exit-take1
+15:10:45 Awaiting review: F:\film-pipeline\jobs\story-progress-smoke\review-exit-take1.json
+15:11:11 One changed retry: The door is an EXTERIOR polar-station exit. Beyond it is only a dense white blizzard, never another room or corridor. As the door opens, wind drives opaque white snow into the threshold. James, seen from behind in the orange-red survival suit, crosses outside once and is completely swallowed by the whiteout. Kate stays inside at the side of the doorway. End on Kate and the open snow-filled exit with no visible James. Do not turn Kate toward the camera for a posed close-up.
+15:11:11 Submitted story-progress-exit-take2
+15:15:44 Awaiting review: F:\film-pipeline\jobs\story-progress-smoke\review-exit-take2.json
+15:16:22 Story acceptance failed at exit: James crosses the exterior threshold into snow and Kate stays inside, but James remains clearly visible at the end. Opaque-whiteout disappearance was not achieved; one changed retry has been used.
+15:16:22 Restoring Strata
+15:19:13 Restore exit=0
+Traceback (most recent call last):
+  File "F:\film-pipeline\jobs\story-progress-smoke\run.py", line 108, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "F:\film-pipeline\jobs\story-progress-smoke\run.py", line 106, in main
+    if failure:raise failure
+               ^^^^^^^^^^^^^
+  File "F:\film-pipeline\jobs\story-progress-smoke\run.py", line 91, in main
+    raise RuntimeError('Story acceptance failed at '+beat['id']+': '+review.get('reason','review rejected'))
+RuntimeError: Story acceptance failed at exit: James crosses the exterior threshold into snow and Kate stays inside, but James remains clearly visible at the end. Opaque-whiteout disappearance was not achieved; one changed retry has been used.

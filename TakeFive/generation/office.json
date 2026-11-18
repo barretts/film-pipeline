@@ -1,0 +1,43 @@
+{
+  "camera_width": 1024,
+  "camera_height": 576,
+  "look_width": 768,
+  "seed": 7624,
+  "steps": 8,
+  "guide_strength": 0.65,
+  "style": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography.",
+  "employee": "A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt.",
+  "manager": "A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt.",
+  "setting": "A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk.",
+  "reference_crops": {
+    "employee": [0.37, 0.08, 0.34, 0.53],
+    "manager": [0.39, 0.09, 0.27, 0.47],
+    "arrival": [0.35, 0.05, 0.27, 0.22]
+  },
+  "opening_frames": {
+    "employee": {
+      "references": [],
+      "description": "Tight eye-level head-and-shoulders portrait, cropped at the upper chest. A single real human man in a rust jacket over a cream shirt, standing still in three-quarter profile looking toward screen RIGHT at his manager. His head fills the central half of the frame and his shoulders reach the bottom corners. His face is calm and his lips are together. The blue glass-panel door immediately behind him is softly out of focus. This is the employee's dialogue close-up."
+    },
+    "arrival": {
+      "source_start_frame": 30,
+      "references": ["employee", "manager"],
+      "description": "A single live-action photograph, a wide establishing shot from across the dispatch office. Exactly two people. At far left, one man in a rust work jacket and dark trousers is stepping in through an open blue street door, walking toward screen right, his full figure small in the frame. At far right one Black woman in a teal work shirt and round glasses sits behind her small wooden desk, watching him. A broad stretch of empty floor separates them. The door is on the LEFT wall. The desk, window blinds and seated woman occupy the RIGHT side."
+    },
+    "departure": {
+      "references": ["employee", "manager", "arrival"],
+      "description": "A wide full-body two-shot from across the same office. Exactly two people, separated by open floor. One man in a rust work jacket stands in profile at center-left, two paces from the closed blue street door on the far LEFT wall. One Black woman with a teal shirt and round glasses stays seated behind her wooden desk on the far RIGHT, beneath a window with blinds. Each person has their own distinct position. The camera sees the floor, shoes, desk and walls."
+    },
+    "street": {
+      "references": ["employee"],
+      "description": "An exterior street-level movie still of one pedestrian walking along a warehouse sidewalk. The only person is the dark-haired man in a rust work jacket, cream shirt and charcoal trousers, in left-facing profile, head to toe, already mid-stride toward the LEFT edge. Behind him on the RIGHT is the same blue glass-panel depot door with brass hardware in a cream and dark teal industrial facade. The building exterior and pavement fill the entire picture."
+    }
+  },
+  "shots": {
+    "arrival": "A wide view inside the dispatch office. The employee walks through the street door and approaches the seated manager at her desk. Both are silent.",
+    "employee": "Locked-off head-and-shoulders close-up. The same employee is already standing still, three-quarter profile looking just to screen right toward his manager. The camera and the size of his face stay fixed. He asks his question in a conversational voice with small natural head and jaw movements.",
+    "manager": "Medium close-up of the seated manager facing the employee off camera. She initially listens with her lips closed. She then gives her short answer, and settles back into attentive silence.",
+    "departure": "A wide view of the same office. The employee turns and walks through the street door. The manager remains seated behind her desk. Both are silent.",
+    "street": "From outside the same depot door, the employee is already walking away along the sidewalk. His stride continues smoothly past the door. His back gradually faces the camera."
+  }
+}

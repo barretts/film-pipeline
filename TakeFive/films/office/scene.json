@@ -1,0 +1,49 @@
+{
+  "format": 1,
+  "title": "Dispatch Office Interaction",
+  "door": "blue",
+  "cast": {
+    "employee": {
+      "name": "Eli",
+      "line": "The driver just pulled up. Do you want him out front or around back?",
+      "voice": "en_US-ryan-medium",
+      "coat": "rust"
+    },
+    "manager": {
+      "name": "Mara",
+      "line": "Around back. Bay two is open.",
+      "voice": "en_US-kristin-medium",
+      "coat": "teal"
+    }
+  },
+  "bridge": 0.95,
+  "reply_beat": 0.55,
+  "exit_crossing": 0.75,
+  "shots": [
+    {
+      "id": "arrival",
+      "seconds": 5,
+      "lens": 30
+    },
+    {
+      "id": "employee",
+      "seconds": 5,
+      "lens": 52
+    },
+    {
+      "id": "manager",
+      "seconds": 8,
+      "lens": 55
+    },
+    {
+      "id": "departure",
+      "seconds": 5,
+      "lens": 30
+    },
+    {
+      "id": "street",
+      "seconds": 5,
+      "lens": 34
+    }
+  ]
+}

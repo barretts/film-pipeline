@@ -1,0 +1,459 @@
+[32m[INFO][0m setup plugin alembic.autogenerate.schemas
+[32m[INFO][0m setup plugin alembic.autogenerate.tables
+[32m[INFO][0m setup plugin alembic.autogenerate.types
+[32m[INFO][0m setup plugin alembic.autogenerate.constraints
+[32m[INFO][0m setup plugin alembic.autogenerate.defaults
+[32m[INFO][0m setup plugin alembic.autogenerate.comments
+[32m[INFO][0m setup plugin alembic.ext.checkconstraint_byname
+[1m[33m[WARNING][0m On windows we are currently forcing single GPU mode in ComfyUI due to a Nvidia related issue, if you want to disable this use: --cuda-device all
+[32m[INFO][0m Setting base directory to: F:\film-pipeline\comfy-local
+[32m[INFO][0m Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend ascend: {'available': False, 'disabled': False, 'unavailable_reason': "torch-npu is not installed: No module named 'torch_npu'", 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend hip: {'available': False, 'disabled': False, 'unavailable_reason': 'PyTorch ROCm/HIP runtime not available', 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_embedding', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Checkpoint files will always be loaded safely.
+[32m[INFO][0m Total VRAM 16379 MB, total RAM 130953 MB
+[32m[INFO][0m pytorch version: 2.11.0+cu130
+[32m[INFO][0m Set vram state to: LOW_VRAM
+[32m[INFO][0m Device: cuda:0 NVIDIA GeForce RTX 4060 Ti : cudaMallocAsync
+[32m[INFO][0m Using async weight offloading with 2 streams
+[32m[INFO][0m Enabled pinned memory 52381.0
+[32m[INFO][0m Using pytorch attention
+[32m[INFO][0m aimdo: src-win/cuda-detour.c:38:INFO:aimdo_setup_hooks: installing 6 hooks
+[32m[INFO][0m aimdo: src/control.c:269:INFO:comfy-aimdo NVML pressure enabled
+[32m[INFO][0m aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 4060 Ti runtime_luid=00000000:00014cb4 dxgi_luid=00000000:00014cb4
+[32m[INFO][0m aimdo: src/control.c:284:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 4060 Ti (VRAM: 16379 MB)
+[32m[INFO][0m DynamicVRAM support detected and enabled
+[32m[INFO][0m Python version: 3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]
+[32m[INFO][0m ComfyUI version: 0.38.0
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[32m[INFO][0m comfyui-frontend-package version: 1.53.10
+[32m[INFO][0m comfyui-workflow-templates version: 0.11.74
+[32m[INFO][0m comfyui-embedded-docs version: 0.5.13
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m [Prompt Server] web root: E:\SwarmUI\setup\comfy-venv\Lib\site-packages\comfyui_frontend_package\static
+[32m[INFO][0m Asset seeder disabled
+[32m[INFO][0m No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+[1m[33m[WARNING][0m KJNodes: PatchTritonVAE node could not be imported. PatchTritonVAE will be unavailable.
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes\nodes\triton_vae.py", line 11, in <module>
+    import triton
+ModuleNotFoundError: No module named 'triton'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes\__init__.py", line 392, in <module>
+    from .nodes.triton_vae import PatchTritonVAE
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes\nodes\triton_vae.py", line 14, in <module>
+    raise ImportError("PatchTritonVAE requires triton (pip install triton, or triton-windows)") from e
+ImportError: PatchTritonVAE requires triton (pip install triton, or triton-windows)
+[32m[INFO][0m Skipping ComfyUI_LC_AV_nodes due to disable_all_custom_nodes and whitelist_custom_nodes
+[32m[INFO][0m 
+Import times for custom nodes:
+[32m[INFO][0m    0.0 seconds: F:\film-pipeline\comfy-local\custom_nodes\film_h3_audio
+[32m[INFO][0m    0.0 seconds: F:\film-pipeline\comfy-local\custom_nodes\Comfyui-Memory_Cleanup
+[32m[INFO][0m    0.0 seconds: F:\film-pipeline\comfy-local\custom_nodes\MiniMax_H3_Semantic_Bridge
+[32m[INFO][0m    0.0 seconds: F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-Ref2VA-VSA
+[32m[INFO][0m    0.1 seconds: F:\film-pipeline\comfy-local\custom_nodes\ComfyUI_Nvidia_VFX_Nodes
+[32m[INFO][0m    0.2 seconds: F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite
+[32m[INFO][0m    0.3 seconds: F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes
+[32m[INFO][0m 
+[32m[INFO][0m Context impl SQLiteImpl.
+[32m[INFO][0m Will assume non-transactional DDL.
+[32m[INFO][0m Using RAM pressure cache.
+[32m[INFO][0m Starting server
+
+[32m[INFO][0m To see the GUI go to: http://127.0.0.1:8191
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\film-pipeline\\comfy-local\\models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\film-pipeline\\comfy-local\\models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\film-pipeline\\comfy-local\\models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: float8_e4m3fn, asym_w4a8_int8, int8_tensorwise, convrot_w4a4, float8_e5m2, w6a8_int8 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\film-pipeline\\comfy-local\\models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[MiniMax H3 Semantic Bridge] Loaded adapter: MiniMaxH3_SemanticBridge_v1.safetensors
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+RAM清理完成 [25.3% → 25.3%, 释放: 12MB]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(2082, 6160, 414, 880, 880, 414) grid=(37, 22, 40) tiles=772 (172 prefix), rows=43390 -> 49408 padded
+  0%|          | 0/4 [00:55<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:55<02:45, 55.01s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:47<02:45, 55.01s/it]                                    50%|█████     | 2/4 [01:47<01:47, 53.67s/it] 75%|███████▌  | 3/4 [02:41<00:53, 53.93s/it]100%|██████████| 4/4 [03:35<00:00, 53.99s/it]100%|██████████| 4/4 [03:35<00:00, 53.81s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 340.68 seconds[0m
+[32m[INFO][0m got prompt
+[1m[33m[WARNING][0m Could not size cache entry frozenset({(0, frozenset({(0, 'VHS_LoadVideo'), (6, frozenset({(0, 'format'), (1, 'H3')})), (10, frozenset({(1, 'lane-b-V4-silhouette-guide.mp4'), (0, 'video')})), (3, frozenset({(0, 'custom_height'), (1, 0)})), (2, '162'), (9, frozenset({(1, 0), (0, 'skip_first_frames')})), (4, frozenset({(1, 0), (0, 'custom_width')})), (1, frozenset({(0, '137f44fb929ae2f7323bfc56e57c2b8127f4c0d112f0eeea1764ff7fa7a69ea4')})), (5, frozenset({(1, 24.0), (0, 'force_rate')})), (7, frozenset({(0, 'frame_load_cap'), (1, 22)})), (8, frozenset({(1, 1), (0, 'select_every_nth')}))}))}); evicting it first
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 232, in get_audio
+    res =  subprocess.run(args + ["-f", "f32le", "-"],
+                          capture_output=True, check=True)
+  File "C:\Users\barrett\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.EXE', '-i', 'F:\\film-pipeline\\comfy-local\\input\\lane-b-V4-silhouette-guide.mp4', '-t', '0.9166666666666666', '-f', 'f32le', '-']' returned non-zero exit status 4294967274.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 594, in ram_release
+    scan_list_for_ram_usage(cache_entry.outputs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 578, in scan_list_for_ram_usage
+    for output in outputs:
+                  ^^^^^^^
+  File "<frozen _collections_abc>", line 917, in __iter__
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 262, in __iter__
+    self._dict = get_audio(self.file, self.start_time, self.duration)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 237, in get_audio
+    raise Exception(f"VHS failed to extract audio from {file}:\n" \
+            + e.stderr.decode(*ENCODE_ARGS))
+Exception: VHS failed to extract audio from F:\film-pipeline\comfy-local\input\lane-b-V4-silhouette-guide.mp4:
+ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint --enable-whisper
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'F:\film-pipeline\comfy-local\input\lane-b-V4-silhouette-guide.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:05.17, start: 0.000000, bitrate: 93 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, unknown/bt709/iec61966-2-1, progressive), 1280x704 [SAR 1:1 DAR 20:11], 89 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Output #0, f32le, to 'pipe:':
+[out#0/f32le @ 0000015053747e80] Output file does not contain any stream
+Error opening output file -.
+Error opening output files: Invalid argument
+
+[1m[31m[ERROR][0m !!! Exception during processing !!! stack expects a non-empty TensorList
+[1m[31m[ERROR][0m Traceback (most recent call last):
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\execution.py", line 547, in execute
+    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\execution.py", line 352, in get_output_data
+    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\execution.py", line 326, in _async_map_node_over_list
+    await process_inputs(input_dict, i)
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\execution.py", line 314, in process_inputs
+    result = f(**inputs)
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes\nodes\image_nodes.py", line 3151, in resize
+    out_image, out_mask = _process_subbatch(image, mask, pad_left, pad_right, pad_top, pad_bottom)
+                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-KJNodes\nodes\image_nodes.py", line 3118, in _process_subbatch
+    out_image = common_upscale(out_image.movedim(-1,1), width, height, upscale_method, crop="disabled").movedim(1,-1)
+                ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy\utils.py", line 1131, in common_upscale
+    out = lanczos(s, width, height)
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy\utils.py", line 1104, in lanczos
+    result = torch.stack(images)
+RuntimeError: stack expects a non-empty TensorList
+
+[32m[INFO][0m [32mPrompt executed in 0.40 seconds[0m
+[32m[INFO][0m got prompt
+[1m[33m[WARNING][0m Could not size cache entry frozenset({(0, frozenset({(0, 'VHS_LoadVideo'), (6, frozenset({(0, 'format'), (1, 'H3')})), (3, frozenset({(0, 'custom_height'), (1, 0)})), (1, frozenset({(0, 'c2190c2226c2c55b9fbdb2214df9738ca0fe29904ab1d0b7730554e12387fc29')})), (4, frozenset({(1, 0), (0, 'custom_width')})), (9, frozenset({(0, 'skip_first_frames'), (1, 123)})), (10, frozenset({(0, 'video'), (1, 'lane-b-V5-start-end-guide.mp4')})), (2, '165'), (5, frozenset({(1, 24.0), (0, 'force_rate')})), (8, frozenset({(1, 1), (0, 'select_every_nth')})), (7, frozenset({(0, 'frame_load_cap'), (1, 1)}))}))}); evicting it first
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 232, in get_audio
+    res =  subprocess.run(args + ["-f", "f32le", "-"],
+                          capture_output=True, check=True)
+  File "C:\Users\barrett\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.EXE', '-i', 'F:\\film-pipeline\\comfy-local\\input\\lane-b-V5-start-end-guide.mp4', '-ss', '5.125', '-t', '0.041666666666666664', '-f', 'f32le', '-']' returned non-zero exit status 4294967274.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 594, in ram_release
+    scan_list_for_ram_usage(cache_entry.outputs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 578, in scan_list_for_ram_usage
+    for output in outputs:
+                  ^^^^^^^
+  File "<frozen _collections_abc>", line 917, in __iter__
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 262, in __iter__
+    self._dict = get_audio(self.file, self.start_time, self.duration)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 237, in get_audio
+    raise Exception(f"VHS failed to extract audio from {file}:\n" \
+            + e.stderr.decode(*ENCODE_ARGS))
+Exception: VHS failed to extract audio from F:\film-pipeline\comfy-local\input\lane-b-V5-start-end-guide.mp4:
+ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint --enable-whisper
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'F:\film-pipeline\comfy-local\input\lane-b-V5-start-end-guide.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:05.17, start: 0.000000, bitrate: 315 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, unknown/bt709/iec61966-2-1, progressive), 1280x704 [SAR 1:1 DAR 20:11], 311 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Output #0, f32le, to 'pipe:':
+[out#0/f32le @ 00000271c0e425c0] Output file does not contain any stream
+Error opening output file -.
+Error opening output files: Invalid argument
+
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+RAM清理完成 [30.9% → 30.9%, 释放: -12MB]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(2082, 880, 880, 414, 880, 880, 414) grid=(37, 22, 40) tiles=703 (103 prefix), rows=38990 -> 44992 padded
+  0%|          | 0/4 [00:48<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:48<02:26, 48.93s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:36<02:26, 48.93s/it]                                    50%|█████     | 2/4 [01:36<01:36, 48.50s/it] 75%|███████▌  | 3/4 [02:24<00:47, 47.44s/it]100%|██████████| 4/4 [03:11<00:00, 46.85s/it]100%|██████████| 4/4 [03:11<00:00, 47.82s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 259.72 seconds[0m
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+RAM清理完成 [32.3% → 32.3%, 释放: 30MB]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ]  0%|          | 0/4 [00:57<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:57<02:51, 57.05s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:52<02:51, 57.05s/it]                                    50%|█████     | 2/4 [01:52<01:52, 56.33s/it] 75%|███████▌  | 3/4 [02:48<00:56, 56.23s/it]100%|██████████| 4/4 [03:45<00:00, 56.37s/it]100%|██████████| 4/4 [03:45<00:00, 56.32s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 1, rogues: 0
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 310.42 seconds[0m
+[32m[INFO][0m got prompt
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[1m[33m[WARNING][0m Could not size cache entry frozenset({(0, frozenset({(0, 'VHS_LoadVideo'), (6, frozenset({(0, 'format'), (1, 'H3')})), (1, frozenset({(0, 'be32428ad81cc09abef31f524822e23f37046042d2ba9e6fda7a9e962f57b49d')})), (3, frozenset({(0, 'custom_height'), (1, 0)})), (2, '162'), (9, frozenset({(1, 0), (0, 'skip_first_frames')})), (4, frozenset({(1, 0), (0, 'custom_width')})), (10, frozenset({(1, 'lane-b-V3-room-only-guide.mp4'), (0, 'video')})), (5, frozenset({(1, 24.0), (0, 'force_rate')})), (7, frozenset({(0, 'frame_load_cap'), (1, 22)})), (8, frozenset({(1, 1), (0, 'select_every_nth')}))}))}); evicting it first
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 232, in get_audio
+    res =  subprocess.run(args + ["-f", "f32le", "-"],
+                          capture_output=True, check=True)
+  File "C:\Users\barrett\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.EXE', '-i', 'F:\\film-pipeline\\comfy-local\\input\\lane-b-V3-room-only-guide.mp4', '-t', '0.9166666666666666', '-f', 'f32le', '-']' returned non-zero exit status 4294967274.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 594, in ram_release
+    scan_list_for_ram_usage(cache_entry.outputs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 578, in scan_list_for_ram_usage
+    for output in outputs:
+                  ^^^^^^^
+  File "<frozen _collections_abc>", line 917, in __iter__
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 262, in __iter__
+    self._dict = get_audio(self.file, self.start_time, self.duration)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 237, in get_audio
+    raise Exception(f"VHS failed to extract audio from {file}:\n" \
+            + e.stderr.decode(*ENCODE_ARGS))
+Exception: VHS failed to extract audio from F:\film-pipeline\comfy-local\input\lane-b-V3-room-only-guide.mp4:
+ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint --enable-whisper
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'F:\film-pipeline\comfy-local\input\lane-b-V3-room-only-guide.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:05.17, start: 0.000000, bitrate: 267 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, unknown/bt709/iec61966-2-1, progressive), 1280x704 [SAR 1:1 DAR 20:11], 264 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Output #0, f32le, to 'pipe:':
+[out#0/f32le @ 0000021c1aa14740] Output file does not contain any stream
+Error opening output file -.
+Error opening output files: Invalid argument
+
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+RAM清理完成 [31.9% → 31.9%, 释放: -17MB]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(2082, 414, 880, 880, 414) grid=(37, 22, 40) tiles=675 (75 prefix), rows=37230 -> 43200 padded
+  0%|          | 0/4 [00:44<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:44<02:14, 44.87s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:26<02:14, 44.87s/it]                                    50%|█████     | 2/4 [01:26<01:26, 43.20s/it] 75%|███████▌  | 3/4 [02:09<00:43, 43.30s/it]100%|██████████| 4/4 [02:54<00:00, 44.46s/it]100%|██████████| 4/4 [02:54<00:00, 43.54s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 243.92 seconds[0m
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+RAM清理完成 [32.2% → 32.2%, 释放: 3MB]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ]  0%|          | 0/4 [00:58<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:58<02:56, 58.71s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:55<02:56, 58.71s/it]                                    50%|█████     | 2/4 [01:55<01:55, 57.77s/it] 75%|███████▌  | 3/4 [02:53<00:57, 57.73s/it]100%|██████████| 4/4 [03:51<00:00, 57.91s/it]100%|██████████| 4/4 [03:51<00:00, 57.80s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 1, rogues: 0
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 318.39 seconds[0m
+[32m[INFO][0m got prompt
+[1m[33m[WARNING][0m Could not size cache entry frozenset({(0, frozenset({(0, 'VHS_LoadVideo'), (10, frozenset({(1, 'lane-b-V12-edge-guide.mp4'), (0, 'video')})), (6, frozenset({(0, 'format'), (1, 'H3')})), (3, frozenset({(0, 'custom_height'), (1, 0)})), (2, '162'), (9, frozenset({(1, 0), (0, 'skip_first_frames')})), (4, frozenset({(1, 0), (0, 'custom_width')})), (1, frozenset({(0, '8cdc6e40374c90c652caa0493c4ff5f453bb3b629d1a785bdf73b1792b458fc1')})), (5, frozenset({(1, 24.0), (0, 'force_rate')})), (7, frozenset({(0, 'frame_load_cap'), (1, 22)})), (8, frozenset({(1, 1), (0, 'select_every_nth')}))}))}); evicting it first
+Traceback (most recent call last):
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 232, in get_audio
+    res =  subprocess.run(args + ["-f", "f32le", "-"],
+                          capture_output=True, check=True)
+  File "C:\Users\barrett\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\barrett\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-8.0.1-full_build\\bin\\ffmpeg.EXE', '-i', 'F:\\film-pipeline\\comfy-local\\input\\lane-b-V12-edge-guide.mp4', '-t', '0.9166666666666666', '-f', 'f32le', '-']' returned non-zero exit status 4294967274.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 594, in ram_release
+    scan_list_for_ram_usage(cache_entry.outputs)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 580, in scan_list_for_ram_usage
+    scan_list_for_ram_usage(output)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\SwarmUI\dlbackend\comfy\ComfyUI\comfy_execution\caching.py", line 578, in scan_list_for_ram_usage
+    for output in outputs:
+                  ^^^^^^^
+  File "<frozen _collections_abc>", line 917, in __iter__
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 262, in __iter__
+    self._dict = get_audio(self.file, self.start_time, self.duration)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\comfy-local\custom_nodes\ComfyUI-VideoHelperSuite\videohelpersuite\utils.py", line 237, in get_audio
+    raise Exception(f"VHS failed to extract audio from {file}:\n" \
+            + e.stderr.decode(*ENCODE_ARGS))
+Exception: VHS failed to extract audio from F:\film-pipeline\comfy-local\input\lane-b-V12-edge-guide.mp4:
+ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers
+  built with gcc 15.2.0 (Rev8, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-liblensfun --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-libshaderc --enable-vulkan --enable-libplacebo --enable-opencl --enable-libcdio --enable-openal --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libcodec2 --enable-libilbc --enable-libgsm --enable-liblc3 --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint --enable-whisper
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'F:\film-pipeline\comfy-local\input\lane-b-V12-edge-guide.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:05.17, start: 0.000000, bitrate: 217 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, unknown/bt709/iec61966-2-1, progressive), 1280x704 [SAR 1:1 DAR 20:11], 213 kb/s, 24 fps, 24 tbr, 12288 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Output #0, f32le, to 'pipe:':
+[out#0/f32le @ 0000013835da7f00] Output file does not contain any stream
+Error opening output file -.
+Error opening output files: Invalid argument
+
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: float8_e4m3fn, asym_w4a8_int8, int8_tensorwise, convrot_w4a4, float8_e5m2, w6a8_int8 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\film-pipeline\\comfy-local\\models\\diffusion_models\\minimax_h3_fl2va_pruned_fp8_scaled.safetensors']
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19983MB Staged. 208 patches attached. Force pre-loaded 360 weights: 1175 KB.
+VRAM清理完成 [卸载模型: True, 清空缓存: False]
+[LC H3 Audio Sync] Clip 5.88 s (141 frames), track 5.94 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/8 [00:00<?, ?it/s]  0%|          | 0/8 [00:00<?, ?it/s,   Model Initializing ...  ]  0%|          | 0/8 [01:36<?, ?it/s,  Model Initialization complete!  ] 12%|█▎        | 1/8 [01:36<11:14, 96.34s/it,  Model Initialization complete!  ] 12%|█▎        | 1/8 [02:54<11:14, 96.34s/it]                                    25%|██▌       | 2/8 [02:54<08:43, 87.25s/it] 38%|███▊      | 3/8 [04:21<07:14, 86.91s/it] 50%|█████     | 4/8 [05:48<05:47, 86.97s/it] 62%|██████▎   | 5/8 [07:15<04:20, 86.78s/it] 75%|███████▌  | 6/8 [08:42<02:54, 87.06s/it] 88%|████████▊ | 7/8 [10:09<01:27, 87.21s/it]100%|██████████| 8/8 [11:36<00:00, 86.76s/it]100%|██████████| 8/8 [11:36<00:00, 87.02s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 2, rogues: 0
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 00:13:11[0m

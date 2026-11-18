@@ -1,0 +1,15 @@
+{
+  "root_cause": "gpu_session bound the real subprocess.run as a default argument, bypassing runtime mocks in lifecycle tests",
+  "safe_reproduction": "mock-bypass-reproduction.json",
+  "fixes": [
+    "Resolve subprocess.run and sleep at call time",
+    "Cover shutdown and memory release with the restoration finally block"
+  ],
+  "before_tests": "regressions-before.log: 2 failed safely with process creation blocked",
+  "after_tests": "regressions-after.log: 2 passed",
+  "directing_suite": "directing-tests.log: 69 passed with a PowerShell process-creation firewall",
+  "strata": "Restored; health status ok and loaded true. Active request 73854 tokens advanced from 16913 to 25105.",
+  "restoration_probe": "Small automated probe may wait behind the active OMP request; health/progress checked independently",
+  "production_rendering": "none",
+  "changes": "Working-tree patch only; existing OMP changes preserved"
+}

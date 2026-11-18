@@ -1,0 +1,104 @@
+{
+  "managed_lifecycle": {
+    "render_calls": 1,
+    "subprocess_calls": 0,
+    "lock_calls": 0
+  },
+  "zero_retry_budget": {
+    "render_calls": 2,
+    "ledger": {
+      "initial_state": {
+        "james": "inside",
+        "kate": "inside"
+      },
+      "entries": [
+        {
+          "beat": "exit",
+          "take": 1,
+          "decision": "retry",
+          "correction": "changed camera",
+          "reason": ""
+        },
+        {
+          "beat": "exit",
+          "take": 2,
+          "decision": "approve",
+          "after": {
+            "james": "missing_offscreen",
+            "kate": "inside"
+          },
+          "cast_at_end": [
+            "james",
+            "kate"
+          ],
+          "evidence": []
+        }
+      ]
+    }
+  },
+  "previous_submission": {
+    "original_prompt_id": "original-prompt-id",
+    "new_submissions": [
+      "2e24897c-8826-4c7d-8ae3-760512f59c4c"
+    ],
+    "history_lookups": [
+      "2e24897c-8826-4c7d-8ae3-760512f59c4c"
+    ],
+    "persisted": "2e24897c-8826-4c7d-8ae3-760512f59c4c"
+  },
+  "departure_erasure": {
+    "validated": true,
+    "beats": [
+      {
+        "id": "exit",
+        "before": {
+          "james": "inside",
+          "kate": "inside"
+        },
+        "after": {
+          "james": "missing_offscreen",
+          "kate": "inside"
+        },
+        "on_screen_cast": [
+          "james",
+          "kate"
+        ],
+        "re_entry_cast": []
+      },
+      {
+        "id": "erase_departure",
+        "before": {
+          "james": "missing_offscreen",
+          "kate": "inside"
+        },
+        "after": {
+          "james": "inside",
+          "kate": "inside"
+        },
+        "on_screen_cast": [
+          "kate"
+        ],
+        "re_entry_cast": []
+      },
+      {
+        "id": "reappear",
+        "before": {
+          "james": "inside",
+          "kate": "inside"
+        },
+        "after": {
+          "james": "inside",
+          "kate": "inside"
+        },
+        "on_screen_cast": [
+          "kate",
+          "james"
+        ],
+        "re_entry_cast": []
+      }
+    ]
+  },
+  "resume_after_approval": {
+    "error": "exit: before state no longer matches the committed story state"
+  }
+}

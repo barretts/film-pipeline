@@ -165,9 +165,9 @@ def card_segments(plan,job,req,show,characters,segments):
  card_two=build_card(job,'end-card',('Next time: '+hook) if hook else f"{show['title']} — end",background if Path(background).is_file() else show_dir/'cards'/'title-bg.png',req['width'],req['height'])
  return [(card_one,2.0)]+list(segments)+[(card_two,2.0)]
 
-def save_continuity(job,episode_path,show_path,ending_state):
+def save_continuity(job,episode_path,show_path,ending_state,final_video=None):
  episode_dir=Path(episode_path);show_dir=Path(show_path);episode=load(episode_dir/'episode.json')
- final=episode_dir/'final-frame.png';extract_tail(Path(job)/'review'/'assembled.mp4',final)
+ final=episode_dir/'final-frame.png';extract_tail(Path(final_video) if final_video is not None else Path(job)/'review'/'assembled.mp4',final)
  cast=[]
  for shot in episode['shots']:
   for slug in shot['characters']:

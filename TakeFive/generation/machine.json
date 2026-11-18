@@ -1,0 +1,6 @@
+{
+  "comfy_directory": "runtime/comfyui",
+  "python": "runtime/inference-env/Scripts/python.exe",
+  "tested_comfy_version": "0.38.0",
+  "tested_comfy_commit": "65787d668397d230bf5839d69a0a7239e2dad378"
+}

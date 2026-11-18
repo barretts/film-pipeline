@@ -93,6 +93,13 @@ class SeriesContinuityTests(unittest.TestCase):
   self.assertEqual(series.last_continuity(self.root,'polar-night',3)['number'],2)
   self.assertEqual(series.last_continuity(self.root,'polar-night',2)['number'],1)
   self.assertEqual(series.last_continuity(self.root,'polar-night',1),{})
+ def test_continuity_uses_final_scene_instead_of_end_card(self):
+  episode_dir=self.root/'polar-night/episodes/01-first-light';episode_dir.mkdir(parents=True)
+  scene=self.job/'segments'/'shot-01-00.mp4';touch(scene)
+  episode={'number':1,'next_hook':'More follows.','shots':[{'characters':[]}]}
+  with patch.object(series,'load',return_value=episode),patch.object(series,'extract_tail') as extract:
+   series.save_continuity(self.job,episode_dir,self.root/'polar-night','The scene ends.',final_video=scene)
+  extract.assert_called_once_with(scene,episode_dir/'final-frame.png')
 
 class SeriesJobCreationTests(unittest.TestCase):
  def setUp(self):

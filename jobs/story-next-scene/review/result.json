@@ -1,0 +1,21 @@
+{
+  "status": "one_scene_added_owner_playback_pending",
+  "output": "F:\\film-pipeline\\jobs\\story-next-scene\\review\\assembled.mp4",
+  "duration_seconds": 31.0,
+  "approved_input": "F:\\film-pipeline\\jobs\\story-cut-smoke\\review\\assembled.mp4",
+  "approved_input_sha256": "59031f9ce1769456ead2c6bcb5eaa299828d4cab05b84324e8449220af15ba6c",
+  "approved_cut_audio_correlation": 0.9999866406727228,
+  "new_scene": "F:\\film-pipeline\\jobs\\story-next-scene\\story-next-pursuit-take1.mp4",
+  "new_scene_seconds": 5.166667,
+  "new_renders": 1,
+  "retries": 0,
+  "original_episode_media_unchanged": true,
+  "full_av_decode": "passed",
+  "limitations": [
+    "Snowfall/wind are less pronounced than the requested blizzard",
+    "Perceived identity, prop fidelity, motion and edit rhythm remain for owner playback review",
+    "Sampled frames are not an every-frame artifact guarantee"
+  ],
+  "production_integration": false,
+  "strata_restore_exit": 0
+}

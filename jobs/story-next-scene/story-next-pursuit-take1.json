@@ -1,0 +1,334 @@
+{
+  "beat": "pursuit",
+  "attempt": 1,
+  "prompt_id": "9de3dfdd-fae6-4840-b4e6-5d5040632a8b",
+  "status": "approved_sampled_review",
+  "graph": {
+    "5": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "story-next-pursuit-take1-guide.png"
+      }
+    },
+    "142": {
+      "class_type": "ImageResizeKJv2",
+      "inputs": {
+        "image": [
+          "5",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "upscale_method": "lanczos",
+        "keep_proportion": "crop",
+        "pad_color": "0, 0, 0",
+        "crop_position": "center",
+        "divisible_by": 32,
+        "device": "cpu"
+      }
+    },
+    "128": {
+      "class_type": "DiffusionModelLoaderKJ",
+      "inputs": {
+        "model_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default",
+        "compute_dtype": "default",
+        "patch_cublaslinear": false,
+        "sage_attention": "disabled",
+        "enable_fp16_accumulation": false
+      }
+    },
+    "13": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "11": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    "24": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    "157": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "length": 124,
+        "ref_image_size": "match",
+        "prompt": "subject_definitions:\n<Subject 1> is the Kate whose appearance comes from <Picture 1>: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.\n\nsummary: [reference generation] The target video follows <Subject 1>.\n\nretention_analysis:\n<Subject 1> (<Picture 1>): fully_preserved - the face, hair and clothing of <Subject 1> are retained (Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact.). Only the person comes from <Picture 1>; not the background.\n\ndetailed_description: Cold blue-white cinematic realism with warm lamp accents, 35mm grain.\n\nStarting story situation: {\"james\": \"missing_offscreen\", \"kate\": \"outside_station_with_radio\", \"event\": \"pursuit_begins\"}\nOne continuous shot. CUT TO EXTERIOR, just outside the same isolated polar research station at night in a blowing snowstorm. Only Kate is present. A static medium-wide three-quarter rear camera shows Kate full body and the station exterior entrance behind her. Kate has short silver-streaked brown hair, navy wool work jacket over a cream sweater and dark trousers, matching her established face and clothing. She already holds the same small black portable radio with long straight antenna in her right hand. Kate walks three deliberate steps AWAY from the station entrance into the snowy expanse, briefly checks the radio, then fixes her gaze forward toward the unseen signal. Cold blue-white night, one warm amber light at the station door behind her, snow driven sideways by wind. Keep the radio visibly carried as she advances. End farther from the station, body facing into the storm, committed to the pursuit. No talking, no other people, no return indoors, no retracing steps, no camera orbit or conversational close-up.\nRequired ending situation: {\"james\": \"missing_offscreen\", \"kate\": \"advancing_into_storm_with_radio\", \"event\": \"following_signal\"}\nPreserve faces and clothing, while allowing the specified movement and departure. The action happens once and completes within this clip. No reset to an earlier event. Silent physical action. Closed mouths, no dialogue, no speech or mimed conversation.\n\noverall_soundscape: minimal room tone.\n\nnon_diegetic_music: restrained strings bed",
+        "ref_images.ref_image_0": [
+          "170",
+          0
+        ]
+      }
+    },
+    "154": {
+      "class_type": "LoraLoaderModelOnly",
+      "inputs": {
+        "model": [
+          "128",
+          0
+        ],
+        "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+        "strength_model": 1.0
+      }
+    },
+    "159": {
+      "class_type": "Ref2VAVSAGatePatch",
+      "inputs": {
+        "model": [
+          "154",
+          0
+        ],
+        "gate_file": "fasth3_vsa_gate.safetensors",
+        "sparsity": 0.75
+      }
+    },
+    "158": {
+      "class_type": "MiniMaxH3SigmaShift",
+      "inputs": {
+        "model": [
+          "159",
+          0
+        ],
+        "shift_video": 6.0,
+        "shift_audio": 3.0
+      }
+    },
+    "9": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "scheduler": "sgm_uniform",
+        "steps": 4,
+        "denoise": 1.0
+      }
+    },
+    "149": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "19",
+          3
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "150": {
+      "class_type": "RAMCleanup",
+      "inputs": {
+        "anything": [
+          "149",
+          0
+        ],
+        "clean_file_cache": false,
+        "clean_processes": false,
+        "clean_dlls": false,
+        "retry_times": 3
+      }
+    },
+    "16": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "conditioning": [
+          "150",
+          0
+        ]
+      }
+    },
+    "156": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "er_sde"
+      }
+    },
+    "130": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 2801
+      }
+    },
+    "14": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "130",
+          0
+        ],
+        "guider": [
+          "16",
+          0
+        ],
+        "sampler": [
+          "156",
+          0
+        ],
+        "sigmas": [
+          "9",
+          0
+        ],
+        "latent_image": [
+          "19",
+          0
+        ]
+      }
+    },
+    "10": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ]
+      }
+    },
+    "139": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "14",
+          0
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "23": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "139",
+          0
+        ],
+        "vae": [
+          "24",
+          0
+        ]
+      }
+    },
+    "136": {
+      "class_type": "VHS_VideoCombine",
+      "inputs": {
+        "images": [
+          "10",
+          0
+        ],
+        "audio": [
+          "19",
+          1
+        ],
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "story-next-smoke/story-next-pursuit-take1",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true
+      }
+    },
+    "18": {
+      "class_type": "LoadAudio",
+      "inputs": {
+        "audio": "story-next-pursuit-take1.wav"
+      }
+    },
+    "19": {
+      "class_type": "LCH3AudioSync",
+      "inputs": {
+        "latent": [
+          "157",
+          1
+        ],
+        "positive": [
+          "160",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "audio": [
+          "18",
+          0
+        ],
+        "start_seconds": 0,
+        "when_short": "silence"
+      }
+    },
+    "160": {
+      "class_type": "SenseNovaH3DistilledBridge",
+      "inputs": {
+        "conditioning": [
+          "157",
+          0
+        ],
+        "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+        "alpha": 0.15,
+        "magnitude_match": "per_token"
+      }
+    },
+    "170": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "story-next-pursuit-take1-kate.png"
+      }
+    }
+  },
+  "guide": "F:\\film-pipeline\\jobs\\story-cut-smoke\\story-cut-decision-take1-tail.png",
+  "correction": "",
+  "output": "F:\\film-pipeline\\jobs\\story-next-scene\\story-next-pursuit-take1.mp4",
+  "tail": "F:\\film-pipeline\\jobs\\story-next-scene\\story-next-pursuit-take1-tail.png",
+  "sheet": "F:\\film-pipeline\\jobs\\story-next-scene\\story-next-pursuit-take1-sheet.jpg",
+  "review": {
+    "decision": "approve",
+    "evidence": [
+      "Six-frame sheet and sixteen intermediate-frame audit show Kate as sole person",
+      "Exterior station and snow are visible",
+      "Black portable radio with long antenna remains carried",
+      "Kate walks away from the station into the snowy exterior, ending farther from the entrance",
+      "No return to indoor conversation or prior reaction beat"
+    ],
+    "limitations": [
+      "Snowfall/wind are less pronounced than the requested blizzard",
+      "Perceived identity, prop fidelity, motion and edit rhythm remain for owner playback review",
+      "Sampled frames are not an every-frame artifact guarantee"
+    ]
+  }
+}

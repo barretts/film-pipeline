@@ -1,0 +1,1 @@
+{"compilerOptions":{"target":"ESNext","module":"Preserve","moduleResolution":"Bundler","strict":true,"noEmit":true,"skipLibCheck":true,"lib":["ESNext","DOM"],"types":["bun"],"allowImportingTsExtensions":true},"include":["filmClient.ts","filmProject/**/*.ts","filmProject/**/*.vue","filmProjectService/**/*.ts"]}

@@ -1,0 +1,19 @@
+{
+  "scope": "CPU design preflight only; no video generation or visual-quality validation",
+  "baseline": {
+    "spoken_seconds": 23.806,
+    "allocated_story_seconds": 60.0,
+    "padding_seconds": 36.194,
+    "identical_continuation_prompts": true
+  },
+  "candidate_state_chain": "pass",
+  "candidate_cast_absence": "pass",
+  "candidate_audio_fits": "pass",
+  "checked_beats": [
+    "exit",
+    "recognition",
+    "decision"
+  ],
+  "gpu_render": "not_run",
+  "user_playback_review": "pending"
+}

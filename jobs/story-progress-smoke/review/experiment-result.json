@@ -1,0 +1,15 @@
+{
+  "status": "failed_first_story_gate",
+  "preview": "F:\\film-pipeline\\jobs\\story-progress-smoke\\review\\assembled.mp4",
+  "preview_is_successful_sequence": false,
+  "renders": 2,
+  "changed_retries": 1,
+  "later_beats_rendered": false,
+  "reason": "James remains visible after walking outside; disappearance required by the gate was not achieved.",
+  "observed_improvement": "A distinct exit action replaces repetitive conversation; the changed prompt corrected corridor to snowy exterior.",
+  "next_experiment": "Test a planned cut from James entering the whiteout to a separately composed Kate-only reaction; require a verified absent-character ending before proceeding.",
+  "source_episode_media_unchanged": true,
+  "preview_duration_seconds": 15.5,
+  "preview_full_av_decode": "passed",
+  "strata_restore_exit": 0
+}

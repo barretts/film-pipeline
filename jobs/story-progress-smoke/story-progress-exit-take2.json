@@ -1,0 +1,365 @@
+{
+  "beat": "exit",
+  "attempt": 2,
+  "prompt_id": "3e464df8-9bd3-4db7-8b1c-3b41a0cc63c3",
+  "status": "rejected_stopped",
+  "graph": {
+    "5": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "story-progress-exit-take2-guide.png"
+      }
+    },
+    "142": {
+      "class_type": "ImageResizeKJv2",
+      "inputs": {
+        "image": [
+          "5",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "upscale_method": "lanczos",
+        "keep_proportion": "crop",
+        "pad_color": "0, 0, 0",
+        "crop_position": "center",
+        "divisible_by": 32,
+        "device": "cpu"
+      }
+    },
+    "128": {
+      "class_type": "DiffusionModelLoaderKJ",
+      "inputs": {
+        "model_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default",
+        "compute_dtype": "default",
+        "patch_cublaslinear": false,
+        "sage_attention": "disabled",
+        "enable_fp16_accumulation": false
+      }
+    },
+    "13": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "11": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    "24": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    "157": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": [
+          "13",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "width": 1280,
+        "height": 704,
+        "length": 124,
+        "ref_image_size": "match",
+        "prompt": "subject_definitions:\n<Subject 1> is the Kate whose appearance comes from <Picture 1>: Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact. Woman in her late forties, short silver-streaked brown hair, weathered fair skin, navy wool work jacket over a cream sweater, brass ring on a lanyard.\n<Subject 2> is the James whose appearance comes from <Picture 2>: New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin. Man in his late twenties, dark curly hair under an ear-flap hat, clean-shaven angular face, orange-red survival suit over thermal layers.\n\nsummary: [reference generation] The target video follows <Subject 1> and <Subject 2>.\n\nretention_analysis:\n<Subject 1> (<Picture 1>): fully_preserved - the face, hair and clothing of <Subject 1> are retained (Senior radio operator who has spent a decade at the polar post and keeps its fragile reality intact.). Only the person comes from <Picture 1>; not the background.\n<Subject 2> (<Picture 2>): fully_preserved - the face, hair and clothing of <Subject 2> are retained (New recruit with a background in signal analysis who becomes obsessed with the anomaly's origin.). Only the person comes from <Picture 2>; not the background.\n\ndetailed_description: Cold blue-white cinematic realism with warm lamp accents, 35mm grain.\n\nStarting story situation: {\"james\": \"inside_control_room\", \"kate\": \"inside_control_room\", \"event\": \"signal_recognized\"}\nOne continuous shot. James leaves the console, crosses the open doorway and disappears into opaque blowing snow; Kate remains inside. Finish with James absent from view.\nRequired ending situation: {\"james\": \"missing_outside\", \"kate\": \"inside_control_room\", \"event\": \"james_disappeared\"}\nPreserve faces and clothing, while allowing the specified movement and departure. The action happens once and completes within this clip. No reset to an earlier event. Silent physical action. Closed mouths, no dialogue, no speech or mimed conversation.\nCorrection based on prior failed take: The door is an EXTERIOR polar-station exit. Beyond it is only a dense white blizzard, never another room or corridor. As the door opens, wind drives opaque white snow into the threshold. James, seen from behind in the orange-red survival suit, crosses outside once and is completely swallowed by the whiteout. Kate stays inside at the side of the doorway. End on Kate and the open snow-filled exit with no visible James. Do not turn Kate toward the camera for a posed close-up.\n\noverall_soundscape: minimal room tone.\n\nnon_diegetic_music: restrained strings bed",
+        "ref_images.ref_image_0": [
+          "170",
+          0
+        ],
+        "ref_images.ref_image_1": [
+          "171",
+          0
+        ]
+      }
+    },
+    "154": {
+      "class_type": "LoraLoaderModelOnly",
+      "inputs": {
+        "model": [
+          "128",
+          0
+        ],
+        "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+        "strength_model": 1.0
+      }
+    },
+    "159": {
+      "class_type": "Ref2VAVSAGatePatch",
+      "inputs": {
+        "model": [
+          "154",
+          0
+        ],
+        "gate_file": "fasth3_vsa_gate.safetensors",
+        "sparsity": 0.75
+      }
+    },
+    "158": {
+      "class_type": "MiniMaxH3SigmaShift",
+      "inputs": {
+        "model": [
+          "159",
+          0
+        ],
+        "shift_video": 6.0,
+        "shift_audio": 3.0
+      }
+    },
+    "9": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "scheduler": "sgm_uniform",
+        "steps": 4,
+        "denoise": 1.0
+      }
+    },
+    "149": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "19",
+          3
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "150": {
+      "class_type": "RAMCleanup",
+      "inputs": {
+        "anything": [
+          "149",
+          0
+        ],
+        "clean_file_cache": false,
+        "clean_processes": false,
+        "clean_dlls": false,
+        "retry_times": 3
+      }
+    },
+    "16": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": [
+          "158",
+          0
+        ],
+        "conditioning": [
+          "150",
+          0
+        ]
+      }
+    },
+    "156": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "er_sde"
+      }
+    },
+    "130": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 2801
+      }
+    },
+    "14": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "130",
+          0
+        ],
+        "guider": [
+          "16",
+          0
+        ],
+        "sampler": [
+          "156",
+          0
+        ],
+        "sigmas": [
+          "9",
+          0
+        ],
+        "latent_image": [
+          "19",
+          0
+        ]
+      }
+    },
+    "10": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "14",
+          0
+        ],
+        "vae": [
+          "11",
+          0
+        ]
+      }
+    },
+    "139": {
+      "class_type": "VRAMCleanup",
+      "inputs": {
+        "anything": [
+          "14",
+          0
+        ],
+        "offload_model": true,
+        "offload_cache": false
+      }
+    },
+    "23": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "139",
+          0
+        ],
+        "vae": [
+          "24",
+          0
+        ]
+      }
+    },
+    "136": {
+      "class_type": "VHS_VideoCombine",
+      "inputs": {
+        "images": [
+          "10",
+          0
+        ],
+        "audio": [
+          "19",
+          1
+        ],
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "story-progress-smoke/story-progress-exit-take2",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": true
+      }
+    },
+    "18": {
+      "class_type": "LoadAudio",
+      "inputs": {
+        "audio": "story-progress-exit-take2.wav"
+      }
+    },
+    "19": {
+      "class_type": "LCH3AudioSync",
+      "inputs": {
+        "latent": [
+          "157",
+          1
+        ],
+        "positive": [
+          "163",
+          0
+        ],
+        "audio_vae": [
+          "24",
+          0
+        ],
+        "audio": [
+          "18",
+          0
+        ],
+        "start_seconds": 0,
+        "when_short": "silence"
+      }
+    },
+    "160": {
+      "class_type": "SenseNovaH3DistilledBridge",
+      "inputs": {
+        "conditioning": [
+          "157",
+          0
+        ],
+        "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+        "alpha": 0.15,
+        "magnitude_match": "per_token"
+      }
+    },
+    "163": {
+      "class_type": "MiniMaxH3AddGuide",
+      "inputs": {
+        "positive": [
+          "160",
+          0
+        ],
+        "latent": [
+          "157",
+          1
+        ],
+        "vae": [
+          "11",
+          0
+        ],
+        "image": [
+          "142",
+          0
+        ],
+        "frame_idx": 0
+      }
+    },
+    "170": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "story-progress-exit-take2-kate.png"
+      }
+    },
+    "171": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "story-progress-exit-take2-james.png"
+      }
+    }
+  },
+  "guide": "F:\\film-pipeline\\jobs\\story-progress-smoke\\opening-tail.png",
+  "correction": "The door is an EXTERIOR polar-station exit. Beyond it is only a dense white blizzard, never another room or corridor. As the door opens, wind drives opaque white snow into the threshold. James, seen from behind in the orange-red survival suit, crosses outside once and is completely swallowed by the whiteout. Kate stays inside at the side of the doorway. End on Kate and the open snow-filled exit with no visible James. Do not turn Kate toward the camera for a posed close-up.",
+  "output": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2.mp4",
+  "tail": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2-tail.png",
+  "sheet": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2-sheet.jpg",
+  "review": {
+    "decision": "reject",
+    "reason": "James crosses the exterior threshold into snow and Kate stays inside, but James remains clearly visible at the end. Opaque-whiteout disappearance was not achieved; one changed retry has been used.",
+    "observed_passes": [
+      "Exterior snow replaces interior corridor",
+      "James moves away through threshold",
+      "Kate remains inside"
+    ],
+    "observed_failures": [
+      "James remains visible through final sampled frame",
+      "Camera ends with a posed close-up of Kate rather than sustained attention to the loss"
+    ],
+    "next_beats": "not_rendered"
+  }
+}

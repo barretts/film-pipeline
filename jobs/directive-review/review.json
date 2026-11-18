@@ -1,0 +1,54 @@
+{
+  "commit": "69fce53",
+  "verdict": "FAIL",
+  "scope": "CPU-only implementation review; no GPU endpoints or generation",
+  "existing_tests": {
+    "count": 48,
+    "result": "passed",
+    "log": "jobs/directive-review/tests.log"
+  },
+  "adversarial_evidence": "jobs/directive-review/probes.json",
+  "findings": [
+    {
+      "priority": "P1",
+      "title": "Managed mode does not manage GPU ownership or restore Strata",
+      "file": "local_film/directing.py",
+      "line": 265,
+      "evidence": "Managed orchestrator probe renders once with zero lock calls and zero subprocess calls. CLI directly invokes it; no kill/free/finally-restore exists.",
+      "required_fix": "Wrap managed execution in the project GPU/pipeline locks, check idle queues before switching, and guarantee verified Strata restoration on success, rejection, exception and timeout."
+    },
+    {
+      "priority": "P1",
+      "title": "Existing submitted prompt is overwritten and resubmitted",
+      "file": "local_film/directing.py",
+      "line": 245,
+      "evidence": "Existing take JSON with status=submitted and original-prompt-id was replaced by a new UUID; history was queried only for the new UUID.",
+      "required_fix": "Reconcile existing take metadata and prompt history before staging or submission; refuse unknown outcomes instead of generating a fresh prompt."
+    },
+    {
+      "priority": "P1",
+      "title": "Departure rule can be bypassed through an off-screen state update",
+      "file": "local_film/directing.py",
+      "line": 94,
+      "evidence": "Validated three-beat chain: James departs; Kate-only beat changes James from missing_offscreen to inside without re_entry_cast; following beat shows James again.",
+      "required_fix": "Require explicit authorized re-entry for any gone-to-present actor-state transition, even when actor is offscreen in that transition; preserve established cast states."
+    },
+    {
+      "priority": "P2",
+      "title": "Zero-retry setting is ignored",
+      "file": "local_film/directing.py",
+      "line": 309,
+      "evidence": "max_changed_retries=0 plus retry then approve produces two render calls.",
+      "required_fix": "Honor the configured limit and derive used attempts from persisted execution state."
+    },
+    {
+      "priority": "P2",
+      "title": "Approved-beat resume restarts at beat one",
+      "file": "local_film/directing.py",
+      "line": 297,
+      "evidence": "Ledger loads approved after-state, but orchestrator loops from first beat; its before-state fails against committed story state.",
+      "required_fix": "Restore approved outputs, next unapproved beat, current guide and retry usage from persisted records; support finalization after all beats are approved."
+    }
+  ],
+  "production_code_changed": false
+}

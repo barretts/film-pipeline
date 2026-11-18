@@ -1,0 +1,36 @@
+{
+  "camera_width": 1280, "camera_height": 704,
+  "steps": 4, "sparsity": 0.75, "bridge_alpha": 0.15, "shift_video": 6.0, "shift_audio": 3.0,
+  "cast_crops": {"kate":[0.08,0.13,0.84,0.67],"james":[0.08,0.05,0.84,0.73]},
+  "shots": {
+    "radioWarning": {
+      "cast":[], "seed":74011,
+      "prompt":"Opening shot, one continuous live-action insert of the vintage radio on a worn wood table in a polar station. Match the radio, gooseneck microphone, desk lamp, and frosted window from <Picture 1>. An amber receive light wakes and softly pulses as a distant transmission breaks the static. A slow small camera push draws the eye to the tuning dial. Across the window, pale wind-blown snow moves in the dark. The radio stays put. Empty room, no people or hands. No lettering over the picture."
+    },
+    "kateRecognition": {
+      "cast":["kate"], "seed":74012, "photo_frames":[0,8],
+      "prompt":"A continuous live-action single of Kate from <Picture 1>, at the wooden radio desk in the same navy jacket and cream sweater. She is still and looking down at the receiver, her lips together. Half a second in, she looks up slightly in startled recognition and says with the supplied voice: \"{line}\". After the short line her lips meet. The rest of the shot is a quiet reaction. Her eyes move toward the door off to the left. Keep the camera and the face's position steady in the frosted window light. Alone, restrained, no subtitles."
+    },
+    "jamesChoice": {
+      "cast":["james"], "seed":74013, "photo_frames":[0,24],
+      "prompt":"A continuous locked single of James, the sole man from <Picture 1>, wearing his burnt-orange survival jacket and black thermal collar in the blue steel station. Beside the closed door he hears three knocks. His eyes turn toward the latch. His mouth is gently closed until his recorded voice begins just over one second in. He says \"{line}\" in time with the audio. He closes his mouth and makes a small resolved turn toward the door. Keep his face readable and the door closed through the cut. Natural low-key light, clean cinematographic frame."
+    },
+    "doorLatch": {
+      "cast":[], "seed":74014,
+      "prompt":"One tightly framed live-action insert of the exact silver door lever and single black glove in <Picture 1>. Continuing James's decision, the hand in an orange survival sleeve firmly grasps the lever, pushes it DOWN, then pulls. The steel door moves as a single solid object. Its seam widens to a sliver of bright snow outside; cold daylight spills across the glove. The lever and its mounting remain attached to the door. One deliberate unbroken gesture, stable close camera, no face in frame. End with the door moving open."
+    },
+    "emptyDoorway": {
+      "cast":[], "seed":74015,
+      "prompt":"Hard cut to the already open station doorway from <Picture 1>. An empty threshold. For the entire shot the open door and iron jamb stay still and visible, blowing snow races sideways across the opening and powder swirls just past the threshold. The white snowfield beyond is empty. Nobody enters, no figure anywhere in the snow. The movement comes from the gusts, not the camera. One continuous photographic shot in the cold blue daylight."
+    },
+    "kateAlone": {
+      "cast":["kate"], "seed":74016, "photo_frames":[0,20],
+      "opening_crop":[0.32,0.055,0.68,0.68],
+      "prompt":"The same Kate from <Picture 1> sits alone inside the polar radio room. She is looking past the camera toward the empty doorway, eyes searching. A second of listening with quiet lips. She calls once, in the supplied voice: \"{line}\". Her mouth closes. For the remaining seconds she listens for a reply that never comes; her eyes lower slowly toward the radio. Her shoulders settle. Keep the room, her face and camera position steady. One continuous, uncaptioned, understated live-action performance."
+    },
+    "warningReturns": {
+      "cast":["kate"], "seed":74017, "photo_frames":[0,77],
+      "prompt":"One continuous close-up. Kate from <Picture 1> is alone in the same cold steel radio room. The same black radio microphone is in front of her, below her lips. For the first three and a half seconds she listens in silence, lips together, hand touching the transmit control. A small indicator glows. She leans slightly toward the microphone and delivers only the recorded warning: \"{line}\" Her lips articulate the two short phrases with the audio. She stops, releases the control and holds in the silence. Keep Kate, the microphone, and radio in the same composition. No text or cutaways."
+    }
+  }
+}

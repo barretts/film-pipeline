@@ -1,0 +1,13 @@
+{
+  "exception": "BLOCKED real process creation for safe reproduction",
+  "mocked_run_calls": 0,
+  "real_run_reached_process_creation": 1,
+  "blocked_command": [
+    "powershell.exe",
+    "-NoProfile",
+    "-ExecutionPolicy",
+    "Bypass",
+    "-File",
+    "F:\\film-pipeline\\jobs\\orbit-smoke\\kill-strata.ps1"
+  ]
+}

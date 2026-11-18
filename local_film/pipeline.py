@@ -428,7 +428,19 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
 
 def extract_tail(video,target):
  if target.exists():return target
- temp=target.with_name(target.stem+'.partial.png');run_cmd(['ffmpeg','-y','-v','error','-sseof','-0.042','-i',video,'-frames:v','1',temp]);os.replace(temp,target);return target
+ # Container duration may include audio beyond the final video frame; seek by decoded frame count instead.
+ info=json.loads(run_cmd(['ffprobe','-v','error','-select_streams','v:0','-count_frames','-show_entries','stream=nb_read_frames','-of','json',video]).stdout)
+ streams=info.get('streams',[])
+ try:frames=int(streams[0]['nb_read_frames'])
+ except (IndexError,KeyError,ValueError,TypeError):raise JobError('Cannot count video frames for tail extraction: '+str(video))
+ if frames<1:raise JobError('No video frames for tail extraction: '+str(video))
+ temp=target.with_name(target.stem+'.partial.png')
+ try:
+  run_cmd(['ffmpeg','-y','-v','error','-i',video,'-map','0:v:0','-vf',f'select=eq(n\\,{frames-1})','-frames:v','1',temp])
+  if not temp.is_file() or not temp.stat().st_size:raise JobError('Tail extraction produced no image: '+str(video))
+  os.replace(temp,target)
+ finally:temp.unlink(missing_ok=True)
+ return target
 
 def extract_motion_tail(video,target,req):
  if target.exists():return target
@@ -483,13 +495,17 @@ def quality(job,plan,req,segments,output):
  if not audio:flags.append('Output audio stream missing')
  if float(infos['format']['duration'])+0.15<expected:flags.append('Assembled video appears truncated')
  run_cmd(['ffmpeg','-v','error','-xerror','-i',output,'-map','0:v:0','-map','0:a:0','-f','null','-'])
- assembled_audio=audio_vector(output);cursor=0;assembled_audio_checks=[]
+ content_segments=segments
+ cursor=0
+ if req.get('kind')=='series':
+  content_segments=segments[1:-1];cursor=round(segments[0][1]*8000)
+ assembled_audio=audio_vector(output);assembled_audio_checks=[]
  for shot in plan['shots']:
   source=audio_vector(Path(shot['voice']));part=assembled_audio[cursor:cursor+len(source)];score=correlation(source,part)
   assembled_audio_checks.append({'shot':shot['id'],'source_samples':len(source),'output_samples':len(part),'correlation':round(score,4) if score is not None else None})
   if len(part)+800<len(source) or score is None or score<0.75:flags.append(shot['id']+': assembled narration may be missing, truncated or out of sync')
   cursor+=round(shot['duration_seconds']*8000)
- segment_iter=iter(segments)
+ segment_iter=iter(content_segments)
  for shot in plan['shots']:
   source=audio_vector(Path(shot['voice']));previous=None
   for part in segment_schedule(shot['duration_seconds'],req):
@@ -571,7 +587,7 @@ def _run_one(job,plan_only,open_folder):
     target=previews/(p.stem+'-contact.jpg')
     if not target.exists():run_cmd(['ffmpeg','-y','-v','error','-i',p,'-vf','fps=2,scale=180:-1,tile=4x3','-frames:v','1',target])
    atomic(review/'prompts.json',{k:v['graph']['157']['inputs']['prompt'] for k,v in state['segments'].items()})
-   if req.get('kind')=='series':series.save_continuity(job,req['episode_path'],req['show_path'],plan.get('ending_state',''))
+   if req.get('kind')=='series':series.save_continuity(job,req['episode_path'],req['show_path'],plan.get('ending_state',''),final_video=segments[-2][0])
    check_cancel(job);state['status']='complete';state['completed']=time.time();state['output']=str(output);state['quality_flags']=report['flags'];save(job,state);shutil.copy2(job/'state.json',review/'generation-state.json')
    if open_folder and os.name=='nt':
     try:subprocess.Popen(['explorer.exe',str(review)],creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))

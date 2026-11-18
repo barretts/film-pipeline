@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Local Film Review</title>
+  <style>
+    body{max-width:1050px;margin:2rem auto;padding:0 1rem;background:#111b28;color:#eef3f8;font:16px/1.5 system-ui}
+    button,a{margin:.3rem}button{padding:.65rem;border-radius:.4rem;cursor:pointer}button:disabled{opacity:.5;cursor:default}
+    a{color:#88d7eb}textarea{box-sizing:border-box;width:100%;height:23rem;background:#1e2c3e;color:white}
+    video{width:100%;max-height:540px}img{width:260px}section{border-top:1px solid #405166;padding:1rem 0}
+    pre{white-space:pre-wrap;overflow-wrap:anywhere}#message{color:#f5d78a}small{color:#b4c3d1}
+  </style>
+</head>
+<body>
+  <h1>Local Film Review</h1>
+  <p>Local CPU workflow · this server never submits GPU work</p>
+  <p id="message" role="status"></p>
+  <nav>
+    <a href="/">Projects</a><button id="refresh">Refresh</button>
+    <button id="prepare" class="projectAction">Prepare voices &amp; animatic</button>
+    <button id="cancel" class="projectAction">Cancel work</button>
+    <button id="resume" class="projectAction">Resume</button>
+    <button id="retryRequest" hidden>Retry interrupted request</button>
+  </nav>
+  <section>
+    <h2 id="title">Projects</h2><p id="status"></p><div id="projects"></div>
+    <button id="create">Create Signal in the Snow</button>
+  </section>
+  <section id="film" hidden>
+    <h2>Storyboard and timing</h2>
+    <p>Review the early hook, James's choice, and the warning returning at the end. These timing cards use the approved reference portraits.</p>
+    <p id="storyboardState"></p>
+    <video id="animatic" controls preload="metadata"></video><div id="cards"></div>
+    <button id="approveBoard">Approve this storyboard &amp; animatic</button>
+    <button id="render">Prepare ready shot requests</button>
+    <p><small>Prepared requests wait for a separate, explicitly enabled GPU worker. Image approval here does not start rendering.</small></p>
+    <details><summary>Edit script, shots and continuity</summary>
+      <textarea id="spec" aria-label="Film specification"></textarea><button id="save">Save a new revision</button>
+    </details>
+  </section>
+  <section id="takes" hidden><h2>Takes and review</h2><pre id="blocked"></pre><div id="takeList"></div><button id="assemble">Assemble approved takes</button></section>
+  <section id="final" hidden><h2>Film review</h2><video id="movie" controls preload="metadata"></video><button id="approveFilm">Approve this film</button></section>
+  <section><h2>Activity</h2><pre id="commands"></pre></section>
+  <script>
+    const projectId = location.pathname.match(/\/film\/projects\/([^/]+)\/review/)?.[1];
+    const api = '/api/film/v1/projects';
+    const token = '__REVIEW_TOKEN__';
+    const $ = s => document.querySelector(s);
+    let project, editorDirty = false;
+    const pendingKey = 'filmPending:' + projectId;
+    let pending = JSON.parse(sessionStorage.getItem(pendingKey) || 'null');
+    function note(text) { $('#message').textContent = text; }
+    async function request(path, options = {}) {
+      const response = await fetch(path, options), body = await response.json();
+      if (!response.ok) { const error = Error(body.error || response.status); error.status = response.status; throw error; }
+      return body;
+    }
+    function artifact(id) { return api + '/' + projectId + '/artifacts/' + id; }
+    async function command(action, payload = {}, human = false) {
+      if (!project) return false;
+      if (pending) { note('Retry the interrupted request before starting another command.'); return false; }
+      if (human && editorDirty) { note('Save or discard your script edits before reviewing this revision.'); return false; }
+      pending = { body: { command_id: crypto.randomUUID(), expected_revision: project.revision, action, payload }, human };
+      sessionStorage.setItem(pendingKey, JSON.stringify(pending));
+      return retryPending();
+    }
+    function clearPending() { pending = null; sessionStorage.removeItem(pendingKey); $('#retryRequest').hidden = true; }
+    async function retryPending() {
+      if (!pending) return false;
+      try {
+        const { body, human } = pending;
+        await request((human ? '/film/projects/' : api + '/') + projectId + '/commands', {
+          method: 'POST', headers: { 'Content-Type': 'application/json', ...(human ? { 'X-Film-Review': token } : {}) }, body: JSON.stringify(body)
+        });
+        if (body.action === 'update') editorDirty = false;
+        clearPending(); note('Saved ' + body.action); await refresh(false); return true;
+      } catch (error) {
+        if ([400, 403, 404, 409].includes(error.status)) clearPending();
+        $('#retryRequest').hidden = !pending; note(error.message); await refresh(false); return false;
+      }
+    }
+    function takeCard(take) {
+      const wrap = document.createElement('section'), label = document.createElement('p');
+      label.textContent = take.shot_id + ' · ' + take.status + ' · ' + take.id; wrap.append(label);
+      const link = document.createElement('a'); link.href = artifact(take.request_artifact_id); link.textContent = 'Prepared request'; link.target = '_blank'; wrap.append(link);
+      if (take.gpu) {
+        const state = document.createElement('p'); state.textContent = 'Render request: ' + take.gpu.state + (take.gpu.error ? ' · ' + take.gpu.error : ''); wrap.append(state);
+      }
+      for (const [shotId, parentId] of Object.entries(take.dependency_takes || {})) {
+        const frame = project.takes.find(item => item.id === parentId)?.end_frame;
+        if (frame) {
+          const label = document.createElement('p'), image = document.createElement('img');
+          label.textContent = 'Approved prior frame: ' + shotId; image.src = artifact(frame.artifact_id); image.alt = 'Approved end frame for ' + shotId; wrap.append(label, image);
+        }
+      }
+      const bindings = Object.entries(take.input_bindings || {});
+      for (const [name, input] of bindings) {
+        const label = document.createElement('p'), image = document.createElement('img');
+        label.textContent = name; image.src = artifact(input.artifact_id); image.alt = input.kind;
+        wrap.append(label, image);
+      }
+      if (bindings.length && !take.artifact_id) {
+        const approve = document.createElement('button'); approve.textContent = take.input_approval ? 'Reapprove bound images' : 'Approve bound first frame / room images';
+        approve.disabled = !take.current_inputs || project.gpu_active;
+        approve.onclick = () => command('approve-inputs', { take_id: take.id }, true); wrap.append(approve);
+      }
+      if (take.artifact_id) {
+        const video = document.createElement('video'); video.controls = true; video.preload = 'none'; video.src = artifact(take.artifact_id); wrap.append(video);
+        for (const decision of ['approve', 'reject']) {
+          const button = document.createElement('button'); button.textContent = decision + ' take'; button.disabled = !take.current_inputs;
+          button.onclick = () => command('review', { take_id: take.id, decision, note: prompt('Review note (optional)') || '' }, true); wrap.append(button);
+        }
+      }
+      if (take.artifact_id || take.gpu?.submitted_at) {
+        const retry = document.createElement('button'); retry.textContent = 'Authorize one changed retry';
+        retry.onclick = () => { const note = prompt('What changed in the new storyboard or shot inputs?'); if (note) command('authorize-retry', { shot_id: take.shot_id, note }, true); }; wrap.append(retry);
+      }
+      return wrap;
+    }
+    async function refresh(clear = true) {
+      try {
+        if (clear) note('');
+        for (const element of document.querySelectorAll('.projectAction')) element.disabled = !projectId;
+        if (!projectId) {
+          const list = await request(api);
+          $('#projects').replaceChildren(...list.map(item => { const row = document.createElement('p'), link = document.createElement('a'); link.href = item.review_url; link.textContent = item.spec.title + ' — ' + item.status; row.append(link); return row; }));
+          return;
+        }
+        project = await request(api + '/' + projectId);
+        if (pending && project.commands.some(c => c.id === pending.body.command_id)) clearPending();
+        $('#retryRequest').hidden = !pending;
+        $('#create').hidden = true; $('#film').hidden = false; $('#takes').hidden = false;
+        $('#title').textContent = project.spec.title;
+        $('#status').textContent = project.status + ' · revision ' + project.revision + ' · approved ' + Object.keys(project.approved_takes).length + '/' + project.spec.shots.length;
+        $('#commands').textContent = JSON.stringify(project.commands, null, 2);
+        $('#blocked').textContent = (project.blocked_shots || []).map(item => item.shot_id + ': ' + item.reason).join('\n');
+        if (!editorDirty) $('#spec').value = JSON.stringify(project.spec, null, 2);
+        const prep = project.preparation;
+        const boardApproved = project.preparation_current && project.storyboard_approval?.preparation_id === prep?.id && project.storyboard_approval?.spec_hash === prep?.spec_hash;
+        $('#storyboardState').textContent = !prep ? 'Prepare the voices and timing animatic first.' : !project.preparation_current ? 'The script changed. Prepare a new timing animatic before approval.' : boardApproved ? 'The owner approved this storyboard and timing animatic.' : 'The timing animatic matches this script revision and awaits owner approval.';
+        $('#approveBoard').disabled = !project.preparation_current || editorDirty;
+        if (prep) {
+          const url = artifact(prep.animatic_artifact_id); if ($('#animatic').getAttribute('src') !== url) $('#animatic').src = url;
+          $('#cards').replaceChildren(...Object.entries(prep.shots).map(([id, shot]) => { const link = document.createElement('a'), img = document.createElement('img'); link.href = artifact(shot.card_artifact_id); link.target = '_blank'; img.src = link.href; img.alt = id + ' storyboard'; link.append(img); return link; }));
+        }
+        $('#takeList').replaceChildren(...project.takes.map(takeCard));
+        $('#final').hidden = !project.film_artifact_id;
+        $('#approveFilm').disabled = !project.film_current || editorDirty;
+        if (project.film_artifact_id) { const url = artifact(project.film_artifact_id); if ($('#movie').getAttribute('src') !== url) $('#movie').src = url; }
+      } catch (error) { note(error.message); }
+    }
+    $('#create').onclick = async () => {
+      try { const value = await request(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ creation_id: crypto.randomUUID(), template: 'signal-in-the-snow' }) }); location.href = value.review_url; }
+      catch (error) { note(error.message); }
+    };
+    $('#refresh').onclick = () => refresh();
+    $('#prepare').onclick = () => command('prepare-assets');
+    $('#cancel').onclick = () => command('cancel');
+    $('#resume').onclick = () => command('resume');
+    $('#retryRequest').onclick = retryPending;
+    $('#approveBoard').onclick = () => command('approve-storyboard', {}, true);
+    $('#render').onclick = () => command('render-ready');
+    $('#assemble').onclick = () => command('assemble');
+    $('#approveFilm').onclick = () => command('approve-film', {}, true);
+    $('#spec').oninput = () => { editorDirty = true; $('#approveBoard').disabled = true; };
+    $('#save').onclick = () => { try { command('update', { spec: JSON.parse($('#spec').value) }); } catch (error) { note(error.message); } };
+    refresh();
+    setInterval(() => { if (project?.gpu_active || project?.commands.some(c => ['queued', 'running'].includes(c.status))) refresh(false); }, 2000);
+  </script>
+</body>
+</html>

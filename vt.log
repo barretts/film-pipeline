@@ -1,0 +1,39 @@
+test_broken_state_chain_rejected (tests.test_local_film_directing.ValidatorTests.test_broken_state_chain_rejected) ... ok
+test_departed_character_cannot_reappear_without_reentry (tests.test_local_film_directing.ValidatorTests.test_departed_character_cannot_reappear_without_reentry) ... ok
+test_dialogue_with_silence_rejected (tests.test_local_film_directing.ValidatorTests.test_dialogue_with_silence_rejected) ... ok
+test_dialogue_without_audio_rejected (tests.test_local_film_directing.ValidatorTests.test_dialogue_without_audio_rejected) ... ok
+test_duplicate_beat_ids_rejected (tests.test_local_film_directing.ValidatorTests.test_duplicate_beat_ids_rejected) ... ok
+test_duplicate_re_entry_rejected (tests.test_local_film_directing.ValidatorTests.test_duplicate_re_entry_rejected) ... ok
+test_empty_acceptance_rejected (tests.test_local_film_directing.ValidatorTests.test_empty_acceptance_rejected) ... ok
+test_established_state_key_cannot_vanish (tests.test_local_film_directing.ValidatorTests.test_established_state_key_cannot_vanish) ... ok
+test_experiment_plan_normalizes_cut_flag (tests.test_local_film_directing.ValidatorTests.test_experiment_plan_normalizes_cut_flag) ... ok
+test_experiment_plan_prefix_relative_state (tests.test_local_film_directing.ValidatorTests.test_experiment_plan_prefix_relative_state) ... ok
+test_explicit_reentry_allowed (tests.test_local_film_directing.ValidatorTests.test_explicit_reentry_allowed) ... ok
+test_invalid_gpu_mode_rejected (tests.test_local_film_directing.ValidatorTests.test_invalid_gpu_mode_rejected) ... ok
+test_missing_initial_state_rejected (tests.test_local_film_directing.ValidatorTests.test_missing_initial_state_rejected) ... ok
+test_non_cast_state_keys_may_change_offscreen (tests.test_local_film_directing.ValidatorTests.test_non_cast_state_keys_may_change_offscreen) ... ERROR
+test_offscreen_departure_erasure_rejected (tests.test_local_film_directing.ValidatorTests.test_offscreen_departure_erasure_rejected) ... ok
+test_reentry_must_end_present (tests.test_local_film_directing.ValidatorTests.test_reentry_must_end_present) ... ok
+test_reentry_of_present_character_rejected (tests.test_local_film_directing.ValidatorTests.test_reentry_of_present_character_rejected) ... ok
+test_reentry_without_flag_rejected (tests.test_local_film_directing.ValidatorTests.test_reentry_without_flag_rejected) ... ok
+test_retry_budget_above_one_rejected (tests.test_local_film_directing.ValidatorTests.test_retry_budget_above_one_rejected) ... ok
+test_silent_beat_without_audio_declaration_rejected (tests.test_local_film_directing.ValidatorTests.test_silent_beat_without_audio_declaration_rejected) ... ok
+test_unknown_cast_rejected (tests.test_local_film_directing.ValidatorTests.test_unknown_cast_rejected) ... ok
+test_valid_plan_passes (tests.test_local_film_directing.ValidatorTests.test_valid_plan_passes) ... ok
+
+======================================================================
+ERROR: test_non_cast_state_keys_may_change_offscreen (tests.test_local_film_directing.ValidatorTests.test_non_cast_state_keys_may_change_offscreen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "F:\film-pipeline\tests\test_local_film_directing.py", line 97, in test_non_cast_state_keys_may_change_offscreen
+    D.validate(D.normalize_plan(plan(beats=[first,second])),set(CAST))
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\film-pipeline\local_film\directing.py", line 100, in validate
+    if beat['before']!=state:raise DirectiveError(f'{bid}: before state must equal the committed story state; expected '+json.dumps(state,sort_keys=True)+' found '+json.dumps(beat['before'],sort_keys=True))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+local_film.directing.DirectiveError: exit: before state must equal the committed story state; expected {"james": "inside", "kate": "inside"} found {"event": "alarm", "james": "inside", "kate": "inside"}
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.036s
+
+FAILED (errors=1)

@@ -1,0 +1,39 @@
+{
+  "status": "visual_story_gates_passed_owner_playback_pending",
+  "output": "F:\\film-pipeline\\jobs\\story-cut-smoke\\review\\assembled.mp4",
+  "duration_seconds": 25.833333,
+  "original_episode_media_unchanged": true,
+  "new_renders": 3,
+  "rejected_renders": 1,
+  "changed_retries": 1,
+  "accepted": [
+    "story-cut-recognition-take2",
+    "story-cut-decision-take1"
+  ],
+  "reused_exit": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2.mp4",
+  "audio_checks": [
+    {
+      "beat": "recognition",
+      "expected_start_seconds": 15.5,
+      "source_seconds": 3.932063,
+      "raw_correlation": 0.9900305795405717,
+      "best_correlation_within_1ms": 0.9900305795405717,
+      "sample_lag": 0
+    },
+    {
+      "beat": "decision",
+      "expected_start_seconds": 20.666666666666668,
+      "source_seconds": 4.115193,
+      "raw_correlation": 0.9985157095804968,
+      "best_correlation_within_1ms": 0.9985157095804968,
+      "sample_lag": 0
+    }
+  ],
+  "limitations": [
+    "Sampled visual audits support absence and action progression, not every-frame freedom from artifacts.",
+    "Owner must review lip sync, sound, editing rhythm and story comprehension.",
+    "The reuse of a Kate-only scene frame establishes an intentional cut; it does not demonstrate automatic scene composition.",
+    "No production pipeline integration has been performed."
+  ],
+  "strata_restore_exit": 0
+}

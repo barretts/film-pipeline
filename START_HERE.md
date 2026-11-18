@@ -2,6 +2,8 @@
 
 This is the single entry point for the local film workflow. Read `CONTEXT.md`, `STATUS.md`, and `handoff.md`; inspect `TOOLS.md` and `MODELS.md` when selecting a tool or model. `brief.md` defines the current film. Resolve differences using fresh evidence and record corrections; do not assume the old phase/task package exists.
 
+For the CPU-only work track as of 2026-11-16, read `CPU_FILM_WORKFLOW.md` and the CPU section at the top of `handoff.md`. Use `tools/start_cpu_film.py`; it starts the new project backend and a local CPU model. Keep GPU services untouched. The older `local_film.server` entry point can dispatch render workers and is outside this CPU-only task.
+
 ## Work and verification
 
 1. Choose the next unfinished outcome from `STATUS.md` and the exact next action in `handoff.md`. Verify the environment and inputs needed for that action. Work on a bounded piece that leaves a useful result.

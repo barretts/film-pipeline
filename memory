@@ -1,0 +1,21 @@
+{
+  "initial_state": {
+    "james": "inside"
+  },
+  "entries": [
+    {
+      "beat": "exit",
+      "decision": "reject",
+      "after": {
+        "james": "missing_offscreen"
+      }
+    },
+    {
+      "beat": "exit",
+      "decision": "approve",
+      "after": {
+        "james": "missing_offscreen"
+      }
+    }
+  ]
+}

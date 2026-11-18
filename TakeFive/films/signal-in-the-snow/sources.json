@@ -1,0 +1,130 @@
+{
+  "script": "examples\\signalInTheSnow.json",
+  "script_sha256": "20593747b383970a6c45ac184473123ec1c2d9e17b4a7a0127bc682dd44cfcab",
+  "sound_source": "film-projects\\film-14ce7ba2-c038-5358-93e9-24fb786d0a27\\commands\\prepareEstablishedStyleV2\\attempt-1",
+  "shots": {
+    "radioWarning": {
+      "mix_part_sha256": "9efab47512d74da70ba9d802cd251a74566248b36233e6a46d585591c9848247",
+      "camera_wav_sha256": "c5f5b94f6900524f13910b578b94b488e506b21cfc58b718fc648d468ac1e51a"
+    },
+    "kateRecognition": {
+      "mix_part_sha256": "5a07e241f281ce8a4ab663d54b2b65ad65abcb3d37df6441e86b1838a225ef2f",
+      "camera_wav_sha256": "296e865f6efb2fd1747a601709d9db0b90573651d1c4a9391dd8d8e0b0797e22"
+    },
+    "jamesChoice": {
+      "mix_part_sha256": "471b582a85158cff7db2df6079e589584116bb673da5fb9124a0cc556543b8c7",
+      "camera_wav_sha256": "a86fd227af9eacda5a025712ee577f6d25bf36230d8c161f48688b5c56d6b15b"
+    },
+    "doorLatch": {
+      "mix_part_sha256": "9ccc9e5387f6b3dc219123a250cef2daf3301de356c8d62f1e6262391a4ba4b5",
+      "camera_wav_sha256": "c5f5b94f6900524f13910b578b94b488e506b21cfc58b718fc648d468ac1e51a"
+    },
+    "emptyDoorway": {
+      "mix_part_sha256": "572a05e29b40707a36d3578518cfb7fce6c4c3dd42f29807f3ef8db75e5fa03b",
+      "camera_wav_sha256": "c5f5b94f6900524f13910b578b94b488e506b21cfc58b718fc648d468ac1e51a"
+    },
+    "kateAlone": {
+      "mix_part_sha256": "a7228a0a695de72db323ba24f7e6fb9da66ba6807f0f2dcb4ca238093a564057",
+      "camera_wav_sha256": "938710ddd1e8fe664b500717e0bae1eb123ca7372bb4f2cc6519aeb2f62e1b9d"
+    },
+    "warningReturns": {
+      "mix_part_sha256": "c3a7bc6ac9a933d8fd399229dec284796a737abafbfb3460b94f9a00bafab32d",
+      "camera_wav_sha256": "d6ec04891ada049a2aa041f356441ed816ad79219e2d3c05a77f6c7b4b6f08c7"
+    }
+  },
+  "photos": {
+    "kate.png": {
+      "source": "series\\characters\\kate\\portrait.png",
+      "sha256": "74b4822e7d552f9a9ddd70825467a3efc1a3a7bff8a047df8e4bef0c1f41dfa9"
+    },
+    "james.png": {
+      "source": "series\\characters\\james\\portrait.png",
+      "sha256": "c86d1df930e69fbf56a301e86b0219480504d2fdb02afa67261138e92fb9270d"
+    },
+    "radioWarning.png": {
+      "source": "film-projects\\gpuLaunch\\signal-20261117\\radioWarning-candidate-1.png",
+      "sha256": "0d47c4b37a991e65d7b93cb57360a42acb178cf45080ad0589f1cec46d093eca"
+    },
+    "jamesChoice.png": {
+      "source": "film-projects\\gpuLaunch\\signal-20261117\\jamesChoice-candidate-2.png",
+      "sha256": "8b749729755a7415c64d61e36e4890ad54893403c6372446224a7019fd4fe5fe"
+    }
+  },
+  "station_reference": {
+    "clip": "V11b-no-blockout_FINAL-audio.mp4",
+    "frame": 0,
+    "photo_sha256": "a6d692c10caad681465183f7d35cdf02915d4cebbcd4e2310622bfc9adfe8008"
+  },
+  "dialogue": {
+    "radioWarning": {
+      "character": "kate",
+      "text": "James. Don't open the door.",
+      "source": "radio",
+      "start": 0.5,
+      "seconds": 2.5014166666666666,
+      "file": "voices/warning.wav",
+      "sha256": "372fae2f65f24094a988522695de8287c62313ddd8ce99e0c4755d790730e506"
+    },
+    "kateRecognition": {
+      "character": "kate",
+      "text": "That was my voice.",
+      "source": "on_screen",
+      "start": 0.5,
+      "seconds": 1.5003333333333333,
+      "file": "voices/kateRecognition.wav",
+      "sha256": "4822af1ac8db1257fa50fe020aec521990ae2c48b23153b0c9eddd6ea2c7eb84"
+    },
+    "jamesChoice": {
+      "character": "james",
+      "text": "Someone's out there.",
+      "source": "on_screen",
+      "start": 1.2,
+      "seconds": 1.2913541666666666,
+      "file": "voices/jamesChoice.wav",
+      "sha256": "304e9e3c1dc9e597365c2e8ab8e977ee00fdca95ec915c1260aa83364ecd7b8c"
+    },
+    "kateAlone": {
+      "character": "kate",
+      "text": "James?",
+      "source": "on_screen",
+      "start": 1.0,
+      "seconds": 1.0127083333333333,
+      "file": "voices/kateAlone.wav",
+      "sha256": "0fc57816445199e440a808806673bf2920b1164139e72e4869227e6d933c8821"
+    },
+    "warningReturns": {
+      "character": "kate",
+      "text": "James. Don't open the door.",
+      "source": "on_screen",
+      "start": 3.5,
+      "seconds": 2.5014166666666666,
+      "file": "voices/warning.wav",
+      "sha256": "372fae2f65f24094a988522695de8287c62313ddd8ce99e0c4755d790730e506"
+    }
+  },
+  "doorDetail": {
+    "source": "looks/jamesChoice.png",
+    "crop_ltrb": [
+      0.59,
+      0.09,
+      0.986,
+      0.96
+    ]
+  },
+  "piper_voices": {
+    "kate": {
+      "model": "en_US-kristin-medium.onnx",
+      "sha256": "5849957f929cbf720c258f8458692d6103fff2f0e3d3b19c8259474bb06a18d4",
+      "config_sha256": "5681426d4aead22195de70531eeeeddb46493cfaffc5764b2ea3db73428b651c"
+    },
+    "james": {
+      "model": "en_US-joe-medium.onnx",
+      "sha256": "58afce0321b8d9c46d7cdf9c16500cc55a793b4220212dba6b70fb788b3baf06",
+      "config_sha256": "3d6d5410b3795cb1950595247ef8f06190719e6fdbfa3a2356d8ec368e1aad33"
+    }
+  },
+  "production_sound": {
+    "file": "production-sound.wav",
+    "sha256": "5cdaca9fad103a07525177bca189f4078d6abc8df5871352be406a15f5283ef9"
+  }
+}

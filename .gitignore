@@ -65,6 +65,9 @@ comfy-local/custom_nodes/MiniMax_H3_Semantic_Bridge/
 # Project-local runtime downloads and generated job data
 local-runtime/
 local-film-jobs/
+film-projects/
+integrations/toonflow/build/
+integrations/toonflow/node_modules/
 
 # Generated film assets, job outputs and review artifacts
 /audio/*

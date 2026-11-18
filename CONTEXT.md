@@ -1,5 +1,9 @@
 ﻿# Project context
 
+## Owner instruction as of 2026-11-16
+
+Complete the CPU-only parts of the Toonflow/short-film workflow and leave existing GPU residency and services untouched. Use `tools/start_cpu_film.py`. Do not launch GPU jobs, release model memory, or run Strata stop/restore scripts during this work. The accepted short concept is **Signal in the Snow**; its separate specification is `examples/signalInTheSnow.json`. See `CPU_FILM_WORKFLOW.md`. Earlier GPU permissions below apply only when the owner later authorizes that phase.
+
 ## Outcome and constraints
 
 `brief.md` describes a roughly 75-second mysterious, hand-painted Unsloth Studio promo. Its target is 1920x1080, 24 fps, stereo 48 kHz and `render/final.mp4`. The owner also wants a reusable pipeline. Preserve the brief unless the owner approves a substitution.

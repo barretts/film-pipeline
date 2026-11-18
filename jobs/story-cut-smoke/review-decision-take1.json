@@ -1,0 +1,13 @@
+{
+  "decision": "approve",
+  "evidence": [
+    "Six-frame sheet and sixteen-frame intermediate audit show only Kate",
+    "Portable radio is visibly lifted and held",
+    "Kate turns left and moves out of frame at the end",
+    "Audio correlation 0.99852 with source recording; source length retained"
+  ],
+  "limitations": [
+    "Owner playback review still needed for perceived lip sync, acting, prop appearance and edit rhythm",
+    "Sampled audit does not establish every-frame artifact freedom"
+  ]
+}

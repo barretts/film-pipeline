@@ -1,0 +1,100 @@
+diff --git a/local_film/pipeline.py b/local_film/pipeline.py
+index bfcb8a7..58292ee 100644
+--- a/local_film/pipeline.py
++++ b/local_film/pipeline.py
+@@ -428,7 +428,19 @@ def render_segment(job,state,shot,index,ref,req,motion_ref=None):
+ 
+ def extract_tail(video,target):
+  if target.exists():return target
+- temp=target.with_name(target.stem+'.partial.png');run_cmd(['ffmpeg','-y','-v','error','-sseof','-0.042','-i',video,'-frames:v','1',temp]);os.replace(temp,target);return target
++ # Container duration may include audio beyond the final video frame; seek by decoded frame count instead.
++ info=json.loads(run_cmd(['ffprobe','-v','error','-select_streams','v:0','-count_frames','-show_entries','stream=nb_read_frames','-of','json',video]).stdout)
++ streams=info.get('streams',[])
++ try:frames=int(streams[0]['nb_read_frames'])
++ except (IndexError,KeyError,ValueError,TypeError):raise JobError('Cannot count video frames for tail extraction: '+str(video))
++ if frames<1:raise JobError('No video frames for tail extraction: '+str(video))
++ temp=target.with_name(target.stem+'.partial.png')
++ try:
++  run_cmd(['ffmpeg','-y','-v','error','-i',video,'-map','0:v:0','-vf',f'select=eq(n\\,{frames-1})','-frames:v','1',temp])
++  if not temp.is_file() or not temp.stat().st_size:raise JobError('Tail extraction produced no image: '+str(video))
++  os.replace(temp,target)
++ finally:temp.unlink(missing_ok=True)
++ return target
+ 
+ def extract_motion_tail(video,target,req):
+  if target.exists():return target
+@@ -483,13 +495,17 @@ def quality(job,plan,req,segments,output):
+  if not audio:flags.append('Output audio stream missing')
+  if float(infos['format']['duration'])+0.15<expected:flags.append('Assembled video appears truncated')
+  run_cmd(['ffmpeg','-v','error','-xerror','-i',output,'-map','0:v:0','-map','0:a:0','-f','null','-'])
+- assembled_audio=audio_vector(output);cursor=0;assembled_audio_checks=[]
++ content_segments=segments
++ cursor=0
++ if req.get('kind')=='series':
++  content_segments=segments[1:-1];cursor=round(segments[0][1]*8000)
++ assembled_audio=audio_vector(output);assembled_audio_checks=[]
+  for shot in plan['shots']:
+   source=audio_vector(Path(shot['voice']));part=assembled_audio[cursor:cursor+len(source)];score=correlation(source,part)
+   assembled_audio_checks.append({'shot':shot['id'],'source_samples':len(source),'output_samples':len(part),'correlation':round(score,4) if score is not None else None})
+   if len(part)+800<len(source) or score is None or score<0.75:flags.append(shot['id']+': assembled narration may be missing, truncated or out of sync')
+   cursor+=round(shot['duration_seconds']*8000)
+- segment_iter=iter(segments)
++ segment_iter=iter(content_segments)
+  for shot in plan['shots']:
+   source=audio_vector(Path(shot['voice']));previous=None
+   for part in segment_schedule(shot['duration_seconds'],req):
+@@ -571,7 +587,7 @@ def _run_one(job,plan_only,open_folder):
+     target=previews/(p.stem+'-contact.jpg')
+     if not target.exists():run_cmd(['ffmpeg','-y','-v','error','-i',p,'-vf','fps=2,scale=180:-1,tile=4x3','-frames:v','1',target])
+    atomic(review/'prompts.json',{k:v['graph']['157']['inputs']['prompt'] for k,v in state['segments'].items()})
+-   if req.get('kind')=='series':series.save_continuity(job,req['episode_path'],req['show_path'],plan.get('ending_state',''))
++   if req.get('kind')=='series':series.save_continuity(job,req['episode_path'],req['show_path'],plan.get('ending_state',''),final_video=segments[-2][0])
+    check_cancel(job);state['status']='complete';state['completed']=time.time();state['output']=str(output);state['quality_flags']=report['flags'];save(job,state);shutil.copy2(job/'state.json',review/'generation-state.json')
+    if open_folder and os.name=='nt':
+     try:subprocess.Popen(['explorer.exe',str(review)],creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+diff --git a/local_film/series.py b/local_film/series.py
+index 5bcd899..90db86b 100644
+--- a/local_film/series.py
++++ b/local_film/series.py
+@@ -165,9 +165,9 @@ def card_segments(plan,job,req,show,characters,segments):
+  card_two=build_card(job,'end-card',('Next time: '+hook) if hook else f"{show['title']} — end",background if Path(background).is_file() else show_dir/'cards'/'title-bg.png',req['width'],req['height'])
+  return [(card_one,2.0)]+list(segments)+[(card_two,2.0)]
+ 
+-def save_continuity(job,episode_path,show_path,ending_state):
++def save_continuity(job,episode_path,show_path,ending_state,final_video=None):
+  episode_dir=Path(episode_path);show_dir=Path(show_path);episode=load(episode_dir/'episode.json')
+- final=episode_dir/'final-frame.png';extract_tail(Path(job)/'review'/'assembled.mp4',final)
++ final=episode_dir/'final-frame.png';extract_tail(Path(final_video) if final_video is not None else Path(job)/'review'/'assembled.mp4',final)
+  cast=[]
+  for shot in episode['shots']:
+   for slug in shot['characters']:
+diff --git a/series/characters/james/character.json b/series/characters/james/character.json
+index 74df601..1e760f4 100644
+--- a/series/characters/james/character.json
++++ b/series/characters/james/character.json
+@@ -12,5 +12,5 @@
+     "refs/frame-02.png",
+     "refs/frame-03.png"
+   ],
+-  "ref_mode": "portrait-only"
++  "ref_mode": "orbit"
+ }
+\ No newline at end of file
+diff --git a/tests/test_local_film_series_cards.py b/tests/test_local_film_series_cards.py
+index 2910146..63e3be6 100644
+--- a/tests/test_local_film_series_cards.py
++++ b/tests/test_local_film_series_cards.py
+@@ -93,6 +93,13 @@ class SeriesContinuityTests(unittest.TestCase):
+   self.assertEqual(series.last_continuity(self.root,'polar-night',3)['number'],2)
+   self.assertEqual(series.last_continuity(self.root,'polar-night',2)['number'],1)
+   self.assertEqual(series.last_continuity(self.root,'polar-night',1),{})
++ def test_continuity_uses_final_scene_instead_of_end_card(self):
++  episode_dir=self.root/'polar-night/episodes/01-first-light';episode_dir.mkdir(parents=True)
++  scene=self.job/'segments'/'shot-01-00.mp4';touch(scene)
++  episode={'number':1,'next_hook':'More follows.','shots':[{'characters':[]}]}
++  with patch.object(series,'load',return_value=episode),patch.object(series,'extract_tail') as extract:
++   series.save_continuity(self.job,episode_dir,self.root/'polar-night','The scene ends.',final_video=scene)
++  extract.assert_called_once_with(scene,episode_dir/'final-frame.png')
+ 
+ class SeriesJobCreationTests(unittest.TestCase):
+  def setUp(self):

@@ -1,0 +1,43 @@
+{
+  "camera_width": 1280,
+  "camera_height": 704,
+  "steps": 4,
+  "sparsity": 0.75,
+  "bridge_alpha": 0.15,
+  "shift_video": 6.0,
+  "shift_audio": 3.0,
+  "cast_crops": {
+    "employee": [0.22, 0.00, 0.57, 1.00],
+    "manager": [0.28, 0.05, 0.40, 0.95]
+  },
+  "shots": {
+    "arrival": {
+      "seed": 5002,
+      "cast": ["employee", "manager"],
+      "prompt": "A single live-action wide shot inside a small depot dispatch office in soft daylight. The open blue street door is at frame left. Eli, the man in <Picture 1>, wears a rust work jacket, cream shirt and dark trousers. He is already stepping through the doorway. He walks steadily from left to right across the worn floor toward Mara's desk. The door swings shut behind him. Mara, the woman in <Picture 2>, wears glasses and a teal blouse. She remains seated behind the wooden desk at frame right, looking up from her paperwork as he approaches. The camera gently follows his movement to the right, retaining the view of the desk and both actors. He comes to a natural stop on the left side of her desk and looks at her. Two people, natural footfalls, quiet mouths."
+    },
+    "employee": {
+      "seed": 5013,
+      "cast": ["employee"],
+      "photo_frames": [0, 51],
+      "prompt": "Locked tripod shot. A solo photographic head-and-shoulders portrait of Eli from <Picture 1> in his rust jacket and cream shirt. His face stays centered against the same empty softly blurred blue glass door. His gaze is just to camera right. For the first two and a quarter seconds his lips rest gently together as he listens and blinks. When the recorded voice starts, he speaks in time with it: \"{line}\" His expression is understated, the words land naturally and his eyes stay on the same point. The composition holds just his face and the empty background through the entire take."
+    },
+    "manager": {
+      "seed": 5014,
+      "cast": ["manager"],
+      "opening_crop": [0.025, 0.065, 0.68, 0.68],
+      "photo_frames": [0, 16, 33],
+      "prompt": "A locked photographic close-up. Mara from <Picture 1>, a Black woman with natural hair, glasses and a teal blouse, sits at her desk. She watches a point just left of the lens. At the beginning she is quietly waiting, eyes attentive, lips gently touching for a full second and a half. When her recorded voice begins she says, \"{line}\" She shapes the two phrases with her lips in time with the recording. She finishes in the first half of the shot; in the second half she is silent, gives a subtle nod and settles. Only Mara is in the frame. The blinds, the teal wall and the camera stay in place."
+    },
+    "departure": {
+      "seed": 5005,
+      "cast": ["employee", "manager"],
+      "prompt": "A single live-action wide shot in the same daylight dispatch office. Eli from <Picture 1> stands beside the left end of the desk, facing Mara from <Picture 2>, who sits to the right behind it. His jacket is rust, her blouse teal. Eli finishes listening, turns his back to Mara and walks left across the floor toward the blue glass-paneled door on the far left. He reaches the handle, opens the door, and steps through into daylight. Mara stays seated behind the desk and follows him with her eyes. The camera holds the wide view of both people and the door; their movement tells the story. Both remain silent."
+    },
+    "street": {
+      "seed": 5006,
+      "cast": ["employee"],
+      "prompt": "A single live-action exterior shot in soft daylight outside the dispatch depot. The same man as <Picture 1>, in a rust jacket and dark trousers, is already walking left at an ordinary steady pace along the pavement as the shot begins. The open blue office door is behind him on the right. He continues away from the door toward the far left down the block, gradually getting smaller. The camera watches from a fixed position. Natural alternating strides and arm swing continue through the end of the shot. The storefront and pavement remain stationary, the street is otherwise empty and quiet."
+    }
+  }
+}

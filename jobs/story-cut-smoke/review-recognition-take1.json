@@ -1,0 +1,5 @@
+{
+  "decision": "retry",
+  "reason": "Kate reacts and audio correlation is 0.9967, but an invented blue-coated man appears in the doorway at about 3.1 seconds.",
+  "correction": "LOCK THE CAMERA in the starting composition for the entire clip. No pan, dolly, zoom, reframing or new doorway revealed. Keep the closed station wall and orange backpack behind Kate. Kate is the sole human in this shot. She raises her head and turns only her eyes and head slightly toward an off-screen sound on frame left while speaking the supplied recording. The exit remains completely outside the camera frame. Background stays stationary and unoccupied throughout."
+}

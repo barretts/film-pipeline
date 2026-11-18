@@ -1,0 +1,60 @@
+{
+  "status": "rendered_owner_playback_pending",
+  "source_job": "F:\\film-pipeline\\local-film-jobs\\20261030-123636-7525ee03",
+  "preserve_opening": [
+    "shot-01-00",
+    "shot-01-01"
+  ],
+  "initial_state": {
+    "james": "inside_control_room",
+    "kate": "inside_control_room",
+    "event": "signal_recognized"
+  },
+  "generation": {
+    "frames": 124,
+    "fps": 24,
+    "seed": 2801,
+    "max_initial_renders": 1,
+    "max_changed_retries": 1,
+    "retry_rule": "Stop at first failed beat; at most one documented prompt/guide correction, never an unchanged blind retry."
+  },
+  "beats": [
+    {
+      "id": "pursuit",
+      "cut_to_new_location": true,
+      "duration_seconds": 5.166666666666667,
+      "before": {
+        "james": "missing_offscreen",
+        "kate": "outside_station_with_radio",
+        "event": "pursuit_begins"
+      },
+      "action": "CUT TO EXTERIOR, just outside the same isolated polar research station at night in a blowing snowstorm. Only Kate is present. A static medium-wide three-quarter rear camera shows Kate full body and the station exterior entrance behind her. Kate has short silver-streaked brown hair, navy wool work jacket over a cream sweater and dark trousers, matching her established face and clothing. She already holds the same small black portable radio with long straight antenna in her right hand. Kate walks three deliberate steps AWAY from the station entrance into the snowy expanse, briefly checks the radio, then fixes her gaze forward toward the unseen signal. Cold blue-white night, one warm amber light at the station door behind her, snow driven sideways by wind. Keep the radio visibly carried as she advances. End farther from the station, body facing into the storm, committed to the pursuit. No talking, no other people, no return indoors, no retracing steps, no camera orbit or conversational close-up.",
+      "after": {
+        "james": "missing_offscreen",
+        "kate": "advancing_into_storm_with_radio",
+        "event": "following_signal"
+      },
+      "on_screen_cast": [
+        "kate"
+      ],
+      "cast_at_end": [
+        "kate"
+      ],
+      "dialogue": [],
+      "audio": "silence",
+      "acceptance": [
+        "Exterior snowy station setting is visible",
+        "Kate is the only visible person",
+        "Kate carries the portable radio",
+        "Kate advances away from the station, ending farther into the storm",
+        "No narrative reset to dialogue or indoor reaction"
+      ]
+    }
+  ],
+  "promotion_gate": "Owner playback review of approved cut plus one exterior scene; no production integration.",
+  "gpu_lifecycle": "Check idle queues; stop Strata only for bounded media generation; always unload idle renderer models and run the verified restore path on success, failure or timeout; OMP continuation remains manual.",
+  "experiment": "one_scene_extension",
+  "reused_exit": "F:\\film-pipeline\\jobs\\story-progress-smoke\\story-progress-exit-take2.mp4",
+  "first_guide": "F:\\film-pipeline\\jobs\\story-cut-smoke\\story-cut-decision-take1-tail.png",
+  "approved_cut": "F:\\film-pipeline\\jobs\\story-cut-smoke\\review\\assembled.mp4"
+}

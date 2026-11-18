@@ -1,0 +1,12 @@
+{
+  "decision": "approve",
+  "evidence": [
+    "Six-frame sequence and sixteen intermediate-frame audit show Kate alone throughout sampled coverage",
+    "Kate raises her head and turns gaze off-screen in reaction",
+    "Source audio correlation 0.99667, source length 3.932s retained within 5.167s output"
+  ],
+  "limitations": [
+    "Perceived lip sync and dramatic continuity await owner playback review",
+    "Sampled frames do not prove every intermediate frame is free of artifacts"
+  ]
+}
