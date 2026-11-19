@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. James has disappeared across the cut. Kate alone scans the open doorway and turns back to the desk. Snow blows outside.",
+  "frames": [
+    "0601.jpg",
+    "0720.jpg"
+  ]
+}

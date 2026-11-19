@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. At the platform doorway Ken holds out the scarf. Nell takes it and smiles in thanks. The transfer finishes in her hands.",
+  "frames": [
+    "0481.jpg",
+    "0600.jpg"
+  ]
+}

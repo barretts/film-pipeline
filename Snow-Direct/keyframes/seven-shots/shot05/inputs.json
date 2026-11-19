@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. Already walking, James reaches for the orange handle, hesitates, grips it, depresses it and pulls the hatch inward, stepping aside to reveal whiteout.",
+  "frames": [
+    "0481.jpg",
+    "0600.jpg"
+  ]
+}

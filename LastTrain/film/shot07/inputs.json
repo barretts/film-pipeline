@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. From the platform we see Nell seated inside through the carriage window, wearing the crimson scarf. She smiles and waves to Ken as her train rolls away. The counter inside the station is empty.",
+  "frames": [
+    "0721.jpg",
+    "0840.jpg"
+  ]
+}

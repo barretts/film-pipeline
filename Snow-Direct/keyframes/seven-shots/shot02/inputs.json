@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. Kate looks up, glances toward James and says at 1.7s: That was my voice. Small hand gesture and gentle camera push.",
+  "frames": [
+    "0121.jpg",
+    "0240.jpg"
+  ]
+}

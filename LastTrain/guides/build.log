@@ -1,0 +1,20 @@
+F:\film-pipeline\LastTrain\stage.py:47: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  s.render.engine='CYCLES';s.cycles.samples=2;s.world=bpy.data.worlds.new('Day');s.world.use_nodes=True;s.world.node_tree.nodes['Background'].inputs[0].default_value=(.8,.85,.9,1)
+00:06.797  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0001.png'
+00:08.078  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0120.png'
+00:09.312  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0121.png'
+00:10.531  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0240.png'
+00:11.781  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0241.png'
+00:13.062  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0360.png'
+00:14.375  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0361.png'
+00:15.625  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0480.png'
+00:17.203  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0481.png'
+00:19.000  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0600.png'
+00:20.640  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0601.png'
+00:22.281  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0720.png'
+00:23.859  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0721.png'
+00:25.406  render           | Saved: 'F:\film-pipeline\LastTrain\guides\0840.png'
+Info: Saved as "LastTrain.blend"
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

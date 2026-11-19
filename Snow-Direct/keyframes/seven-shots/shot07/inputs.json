@@ -1,0 +1,11 @@
+{
+  "model": "alibaba/wan-3.0",
+  "duration": 5,
+  "resolution": "720p",
+  "aspect_ratio": "16:9",
+  "prompt": "One continuous cinematic live-action take. Match the endpoint photographs precisely, maintain faces, wardrobe, spatial continuity, natural momentum. Kate leans toward the microphone, presses the switch and warns: James. Don’t open the door. Hold close on Kate.",
+  "frames": [
+    "0721.jpg",
+    "0840.jpg"
+  ]
+}
