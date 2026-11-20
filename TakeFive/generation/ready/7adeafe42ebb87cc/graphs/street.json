@@ -1,0 +1,684 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-4b-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-street.png"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-employee.png"
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Tight eye-level head-and-shoulders portrait, cropped at the upper chest. A single real human man in a rust jacket over a cream shirt, standing still in three-quarter profile looking toward screen RIGHT at his manager. His head fills the central half of the frame and his shoulders reach the bottom corners. His face is calm and his lips are together. The blue glass-panel door immediately behind him is softly out of focus. This is the employee's dialogue close-up. A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. Use image one as the entire camera frame. Preserve its framing, eyelines, door position and subject sizes. The small detail references identify people and materials already in this scene.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7624
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "14": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "15": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "10",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "16": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "15",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "16",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "filename_prefix": "looks/employee"
+    }
+  },
+  "19": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "17",
+        0
+      ],
+      "x": 284,
+      "y": 35,
+      "width": 261,
+      "height": 229
+    }
+  },
+  "20": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "An exterior street-level movie still of one pedestrian walking along a warehouse sidewalk. The only person is the dark-haired man in a rust work jacket, cream shirt and charcoal trousers, in left-facing profile, head to toe, already mid-stride toward the LEFT edge. Behind him on the RIGHT is the same blue glass-panel depot door with brass hardware in a cream and dark teal industrial facade. The building exterior and pavement fill the entire picture. A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. Use image one as the entire camera frame. Preserve its framing, eyelines, door position and subject sizes. The small detail references identify people and materials already in this scene.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "21": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "20",
+        0
+      ]
+    }
+  },
+  "22": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "23": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "20",
+        0
+      ],
+      "latent": [
+        "22",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "21",
+        0
+      ],
+      "latent": [
+        "22",
+        0
+      ]
+    }
+  },
+  "25": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "19",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "26": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "23",
+        0
+      ],
+      "latent": [
+        "25",
+        0
+      ]
+    }
+  },
+  "27": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "24",
+        0
+      ],
+      "latent": [
+        "25",
+        0
+      ]
+    }
+  },
+  "28": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7628
+    }
+  },
+  "29": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "30": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "31": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "32": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "26",
+        0
+      ],
+      "negative": [
+        "27",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "33": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "28",
+        0
+      ],
+      "guider": [
+        "32",
+        0
+      ],
+      "sampler": [
+        "29",
+        0
+      ],
+      "sigmas": [
+        "30",
+        0
+      ],
+      "latent_image": [
+        "31",
+        0
+      ]
+    }
+  },
+  "34": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "33",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "35": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "34",
+        0
+      ],
+      "filename_prefix": "looks/street"
+    }
+  },
+  "36": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "37": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "inputs": {
+      "text_encoder": "gemma_3_12B_it_fp8_scaled.safetensors",
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors",
+      "device": "default"
+    }
+  },
+  "38": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "36",
+        0
+      ],
+      "lora_name": "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "39": {
+    "class_type": "GetICLoRAParameters",
+    "inputs": {
+      "iclora_model": [
+        "38",
+        0
+      ]
+    }
+  },
+  "40": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. From outside the same depot door, the employee is already walking away along the sidewalk. His stride continues smoothly past the door. His back gradually faces the camera. The visible people are silent.",
+      "clip": [
+        "37",
+        0
+      ]
+    }
+  },
+  "41": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Cartoon rendering, plastic skin, rubber limbs, broken glasses or drifting faces.",
+      "clip": [
+        "37",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "40",
+        0
+      ],
+      "negative": [
+        "41",
+        0
+      ],
+      "frame_rate": 24
+    }
+  },
+  "43": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 1024,
+      "height": 576,
+      "length": 121,
+      "batch_size": 1
+    }
+  },
+  "44": {
+    "class_type": "LTXVImgToVideoInplace",
+    "inputs": {
+      "vae": [
+        "36",
+        2
+      ],
+      "image": [
+        "34",
+        0
+      ],
+      "latent": [
+        "43",
+        0
+      ],
+      "strength": 1.0,
+      "bypass": false
+    }
+  },
+  "45": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "edges-street.mp4"
+    }
+  },
+  "46": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "45",
+        0
+      ]
+    }
+  },
+  "47": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "42",
+        0
+      ],
+      "negative": [
+        "42",
+        1
+      ],
+      "vae": [
+        "36",
+        2
+      ],
+      "latent": [
+        "44",
+        0
+      ],
+      "image": [
+        "46",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 0.65,
+      "iclora_parameters": [
+        "39",
+        0
+      ]
+    }
+  },
+  "48": {
+    "class_type": "LoadAudio",
+    "inputs": {
+      "audio": "voice-street.wav"
+    }
+  },
+  "49": {
+    "class_type": "LTXVAudioVAELoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "50": {
+    "class_type": "LTXVAudioVAEEncode",
+    "inputs": {
+      "audio": [
+        "48",
+        0
+      ],
+      "audio_vae": [
+        "49",
+        0
+      ]
+    }
+  },
+  "51": {
+    "class_type": "SolidMask",
+    "inputs": {
+      "value": 0.0,
+      "width": 64,
+      "height": 64
+    }
+  },
+  "52": {
+    "class_type": "SetLatentNoiseMask",
+    "inputs": {
+      "samples": [
+        "50",
+        0
+      ],
+      "mask": [
+        "51",
+        0
+      ]
+    }
+  },
+  "53": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "47",
+        2
+      ],
+      "audio_latent": [
+        "52",
+        0
+      ]
+    }
+  },
+  "54": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "38",
+        0
+      ],
+      "seed": 7728,
+      "steps": 8,
+      "cfg": 1.0,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "linear_quadratic",
+      "positive": [
+        "47",
+        0
+      ],
+      "negative": [
+        "47",
+        1
+      ],
+      "latent_image": [
+        "53",
+        0
+      ],
+      "denoise": 1.0
+    }
+  },
+  "55": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "54",
+        0
+      ]
+    }
+  },
+  "56": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "47",
+        0
+      ],
+      "negative": [
+        "47",
+        1
+      ],
+      "latent": [
+        "55",
+        0
+      ]
+    }
+  },
+  "57": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "56",
+        2
+      ],
+      "vae": [
+        "36",
+        2
+      ],
+      "tile_size": 384,
+      "overlap": 64,
+      "temporal_size": 32,
+      "temporal_overlap": 8
+    }
+  },
+  "58": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "57",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "59": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "58",
+        0
+      ],
+      "filename_prefix": "takes/street",
+      "format": "mp4",
+      "format.codec": "auto"
+    }
+  }
+}

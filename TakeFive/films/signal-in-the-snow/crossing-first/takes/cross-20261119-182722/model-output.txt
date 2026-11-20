@@ -1,0 +1,172 @@
+```python
+import bpy
+
+# Start from an empty scene
+bpy.ops.scene.new(type='NEW')
+
+# Set the scene name
+bpy.context.scene.name = 'Shot'
+
+# Set the frame range
+bpy.context.scene.frame_start = 1
+bpy.context.scene.frame_end = 124
+
+# Set the frame rate
+bpy.context.scene.render.fps = 24
+
+# Create a camera
+cam = bpy.data.cameras.new(name="Wide Moving Shot")
+cam.sensor_width = 32.0
+cam.sensor_height = 24.0
+cam.type = 'PANO'
+cam.pano_type = 'RECTANGULAR'
+cam.angle = 1.0
+cam.name = 'Wide Moving Shot'
+
+# Add camera to active scene
+scene = bpy.context.scene
+scene.camera = cam
+
+# Create a light
+lamp_data = bpy.data.lamps.new(name="Main Lamp", type='IES')
+lamp_data.energy = 1.0
+lamp_data.use_diffuse = True
+lamp_data.use_specular = True
+lamp_data.shadow_soft_size = 1.0
+lamp_data.type = 'IES'
+lamp_data.shadow_method = 'SOLID'
+lamp = bpy.data.objects.new(name="Main Lamp", object_data=lamp_data)
+lamp.scale[0] = 0.5
+lamp.scale[1] = 0.5
+lamp.scale[2] = 0.5
+scene.collection.objects.link(lamp)
+
+# Create geometry
+# James
+bpy.ops.mesh.primitive_cube_add(size=1, location=(-2.5, 0, 2.5))
+bpy.context.object.name = 'James'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="James Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.1, 0.4, 0.8, 1.0)
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action='SELECT')
+bpy.ops.mesh.loopcut_slide(orient_axis='Y', MARGIN=0.2)
+bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.modifier_add(type='SUBSURFACE')
+bpy.context.object.modifiers["Subsurface"].level = 2
+
+# Kate
+bpy.ops.mesh.primitive_cube_add(size=1, location=(2.5, 0, 2.5))
+bpy.context.object.name = 'Kate'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Kate Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.6, 0.6, 0.6, 1.0)
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.mesh.select_all(action='SELECT')
+bpy.ops.mesh.loopcut_slide(orient_axis='Y', MARGIN=0.2)
+bpy.ops.object.mode_set(mode='OBJECT')
+bpy.ops.object.modifier_add(type='SUBSURFACE')
+bpy.context.object.modifiers["Subsurface"].level = 2
+
+# Door
+bpy.ops.mesh.primitive_cube_add(size=1, location=(-2.5, 0, 2.5))
+bpy.context.object.name = 'Outer Door'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Door Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Window
+bpy.ops.mesh.primitive_cube_add(size=1, location=(2.5, 0, 2.5))
+bpy.context.object.name = 'Window'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Window Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Desk
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Desk'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Desk Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.8, 0.8, 0.8, 1.0)
+
+# Chair
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Chair'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Chair Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Desk Lamp
+bpy.ops.mesh.primitive_cylinder_add(radius=1, depth=1, location=(0, 0, 0))
+bpy.context.object.name = 'Desk Lamp'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Desk Lamp Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.8, 0.8, 0.8, 1.0)
+
+# Receiver
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Receiver'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Receiver Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Mic
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Mic'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Mic Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Walkie
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Walkie'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Walkie Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Charger
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Charger'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Charger Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Cabin
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Cabin'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Cabin Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Workstation
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Workstation'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Workstation Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.8, 0.8, 0.8, 1.0)
+
+# Exterior
+bpy.ops.mesh.primitive_cube_add(size=1, location=(0, 0, 0))
+bpy.context.object.name = 'Exterior'
+bpy.context.object.data.materials.append(bpy.data.materials.new(name="Exterior Material"))
+bpy.context.object.data.materials[0].diffuse_color = (0.7, 0.7, 0.7, 1.0)
+
+# Assign materials to objects
+for obj in bpy.context.scene.objects:
+    if obj.material is None:
+        obj.data.materials.append(bpy.data.materials.new(name="Default Material"))
+
+# Add constraints for the camera movement
+bpy.context.scene.objects['Wide Moving Shot'].location = (-2.5, -2.5, -2.5)
+bpy.context.scene.objects['Wide Moving Shot'].location[1] += 2.0
+bpy.context.scene.objects['Wide Moving Shot'].rotation_euler = (3.14159, 0, 0)
+bpy.context.scene.objects['Wide Moving Shot'].keyframe_insert(data_path="location", frame=1)
+bpy.context.scene.objects['Wide Moving Shot'].keyframe_insert(data_path="rotation_euler", frame=1)
+bpy.context.scene.objects['Wide Moving Shot'].keyframe_insert(data_path="location", frame=124)
+bpy.context.scene.objects['Wide Moving Shot'].keyframe_insert(data_path="rotation_euler", frame=124)
+
+# Add keyframes for the receiver and mic
+bpy.context.scene.objects['Receiver'].keyframe_insert(data_path="location", frame=124)
+bpy.context.scene.objects['Mic'].keyframe_insert(data_path="location", frame=124)
+bpy.context.scene.objects['Mic'].keyframe_insert(data_path="location", frame=124)
+
+# Add keyframes for the walkie
+bpy.context.scene.objects['Walkie'].keyframe_insert(data_path="location", frame=124)
+bpy.context.scene.objects['Walkie'].keyframe_insert(data_path="location", frame=124)
+bpy.context.scene.objects['Walkie'].keyframe_insert(data_path="location", frame=124)
+
+# Set the active camera
+bpy.context.scene.camera = bpy.data.objects['Wide Moving Shot']
+
+# Save the blend file
+bpy.ops.wm.save_as_mainfile(filepath="stage.blend")
+``` [end of text]
+
+

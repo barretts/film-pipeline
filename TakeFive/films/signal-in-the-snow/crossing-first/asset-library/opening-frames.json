@@ -1,0 +1,93 @@
+{
+  "width": 1024,
+  "height": 768,
+  "shots": {
+    "james": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Character turnaround on neutral gray: front and profile full body plus a large head study of the SAME man, late twenties, angular face, dark curly hair under charcoal earflap hat, faded vermilion survival suit with graphite knees, short black gloves and insulated boots. Empty hands.",
+      "references": [],
+      "seed": 3407736026
+    },
+    "kate": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Three studies of the SAME late-forties woman: full body standing, seated profile working at desk height, and face close-up. Short silver-streaked chestnut hair, lined expressive face, navy wool work jacket, cream crewneck sweater, brass ring on a short lanyard, dark trousers. Neutral backdrop.",
+      "references": [],
+      "seed": 3975423080
+    },
+    "door": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Design reference pair of the same closed blue-grey insulated steel personnel hatch at a polar station, its interior face in front elevation plus a detail of its brushed horizontal silver latch. No window in door. Hinges left viewed from room, single handle right. Distinctive chipped lower corner.",
+      "references": [],
+      "seed": 4174827015
+    },
+    "window": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. A horizontal rectangular double-glazed polar cabin window with rounded corners and a charcoal metal frame. Frost at the edges. Blue-white snow visible outside. Straight-on architectural detail.",
+      "references": [],
+      "seed": 512884091
+    },
+    "desk": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Isolated empty broad utilitarian honey-toned birch plywood radio workbench, straight rectangular top, two square grey steel support frames. Three-quarter furniture photograph showing entire desk, no drawers or shelf.",
+      "references": [],
+      "seed": 695836700
+    },
+    "chair": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. A single sturdy navy upholstered task chair, low back, no armrests, black metal footing. Front three-quarter furniture design photograph.",
+      "references": [],
+      "seed": 3410847996
+    },
+    "desk_lamp": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Small amber-painted metal task lamp with conical shade, adjustable angled neck and heavy round base, switched on. Isolated object.",
+      "references": [],
+      "seed": 884976531
+    },
+    "receiver": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. One squat charcoal steel tabletop transceiver. Front three-quarter catalog photograph: amber analog meter on left, six narrow vertical speaker slots on right of front face, one prominent black tuning knob below meter, small amber pilot. Wired mic jack at bottom right. No handset or antenna.",
+      "references": [],
+      "seed": 770272205
+    },
+    "walkie": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. One narrow palm-sized charcoal rubber handheld two-way radio, short black antenna at upper left, distinctive mustard yellow side talk button, belt clip. Product reference showing front and side of same design. No cradle.",
+      "references": [],
+      "seed": 268324110
+    },
+    "cabin": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Interior establishing photograph, camera looking across a cramped steel polar station radio room. Closed referenced hatch at back LEFT, referenced birch workbench at RIGHT beneath the referenced frosted window. Open walking aisle from hatch to desk, grounded floor, amber practical light and cold snow fill. Empty of people.",
+      "references": [
+        "door",
+        "window",
+        "desk"
+      ],
+      "seed": 1951731922
+    },
+    "mic": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Show the referenced base transceiver with its wired oval black desk microphone on a short silver stalk, black weighted push-to-talk foot and coiled black cable plugged into receiver. Entire connection visible on plain wood. The microphone is the foreground subject.",
+      "references": [
+        "receiver"
+      ],
+      "seed": 1140053199
+    },
+    "charger": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Matched two-view product reference. Left: the referenced handheld radio seated upright in a low black desktop charging cradle. Right: same cradle empty, recessed socket and two brass contacts visible. Simple neutral background.",
+      "references": [
+        "walkie"
+      ],
+      "seed": 3613257502
+    },
+    "exterior": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Camera stands on the snow looking back at the OUTSIDE of the same single-storey steel polar cabin. Show corresponding outer face of the hatch, frosted window and the near corner of the building; retain plausible orientation relative to interior. Blue dusk, drifting snow. No people.",
+      "references": [
+        "door",
+        "window",
+        "cabin"
+      ],
+      "seed": 2365363902
+    },
+    "workstation": {
+      "prompt": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Integrated set detail at Kate's birch workbench below a frosted window. Match the supplied designs: transceiver at left, separate wired microphone in middle, handheld upright in charging cradle at right. Amber task lamp and low navy chair. Clearly distinguish the two radios. No people.",
+      "references": [
+        "mic",
+        "charger",
+        "desk_lamp",
+        "chair"
+      ],
+      "seed": 3558849287
+    }
+  }
+}

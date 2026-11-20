@@ -1,0 +1,24 @@
+[32m[INFO][0m setup plugin alembic.autogenerate.schemas
+[32m[INFO][0m setup plugin alembic.autogenerate.tables
+[32m[INFO][0m setup plugin alembic.autogenerate.types
+[32m[INFO][0m setup plugin alembic.autogenerate.constraints
+[32m[INFO][0m setup plugin alembic.autogenerate.defaults
+[32m[INFO][0m setup plugin alembic.autogenerate.comments
+[32m[INFO][0m setup plugin alembic.ext.checkconstraint_byname
+[1m[33m[WARNING][0m On windows we are currently forcing single GPU mode in ComfyUI due to a Nvidia related issue, if you want to disable this use: --cuda-device all
+[32m[INFO][0m Adding extra search path diffusion_models F:\TakeFive\runtime\h3-models\diffusion_models
+[32m[INFO][0m Adding extra search path loras F:\TakeFive\runtime\h3-models\loras
+[32m[INFO][0m Adding extra search path semantic_bridge F:\TakeFive\runtime\h3-models\semantic_bridge
+[32m[INFO][0m Adding extra search path text_encoders F:\TakeFive\runtime\h3-models\text_encoders
+[32m[INFO][0m Adding extra search path vae F:\TakeFive\runtime\h3-models\vae
+[32m[INFO][0m Adding extra search path custom_nodes F:\TakeFive\runtime\h3-nodes
+[32m[INFO][0m Setting base directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-a44d4bfaf41148478f89b661fc4649a7
+[32m[INFO][0m Setting output directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-a44d4bfaf41148478f89b661fc4649a7\output
+[32m[INFO][0m Setting input directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-a44d4bfaf41148478f89b661fc4649a7\input
+Traceback (most recent call last):
+  File "F:\TakeFive\runtime\comfyui\main.py", line 240, in <module>
+    execute_prestartup_script()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "F:\TakeFive\runtime\comfyui\main.py", line 204, in execute_prestartup_script
+    possible_modules = os.listdir(custom_node_path)
+FileNotFoundError: [WinError 3] The system cannot find the path specified: 'F:\\TakeFive\\generation\\h3-ready\\3b345cc1c9b1272f\\runs\\engine-a44d4bfaf41148478f89b661fc4649a7\\custom_nodes'

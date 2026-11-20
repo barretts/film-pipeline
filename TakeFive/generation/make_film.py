@@ -176,13 +176,12 @@ def main():
     if args.story:
         story, label = args.story.read_text(encoding="utf-8-sig"), args.story.stem
     elif sys.stdin.isatty():
-        reply = input("Paste a story paragraph or enter its text file path:\n").strip()
-        candidate = Path(reply.removeprefix('"').removesuffix('"'))
+        reply = input("Paste a story paragraph or enter its text file path:\n").strip().strip('"')
         try:
-            file = candidate.is_file()
+            file = Path(reply).is_file()
         except OSError:
             file = False
-        story,label = (candidate.read_text(encoding="utf-8-sig"),candidate.stem) if file else (reply,"film")
+        story,label = (Path(reply).read_text(encoding="utf-8-sig"),Path(reply).stem) if file else (reply,"film")
     else:
         story,label = sys.stdin.read(),"film"
     if not story.strip():

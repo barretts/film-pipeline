@@ -1,0 +1,10 @@
+{
+  "references": [
+    "james",
+    "kate",
+    "cabin",
+    "workstation"
+  ],
+  "prompt": "<Picture 1> is James: use the same man, clothing and proportions throughout. <Picture 2> is Kate: use the same woman, seated in her navy chair. <Picture 3> establishes the finished polar station interior, including the closed outer hatch on the left and the window and workbench on the right. <Picture 4> supplies the dressed desk: base receiver, wired microphone, lit task lamp and handheld radio upright in its charging cradle.\n\n<Video 1> supplies the camera movement, screen positions, timing and blocking. Replace the tall orange marker with James and the shorter blue marker with seated Kate; replace the guide geometry with the finished station interior. In one continuous shot, open from inside the room on James full-length at the closed hatch, with Kate and the desk out of frame to the right. Three distinct taps sound from the base receiver. James crosses toward the desk with empty hands. The camera travels sideways with him, allowing him to move within the frame and keeping space ahead of him. The closed hatch slips off the left edge as the desk and Kate enter from the right. As James arrives beside her, Kate turns toward him. End with James beside seated Kate and the handheld still docked. Keep the floor and interior walls filling the view throughout. Restrained photographic polar drama, warm practical lamp light and cold blue fill. Both people remain silent, with no speech or lip movement. No captions.",
+  "seed": 206213570165573
+}

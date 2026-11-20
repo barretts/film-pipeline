@@ -1,0 +1,89 @@
+{
+  "james": {
+    "key": "1065a471339a658e147356c375debaf27ccb9d9245b1ebc9494c5573d99b3e8a",
+    "sha256": "76a3d41b1f7bec8e7641ff5eb3816dcab8eae4bbb74c85f888f19974645f2b02",
+    "references": {}
+  },
+  "kate": {
+    "key": "ddd681fd9392387110a2bb6a1cfefa815f15d8c8aef8b0a2fe84b27e66b94f85",
+    "sha256": "63efdfa73bc42c06d392dd7a46b4467481a7611fcdb4830f390e272bbc36921d",
+    "references": {}
+  },
+  "door": {
+    "key": "f9da4f7909c97d12bfc587e33c9f6b1c3b467ca1e3f3ba128bc35a0e72848c96",
+    "sha256": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa",
+    "references": {}
+  },
+  "window": {
+    "key": "ea63978f53d2a2b0f2fd7203f29f9a6ade36f1f48aec47fa39d984be140687d5",
+    "sha256": "c556a0bdb2253d6338f9d2f5c9748aa7229d9141c3c2991a7e20b6671a4c40b5",
+    "references": {}
+  },
+  "desk": {
+    "key": "caecab8ecca2e27e6521a424620eba2c8e2d63356e9eebd005ff35a0f410a052",
+    "sha256": "c520ea295aef4fe3278fd8276c6f08451ce69f65d4bd55f34dc917d074112e3d",
+    "references": {}
+  },
+  "chair": {
+    "key": "29b7dcfb0420ec864b8250b87c8450140ad4059d240279872fbd0cb26f267a72",
+    "sha256": "65f99a325d3940b632c66f997e7873a5206e5a23c70224fd78286a9080c5921e",
+    "references": {}
+  },
+  "desk_lamp": {
+    "key": "24f0044ef781c19ba6ef5a68ef8655422f58716da6d8f4dd253812c2e4f31ecb",
+    "sha256": "ca3ff806790ce53dd13007d142052184265ab89508775cd41652c15b13a51591",
+    "references": {}
+  },
+  "receiver": {
+    "key": "189aa1b72f271d2791aaed421f55b76225970085db309bc203111a7568650a0e",
+    "sha256": "2f8831aa9d2e0ed8f441bc10ebe05e2fe91088ebc552559e684562aa38f04792",
+    "references": {}
+  },
+  "walkie": {
+    "key": "ee7fa9d8fff1fa3a6a5f6181a1e0480447a38da568b95a9b38c7693cff76e7ae",
+    "sha256": "e90d043520c38197621e384ce24fbced60af7ce4d3927989c7c0dda660c3a292",
+    "references": {}
+  },
+  "cabin": {
+    "key": "247608646cbc17ae2e79a7669ceaef0379c4a712a2e12448c2da024902588d48",
+    "sha256": "ec420f56be6b149a53f37143c690a586db45b26f8035fbfbe4512b794fd74a03",
+    "references": {
+      "door": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa",
+      "window": "c556a0bdb2253d6338f9d2f5c9748aa7229d9141c3c2991a7e20b6671a4c40b5",
+      "desk": "c520ea295aef4fe3278fd8276c6f08451ce69f65d4bd55f34dc917d074112e3d"
+    }
+  },
+  "mic": {
+    "key": "1d9dc4793eb06588f4135441b1e660f7c6d9f257791674a3a0540fd63c39258e",
+    "sha256": "532e377ccc66888f586eca7c6694d2fe65e1e13d696d65f2bfb1c39d52da7fa1",
+    "references": {
+      "receiver": "2f8831aa9d2e0ed8f441bc10ebe05e2fe91088ebc552559e684562aa38f04792"
+    }
+  },
+  "charger": {
+    "key": "da7e5671149cdd2dc7251cc7385390a4389e9db773380a2f627c0365f108fd02",
+    "sha256": "932a2408af3eae7c3cef315ff61ca5a760a763ec99d9ad3971d17e79ef10b75e",
+    "references": {
+      "walkie": "e90d043520c38197621e384ce24fbced60af7ce4d3927989c7c0dda660c3a292"
+    }
+  },
+  "exterior": {
+    "key": "64c51d1753b5cf31797ab4d46c23993045261b13e391c700683ddfcef107c8b9",
+    "sha256": "aab7f4561eb6d63924b2236a1e156eb17c85839f88ed39d5cc0e99d0193c26e6",
+    "references": {
+      "door": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa",
+      "window": "c556a0bdb2253d6338f9d2f5c9748aa7229d9141c3c2991a7e20b6671a4c40b5",
+      "cabin": "ec420f56be6b149a53f37143c690a586db45b26f8035fbfbe4512b794fd74a03"
+    }
+  },
+  "workstation": {
+    "key": "0eb704642286f6348599fea407e87b716595beac608be2d06ff5ee585d4550b6",
+    "sha256": "8321b35306dda546b025a6919b86064799335f55dba27093ae6f45d37ddacce6",
+    "references": {
+      "mic": "532e377ccc66888f586eca7c6694d2fe65e1e13d696d65f2bfb1c39d52da7fa1",
+      "charger": "932a2408af3eae7c3cef315ff61ca5a760a763ec99d9ad3971d17e79ef10b75e",
+      "desk_lamp": "ca3ff806790ce53dd13007d142052184265ab89508775cd41652c15b13a51591",
+      "chair": "65f99a325d3940b632c66f997e7873a5206e5a23c70224fd78286a9080c5921e"
+    }
+  }
+}

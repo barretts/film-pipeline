@@ -1,0 +1,28 @@
+{
+  "height": 720,
+  "width": 1280,
+  "shots": {
+    "first": {
+      "references": [
+        "layout-first",
+        "james",
+        "kate",
+        "workstation"
+      ],
+      "seed": 393995955,
+      "prompt": "Wide photographic view inside a cramped steel polar station radio room, restrained polar drama with cold blue snow light and a warm amber desk lamp. Exactly two people. At screen left, James stands full-length near the closed blue-grey outer hatch, facing right toward Kate, beginning to cross the open aisle. He is a late-twenties man with an angular face and dark curls under a charcoal earflap hat, wearing a faded vermilion survival suit with graphite knees, short black gloves and insulated boots; his hands are empty. At screen right, Kate sits at the birch radio desk beneath a rounded, frost-edged window, working at desk height and looking toward the receiver. She is a late-forties woman with short silver-streaked chestnut hair and a lined face, wearing a navy wool jacket, cream sweater, brass ring on a short lanyard and dark trousers. The closed hatch has left hinges, a silver latch on the right and a chipped lower corner. Snow shows through the window. On the desk are one charcoal base transceiver with an illuminated amber meter, a separate wired microphone with its coiled cable connected, a lit amber task lamp, and one handheld radio upright in its black charging cradle. A low navy chair is at the desk. The people and objects are single instances, not reference-sheet studies. No captions.",
+      "start_from_layout": true
+    },
+    "last": {
+      "references": [
+        "layout-last",
+        "james",
+        "kate",
+        "workstation"
+      ],
+      "seed": 162811855,
+      "prompt": "Wide photographic view inside the same cramped steel polar station radio room, restrained polar drama with cold blue snow light and a warm amber desk lamp. Exactly two people. James has reached the desk and stands full-length just left of Kate, near screen center-right, facing her with empty hands at his sides. He is the same late-twenties man with an angular face and dark curls under a charcoal earflap hat, wearing a faded vermilion survival suit with graphite knees, short black gloves and insulated boots. Kate sits at the birch desk on screen right, turning her head and upper body toward James as he arrives. She is the same late-forties woman with short silver-streaked chestnut hair and a lined face, wearing a navy wool jacket, cream sweater, brass ring on a short lanyard and dark trousers. The closed blue-grey outer hatch remains visible at screen left, with left hinges, a silver latch on the right and a chipped lower corner. The desk remains beneath the rounded, frost-edged window with snow outside. On it are one charcoal base transceiver with an illuminated amber meter, a separate wired microphone with its coiled cable connected, a lit amber task lamp, and one handheld radio still upright in its black charging cradle. A low navy chair is at the desk. The people and objects are single instances, not reference-sheet studies. No captions.",
+      "start_from_layout": true
+    }
+  }
+}

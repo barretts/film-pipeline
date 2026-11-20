@@ -1,0 +1,22 @@
+{
+  "edges-arrival.mp4": "00d17835fdf47cb76f7e540563bcecbbae4ff6b40d362e6feaea37dd3c5bdf0a",
+  "edges-departure.mp4": "954a12fb5826adf09da7e2aa47413db0135428d3accfd4aa112aa229a6a314e0",
+  "edges-employee.mp4": "2d96becc20c31ce90e845fb2e3da52e7453b4762a4bd5d897b50ba8ef4398f94",
+  "edges-manager.mp4": "81a983e3eaf1cf2e8f58f3eb74205b421827b0619d7f0e706308440ee1a15fe6",
+  "edges-street.mp4": "10f0b091b1aa27674c99069d48044ad72e863fb230ca6143677b82464d25df42",
+  "guide-arrival.mp4": "25465dba7d30bad148244c6370702984be53e063dbd85560d366021545b2365c",
+  "guide-departure.mp4": "d8dc9691d23cf8efca1450366972d306562005550a83820996f7bfda96fd66ba",
+  "guide-employee.mp4": "d3a4a7475e17615afc8d191c0f1c06ac8953739af5f529c22b91428d429d108f",
+  "guide-manager.mp4": "a755aa7838419cd52fff5960eb7852237faca5fc4d045445f7b3e03ba902de10",
+  "guide-street.mp4": "3b1b1ba442aaa6f7ae3bb08acaceb82b5056ea1596b62e62b5e6e44128ca1fc0",
+  "layout-arrival.png": "86689951b2fd2a24be7f0778c277c937c143e014588e61d29dd61f946376b127",
+  "layout-departure.png": "65f893fda5d4517a56b2a4549941825b96760af368f157f7a3299ce12b9a327c",
+  "layout-employee.png": "fc88fb98fa562883043affbaef5f6c76892265180e89f0e0628a06a797623b43",
+  "layout-manager.png": "29934ec1566ddbdbb98332c4cf845b638162b4b4cf82ee32362b88c90dba6dba",
+  "layout-street.png": "0b544a61668009b526043c7abbf5e4d09a32b4a0a24d17eb232547b80e47cbbe",
+  "voice-arrival.wav": "3ddd8a02cfd58e4d9caca21673acbe7ef894c97330a141f92b32186107967e6f",
+  "voice-departure.wav": "3ddd8a02cfd58e4d9caca21673acbe7ef894c97330a141f92b32186107967e6f",
+  "voice-employee.wav": "0ba3ba88bf3580050469f47d3d08263043b09e64c2ba3eca24d17fca8d3ecb24",
+  "voice-manager.wav": "436ae4b82b3332176bb5f2ead0418d69a77bf2e391cabaa3d287b3e4bcb0317b",
+  "voice-street.wav": "3ddd8a02cfd58e4d9caca21673acbe7ef894c97330a141f92b32186107967e6f"
+}

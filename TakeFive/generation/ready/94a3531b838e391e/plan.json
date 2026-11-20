@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "fps": 24,
+  "rate": 48000,
+  "direction": {
+    "camera_width": 1024,
+    "camera_height": 576,
+    "look_width": 768,
+    "seed": 7624,
+    "steps": 8,
+    "guide_strength": 0.65,
+    "style": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography.",
+    "employee": "A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt.",
+    "manager": "A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt.",
+    "setting": "A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk.",
+    "shots": {
+      "arrival": "A wide view inside the dispatch office. The employee walks through the street door and approaches the seated manager at her desk. Both are silent.",
+      "employee": "Medium close-up of the employee looking just off camera toward the manager. He asks his question in a conversational voice. Small natural head and jaw movements.",
+      "manager": "Medium close-up of the seated manager facing the employee off camera. She initially listens with her lips closed. She then gives her short answer, and settles back into attentive silence.",
+      "departure": "A wide view of the same office. The employee turns and walks through the street door. The manager remains seated behind her desk. Both are silent.",
+      "street": "From outside the same depot door, the employee is already walking away along the sidewalk. His stride continues smoothly past the door. His back gradually faces the camera."
+    }
+  },
+  "cast": {
+    "employee": {
+      "name": "Eli",
+      "line": "The driver just pulled up. Do you want him out front or around back?",
+      "voice": "en_US-ryan-medium",
+      "coat": "rust"
+    },
+    "manager": {
+      "name": "Mara",
+      "line": "Around back. Bay two is open.",
+      "voice": "en_US-kristin-medium",
+      "coat": "teal"
+    }
+  },
+  "door": "blue",
+  "model_revision": "11883a83366269e1a8bbeb2f6d31ec6bddf28776c5fe93104e3f78cbbcd76907",
+  "shots": {
+    "arrival": {
+      "frames": 120,
+      "guide_frames": 121,
+      "start": 0,
+      "voice_onset_seconds": null,
+      "performance": "The visible people are silent."
+    },
+    "employee": {
+      "frames": 120,
+      "guide_frames": 121,
+      "start": 120,
+      "voice_onset_seconds": 2.2913958333333335,
+      "performance": "The speaker listens silently for 2.29 seconds and then speaks this line: The driver just pulled up. Do you want him out front or around back?"
+    },
+    "manager": {
+      "frames": 192,
+      "guide_frames": 193,
+      "start": 240,
+      "voice_onset_seconds": 1.5,
+      "performance": "The speaker listens silently for 1.50 seconds and then speaks this line: Around back. Bay two is open."
+    },
+    "departure": {
+      "frames": 120,
+      "guide_frames": 121,
+      "start": 432,
+      "voice_onset_seconds": null,
+      "performance": "The visible people are silent."
+    },
+    "street": {
+      "frames": 120,
+      "guide_frames": 121,
+      "start": 552,
+      "voice_onset_seconds": null,
+      "performance": "The visible people are silent."
+    }
+  }
+}

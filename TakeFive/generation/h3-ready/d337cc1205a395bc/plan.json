@@ -1,0 +1,1490 @@
+{
+  "direction": {
+    "camera_width": 1280,
+    "camera_height": 704,
+    "steps": 4,
+    "sparsity": 0.75,
+    "bridge_alpha": 0.15,
+    "shift_video": 6.0,
+    "shift_audio": 3.0,
+    "cast_crops": {
+      "employee": [
+        0.22,
+        0.0,
+        0.57,
+        1.0
+      ],
+      "manager": [
+        0.28,
+        0.05,
+        0.4,
+        0.95
+      ]
+    },
+    "shots": {
+      "arrival": {
+        "seed": 5002,
+        "cast": [
+          "employee",
+          "manager"
+        ],
+        "prompt": "A single live-action wide shot inside a small depot dispatch office in soft daylight. The open blue street door is at frame left. Eli, the man in <Picture 1>, wears a rust work jacket, cream shirt and dark trousers. He is already stepping through the doorway. He walks steadily from left to right across the worn floor toward Mara's desk. The door swings shut behind him. Mara, the woman in <Picture 2>, wears glasses and a teal blouse. She remains seated behind the wooden desk at frame right, looking up from her paperwork as he approaches. The camera gently follows his movement to the right, retaining the view of the desk and both actors. He comes to a natural stop on the left side of her desk and looks at her. Two people, natural footfalls, quiet mouths."
+      },
+      "employee": {
+        "seed": 5013,
+        "cast": [
+          "employee"
+        ],
+        "photo_frames": [
+          0,
+          51
+        ],
+        "prompt": "Locked tripod shot. A solo photographic head-and-shoulders portrait of Eli from <Picture 1> in his rust jacket and cream shirt. His face stays centered against the same empty softly blurred blue glass door. His gaze is just to camera right. For the first two and a quarter seconds his lips rest gently together as he listens and blinks. When the recorded voice starts, he speaks in time with it: \"{line}\" His expression is understated, the words land naturally and his eyes stay on the same point. The composition holds just his face and the empty background through the entire take."
+      },
+      "manager": {
+        "seed": 5004,
+        "cast": [
+          "manager"
+        ],
+        "opening_crop": [
+          0.025,
+          0.065,
+          0.68,
+          0.68
+        ],
+        "prompt": "One continuous photographic reverse close-up of Mara from <Picture 1>, a Black office manager with short natural hair, glasses and a teal blouse. She is seated at her desk, looking toward screen left at the man off camera. In the daylight from the blinds, she listens quietly with closed lips for the first second and a half. Then she says in the provided voice, \"{line}\" She articulates both short phrases, closes her mouth and holds his gaze with a small nod. Locked camera, softly blurred office in back. Only the woman is visible."
+      },
+      "departure": {
+        "seed": 5005,
+        "cast": [
+          "employee",
+          "manager"
+        ],
+        "prompt": "A single live-action wide shot in the same daylight dispatch office. Eli from <Picture 1> stands beside the left end of the desk, facing Mara from <Picture 2>, who sits to the right behind it. His jacket is rust, her blouse teal. Eli finishes listening, turns his back to Mara and walks left across the floor toward the blue glass-paneled door on the far left. He reaches the handle, opens the door, and steps through into daylight. Mara stays seated behind the desk and follows him with her eyes. The camera holds the wide view of both people and the door; their movement tells the story. Both remain silent."
+      },
+      "street": {
+        "seed": 5006,
+        "cast": [
+          "employee"
+        ],
+        "prompt": "A single live-action exterior shot in soft daylight outside the dispatch depot. The same man as <Picture 1>, in a rust jacket and dark trousers, is already walking left at an ordinary steady pace along the pavement as the shot begins. The open blue office door is behind him on the right. He continues away from the door toward the far left down the block, gradually getting smaller. The camera watches from a fixed position. Natural alternating strides and arm swing continue through the end of the shot. The storefront and pavement remain stationary, the street is otherwise empty and quiet."
+      }
+    }
+  },
+  "shots": {
+    "arrival": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-employee.png"
+          }
+        },
+        "6": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-manager.png"
+          }
+        },
+        "7": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "A single live-action wide shot inside a small depot dispatch office in soft daylight. The open blue street door is at frame left. Eli, the man in <Picture 1>, wears a rust work jacket, cream shirt and dark trousers. He is already stepping through the doorway. He walks steadily from left to right across the worn floor toward Mara's desk. The door swings shut behind him. Mara, the woman in <Picture 2>, wears glasses and a teal blouse. She remains seated behind the wooden desk at frame right, looking up from her paperwork as he approaches. The camera gently follows his movement to the right, retaining the view of the desk and both actors. He comes to a natural stop on the left side of her desk and looks at her. Two people, natural footfalls, quiet mouths.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ],
+            "ref_images.ref_image_1": [
+              "6",
+              0
+            ]
+          }
+        },
+        "8": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "7",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "9": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-arrival.png"
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "8",
+              0
+            ],
+            "latent": [
+              "7",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "9",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-arrival.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "7",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 5002
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-arrival",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-employee.png": "18175e6581ac674d069d9048fa6c2ad104fa490207975a797077895b939acb0d",
+        "cast-manager.png": "a1bf4366474277b830454d9cc3c23f4311d8dec59eebbf158bf4c6f2541e0926",
+        "layout-arrival.png": "05f79bd7d2dca4cf74b648a4599f4d9688ecc3bc4d5ae5d838d845ee6608c822",
+        "voice-arrival.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "ba95c8739575a10a7b2a44cb9d2cdb5daf36dafef3b9c8176b6089724d913c0b"
+    },
+    "employee": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-employee.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "Locked tripod shot. A solo photographic head-and-shoulders portrait of Eli from <Picture 1> in his rust jacket and cream shirt. His face stays centered against the same empty softly blurred blue glass door. His gaze is just to camera right. For the first two and a quarter seconds his lips rest gently together as he listens and blinks. When the recorded voice starts, he speaks in time with it: \"The driver just pulled up. Do you want him out front or around back?\" His expression is understated, the words land naturally and his eyes stay on the same point. The composition holds just his face and the empty background through the entire take.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-employee.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "9",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 51
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-employee.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 5013
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-employee",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-employee.png": "18175e6581ac674d069d9048fa6c2ad104fa490207975a797077895b939acb0d",
+        "layout-employee.png": "8079d780431cdf337f9723d6ed925d92d88656ed0c309baaffc288474f12bb02",
+        "voice-employee.wav": "07fe00c618d4f911acab5308767eddc95503e449e31a4542ae11549cf93d6536"
+      },
+      "key": "91c89badb4731b2762f80789f235681b61232316ca46660f21c621f214f33a1b"
+    },
+    "manager": {
+      "frames": 192,
+      "guide_frames": 192,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-manager.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 192,
+            "ref_image_size": "match",
+            "prompt": "One continuous photographic reverse close-up of Mara from <Picture 1>, a Black office manager with short natural hair, glasses and a teal blouse. She is seated at her desk, looking toward screen left at the man off camera. In the daylight from the blinds, she listens quietly with closed lips for the first second and a half. Then she says in the provided voice, \"Around back. Bay two is open.\" She articulates both short phrases, closes her mouth and holds his gaze with a small nod. Locked camera, softly blurred office in back. Only the woman is visible.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-manager.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-manager.wav"
+          }
+        },
+        "11": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "9",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "10",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "12": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "13": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "12",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "14": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "conditioning": [
+              "11",
+              3
+            ]
+          }
+        },
+        "17": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 5004
+          }
+        },
+        "18": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "19": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "17",
+              0
+            ],
+            "guider": [
+              "16",
+              0
+            ],
+            "sampler": [
+              "18",
+              0
+            ],
+            "sigmas": [
+              "15",
+              0
+            ],
+            "latent_image": [
+              "11",
+              0
+            ]
+          }
+        },
+        "20": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "19",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "20",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "22": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "21",
+              0
+            ],
+            "filename_prefix": "h3-manager",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "22",
+      "media": {
+        "cast-manager.png": "a1bf4366474277b830454d9cc3c23f4311d8dec59eebbf158bf4c6f2541e0926",
+        "layout-manager.png": "adaadf3b74d62c8eb59571c4b93f0f3a9f1a359026983cd5eb5a7aba9c242dde",
+        "voice-manager.wav": "d499178857b67a17c2da262a59cd9459f7211bd0c1a24ba9ca2eaf9a412444a4"
+      },
+      "key": "f343b7dc8819e6475bf56ad02381b4029af2eb01f8b42fb69d715ae630a5e8c5"
+    },
+    "departure": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-employee.png"
+          }
+        },
+        "6": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-manager.png"
+          }
+        },
+        "7": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "A single live-action wide shot in the same daylight dispatch office. Eli from <Picture 1> stands beside the left end of the desk, facing Mara from <Picture 2>, who sits to the right behind it. His jacket is rust, her blouse teal. Eli finishes listening, turns his back to Mara and walks left across the floor toward the blue glass-paneled door on the far left. He reaches the handle, opens the door, and steps through into daylight. Mara stays seated behind the desk and follows him with her eyes. The camera holds the wide view of both people and the door; their movement tells the story. Both remain silent.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ],
+            "ref_images.ref_image_1": [
+              "6",
+              0
+            ]
+          }
+        },
+        "8": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "7",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "9": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-departure.png"
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "8",
+              0
+            ],
+            "latent": [
+              "7",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "9",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-departure.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "7",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 5005
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-departure",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-employee.png": "18175e6581ac674d069d9048fa6c2ad104fa490207975a797077895b939acb0d",
+        "cast-manager.png": "a1bf4366474277b830454d9cc3c23f4311d8dec59eebbf158bf4c6f2541e0926",
+        "layout-departure.png": "db71b869b7b5b73ee8b9f12bad63ab308a8501a56cace023730fb9eace996a80",
+        "voice-departure.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "a04c491e7e1774743b1167e7ff6e77798388495a5043a7552b73c502ceff1646"
+    },
+    "street": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-employee.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "A single live-action exterior shot in soft daylight outside the dispatch depot. The same man as <Picture 1>, in a rust jacket and dark trousers, is already walking left at an ordinary steady pace along the pavement as the shot begins. The open blue office door is behind him on the right. He continues away from the door toward the far left down the block, gradually getting smaller. The camera watches from a fixed position. Natural alternating strides and arm swing continue through the end of the shot. The storefront and pavement remain stationary, the street is otherwise empty and quiet.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-street.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-street.wav"
+          }
+        },
+        "11": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "9",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "10",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "12": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "13": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "12",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "14": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "conditioning": [
+              "11",
+              3
+            ]
+          }
+        },
+        "17": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 5006
+          }
+        },
+        "18": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "19": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "17",
+              0
+            ],
+            "guider": [
+              "16",
+              0
+            ],
+            "sampler": [
+              "18",
+              0
+            ],
+            "sigmas": [
+              "15",
+              0
+            ],
+            "latent_image": [
+              "11",
+              0
+            ]
+          }
+        },
+        "20": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "19",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "20",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "22": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "21",
+              0
+            ],
+            "filename_prefix": "h3-street",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "22",
+      "media": {
+        "cast-employee.png": "18175e6581ac674d069d9048fa6c2ad104fa490207975a797077895b939acb0d",
+        "layout-street.png": "86dfbbb59e99645c9630cf0b48c07827ac620657952ed8cb403af0144c5abc54",
+        "voice-street.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "19c4d3927ec44fccf46597c341f67c3f382711a35c1530d468a37fd68aab76a5"
+    }
+  },
+  "runtime": {
+    "comfy_directory": "runtime/comfyui",
+    "python": "runtime/inference-env/Scripts/python.exe",
+    "tested_comfy_version": "0.38.0",
+    "tested_comfy_commit": "65787d668397d230bf5839d69a0a7239e2dad378"
+  },
+  "weights": {
+    "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779",
+    "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+    "vae/minimax_h3_video_vae_fp16.safetensors": "7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522",
+    "vae/minimax_h3_audio_vae_fp32.safetensors": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+    "loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors": "5b9ab5ade15d0775676d01a907268a69a1468dc6033b3b0d3ded5502f3ebb84c",
+    "loras/fasth3_vsa_gate.safetensors": "bf95408e335c4b0d6a1a44946a428a3e12849e6eab2de9566ecedae4a0043420",
+    "semantic_bridge/MiniMaxH3_SemanticBridge_v1.safetensors": "ac0dc8ac05f545ebdee12e2fcebe4515b049f9cfd9558eb4887a9bf3fd6d562e"
+  }
+}

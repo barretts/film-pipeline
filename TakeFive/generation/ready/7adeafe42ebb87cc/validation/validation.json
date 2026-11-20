@@ -1,0 +1,162 @@
+{
+  "graphs": {
+    "arrival": {
+      "combined": {
+        "nodes": 77,
+        "outputs": [
+          "18",
+          "33",
+          "53",
+          "77"
+        ]
+      },
+      "look": {
+        "nodes": 53,
+        "outputs": [
+          "18",
+          "33",
+          "53"
+        ]
+      },
+      "video_with_saved_look": {
+        "nodes": 25,
+        "outputs": [
+          "25"
+        ]
+      }
+    },
+    "departure": {
+      "combined": {
+        "nodes": 103,
+        "outputs": [
+          "103",
+          "18",
+          "33",
+          "56",
+          "79"
+        ]
+      },
+      "look": {
+        "nodes": 79,
+        "outputs": [
+          "18",
+          "33",
+          "56",
+          "79"
+        ]
+      },
+      "video_with_saved_look": {
+        "nodes": 25,
+        "outputs": [
+          "25"
+        ]
+      }
+    },
+    "employee": {
+      "combined": {
+        "nodes": 41,
+        "outputs": [
+          "17",
+          "41"
+        ]
+      },
+      "look": {
+        "nodes": 17,
+        "outputs": [
+          "17"
+        ]
+      },
+      "video_with_saved_look": {
+        "nodes": 25,
+        "outputs": [
+          "25"
+        ]
+      }
+    },
+    "manager": {
+      "combined": {
+        "nodes": 41,
+        "outputs": [
+          "17",
+          "41"
+        ]
+      },
+      "look": {
+        "nodes": 17,
+        "outputs": [
+          "17"
+        ]
+      },
+      "video_with_saved_look": {
+        "nodes": 25,
+        "outputs": [
+          "25"
+        ]
+      }
+    },
+    "street": {
+      "combined": {
+        "nodes": 59,
+        "outputs": [
+          "18",
+          "35",
+          "59"
+        ]
+      },
+      "look": {
+        "nodes": 35,
+        "outputs": [
+          "18",
+          "35"
+        ]
+      },
+      "video_with_saved_look": {
+        "nodes": 25,
+        "outputs": [
+          "25"
+        ]
+      }
+    }
+  },
+  "device": "cpu",
+  "cuda_initialized": false,
+  "decoded_stems": {
+    "arrival": {
+      "rate": 48000,
+      "channels": 2,
+      "samples": 242000,
+      "leading_silence_checked": 242000
+    },
+    "employee": {
+      "rate": 48000,
+      "channels": 2,
+      "samples": 242000,
+      "leading_silence_checked": 109987
+    },
+    "manager": {
+      "rate": 48000,
+      "channels": 2,
+      "samples": 386000,
+      "leading_silence_checked": 72000
+    },
+    "departure": {
+      "rate": 48000,
+      "channels": 2,
+      "samples": 242000,
+      "leading_silence_checked": 242000
+    },
+    "street": {
+      "rate": 48000,
+      "channels": 2,
+      "samples": 242000,
+      "leading_silence_checked": 242000
+    }
+  },
+  "model_detected": "ltxav",
+  "tokenizer_distinct_ids": {
+    "ltx": 13,
+    "flux": 20
+  },
+  "saved_look_loader_test_input": "staged stills in validation/input only",
+  "inference_jobs_submitted": 0
+}

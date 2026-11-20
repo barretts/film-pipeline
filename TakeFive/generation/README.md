@@ -70,16 +70,3 @@ The standalone installation uses the INT8 ConvRot Ref2VA checkpoint, four-step T
 ```powershell
 .\runtime\inference-env\Scripts\python.exe -B generation\setup_h3.py F:\path\to\comfy-local
 ```
-
-## Signal in the Snow
-
-This 38-second H3 film follows a seven-shot screenplay. Kate hears her own warning on the radio. Three knocks draw James to the door. The cut from his hand on the latch to an empty snowy threshold is his disappearance. The final take returns to Kate at the microphone.
-
-Run `.\Generate-Snow.cmd` for the complete edit or `.\Generate-Snow.cmd doorLatch` for a single take. Each shot has its own direction, seed, and photographic starting frame. The prepared audio includes the original Piper performances and three knocks. Kate's opening and closing warnings share one voice recording. [Shot directions](h3-snow.json) · [Screenplay](../films/signal-in-the-snow/scene.json) · [Photographic starting frames](../films/signal-in-the-snow/looks)
-
-To change a camera setup, edit its opening-frame recipe and run the two commands below. The radio and James starting photos are the original approved references. The other five are local FLUX.2 klein generations. All seven H3 takes use the same local renderer as the dispatch film. [Opening-frame recipe](../films/signal-in-the-snow/opening-frames.json)
-
-```powershell
-.\runtime\inference-env\Scripts\python.exe -B generation\opening_frames.py films\signal-in-the-snow
-.\Generate-Snow.cmd
-```

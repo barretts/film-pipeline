@@ -1,0 +1,72 @@
+{
+  "james": {
+    "sha256": "76a3d41b1f7bec8e7641ff5eb3816dcab8eae4bbb74c85f888f19974645f2b02",
+    "seed": 3407736026,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "kate": {
+    "sha256": "63efdfa73bc42c06d392dd7a46b4467481a7611fcdb4830f390e272bbc36921d",
+    "seed": 3975423080,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "door": {
+    "sha256": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa",
+    "seed": 4174827015,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "window": {
+    "sha256": "c556a0bdb2253d6338f9d2f5c9748aa7229d9141c3c2991a7e20b6671a4c40b5",
+    "seed": 512884091,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "desk": {
+    "sha256": "c520ea295aef4fe3278fd8276c6f08451ce69f65d4bd55f34dc917d074112e3d",
+    "seed": 695836700,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "chair": {
+    "sha256": "65f99a325d3940b632c66f997e7873a5206e5a23c70224fd78286a9080c5921e",
+    "seed": 3410847996,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "desk_lamp": {
+    "sha256": "ca3ff806790ce53dd13007d142052184265ab89508775cd41652c15b13a51591",
+    "seed": 884976531,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "receiver": {
+    "sha256": "2f8831aa9d2e0ed8f441bc10ebe05e2fe91088ebc552559e684562aa38f04792",
+    "seed": 770272205,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "walkie": {
+    "sha256": "e90d043520c38197621e384ce24fbced60af7ce4d3927989c7c0dda660c3a292",
+    "seed": 268324110,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "cabin": {
+    "sha256": "ec420f56be6b149a53f37143c690a586db45b26f8035fbfbe4512b794fd74a03",
+    "seed": 1951731922,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "mic": {
+    "sha256": "532e377ccc66888f586eca7c6694d2fe65e1e13d696d65f2bfb1c39d52da7fa1",
+    "seed": 1140053199,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "charger": {
+    "sha256": "932a2408af3eae7c3cef315ff61ca5a760a763ec99d9ad3971d17e79ef10b75e",
+    "seed": 3613257502,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "exterior": {
+    "sha256": "aab7f4561eb6d63924b2236a1e156eb17c85839f88ed39d5cc0e99d0193c26e6",
+    "seed": 2365363902,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "workstation": {
+    "sha256": "8321b35306dda546b025a6919b86064799335f55dba27093ae6f45d37ddacce6",
+    "seed": 3558849287,
+    "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  }
+}

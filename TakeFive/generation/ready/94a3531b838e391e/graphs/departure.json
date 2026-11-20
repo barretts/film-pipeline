@@ -1,0 +1,1143 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-4b-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-departure.png"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-employee.png"
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk. The street door is blue. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. Recreate the first reference as a live-action photograph. Match its camera angle, positions, gaze, doorway and wardrobe colors. Give figures realistic human faces, hands and body proportions. Additional references establish the cast and the location. Match their features, clothes and materials exactly.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7624
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "14": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "15": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "10",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "16": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "15",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "16",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "filename_prefix": "looks/employee"
+    }
+  },
+  "19": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-manager.png"
+    }
+  },
+  "20": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk. The street door is blue. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Recreate the first reference as a live-action photograph. Match its camera angle, positions, gaze, doorway and wardrobe colors. Give figures realistic human faces, hands and body proportions. Additional references establish the cast and the location. Match their features, clothes and materials exactly.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "21": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "20",
+        0
+      ]
+    }
+  },
+  "22": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "19",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "23": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "20",
+        0
+      ],
+      "latent": [
+        "22",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "21",
+        0
+      ],
+      "latent": [
+        "22",
+        0
+      ]
+    }
+  },
+  "25": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7625
+    }
+  },
+  "26": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "27": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "28": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "29": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "23",
+        0
+      ],
+      "negative": [
+        "24",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "30": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "25",
+        0
+      ],
+      "guider": [
+        "29",
+        0
+      ],
+      "sampler": [
+        "26",
+        0
+      ],
+      "sigmas": [
+        "27",
+        0
+      ],
+      "latent_image": [
+        "28",
+        0
+      ]
+    }
+  },
+  "31": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "30",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "32": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "31",
+        0
+      ],
+      "filename_prefix": "looks/manager"
+    }
+  },
+  "33": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-arrival.png"
+    }
+  },
+  "34": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk. The street door is blue. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Recreate the first reference as a live-action photograph. Match its camera angle, positions, gaze, doorway and wardrobe colors. Give figures realistic human faces, hands and body proportions. Additional references establish the cast and the location. Match their features, clothes and materials exactly.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "35": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "34",
+        0
+      ]
+    }
+  },
+  "36": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "33",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "37": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "34",
+        0
+      ],
+      "latent": [
+        "36",
+        0
+      ]
+    }
+  },
+  "38": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "35",
+        0
+      ],
+      "latent": [
+        "36",
+        0
+      ]
+    }
+  },
+  "39": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "17",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "40": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "37",
+        0
+      ],
+      "latent": [
+        "39",
+        0
+      ]
+    }
+  },
+  "41": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "38",
+        0
+      ],
+      "latent": [
+        "39",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "31",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "43": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "40",
+        0
+      ],
+      "latent": [
+        "42",
+        0
+      ]
+    }
+  },
+  "44": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "41",
+        0
+      ],
+      "latent": [
+        "42",
+        0
+      ]
+    }
+  },
+  "45": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7626
+    }
+  },
+  "46": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "47": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "48": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "49": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "43",
+        0
+      ],
+      "negative": [
+        "44",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "50": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "45",
+        0
+      ],
+      "guider": [
+        "49",
+        0
+      ],
+      "sampler": [
+        "46",
+        0
+      ],
+      "sigmas": [
+        "47",
+        0
+      ],
+      "latent_image": [
+        "48",
+        0
+      ]
+    }
+  },
+  "51": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "50",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "52": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "51",
+        0
+      ],
+      "filename_prefix": "looks/arrival"
+    }
+  },
+  "53": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk. The street door is blue. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Recreate the first reference as a live-action photograph. Match its camera angle, positions, gaze, doorway and wardrobe colors. Give figures realistic human faces, hands and body proportions. Additional references establish the cast and the location. Match their features, clothes and materials exactly.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "54": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "53",
+        0
+      ]
+    }
+  },
+  "55": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "56": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "53",
+        0
+      ],
+      "latent": [
+        "55",
+        0
+      ]
+    }
+  },
+  "57": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "54",
+        0
+      ],
+      "latent": [
+        "55",
+        0
+      ]
+    }
+  },
+  "58": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "17",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "59": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "56",
+        0
+      ],
+      "latent": [
+        "58",
+        0
+      ]
+    }
+  },
+  "60": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "57",
+        0
+      ],
+      "latent": [
+        "58",
+        0
+      ]
+    }
+  },
+  "61": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "31",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "62": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "59",
+        0
+      ],
+      "latent": [
+        "61",
+        0
+      ]
+    }
+  },
+  "63": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "60",
+        0
+      ],
+      "latent": [
+        "61",
+        0
+      ]
+    }
+  },
+  "64": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "51",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "65": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "62",
+        0
+      ],
+      "latent": [
+        "64",
+        0
+      ]
+    }
+  },
+  "66": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "63",
+        0
+      ],
+      "latent": [
+        "64",
+        0
+      ]
+    }
+  },
+  "67": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7627
+    }
+  },
+  "68": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "69": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "70": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "71": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "65",
+        0
+      ],
+      "negative": [
+        "66",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "72": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "67",
+        0
+      ],
+      "guider": [
+        "71",
+        0
+      ],
+      "sampler": [
+        "68",
+        0
+      ],
+      "sigmas": [
+        "69",
+        0
+      ],
+      "latent_image": [
+        "70",
+        0
+      ]
+    }
+  },
+  "73": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "72",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "74": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "73",
+        0
+      ],
+      "filename_prefix": "looks/departure"
+    }
+  },
+  "75": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "76": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "inputs": {
+      "text_encoder": "gemma_3_12B_it_fp8_scaled.safetensors",
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors",
+      "device": "default"
+    }
+  },
+  "77": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "75",
+        0
+      ],
+      "lora_name": "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "78": {
+    "class_type": "GetICLoRAParameters",
+    "inputs": {
+      "iclora_model": [
+        "77",
+        0
+      ]
+    }
+  },
+  "79": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A wide view of the same office. The employee turns and walks through the street door. The manager remains seated behind her desk. Both are silent. The visible people are silent.",
+      "clip": [
+        "76",
+        0
+      ]
+    }
+  },
+  "80": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Cartoon rendering, plastic skin, rubber limbs, broken glasses or drifting faces.",
+      "clip": [
+        "76",
+        0
+      ]
+    }
+  },
+  "81": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "79",
+        0
+      ],
+      "negative": [
+        "80",
+        0
+      ],
+      "frame_rate": 24
+    }
+  },
+  "82": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 1024,
+      "height": 576,
+      "length": 121,
+      "batch_size": 1
+    }
+  },
+  "83": {
+    "class_type": "LTXVImgToVideoInplace",
+    "inputs": {
+      "vae": [
+        "75",
+        2
+      ],
+      "image": [
+        "73",
+        0
+      ],
+      "latent": [
+        "82",
+        0
+      ],
+      "strength": 1.0,
+      "bypass": false
+    }
+  },
+  "84": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "edges-departure.mp4"
+    }
+  },
+  "85": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "84",
+        0
+      ]
+    }
+  },
+  "86": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "81",
+        0
+      ],
+      "negative": [
+        "81",
+        1
+      ],
+      "vae": [
+        "75",
+        2
+      ],
+      "latent": [
+        "83",
+        0
+      ],
+      "image": [
+        "85",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 0.65,
+      "iclora_parameters": [
+        "78",
+        0
+      ]
+    }
+  },
+  "87": {
+    "class_type": "LoadAudio",
+    "inputs": {
+      "audio": "voice-departure.wav"
+    }
+  },
+  "88": {
+    "class_type": "LTXVAudioVAELoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "89": {
+    "class_type": "LTXVAudioVAEEncode",
+    "inputs": {
+      "audio": [
+        "87",
+        0
+      ],
+      "audio_vae": [
+        "88",
+        0
+      ]
+    }
+  },
+  "90": {
+    "class_type": "SolidMask",
+    "inputs": {
+      "value": 0.0,
+      "width": 64,
+      "height": 64
+    }
+  },
+  "91": {
+    "class_type": "SetLatentNoiseMask",
+    "inputs": {
+      "samples": [
+        "89",
+        0
+      ],
+      "mask": [
+        "90",
+        0
+      ]
+    }
+  },
+  "92": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "86",
+        2
+      ],
+      "audio_latent": [
+        "91",
+        0
+      ]
+    }
+  },
+  "93": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "77",
+        0
+      ],
+      "seed": 7727,
+      "steps": 8,
+      "cfg": 1.0,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "linear_quadratic",
+      "positive": [
+        "86",
+        0
+      ],
+      "negative": [
+        "86",
+        1
+      ],
+      "latent_image": [
+        "92",
+        0
+      ],
+      "denoise": 1.0
+    }
+  },
+  "94": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "93",
+        0
+      ]
+    }
+  },
+  "95": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "86",
+        0
+      ],
+      "negative": [
+        "86",
+        1
+      ],
+      "latent": [
+        "94",
+        0
+      ]
+    }
+  },
+  "96": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "95",
+        2
+      ],
+      "vae": [
+        "75",
+        2
+      ],
+      "tile_size": 384,
+      "overlap": 64,
+      "temporal_size": 32,
+      "temporal_overlap": 8
+    }
+  },
+  "97": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "96",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "98": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "97",
+        0
+      ],
+      "filename_prefix": "takes/departure",
+      "format": "mp4",
+      "format.codec": "auto"
+    }
+  }
+}

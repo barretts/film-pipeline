@@ -1,0 +1,2091 @@
+{
+  "direction": {
+    "camera_width": 1280,
+    "camera_height": 704,
+    "steps": 4,
+    "sparsity": 0.75,
+    "bridge_alpha": 0.15,
+    "shift_video": 6.0,
+    "shift_audio": 3.0,
+    "cast_crops": {
+      "kate": [
+        0.08,
+        0.13,
+        0.84,
+        0.67
+      ],
+      "james": [
+        0.08,
+        0.05,
+        0.84,
+        0.73
+      ]
+    },
+    "shots": {
+      "radioWarning": {
+        "cast": [],
+        "seed": 74011,
+        "prompt": "Opening shot, one continuous live-action insert of the vintage radio on a worn wood table in a polar station. Match the radio, gooseneck microphone, desk lamp, and frosted window from <Picture 1>. An amber receive light wakes and softly pulses as a distant transmission breaks the static. A slow small camera push draws the eye to the tuning dial. Across the window, pale wind-blown snow moves in the dark. The radio stays put. Empty room, no people or hands. No lettering over the picture."
+      },
+      "kateRecognition": {
+        "cast": [
+          "kate"
+        ],
+        "seed": 74012,
+        "photo_frames": [
+          0,
+          8
+        ],
+        "prompt": "A continuous live-action single of Kate from <Picture 1>, at the wooden radio desk in the same navy jacket and cream sweater. She is still and looking down at the receiver, her lips together. Half a second in, she looks up slightly in startled recognition and says with the supplied voice: \"{line}\". After the short line her lips meet. The rest of the shot is a quiet reaction. Her eyes move toward the door off to the left. Keep the camera and the face's position steady in the frosted window light. Alone, restrained, no subtitles."
+      },
+      "jamesChoice": {
+        "cast": [
+          "james"
+        ],
+        "seed": 74013,
+        "photo_frames": [
+          0,
+          24
+        ],
+        "prompt": "A continuous locked single of James, the sole man from <Picture 1>, wearing his burnt-orange survival jacket and black thermal collar in the blue steel station. Beside the closed door he hears three knocks. His eyes turn toward the latch. His mouth is gently closed until his recorded voice begins just over one second in. He says \"{line}\" in time with the audio. He closes his mouth and makes a small resolved turn toward the door. Keep his face readable and the door closed through the cut. Natural low-key light, clean cinematographic frame."
+      },
+      "doorLatch": {
+        "cast": [],
+        "seed": 74014,
+        "prompt": "One tightly framed live-action insert of the exact silver door lever and single black glove in <Picture 1>. Continuing James's decision, the hand in an orange survival sleeve firmly grasps the lever, pushes it DOWN, then pulls. The steel door moves as a single solid object. Its seam widens to a sliver of bright snow outside; cold daylight spills across the glove. The lever and its mounting remain attached to the door. One deliberate unbroken gesture, stable close camera, no face in frame. End with the door moving open."
+      },
+      "emptyDoorway": {
+        "cast": [],
+        "seed": 74015,
+        "prompt": "Hard cut to the already open station doorway from <Picture 1>. An empty threshold. For the entire shot the open door and iron jamb stay still and visible, blowing snow races sideways across the opening and powder swirls just past the threshold. The white snowfield beyond is empty. Nobody enters, no figure anywhere in the snow. The movement comes from the gusts, not the camera. One continuous photographic shot in the cold blue daylight."
+      },
+      "kateAlone": {
+        "cast": [
+          "kate"
+        ],
+        "seed": 74016,
+        "photo_frames": [
+          0,
+          20
+        ],
+        "opening_crop": [
+          0.32,
+          0.055,
+          0.68,
+          0.68
+        ],
+        "prompt": "The same Kate from <Picture 1> sits alone inside the polar radio room. She is looking past the camera toward the empty doorway, eyes searching. A second of listening with quiet lips. She calls once, in the supplied voice: \"{line}\". Her mouth closes. For the remaining seconds she listens for a reply that never comes; her eyes lower slowly toward the radio. Her shoulders settle. Keep the room, her face and camera position steady. One continuous, uncaptioned, understated live-action performance."
+      },
+      "warningReturns": {
+        "cast": [
+          "kate"
+        ],
+        "seed": 74017,
+        "photo_frames": [
+          0,
+          77
+        ],
+        "prompt": "One continuous close-up. Kate from <Picture 1> is alone in the same cold steel radio room. The same black radio microphone is in front of her, below her lips. For the first three and a half seconds she listens in silence, lips together, hand touching the transmit control. A small indicator glows. She leans slightly toward the microphone and delivers only the recorded warning: \"{line}\" Her lips articulate the two short phrases with the audio. She stops, releases the control and holds in the silence. Keep Kate, the microphone, and radio in the same composition. No text or cutaways."
+      }
+    }
+  },
+  "shots": {
+    "radioWarning": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-radioWarning.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "Opening shot, one continuous live-action insert of the vintage radio on a worn wood table in a polar station. Match the radio, gooseneck microphone, desk lamp, and frosted window from <Picture 1>. An amber receive light wakes and softly pulses as a distant transmission breaks the static. A slow small camera push draws the eye to the tuning dial. Across the window, pale wind-blown snow moves in the dark. The radio stays put. Empty room, no people or hands. No lettering over the picture.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-radioWarning.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-radioWarning.wav"
+          }
+        },
+        "11": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "9",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "10",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "12": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "13": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "12",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "14": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "conditioning": [
+              "11",
+              3
+            ]
+          }
+        },
+        "17": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74011
+          }
+        },
+        "18": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "19": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "17",
+              0
+            ],
+            "guider": [
+              "16",
+              0
+            ],
+            "sampler": [
+              "18",
+              0
+            ],
+            "sigmas": [
+              "15",
+              0
+            ],
+            "latent_image": [
+              "11",
+              0
+            ]
+          }
+        },
+        "20": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "19",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "20",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "22": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "21",
+              0
+            ],
+            "filename_prefix": "h3-radioWarning",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "22",
+      "media": {
+        "layout-radioWarning.png": "0d47c4b37a991e65d7b93cb57360a42acb178cf45080ad0589f1cec46d093eca",
+        "voice-radioWarning.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "de5c7b382f86dcd270af39b954299b0e870f23fb07ce405bd39ef42953f2e66a"
+    },
+    "kateRecognition": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-kate.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "A continuous live-action single of Kate from <Picture 1>, at the wooden radio desk in the same navy jacket and cream sweater. She is still and looking down at the receiver, her lips together. Half a second in, she looks up slightly in startled recognition and says with the supplied voice: \"That was my voice.\". After the short line her lips meet. The rest of the shot is a quiet reaction. Her eyes move toward the door off to the left. Keep the camera and the face's position steady in the frosted window light. Alone, restrained, no subtitles.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-kateRecognition.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "9",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 8
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-kateRecognition.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74012
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-kateRecognition",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-kate.png": "64e3436aa2a75738bf52d9fba1d9098c50d4760c5bee5d47a90976ff94adc3ae",
+        "layout-kateRecognition.png": "ba65e50e19ae01d9d146725004c866fefdae77029c7ba82e033d6cb70724c8ec",
+        "voice-kateRecognition.wav": "41c421b3e039167be8503500f79c88ec5dfe21adfd348f6e9b510100da3a0697"
+      },
+      "key": "fa88550386a1a666cf18e47708227070274180f9fa25b312ea17b53fea5c6e06"
+    },
+    "jamesChoice": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-james.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "A continuous locked single of James, the sole man from <Picture 1>, wearing his burnt-orange survival jacket and black thermal collar in the blue steel station. Beside the closed door he hears three knocks. His eyes turn toward the latch. His mouth is gently closed until his recorded voice begins just over one second in. He says \"Someone's out there.\" in time with the audio. He closes his mouth and makes a small resolved turn toward the door. Keep his face readable and the door closed through the cut. Natural low-key light, clean cinematographic frame.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-jamesChoice.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "9",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 24
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-jamesChoice.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74013
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-jamesChoice",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-james.png": "283b6462d43390eeb36364c0e0aafec26858bdfcb886912ba69c94eaf9fd5965",
+        "layout-jamesChoice.png": "8b749729755a7415c64d61e36e4890ad54893403c6372446224a7019fd4fe5fe",
+        "voice-jamesChoice.wav": "246fc84479e1276024a27bb847a7a36ca9df31530d1800ebef8dd7255ee7f8ff"
+      },
+      "key": "6fb2ee23adb1f6cc3d8b2d87aa741a58bbb2abf38a4c8f9603a37bbb3a064835"
+    },
+    "doorLatch": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-doorLatch.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "One tightly framed live-action insert of the exact silver door lever and single black glove in <Picture 1>. Continuing James's decision, the hand in an orange survival sleeve firmly grasps the lever, pushes it DOWN, then pulls. The steel door moves as a single solid object. Its seam widens to a sliver of bright snow outside; cold daylight spills across the glove. The lever and its mounting remain attached to the door. One deliberate unbroken gesture, stable close camera, no face in frame. End with the door moving open.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-doorLatch.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-doorLatch.wav"
+          }
+        },
+        "11": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "9",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "10",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "12": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "13": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "12",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "14": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "conditioning": [
+              "11",
+              3
+            ]
+          }
+        },
+        "17": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74014
+          }
+        },
+        "18": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "19": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "17",
+              0
+            ],
+            "guider": [
+              "16",
+              0
+            ],
+            "sampler": [
+              "18",
+              0
+            ],
+            "sigmas": [
+              "15",
+              0
+            ],
+            "latent_image": [
+              "11",
+              0
+            ]
+          }
+        },
+        "20": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "19",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "20",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "22": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "21",
+              0
+            ],
+            "filename_prefix": "h3-doorLatch",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "22",
+      "media": {
+        "layout-doorLatch.png": "c97c7bab8d1f182eeec7f8675f0ea11eb445a8be57ad34186130d340eafb8461",
+        "voice-doorLatch.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "ce971772a5a440d8be408c57c16c791509cfe2520ef624fc7f1c22b0a9756476"
+    },
+    "emptyDoorway": {
+      "frames": 120,
+      "guide_frames": 124,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-emptyDoorway.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 124,
+            "ref_image_size": "match",
+            "prompt": "Hard cut to the already open station doorway from <Picture 1>. An empty threshold. For the entire shot the open door and iron jamb stay still and visible, blowing snow races sideways across the opening and powder swirls just past the threshold. The white snowfield beyond is empty. Nobody enters, no figure anywhere in the snow. The movement comes from the gusts, not the camera. One continuous photographic shot in the cold blue daylight.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-emptyDoorway.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-emptyDoorway.wav"
+          }
+        },
+        "11": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "9",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "10",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "12": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "13": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "12",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "14": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "15": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "16": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "conditioning": [
+              "11",
+              3
+            ]
+          }
+        },
+        "17": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74015
+          }
+        },
+        "18": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "19": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "17",
+              0
+            ],
+            "guider": [
+              "16",
+              0
+            ],
+            "sampler": [
+              "18",
+              0
+            ],
+            "sigmas": [
+              "15",
+              0
+            ],
+            "latent_image": [
+              "11",
+              0
+            ]
+          }
+        },
+        "20": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "19",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "20",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "22": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "21",
+              0
+            ],
+            "filename_prefix": "h3-emptyDoorway",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "22",
+      "media": {
+        "layout-emptyDoorway.png": "891632e31e6a5a390267bb55b20eb28c55425344b1332dbea3a4d14f6b4ddff0",
+        "voice-emptyDoorway.wav": "d3070fd7435a844c631323b013342ccbb5230b70d4cad68c6bdc8829898e5a2a"
+      },
+      "key": "abfaf0aa62d9961bf95beadda9092ec5af6a5bde77f5bd877b4834c1e5bb5d8d"
+    },
+    "kateAlone": {
+      "frames": 144,
+      "guide_frames": 158,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-kate.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 158,
+            "ref_image_size": "match",
+            "prompt": "The same Kate from <Picture 1> sits alone inside the polar radio room. She is looking past the camera toward the empty doorway, eyes searching. A second of listening with quiet lips. She calls once, in the supplied voice: \"James?\". Her mouth closes. For the remaining seconds she listens for a reply that never comes; her eyes lower slowly toward the radio. Her shoulders settle. Keep the room, her face and camera position steady. One continuous, uncaptioned, understated live-action performance.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-kateAlone.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "9",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 20
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-kateAlone.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74016
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-kateAlone",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-kate.png": "64e3436aa2a75738bf52d9fba1d9098c50d4760c5bee5d47a90976ff94adc3ae",
+        "layout-kateAlone.png": "eb827e0a61d4a7a67e9f5ea414c5cde21778965f4714d77fc634246e053d4bce",
+        "voice-kateAlone.wav": "41510e786d38fae67c097111d8a1ebb3d8631f1d21ab067299f12adf4f7d3c39"
+      },
+      "key": "f7177386b14c264e867f9ff2c78a2b4b32622c093597a104c889edc6e04635b4"
+    },
+    "warningReturns": {
+      "frames": 168,
+      "guide_frames": 175,
+      "graph": {
+        "1": {
+          "class_type": "UNETLoader",
+          "inputs": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          }
+        },
+        "2": {
+          "class_type": "CLIPLoader",
+          "inputs": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          }
+        },
+        "3": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          }
+        },
+        "4": {
+          "class_type": "VAELoader",
+          "inputs": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          }
+        },
+        "5": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "cast-kate.png"
+          }
+        },
+        "6": {
+          "class_type": "MiniMaxH3ReferenceToVideo",
+          "inputs": {
+            "clip": [
+              "2",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "width": 1280,
+            "height": 704,
+            "length": 175,
+            "ref_image_size": "match",
+            "prompt": "One continuous close-up. Kate from <Picture 1> is alone in the same cold steel radio room. The same black radio microphone is in front of her, below her lips. For the first three and a half seconds she listens in silence, lips together, hand touching the transmit control. A small indicator glows. She leans slightly toward the microphone and delivers only the recorded warning: \"James. Don't open the door.\" Her lips articulate the two short phrases with the audio. She stops, releases the control and holds in the silence. Keep Kate, the microphone, and radio in the same composition. No text or cutaways.",
+            "ref_images.ref_image_0": [
+              "5",
+              0
+            ]
+          }
+        },
+        "7": {
+          "class_type": "SenseNovaH3DistilledBridge",
+          "inputs": {
+            "conditioning": [
+              "6",
+              0
+            ],
+            "distilled_adapter": "MiniMaxH3_SemanticBridge_v1.safetensors",
+            "alpha": 0.15,
+            "magnitude_match": "per_token"
+          }
+        },
+        "8": {
+          "class_type": "LoadImage",
+          "inputs": {
+            "image": "layout-warningReturns.png"
+          }
+        },
+        "9": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "7",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 0
+          }
+        },
+        "10": {
+          "class_type": "MiniMaxH3AddGuide",
+          "inputs": {
+            "positive": [
+              "9",
+              0
+            ],
+            "latent": [
+              "6",
+              1
+            ],
+            "vae": [
+              "3",
+              0
+            ],
+            "image": [
+              "8",
+              0
+            ],
+            "frame_idx": 77
+          }
+        },
+        "11": {
+          "class_type": "LoadAudio",
+          "inputs": {
+            "audio": "voice-warningReturns.wav"
+          }
+        },
+        "12": {
+          "class_type": "LCH3AudioSync",
+          "inputs": {
+            "latent": [
+              "6",
+              1
+            ],
+            "positive": [
+              "10",
+              0
+            ],
+            "audio_vae": [
+              "4",
+              0
+            ],
+            "audio": [
+              "11",
+              0
+            ],
+            "start_seconds": 0.0,
+            "when_short": "silence"
+          }
+        },
+        "13": {
+          "class_type": "LoraLoaderModelOnly",
+          "inputs": {
+            "model": [
+              "1",
+              0
+            ],
+            "lora_name": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+            "strength_model": 1.0
+          }
+        },
+        "14": {
+          "class_type": "Ref2VAVSAGatePatch",
+          "inputs": {
+            "model": [
+              "13",
+              0
+            ],
+            "gate_file": "fasth3_vsa_gate.safetensors",
+            "sparsity": 0.75
+          }
+        },
+        "15": {
+          "class_type": "MiniMaxH3SigmaShift",
+          "inputs": {
+            "model": [
+              "14",
+              0
+            ],
+            "shift_video": 6.0,
+            "shift_audio": 3.0
+          }
+        },
+        "16": {
+          "class_type": "BasicScheduler",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "scheduler": "sgm_uniform",
+            "steps": 4,
+            "denoise": 1.0
+          }
+        },
+        "17": {
+          "class_type": "BasicGuider",
+          "inputs": {
+            "model": [
+              "15",
+              0
+            ],
+            "conditioning": [
+              "12",
+              3
+            ]
+          }
+        },
+        "18": {
+          "class_type": "RandomNoise",
+          "inputs": {
+            "noise_seed": 74017
+          }
+        },
+        "19": {
+          "class_type": "KSamplerSelect",
+          "inputs": {
+            "sampler_name": "er_sde"
+          }
+        },
+        "20": {
+          "class_type": "SamplerCustomAdvanced",
+          "inputs": {
+            "noise": [
+              "18",
+              0
+            ],
+            "guider": [
+              "17",
+              0
+            ],
+            "sampler": [
+              "19",
+              0
+            ],
+            "sigmas": [
+              "16",
+              0
+            ],
+            "latent_image": [
+              "12",
+              0
+            ]
+          }
+        },
+        "21": {
+          "class_type": "VAEDecode",
+          "inputs": {
+            "samples": [
+              "20",
+              0
+            ],
+            "vae": [
+              "3",
+              0
+            ]
+          }
+        },
+        "22": {
+          "class_type": "CreateVideo",
+          "inputs": {
+            "images": [
+              "21",
+              0
+            ],
+            "fps": 24
+          }
+        },
+        "23": {
+          "class_type": "SaveVideo",
+          "inputs": {
+            "video": [
+              "22",
+              0
+            ],
+            "filename_prefix": "h3-warningReturns",
+            "format": "mp4",
+            "format.codec": "auto"
+          }
+        }
+      },
+      "output": "23",
+      "media": {
+        "cast-kate.png": "64e3436aa2a75738bf52d9fba1d9098c50d4760c5bee5d47a90976ff94adc3ae",
+        "layout-warningReturns.png": "0242ede4384f98af741a5bc073b838613f28eba347798d0169ba03831218150d",
+        "voice-warningReturns.wav": "5fdc2850e0eb9663060081df4eeec9196aac5a55265a023e1fff6c1206918f6a"
+      },
+      "key": "6f846dd0725408f4a47a8ecb33be43f6300a5554639784febdfb6fb8166f81ff"
+    }
+  },
+  "runtime": {
+    "comfy_directory": "runtime/comfyui",
+    "python": "runtime/inference-env/Scripts/python.exe",
+    "tested_comfy_version": "0.38.0",
+    "tested_comfy_commit": "65787d668397d230bf5839d69a0a7239e2dad378"
+  },
+  "weights": {
+    "diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors": "9255f52b6677845ad238f20dfaafa94727053694127ab7f255c048f0f9365779",
+    "text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors": "35a88d51044231fe332301d7a62aa81e3f2cba62febeb446e2c1e3e0ef76f2c6",
+    "vae/minimax_h3_video_vae_fp16.safetensors": "7c1f131492e7eddacaac9069a61b81bdd39de5cc96561e677c5eab1cdce5e522",
+    "vae/minimax_h3_audio_vae_fp32.safetensors": "8e505d95dd1561d47abd43d4238fd40d9bb1ae9e147ed0a4cba778d76ae4db48",
+    "loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors": "5b9ab5ade15d0775676d01a907268a69a1468dc6033b3b0d3ded5502f3ebb84c",
+    "loras/fasth3_vsa_gate.safetensors": "bf95408e335c4b0d6a1a44946a428a3e12849e6eab2de9566ecedae4a0043420",
+    "semantic_bridge/MiniMaxH3_SemanticBridge_v1.safetensors": "ac0dc8ac05f545ebdee12e2fcebe4515b049f9cfd9558eb4887a9bf3fd6d562e"
+  }
+}

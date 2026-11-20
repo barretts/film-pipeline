@@ -1,0 +1,26 @@
+{
+  "height": 720,
+  "width": 1280,
+  "shots": {
+    "first": {
+      "references": [
+        "layout-first",
+        "james",
+        "kate",
+        "workstation"
+      ],
+      "seed": 393995955,
+      "prompt": "Render the first reference layout as a live-action photograph, same wide frontal viewpoint. James stands on the left inside the room, feet on interior floor, back to the sealed hatch, facing right towards Kate. The closed opaque steel hatch is a flat solid rectangle flush in the left wall. Snow visible ONLY through the window above the desk on the right. James wears the red survival suit. Kate wears her navy work jacket. Radio and docked handheld on desk. Warm practical lamp, cool window light. Reference sheets supply appearance. Single cinematic frame."
+    },
+    "last": {
+      "references": [
+        "layout-last",
+        "james",
+        "kate",
+        "workstation"
+      ],
+      "seed": 162811855,
+      "prompt": "Render the first reference layout as a live-action photograph, same wide frontal viewpoint. The LEFT HALF is empty except the shut metal door. BOTH people are close together at the RIGHT side beside the desk. James stands by seated Kate looking at her; she turns to meet his eyes. The closed opaque steel hatch is a flat solid rectangle flush in the left wall. Snow visible ONLY through the window above the desk on the right. James wears the red survival suit. Kate wears her navy work jacket. Radio and docked handheld on desk. Warm practical lamp, cool window light. Reference sheets supply appearance. Single cinematic frame."
+    }
+  }
+}

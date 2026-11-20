@@ -21,19 +21,28 @@ def slot(node, index):
     return [node[0], index]
 
 
-def flux_still(g, model, clip, vae, views, instructions, seed, width, height):
+def flux_still(g, model, clip, vae, views, instructions, seed, width, height, *, start_from_layout=False):
     pos = g.add("CLIPTextEncode", text=instructions, clip=clip)
     neg = g.add("ConditioningZeroOut", conditioning=pos)
+    layout = None
     for view in views:
         latent = g.add("VAEEncode", pixels=view, vae=vae)
+        if layout is None:
+            layout = latent
         pos = g.add("ReferenceLatent", conditioning=pos, latent=latent)
         neg = g.add("ReferenceLatent", conditioning=neg, latent=latent)
     noise = g.add("RandomNoise", noise_seed=seed)
     sampler = g.add("KSamplerSelect", sampler_name="euler")
     sigmas = g.add("Flux2Scheduler", steps=4, width=width, height=height)
-    blank = g.add("EmptyFlux2LatentImage", width=width, height=height, batch_size=1)
+    if start_from_layout:
+        if layout is None:
+            raise ValueError("Layout initialization requires a Blender frame as the first reference")
+        sigmas = slot(g.add("SplitSigmas", sigmas=sigmas, step=1), 1)
+        initial = layout
+    else:
+        initial = g.add("EmptyFlux2LatentImage", width=width, height=height, batch_size=1)
     guider = g.add("CFGGuider", model=model, positive=pos, negative=neg, cfg=1.)
-    sample = g.add("SamplerCustomAdvanced", noise=noise, guider=guider, sampler=sampler, sigmas=sigmas, latent_image=blank)
+    sample = g.add("SamplerCustomAdvanced", noise=noise, guider=guider, sampler=sampler, sigmas=sigmas, latent_image=initial)
     return g.add("VAEDecode", samples=sample, vae=vae)
 
 

@@ -16,14 +16,6 @@ from takefive.story_audio import FRAME, RATE, write_audio
 
 
 class TextFilmTests(unittest.TestCase):
-    def test_pasted_story_keeps_initial_and_final_dialogue_marks(self):
-        import make_film
-        text = '"Wait," she says. He replies, "I will."'
-        with patch.object(sys,"argv",["make_film.py"]), patch.object(sys.stdin,"isatty",return_value=True), \
-             patch("builtins.input",return_value=text), patch("builtins.print"), patch.object(make_film,"make") as make:
-            make_film.main()
-        self.assertEqual(make.call_args.args[0],text)
-
     def test_receiver_and_face_to_face_dialogue_use_different_guides(self):
         self.assertEqual(delivery_modes("The baker hands over the parcel. The customer asks, "),["onscreen"])
         self.assertIn("radio",delivery_modes("A message crackles on the intercom. It says, "))

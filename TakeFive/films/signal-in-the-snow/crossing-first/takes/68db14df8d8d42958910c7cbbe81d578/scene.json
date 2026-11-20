@@ -1,0 +1,7 @@
+{
+  "error": "Expert activation requires reading the selected expert\u2019s SKILL.md, but your request prohibits tools. May I use a file-reading tool to activate expert-engineer-peirce before creating the shot plan?",
+  "size": [
+    1280,
+    720
+  ]
+}

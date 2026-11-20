@@ -1,0 +1,10 @@
+{
+  "references": [
+    "james",
+    "kate",
+    "cabin",
+    "charger"
+  ],
+  "prompt": "Create one continuous, finished photographic shot in a restrained polar drama. <Picture 1> is James: preserve his face, charcoal earflap hat and faded vermilion survival suit. <Picture 2> is Kate: preserve her face, short silver-streaked chestnut hair, navy jacket and cream sweater. <Picture 3> is the finished station interior and establishes the closed blue-grey hatch, floor, walls, frosted window and birch radio desk. <Picture 4> identifies the handheld radio upright in its charging cradle on the desk; keep it docked throughout. The desk also holds a distinct base receiver and a wired microphone. Warm practical lamp light mixes with cold blue snow light.\n\nUse <Video 1> as the camera and blocking guide, replacing the tall orange marker with James and the shorter blue marker with seated Kate. Replace all proxy geometry with the finished people, furnishings and station interior. Keep the guide's continuous lateral camera travel, relative screen positions and timing while allowing natural human movement. No cuts.\n\nAt the opening, James is full-length near the shut hatch on the left side of the room, empty-handed; Kate and the desk are out of frame to the right. Three distinct, evenly spaced taps sound from the receiver offscreen. James listens, then crosses toward screen right. The camera travels sideways with him, leaving space ahead; he moves within the composition as the closed hatch slips off the left edge and the desk and Kate enter from the right. Keep the floor and interior walls filling the frame throughout.\n\nAs James reaches the desk, Kate remains seated and turns toward him. End with James standing beside her, James on the left and Kate on the right, both grounded naturally in the room. James says quietly, 'Three again.' Kate replies, 'I heard it.' Their dialogue is restrained and synchronized to their lips. Underneath, hear a low station hum, soft bootsteps and fabric movement; the three receiver taps remain clear. No captions or on-screen text.",
+  "seed": 253757411219530
+}

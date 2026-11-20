@@ -1,0 +1,310 @@
+[32m[INFO][0m setup plugin alembic.autogenerate.schemas
+[32m[INFO][0m setup plugin alembic.autogenerate.tables
+[32m[INFO][0m setup plugin alembic.autogenerate.types
+[32m[INFO][0m setup plugin alembic.autogenerate.constraints
+[32m[INFO][0m setup plugin alembic.autogenerate.defaults
+[32m[INFO][0m setup plugin alembic.autogenerate.comments
+[32m[INFO][0m setup plugin alembic.ext.checkconstraint_byname
+[1m[33m[WARNING][0m On windows we are currently forcing single GPU mode in ComfyUI due to a Nvidia related issue, if you want to disable this use: --cuda-device all
+[32m[INFO][0m Adding extra search path diffusion_models F:\TakeFive\runtime\h3-models\diffusion_models
+[32m[INFO][0m Adding extra search path loras F:\TakeFive\runtime\h3-models\loras
+[32m[INFO][0m Adding extra search path semantic_bridge F:\TakeFive\runtime\h3-models\semantic_bridge
+[32m[INFO][0m Adding extra search path text_encoders F:\TakeFive\runtime\h3-models\text_encoders
+[32m[INFO][0m Adding extra search path vae F:\TakeFive\runtime\h3-models\vae
+[32m[INFO][0m Adding extra search path custom_nodes F:\TakeFive\runtime\h3-nodes
+[32m[INFO][0m Setting base directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-d0af42b7f2b843b9ad9eddda437db322
+[32m[INFO][0m Setting output directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-d0af42b7f2b843b9ad9eddda437db322\output
+[32m[INFO][0m Setting input directory to: F:\TakeFive\generation\h3-ready\3b345cc1c9b1272f\runs\engine-d0af42b7f2b843b9ad9eddda437db322\input
+[32m[INFO][0m Found comfy_kitchen backend cuda: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Found comfy_kitchen backend triton: {'available': False, 'disabled': True, 'unavailable_reason': "ImportError: No module named 'triton'", 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend eager: {'available': True, 'disabled': False, 'unavailable_reason': None, 'capabilities': ['adaln', 'apply_rope', 'apply_rope1', 'apply_rope1_', 'apply_rope_', 'apply_rope_split_half', 'apply_rope_split_half1', 'apply_rope_split_half1_', 'apply_rope_split_half_', 'convrot_w4a4_linear', 'dequantize_convrot_w4a4_weight', 'dequantize_int8_convrot_weight', 'dequantize_int8_convrot_weight_dtype', 'dequantize_int8_embedding', 'dequantize_int8_simple', 'dequantize_int8_simple_dtype', 'dequantize_mxfp8', 'dequantize_nvfp4', 'dequantize_per_tensor_fp8', 'dequantize_w4a8_int8_weight', 'fp16_conv3d', 'fp16_conv3d_out', 'fp16_linear', 'gemv_awq_w4a16', 'group_norm_silu_pad3d', 'group_norm_silu_pad3d_out', 'int8_linear', 'na3d', 'prepare_int4_weight_for_int8_linear', 'quantize_and_rotate_rowwise', 'quantize_convrot_w4a4_weight', 'quantize_int8_convrot_weight', 'quantize_int8_rowwise', 'quantize_int8_tensorwise', 'quantize_mxfp8', 'quantize_nvfp4', 'quantize_per_tensor_fp8', 'quantize_svdquant_w4a4', 'quantize_w4a8_int8_weight', 'rms_adaln', 'rms_rope', 'rms_rope1', 'rms_rope1_', 'rms_rope_', 'rms_rope_split_half', 'rms_rope_split_half1', 'rms_rope_split_half1_', 'rms_rope_split_half_', 'rotate_int8_convrot_weight', 'scaled_mm_mxfp8', 'scaled_mm_nvfp4', 'scaled_mm_svdquant_w4a4', 'sol_attn', 'stochastic_rounding_fp8', 'w4a8_int8_linear']}
+[32m[INFO][0m Found comfy_kitchen backend ascend: {'available': False, 'disabled': False, 'unavailable_reason': "torch-npu is not installed: No module named 'torch_npu'", 'capabilities': []}
+[32m[INFO][0m Found comfy_kitchen backend hip: {'available': False, 'disabled': False, 'unavailable_reason': 'PyTorch ROCm/HIP runtime not available', 'capabilities': []}
+[32m[INFO][0m Checkpoint files will always be loaded safely.
+[32m[INFO][0m Total VRAM 16379 MB, total RAM 130953 MB
+[32m[INFO][0m pytorch version: 2.11.0+cu130
+[32m[INFO][0m Set vram state to: LOW_VRAM
+[32m[INFO][0m Device: cuda:0 NVIDIA GeForce RTX 4060 Ti : cudaMallocAsync
+[32m[INFO][0m Using async weight offloading with 2 streams
+[32m[INFO][0m Enabled pinned memory 52381.0
+[32m[INFO][0m Using pytorch attention
+[32m[INFO][0m aimdo: src-win/cuda-detour.c:38:INFO:aimdo_setup_hooks: installing 6 hooks
+[32m[INFO][0m aimdo: src/control.c:269:INFO:comfy-aimdo NVML pressure enabled
+[32m[INFO][0m aimdo: src-win/shmem-detect.c:80:INFO:comfy-aimdo WDDM adapter match: NVIDIA GeForce RTX 4060 Ti runtime_luid=00000000:0001490b dxgi_luid=00000000:0001490b
+[32m[INFO][0m aimdo: src/control.c:284:INFO:comfy-aimdo inited for GPU: NVIDIA GeForce RTX 4060 Ti (VRAM: 16379 MB)
+[32m[INFO][0m DynamicVRAM support detected and enabled
+[32m[INFO][0m Python version: 3.13.15 (tags/v3.13.15:4061bc4, Aug  5 2026, 13:05:39) [MSC v.1944 64 bit (AMD64)]
+[32m[INFO][0m ComfyUI version: 0.38.0
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[1m[33m[WARNING][0m ****** User settings have been changed to be stored on the server instead of browser storage. ******
+[1m[33m[WARNING][0m ****** For multi-user setups add the --multi-user CLI argument to enable multiple user profiles. ******
+[32m[INFO][0m comfyui-frontend-package version: 1.53.10
+[32m[INFO][0m comfyui-workflow-templates version: 0.11.74
+[32m[INFO][0m comfyui-embedded-docs version: 0.5.13
+[32m[INFO][0m comfy-kitchen version: 0.2.36
+[32m[INFO][0m comfy-aimdo version: 0.5.5
+[32m[INFO][0m [Prompt Server] web root: F:\TakeFive\runtime\inference-env\Lib\site-packages\comfyui_frontend_package\static
+[32m[INFO][0m Asset seeder disabled
+[32m[INFO][0m No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+[32m[INFO][0m 
+Import times for custom nodes:
+[32m[INFO][0m    0.0 seconds: F:\TakeFive\runtime\h3-nodes\takefive_h3_audio
+[32m[INFO][0m    0.0 seconds: F:\TakeFive\runtime\h3-nodes\ComfyUI-Ref2VA-VSA
+[32m[INFO][0m    0.0 seconds: F:\TakeFive\runtime\h3-nodes\MiniMax_H3_Semantic_Bridge
+[32m[INFO][0m 
+[32m[INFO][0m Disabling intermediate node cache.
+[32m[INFO][0m Starting server
+
+[32m[INFO][0m To see the GUI go to: http://127.0.0.1:65150
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[MiniMax H3 Semantic Bridge] Loaded adapter: MiniMaxH3_SemanticBridge_v1.safetensors
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(506, 880, 414, 196, 130, 414) grid=(37, 22, 40) tiles=643 (43 prefix), rows=35100 -> 41152 padded
+  0%|          | 0/4 [00:40<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:40<02:02, 40.87s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:14<02:02, 40.87s/it]                                    50%|█████     | 2/4 [01:14<01:14, 37.04s/it] 75%|███████▌  | 3/4 [01:51<00:37, 37.12s/it]100%|██████████| 4/4 [02:28<00:00, 37.38s/it]100%|██████████| 4/4 [02:28<00:00, 37.15s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 256.59 seconds[0m
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(346, 880, 414, 196, 414) grid=(37, 22, 40) tiles=638 (38 prefix), rows=34810 -> 40832 padded
+  0%|          | 0/4 [00:39<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:39<01:57, 39.20s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:13<01:57, 39.20s/it]                                    50%|█████     | 2/4 [01:13<01:13, 36.62s/it] 75%|███████▌  | 3/4 [01:49<00:36, 36.61s/it]100%|██████████| 4/4 [02:26<00:00, 36.83s/it]100%|██████████| 4/4 [02:26<00:00, 36.67s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 248.06 seconds[0m
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 8.00 s (192 frames), track 8.00 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(256, 880, 640, 130, 640) grid=(57, 22, 40) tiles=941 (41 prefix), rows=52706 -> 60224 padded
+  0%|          | 0/4 [00:59<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:59<02:59, 59.77s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:56<02:59, 59.77s/it]                                    50%|█████     | 2/4 [01:56<01:56, 58.40s/it][32m[INFO][0m got prompt
+ 75%|███████▌  | 3/4 [02:54<00:58, 58.05s/it]100%|██████████| 4/4 [03:52<00:00, 58.10s/it]100%|██████████| 4/4 [03:52<00:00, 58.24s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 365.15 seconds[0m
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m got prompt
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(339, 880, 880, 414, 196, 414) grid=(37, 22, 40) tiles=652 (52 prefix), rows=35683 -> 41728 padded
+  0%|          | 0/4 [00:40<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:40<02:02, 40.75s/it,  Model Initialization complete!  ][32m[INFO][0m got prompt
+ 25%|██▌       | 1/4 [01:16<02:02, 40.75s/it]                                    50%|█████     | 2/4 [01:16<01:16, 38.15s/it] 75%|███████▌  | 3/4 [01:54<00:38, 38.13s/it]100%|██████████| 4/4 [02:32<00:00, 38.14s/it]100%|██████████| 4/4 [02:32<00:00, 38.15s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 254.25 seconds[0m
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(474, 880, 414, 196, 130, 414) grid=(37, 22, 40) tiles=643 (43 prefix), rows=35068 -> 41152 padded
+  0%|          | 0/4 [00:39<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:39<01:58, 39.57s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:14<01:58, 39.57s/it]                                    50%|█████     | 2/4 [01:14<01:14, 37.17s/it] 75%|███████▌  | 3/4 [01:51<00:37, 37.25s/it]100%|██████████| 4/4 [02:28<00:00, 37.18s/it]100%|██████████| 4/4 [02:28<00:00, 37.19s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 250.90 seconds[0m
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m got prompt
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 8.00 s (192 frames), track 8.00 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(277, 880, 880, 880, 640, 130, 640) grid=(57, 22, 40) tiles=970 (70 prefix), rows=54487 -> 62080 padded
+  0%|          | 0/4 [01:03<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:03<03:11, 63.69s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [02:05<03:11, 63.69s/it]                                    50%|█████     | 2/4 [02:05<02:05, 62.88s/it] 75%|███████▌  | 3/4 [03:08<01:02, 62.49s/it]100%|██████████| 4/4 [04:10<00:00, 62.44s/it]100%|██████████| 4/4 [04:10<00:00, 62.67s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 383.37 seconds[0m
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_video_vae_fp16.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float16
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\vae\\minimax_h3_audio_vae_fp32.safetensors']
+[32m[INFO][0m VAE load device: cuda:0, offload device: cpu, dtype: torch.float32
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Using MixedPrecisionOps for text encoder
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\text_encoders\\qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors']
+[32m[INFO][0m CLIP/text encoder model load device: cuda:0, offload device: cpu, current: cpu, dtype: torch.float16
+[32m[INFO][0m Requested to load MiniMaxH3VideoVAE
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3TEModel_
+[32m[INFO][0m Model MiniMaxH3TEModel_ prepared for dynamic VRAM loading. 14956MB Staged. 0 patches attached. Force pre-loaded 410 weights: 4572 KB.
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m Requested to load MiniMaxH3AudioVAE
+[32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
+[32m[INFO][0m Found quantization metadata version 1
+[32m[INFO][0m Detected mixed precision quantization
+[32m[INFO][0m Using mixed precision operations
+[32m[INFO][0m Native ops: w6a8_int8, convrot_w4a4, asym_w4a8_int8, float8_e4m3fn, int8_tensorwise, float8_e5m2 , emulated ops: mxfp8, nvfp4
+[32m[INFO][0m model weight dtype torch.bfloat16, manual cast: torch.bfloat16
+[32m[INFO][0m model_type FLOW_AV
+[32m[INFO][0m Model storage policy: fast_disk=True paths=['F:\\TakeFive\\runtime\\h3-models\\diffusion_models\\minimax_h3_ref2va_pruned_int8_convrot.safetensors']
+[32m[INFO][0m FastH3 VSA installed: 50 blocks, sparsity=0.75, tile=64 (4x4x4), coarse gate=trained
+[1m[33m[WARNING][0m EXPERIMENTAL Ref2VA VSA installed: gate_file=fasth3_vsa_gate.safetensors, 50 gates, sparsity=0.75. Refs/text/audio are dense prefix; generated video uses VSA top-k.
+[32m[INFO][0m Requested to load MiniMaxH3
+[32m[INFO][0m 0 models unloaded.
+[32m[INFO][0m Model MiniMaxH3 prepared for dynamic VRAM loading. 19995MB Staged. 208 patches attached. Force pre-loaded 260 weights: 3764375 KB.
+[LC H3 Audio Sync] Clip 5.17 s (124 frames), track 5.17 s from 0.0 s. Track also handed to H3 as a guide
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:00<?, ?it/s,   Model Initializing ...  ][32m[INFO][0m FastH3 VSA geometry: prefix=(319, 880, 414, 196, 414) grid=(37, 22, 40) tiles=637 (37 prefix), rows=34783 -> 40768 padded
+  0%|          | 0/4 [00:39<?, ?it/s,  Model Initialization complete!  ] 25%|██▌       | 1/4 [00:39<01:57, 39.21s/it,  Model Initialization complete!  ] 25%|██▌       | 1/4 [01:13<01:57, 39.21s/it]                                    50%|█████     | 2/4 [01:13<01:13, 36.56s/it] 75%|███████▌  | 3/4 [01:49<00:36, 36.60s/it]100%|██████████| 4/4 [02:26<00:00, 36.88s/it]100%|██████████| 4/4 [02:26<00:00, 36.65s/it]
+[32m[INFO][0m Comfy model compiler graph breaks: 3, rogues: 2
+[32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
+[32m[INFO][0m [32mPrompt executed in 247.12 seconds[0m

@@ -1,0 +1,247 @@
+{
+  "graph": {
+    "119": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+      }
+    },
+    "120": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+      }
+    },
+    "121": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": [
+          "125",
+          0
+        ],
+        "vae": [
+          "120",
+          0
+        ]
+      }
+    },
+    "123": {
+      "class_type": "KSamplerSelect",
+      "inputs": {
+        "sampler_name": "res_multistep"
+      }
+    },
+    "124": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": [
+          "127",
+          0
+        ],
+        "scheduler": "simple",
+        "steps": 20,
+        "denoise": 1
+      }
+    },
+    "125": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": [
+          "129",
+          0
+        ],
+        "guider": [
+          "126",
+          0
+        ],
+        "sampler": [
+          "123",
+          0
+        ],
+        "sigmas": [
+          "124",
+          0
+        ],
+        "latent_image": [
+          "136",
+          1
+        ]
+      }
+    },
+    "126": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": [
+          "127",
+          0
+        ],
+        "conditioning": [
+          "148",
+          0
+        ]
+      }
+    },
+    "127": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+        "weight_dtype": "default"
+      }
+    },
+    "128": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "type": "minimax",
+        "device": "default"
+      }
+    },
+    "129": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 313131233214711
+      }
+    },
+    "136": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": [
+          "128",
+          0
+        ],
+        "vae": [
+          "119",
+          0
+        ],
+        "audio_vae": [
+          "120",
+          0
+        ],
+        "ref_images.ref_image_0": [
+          "137",
+          0
+        ],
+        "ref_images.ref_image_1": [
+          "139",
+          0
+        ],
+        "prompt": "Tight continuous live action insert. On the wooden polar station desk from Picture 2, a compact black handheld walkie-talkie with a rubber antenna sits in its charging cradle. One black-gloved hand and orange-red survival sleeve of James from Picture 1 enters, grasps the walkie, lifts it fully out of the cradle and carries it off screen. Hold on the empty cradle. Warm desk lamp, cold window spill. No faces or lettering.",
+        "width": 1024,
+        "height": 576,
+        "length": 124,
+        "ref_image_size": "match"
+      }
+    },
+    "122": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": [
+          "125",
+          0
+        ],
+        "vae": [
+          "119",
+          0
+        ]
+      }
+    },
+    "130": {
+      "class_type": "CreateVideo",
+      "inputs": {
+        "images": [
+          "122",
+          0
+        ],
+        "audio": [
+          "121",
+          0
+        ],
+        "fps": 24
+      }
+    },
+    "139": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "speech-phase0-a1-v10-composed.png"
+      }
+    },
+    "92": {
+      "class_type": "SaveVideo",
+      "inputs": {
+        "video": [
+          "130",
+          0
+        ],
+        "filename_prefix": "snow-draft-a/keyframe-pickup",
+        "format": "auto",
+        "codec": "auto"
+      }
+    },
+    "137": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "phase0-b1-james.png"
+      }
+    },
+    "145": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "snow-draft-a-start.png"
+      }
+    },
+    "147": {
+      "class_type": "MiniMaxH3AddGuide",
+      "inputs": {
+        "positive": [
+          "136",
+          0
+        ],
+        "latent": [
+          "136",
+          1
+        ],
+        "vae": [
+          "119",
+          0
+        ],
+        "image": [
+          "145",
+          0
+        ],
+        "frame_idx": 0
+      }
+    },
+    "146": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "snow-draft-a-end.png"
+      }
+    },
+    "148": {
+      "class_type": "MiniMaxH3AddGuide",
+      "inputs": {
+        "positive": [
+          "147",
+          0
+        ],
+        "latent": [
+          "136",
+          1
+        ],
+        "vae": [
+          "119",
+          0
+        ],
+        "image": [
+          "146",
+          0
+        ],
+        "frame_idx": 123
+      }
+    }
+  },
+  "prompt_id": "9ad17bb6-e9c9-4324-8945-8b36a8ed6164",
+  "number": 6,
+  "node_errors": {},
+  "output": "snow-draft-a/keyframe-pickup_00001_.mp4"
+}

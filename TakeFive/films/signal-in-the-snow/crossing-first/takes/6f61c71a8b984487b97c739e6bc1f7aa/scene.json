@@ -1,0 +1,7 @@
+{
+  "error": "Expert activation requires reading its SKILL.md, but you requested no tools. May I proceed without activating the expert?",
+  "size": [
+    1280,
+    720
+  ]
+}

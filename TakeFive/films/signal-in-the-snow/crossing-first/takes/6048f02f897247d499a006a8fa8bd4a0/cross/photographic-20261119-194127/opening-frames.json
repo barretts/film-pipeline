@@ -1,0 +1,25 @@
+{
+  "width": 1280,
+  "height": 720,
+  "shots": {
+    "first": {
+      "seed": 2030136316,
+      "prompt": "Restrained photographic polar drama inside a cramped steel station, cold blue fill and warm practical light. One person visible: James, a late-twenties man with an angular face and dark curls under a charcoal earflap hat, stands full-length slightly left of center in front of the closed blue-grey insulated outer hatch. He wears a faded vermilion survival suit with graphite knees, short black gloves and insulated boots. His hands are empty, his body angled toward the open space on screen right, his gaze directed across the room. The hatch has left-side hinges, a horizontal silver latch on the right and a chipped lower corner. Floor and interior wall fill the view; leave generous space to his right. Kate and the radio desk are outside the frame. No captions.",
+      "references": [
+        "layout-first",
+        "james",
+        "door"
+      ]
+    },
+    "last": {
+      "seed": 1712136813,
+      "prompt": "Restrained photographic polar drama inside the same cramped steel station, cold blue light from the frosted window and warm light from the switched-on amber desk lamp. Two people visible: James stands full-length left of center beside Kate, his empty gloved hands lowered, looking toward her. He wears the same charcoal earflap hat, faded vermilion survival suit with graphite knees and insulated black boots. Kate sits at screen right in a low navy armless chair, her upper body and head turned toward James. She is a late-forties woman with short silver-streaked chestnut hair and a lined face, wearing a navy wool jacket over a cream crewneck, dark trousers and a brass ring on a short lanyard. Behind them, the honey-toned birch radio desk sits beneath the rounded, frost-edged window overlooking blue-white snow. On the desk, one charcoal base transceiver with an amber meter sits at left, its separate black wired microphone in the middle; James?s charcoal handheld with yellow side button remains upright in its black charging cradle at right. The closed hatch is just beyond the left edge. Floor and interior walls fill the view. Show one instance of each person and prop, not reference-sheet views. No captions.",
+      "references": [
+        "layout-last",
+        "james",
+        "kate",
+        "workstation"
+      ]
+    }
+  }
+}

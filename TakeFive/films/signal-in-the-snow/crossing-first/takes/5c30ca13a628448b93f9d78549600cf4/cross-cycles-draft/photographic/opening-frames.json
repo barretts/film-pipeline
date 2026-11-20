@@ -1,0 +1,28 @@
+{
+  "height": 720,
+  "width": 1280,
+  "shots": {
+    "first": {
+      "seed": 2112889280,
+      "prompt": "Single cinematic photographic frame. Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Inside the polar station. Closed outer hatch on the left, radio desk beneath the window on the right. Wide moving shot. Dolly with James from the closed hatch to Kate at the desk. Follow the supplied Blender frame camera, perspective, scale and positions. Replace the orange marker with reference James and teal with reference Kate. Reconstruct the environment and radio desk from the supplied designs. Natural human anatomy. No markers, diagrams, labels or reference-sheet panels. Shot action: Three taps from the receiver. James crosses the room from the shut outer door. Kate turns toward him as he arrives. The handheld remains docked. Depict the start of the action. James is at the closed hatch. Kate is seated at her radio.",
+      "references": [
+        "layout-first",
+        "james",
+        "kate",
+        "cabin",
+        "workstation"
+      ]
+    },
+    "last": {
+      "seed": 36467941,
+      "prompt": "Single cinematic photographic frame. Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions. Inside the polar station. Closed outer hatch on the left, radio desk beneath the window on the right. Wide moving shot. Dolly with James from the closed hatch to Kate at the desk. Follow the supplied Blender frame camera, perspective, scale and positions. Replace the orange marker with reference James and teal with reference Kate. Reconstruct the environment and radio desk from the supplied designs. Natural human anatomy. No markers, diagrams, labels or reference-sheet panels. Shot action: Three taps from the receiver. James crosses the room from the shut outer door. Kate turns toward him as he arrives. The handheld remains docked. Depict the end of the action. James has reached the desk and Kate turns towards him. Match the first photograph for identity, costume, light and set.",
+      "references": [
+        "layout-last",
+        "first",
+        "james",
+        "kate",
+        "workstation"
+      ]
+    }
+  }
+}

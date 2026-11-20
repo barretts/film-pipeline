@@ -32,6 +32,7 @@
       "camera_wav_sha256": "d6ec04891ada049a2aa041f356441ed816ad79219e2d3c05a77f6c7b4b6f08c7"
     }
   },
+  "mix_sha256": "5cdaca9fad103a07525177bca189f4078d6abc8df5871352be406a15f5283ef9",
   "photos": {
     "kate.png": {
       "source": "series\\characters\\kate\\portrait.png",
@@ -110,21 +111,5 @@
       0.986,
       0.96
     ]
-  },
-  "piper_voices": {
-    "kate": {
-      "model": "en_US-kristin-medium.onnx",
-      "sha256": "5849957f929cbf720c258f8458692d6103fff2f0e3d3b19c8259474bb06a18d4",
-      "config_sha256": "5681426d4aead22195de70531eeeeddb46493cfaffc5764b2ea3db73428b651c"
-    },
-    "james": {
-      "model": "en_US-joe-medium.onnx",
-      "sha256": "58afce0321b8d9c46d7cdf9c16500cc55a793b4220212dba6b70fb788b3baf06",
-      "config_sha256": "3d6d5410b3795cb1950595247ef8f06190719e6fdbfa3a2356d8ec368e1aad33"
-    }
-  },
-  "production_sound": {
-    "file": "production-sound.wav",
-    "sha256": "5cdaca9fad103a07525177bca189f4078d6abc8df5871352be406a15f5283ef9"
   }
 }

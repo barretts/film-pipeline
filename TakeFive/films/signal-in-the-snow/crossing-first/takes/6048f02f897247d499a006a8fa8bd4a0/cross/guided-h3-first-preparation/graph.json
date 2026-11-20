@@ -1,0 +1,224 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "type": "minimax",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "james.png"
+    }
+  },
+  "6": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "kate.png"
+    }
+  },
+  "7": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "cabin.png"
+    }
+  },
+  "8": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "charger.png"
+    }
+  },
+  "9": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "steering.mp4"
+    }
+  },
+  "10": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "9",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "MiniMaxH3ReferenceToVideo",
+    "inputs": {
+      "clip": [
+        "2",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ],
+      "audio_vae": [
+        "4",
+        0
+      ],
+      "width": 1024,
+      "height": 576,
+      "length": 144,
+      "ref_image_size": "match",
+      "prompt": "Create one continuous, finished photographic shot in a restrained polar drama. <Picture 1> is James: preserve his face, charcoal earflap hat and faded vermilion survival suit. <Picture 2> is Kate: preserve her face, short silver-streaked chestnut hair, navy jacket and cream sweater. <Picture 3> is the finished station interior and establishes the closed blue-grey hatch, floor, walls, frosted window and birch radio desk. <Picture 4> identifies the handheld radio upright in its charging cradle on the desk; keep it docked throughout. The desk also holds a distinct base receiver and a wired microphone. Warm practical lamp light mixes with cold blue snow light.\n\nUse <Video 1> as the camera and blocking guide, replacing the tall orange marker with James and the shorter blue marker with seated Kate. Replace all proxy geometry with the finished people, furnishings and station interior. Keep the guide's continuous lateral camera travel, relative screen positions and timing while allowing natural human movement. No cuts.\n\nAt the opening, James is full-length near the shut hatch on the left side of the room, empty-handed; Kate and the desk are out of frame to the right. Three distinct, evenly spaced taps sound from the receiver offscreen. James listens, then crosses toward screen right. The camera travels sideways with him, leaving space ahead; he moves within the composition as the closed hatch slips off the left edge and the desk and Kate enter from the right. Keep the floor and interior walls filling the frame throughout.\n\nAs James reaches the desk, Kate remains seated and turns toward him. End with James standing beside her, James on the left and Kate on the right, both grounded naturally in the room. James says quietly, 'Three again.' Kate replies, 'I heard it.' Their dialogue is restrained and synchronized to their lips. Underneath, hear a low station hum, soft bootsteps and fabric movement; the three receiver taps remain clear. No captions or on-screen text.",
+      "ref_images.ref_image_0": [
+        "5",
+        0
+      ],
+      "ref_images.ref_image_1": [
+        "6",
+        0
+      ],
+      "ref_images.ref_image_2": [
+        "7",
+        0
+      ],
+      "ref_images.ref_image_3": [
+        "8",
+        0
+      ],
+      "ref_videos.ref_video_0": [
+        "10",
+        0
+      ]
+    }
+  },
+  "12": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 253757411219530
+    }
+  },
+  "13": {
+    "class_type": "BasicGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "conditioning": [
+        "11",
+        0
+      ]
+    }
+  },
+  "14": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "res_multistep"
+    }
+  },
+  "15": {
+    "class_type": "BasicScheduler",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "scheduler": "simple",
+      "steps": 20,
+      "denoise": 1.0
+    }
+  },
+  "16": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "12",
+        0
+      ],
+      "guider": [
+        "13",
+        0
+      ],
+      "sampler": [
+        "14",
+        0
+      ],
+      "sigmas": [
+        "15",
+        0
+      ],
+      "latent_image": [
+        "11",
+        1
+      ]
+    }
+  },
+  "17": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "16",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "VAEDecodeAudio",
+    "inputs": {
+      "samples": [
+        "16",
+        0
+      ],
+      "vae": [
+        "4",
+        0
+      ]
+    }
+  },
+  "19": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "audio": [
+        "18",
+        0
+      ],
+      "fps": 24.0
+    }
+  },
+  "20": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "19",
+        0
+      ],
+      "filename_prefix": "shot",
+      "format": "mp4",
+      "format.codec": "h264"
+    }
+  }
+}

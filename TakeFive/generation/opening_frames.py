@@ -23,7 +23,8 @@ def graph_for(name, cfg, width, height):
     clip = g.add("CLIPLoader", clip_name="qwen_3_4b.safetensors", type="flux2", device="default")
     vae = g.add("VAELoader", vae_name="flux2-vae.safetensors")
     views = (g.add("LoadImage", image=ref+".png") for ref in cfg["references"])
-    image = flux_still(g,model,clip,vae,views,cfg["prompt"],cfg["seed"],width,height)
+    image = flux_still(g,model,clip,vae,views,cfg["prompt"],cfg["seed"],width,height,
+                       start_from_layout=cfg.get("start_from_layout",False))
     node = g.add("SaveImage", images=image, filename_prefix="look-"+name)
     return g.nodes, node[0]
 

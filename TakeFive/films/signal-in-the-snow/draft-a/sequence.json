@@ -1,0 +1,109 @@
+{
+  "title": "Signal in the Snow — Three Taps",
+  "fps": 24,
+  "width": 1024,
+  "height": 576,
+  "shots": [
+    {
+      "id": "receiver",
+      "frames": 72,
+      "source": "radioWarning",
+      "action": "Three taps interrupt the radio hiss."
+    },
+    {
+      "id": "cross",
+      "frames": 124,
+      "source": "proper-james",
+      "action": "James crosses to Kate at the radio desk."
+    },
+    {
+      "id": "listen",
+      "frames": 96,
+      "source": "listen-together",
+      "action": "Three taps repeat and a faint voice asks to be let in."
+    },
+    {
+      "id": "pickup",
+      "frames": 120,
+      "source": "generate",
+      "action": "Tight continuous live action insert. On the wooden polar station desk from Picture 2, a compact black handheld walkie-talkie with a rubber antenna sits in its charging cradle. One black-gloved hand and orange-red survival sleeve of James from Picture 1 enters, grasps the walkie, lifts it fully out of the cradle and carries it off screen. Hold on the empty cradle. Warm desk lamp, cold window spill. No faces or lettering."
+    },
+    {
+      "id": "latch",
+      "frames": 72,
+      "source": "doorLatch",
+      "action": "James opens the outer door with his free hand.",
+      "source_in_frame": 46
+    },
+    {
+      "id": "outside",
+      "frames": 120,
+      "source": "generate",
+      "action": "Locked view from inside a polar station window out into windswept snow at blue dusk. Outside the window James from Picture 1 wears his orange-red survival suit and ear-flap hat. Checking the deserted threshold, he raises a black handheld radio to his mouth, reports back, lowers it and walks out of view to screen right. Hold on the empty snow blowing past the window. One man. No other people. Photographic realism."
+    },
+    {
+      "id": "wait",
+      "frames": 60,
+      "source": "kateAlone",
+      "action": "Kate watches the window and waits for his next call."
+    },
+    {
+      "id": "transmit",
+      "frames": 96,
+      "source": "warningReturns",
+      "action": "Kate keys the desk microphone and asks James to come back inside.",
+      "source_in_frame": 68
+    },
+    {
+      "id": "black",
+      "frames": 48,
+      "source": "black",
+      "action": "Cut to black. Three taps answer."
+    }
+  ],
+  "dialogue": [
+    {
+      "shot": "listen",
+      "at": 1.32,
+      "voice": "stranger",
+      "text": "Can somebody open the door?",
+      "radio": true
+    },
+    {
+      "shot": "pickup",
+      "at": 0.25,
+      "voice": "james",
+      "text": "I'll check the outer door. Stay on the set.",
+      "radio": false
+    },
+    {
+      "shot": "outside",
+      "at": 2.0,
+      "voice": "james",
+      "text": "Kate? There's nobody here.",
+      "radio": true
+    },
+    {
+      "shot": "transmit",
+      "at": 0.65,
+      "voice": "kate",
+      "text": "James, come back inside.",
+      "radio": false
+    }
+  ],
+  "taps": [
+    [
+      "receiver",
+      0.55
+    ],
+    [
+      "listen",
+      0.12
+    ],
+    [
+      "black",
+      0.3
+    ]
+  ],
+  "continuity": "Kate stays at the base set. James has the walkie and has passed beyond the window. Episode two opens with Kate going out to look for him."
+}

@@ -1,0 +1,1604 @@
+{
+  "title": "Three Taps",
+  "style": "Restrained photographic polar drama, practical warm lamp and cold blue fill. No captions.",
+  "fps": 24,
+  "size": [
+    768,
+    432
+  ],
+  "characters": {
+    "kate": "Senior operator, remains at the base radio.",
+    "james": "Field operator, checks the outer threshold.",
+    "stranger": "Disembodied radio voice only."
+  },
+  "locations": {
+    "interior": "Station control room, south side of the north wall.",
+    "exterior": "Snow north of shared outer door, camera physically outdoors.",
+    "black": "Editorial black."
+  },
+  "assets": {
+    "james": {
+      "label": "James",
+      "parent": null,
+      "references": [],
+      "description": "Character turnaround on neutral gray: front and profile full body plus a large head study of the SAME man, late twenties, angular face, dark curly hair under charcoal earflap hat, faded vermilion survival suit with graphite knees, short black gloves and insulated boots. Empty hands."
+    },
+    "kate": {
+      "label": "Kate",
+      "parent": null,
+      "references": [],
+      "description": "Three studies of the SAME late-forties woman: full body standing, seated profile working at desk height, and face close-up. Short silver-streaked chestnut hair, lined expressive face, navy wool work jacket, cream crewneck sweater, brass ring on a short lanyard, dark trousers. Neutral backdrop."
+    },
+    "door": {
+      "label": "Outer door and latch",
+      "parent": "cabin",
+      "references": [],
+      "description": "Design reference pair of the same closed blue-grey insulated steel personnel hatch at a polar station, its interior face in front elevation plus a detail of its brushed horizontal silver latch. No window in door. Hinges left viewed from room, single handle right. Distinctive chipped lower corner."
+    },
+    "window": {
+      "label": "Station window",
+      "parent": "cabin",
+      "references": [],
+      "description": "A horizontal rectangular double-glazed polar cabin window with rounded corners and a charcoal metal frame. Frost at the edges. Blue-white snow visible outside. Straight-on architectural detail."
+    },
+    "desk": {
+      "label": "Radio desk",
+      "parent": "cabin",
+      "references": [],
+      "description": "Isolated empty broad utilitarian honey-toned birch plywood radio workbench, straight rectangular top, two square grey steel support frames. Three-quarter furniture photograph showing entire desk, no drawers or shelf."
+    },
+    "chair": {
+      "label": "Kate’s chair",
+      "parent": "cabin",
+      "references": [],
+      "description": "A single sturdy navy upholstered task chair, low back, no armrests, black metal footing. Front three-quarter furniture design photograph."
+    },
+    "desk_lamp": {
+      "label": "Desk lamp",
+      "parent": "desk",
+      "references": [],
+      "description": "Small amber-painted metal task lamp with conical shade, adjustable angled neck and heavy round base, switched on. Isolated object."
+    },
+    "receiver": {
+      "label": "Base radio",
+      "parent": "desk",
+      "references": [],
+      "description": "One squat charcoal steel tabletop transceiver. Front three-quarter catalog photograph: amber analog meter on left, six narrow vertical speaker slots on right of front face, one prominent black tuning knob below meter, small amber pilot. Wired mic jack at bottom right. No handset or antenna."
+    },
+    "mic": {
+      "label": "Wired desk microphone",
+      "parent": "desk",
+      "references": [
+        "receiver"
+      ],
+      "description": "Show the referenced base transceiver with its wired oval black desk microphone on a short silver stalk, black weighted push-to-talk foot and coiled black cable plugged into receiver. Entire connection visible on plain wood. The microphone is the foreground subject."
+    },
+    "walkie": {
+      "label": "James’s walkie",
+      "parent": null,
+      "references": [],
+      "description": "One narrow palm-sized charcoal rubber handheld two-way radio, short black antenna at upper left, distinctive mustard yellow side talk button, belt clip. Product reference showing front and side of same design. No cradle."
+    },
+    "charger": {
+      "label": "Walkie charger",
+      "parent": "desk",
+      "references": [
+        "walkie"
+      ],
+      "description": "Matched two-view product reference. Left: the referenced handheld radio seated upright in a low black desktop charging cradle. Right: same cradle empty, recessed socket and two brass contacts visible. Simple neutral background."
+    },
+    "cabin": {
+      "label": "Station interior",
+      "parent": null,
+      "references": [
+        "door",
+        "window",
+        "desk"
+      ],
+      "description": "Interior establishing photograph, camera looking across a cramped steel polar station radio room. Closed referenced hatch at back LEFT, referenced birch workbench at RIGHT beneath the referenced frosted window. Open walking aisle from hatch to desk, grounded floor, amber practical light and cold snow fill. Empty of people."
+    },
+    "workstation": {
+      "label": "Dressed radio desk",
+      "parent": "cabin",
+      "references": [
+        "mic",
+        "charger",
+        "desk_lamp",
+        "chair"
+      ],
+      "description": "Integrated set detail at Kate's birch workbench below a frosted window. Match the supplied designs: transceiver at left, separate wired microphone in middle, handheld upright in charging cradle at right. Amber task lamp and low navy chair. Clearly distinguish the two radios. No people."
+    },
+    "exterior": {
+      "label": "Station exterior",
+      "parent": null,
+      "references": [
+        "door",
+        "window",
+        "cabin"
+      ],
+      "description": "Camera stands on the snow looking back at the OUTSIDE of the same single-storey steel polar cabin. Show corresponding outer face of the hatch, frosted window and the near corner of the building; retain plausible orientation relative to interior. Blue dusk, drifting snow. No people."
+    }
+  },
+  "geometry": [
+    {
+      "id": "cabin",
+      "parent": null,
+      "loc": [
+        0,
+        0,
+        0
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            -0.1
+          ],
+          [
+            8,
+            6,
+            0.2
+          ],
+          "73797C"
+        ],
+        [
+          "box",
+          [
+            -2.6,
+            3,
+            1.55
+          ],
+          [
+            2.8,
+            0.15,
+            3.1
+          ],
+          "839198"
+        ],
+        [
+          "box",
+          [
+            2,
+            3,
+            1.55
+          ],
+          [
+            4,
+            0.15,
+            3.1
+          ],
+          "839198"
+        ],
+        [
+          "box",
+          [
+            -0.6,
+            3,
+            2.75
+          ],
+          [
+            1.2,
+            0.15,
+            0.7
+          ],
+          "839198"
+        ],
+        [
+          "box",
+          [
+            4,
+            0,
+            1.55
+          ],
+          [
+            0.15,
+            6,
+            3.1
+          ],
+          "89979D"
+        ]
+      ]
+    },
+    {
+      "id": "snow",
+      "parent": null,
+      "loc": [
+        0,
+        0,
+        0
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            8,
+            -0.22
+          ],
+          [
+            36,
+            30,
+            0.2
+          ],
+          "D8E6ED"
+        ]
+      ]
+    },
+    {
+      "id": "door",
+      "parent": "cabin",
+      "loc": [
+        -1.2,
+        3,
+        0
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0.6,
+            0,
+            1.2
+          ],
+          [
+            1.18,
+            0.12,
+            2.4
+          ],
+          "576F7D"
+        ],
+        [
+          "box",
+          [
+            1,
+            -0.12,
+            1
+          ],
+          [
+            0.23,
+            0.07,
+            0.05
+          ],
+          "778389"
+        ]
+      ]
+    },
+    {
+      "id": "desk",
+      "parent": "cabin",
+      "loc": [
+        2,
+        1,
+        0.8
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            2.6,
+            1.1,
+            0.1
+          ],
+          "996A44"
+        ],
+        [
+          "box",
+          [
+            -0.95,
+            0,
+            -0.4
+          ],
+          [
+            0.12,
+            0.8,
+            0.8
+          ],
+          "996A44"
+        ],
+        [
+          "box",
+          [
+            0.95,
+            0,
+            -0.4
+          ],
+          [
+            0.12,
+            0.8,
+            0.8
+          ],
+          "996A44"
+        ]
+      ]
+    },
+    {
+      "id": "receiver",
+      "parent": "desk",
+      "loc": [
+        -0.36,
+        0.08,
+        0.08
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0.15
+          ],
+          [
+            0.58,
+            0.32,
+            0.3
+          ],
+          "363D42"
+        ],
+        [
+          "box",
+          [
+            -0.12,
+            -0.17,
+            0.18
+          ],
+          [
+            0.21,
+            0.024,
+            0.11
+          ],
+          "C89347"
+        ],
+        [
+          "box",
+          [
+            0.05,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.085,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.12000000000000001,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.15500000000000003,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.19,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.22500000000000003,
+            -0.17,
+            0.18
+          ],
+          [
+            0.013,
+            0.02,
+            0.14
+          ],
+          "24282B"
+        ],
+        [
+          "sphere",
+          [
+            -0.19,
+            -0.18,
+            0.065
+          ],
+          [
+            0.055,
+            0.045,
+            0.055
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "lamp",
+      "parent": "receiver",
+      "loc": [
+        -0.015,
+        -0.18,
+        0.2
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.031,
+            0.017,
+            0.031
+          ],
+          "FFB545"
+        ]
+      ]
+    },
+    {
+      "id": "mic",
+      "parent": "desk",
+      "loc": [
+        0.04,
+        -0.18,
+        0.065
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0.02
+          ],
+          [
+            0.14,
+            0.12,
+            0.04
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0,
+            0,
+            0.11
+          ],
+          [
+            0.026,
+            0.025,
+            0.18
+          ],
+          "778389"
+        ],
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0.21
+          ],
+          [
+            0.08,
+            0.07,
+            0.12
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "cord",
+      "parent": "desk",
+      "loc": [
+        -0.05,
+        -0.16,
+        0.065
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.19,
+            0.013,
+            0.012
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "charger",
+      "parent": "desk",
+      "loc": [
+        0.31,
+        0.04,
+        0.06
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0.038
+          ],
+          [
+            0.14,
+            0.12,
+            0.076
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "walkie",
+      "parent": "charger",
+      "loc": [
+        0,
+        0,
+        0.066
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0.08
+          ],
+          [
+            0.09,
+            0.055,
+            0.16
+          ],
+          "313638"
+        ],
+        [
+          "box",
+          [
+            -0.024,
+            0,
+            0.205
+          ],
+          [
+            0.012,
+            0.012,
+            0.12
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0,
+            -0.029,
+            0.095
+          ],
+          [
+            0.052,
+            0.005,
+            0.027
+          ],
+          "77938D"
+        ]
+      ]
+    },
+    {
+      "id": "kate",
+      "parent": null,
+      "loc": [
+        2.65,
+        0.27,
+        0
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0.7200000000000001
+          ],
+          [
+            0.47,
+            0.3,
+            0.63
+          ],
+          "263646"
+        ],
+        [
+          "sphere",
+          [
+            0,
+            0,
+            1.2799999999999998
+          ],
+          [
+            0.24,
+            0.23,
+            0.29
+          ],
+          "BD987F"
+        ],
+        [
+          "sphere",
+          [
+            0,
+            0.03,
+            1.4
+          ],
+          [
+            0.26,
+            0.24,
+            0.13
+          ],
+          "7F756C"
+        ],
+        [
+          "box",
+          [
+            -0.12,
+            -0.13,
+            0.4
+          ],
+          [
+            0.15,
+            0.18,
+            0.76
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.12,
+            -0.13,
+            0.4
+          ],
+          [
+            0.15,
+            0.18,
+            0.76
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "kate_right",
+      "parent": "kate",
+      "loc": [
+        -0.26,
+        -0.06,
+        0.5
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.13,
+            0.14,
+            0.18
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "kate_left",
+      "parent": "kate",
+      "loc": [
+        0.26,
+        -0.06,
+        0.5
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.13,
+            0.14,
+            0.18
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "james",
+      "parent": null,
+      "loc": [
+        -1.1,
+        2.2,
+        0
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            1.12
+          ],
+          [
+            0.47,
+            0.3,
+            0.63
+          ],
+          "C74C24"
+        ],
+        [
+          "sphere",
+          [
+            0,
+            0,
+            1.68
+          ],
+          [
+            0.24,
+            0.23,
+            0.29
+          ],
+          "BD987F"
+        ],
+        [
+          "sphere",
+          [
+            0,
+            0.03,
+            1.8
+          ],
+          [
+            0.26,
+            0.24,
+            0.13
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            -0.12,
+            0,
+            0.4
+          ],
+          [
+            0.15,
+            0.18,
+            0.76
+          ],
+          "24282B"
+        ],
+        [
+          "box",
+          [
+            0.12,
+            0,
+            0.4
+          ],
+          [
+            0.15,
+            0.18,
+            0.76
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "james_right",
+      "parent": "james",
+      "loc": [
+        -0.26,
+        -0.06,
+        0.9
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.13,
+            0.14,
+            0.18
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "james_left",
+      "parent": "james",
+      "loc": [
+        0.26,
+        -0.06,
+        0.9
+      ],
+      "parts": [
+        [
+          "sphere",
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0.13,
+            0.14,
+            0.18
+          ],
+          "24282B"
+        ]
+      ]
+    },
+    {
+      "id": "chair",
+      "parent": "cabin",
+      "loc": [
+        2.65,
+        0.27,
+        0
+      ],
+      "parts": [
+        [
+          "box",
+          [
+            0,
+            0,
+            0.46
+          ],
+          [
+            0.5,
+            0.52,
+            0.1
+          ],
+          "535556"
+        ],
+        [
+          "box",
+          [
+            0,
+            0.23,
+            0.68
+          ],
+          [
+            0.5,
+            0.07,
+            0.48
+          ],
+          "535556"
+        ]
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "id": "cross",
+      "frames": 124,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          -1,
+          -2.7,
+          1.58
+        ],
+        "aim": [
+          0.5,
+          1.65,
+          1.14
+        ],
+        "end_eye": [
+          0.15,
+          -2.65,
+          1.56
+        ],
+        "lens": 40
+      },
+      "action": "Three taps from the receiver. James crosses the room from the shut outer door. Kate turns toward him as he arrives. The handheld remains docked.",
+      "tracks": [
+        {
+          "id": "james",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                -1.1,
+                2.2,
+                0
+              ]
+            ],
+            [
+              52,
+              [
+                0.25,
+                1.2,
+                0
+              ]
+            ],
+            [
+              116,
+              [
+                1.56,
+                0.2,
+                0
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          15,
+          "receiver",
+          "tap"
+        ],
+        [
+          23,
+          "receiver",
+          "tap"
+        ],
+        [
+          31,
+          "receiver",
+          "tap"
+        ]
+      ],
+      "must": [
+        "closed hatch visible"
+      ],
+      "assets": [
+        "james",
+        "kate",
+        "door",
+        "window",
+        "desk",
+        "chair",
+        "desk_lamp",
+        "receiver",
+        "mic",
+        "walkie",
+        "charger",
+        "cabin",
+        "workstation"
+      ]
+    },
+    {
+      "id": "listen",
+      "frames": 96,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          1.8,
+          -2.1,
+          1.64
+        ],
+        "aim": [
+          2.05,
+          0.4,
+          1.22
+        ],
+        "end_eye": [
+          1.88,
+          -2,
+          1.62
+        ],
+        "lens": 40
+      },
+      "action": "They lean toward the receiver. James turns toward the outer door.",
+      "tracks": [
+        {
+          "id": "james",
+          "prop": "rotation_euler",
+          "keys": [
+            [
+              1,
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            [
+              65,
+              [
+                0,
+                0,
+                -0.18
+              ]
+            ],
+            [
+              95,
+              [
+                0,
+                0,
+                -0.9
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          4,
+          "receiver",
+          "three taps"
+        ],
+        [
+          32,
+          "stranger through receiver",
+          "Can somebody open the door?"
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "pickup",
+      "frames": 120,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          2,
+          -0.5,
+          1.35
+        ],
+        "aim": [
+          2.3,
+          1,
+          0.98
+        ],
+        "end_eye": [
+          2.05,
+          -0.4,
+          1.28
+        ],
+        "lens": 40
+      },
+      "action": "James takes the handheld in his right glove. Empty cradle remains in frame.",
+      "tracks": [
+        {
+          "id": "james",
+          "prop": "rotation_euler",
+          "keys": [
+            [
+              1,
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "james_right",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                -0.26,
+                -0.06,
+                0.9
+              ]
+            ],
+            [
+              48,
+              [
+                0.75,
+                0.84,
+                1.02
+              ]
+            ],
+            [
+              84,
+              [
+                0.65,
+                0.38,
+                1.28
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "walkie",
+          "prop": "attach",
+          "keys": [
+            [
+              48,
+              "james_right"
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          6,
+          "james",
+          "I'll check the outer door. Stay on the set."
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "latch",
+      "frames": 72,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          -1.8,
+          1.3,
+          1.4
+        ],
+        "aim": [
+          -0.45,
+          2.91,
+          1.04
+        ],
+        "end_eye": [
+          -1.7,
+          1.4,
+          1.38
+        ],
+        "lens": 40
+      },
+      "action": "At the threshold James opens the door with his left hand, walkie in his right.",
+      "tracks": [
+        {
+          "id": "james",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                -0.5,
+                2.45,
+                0
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "james_left",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                0.26,
+                0,
+                0.91
+              ]
+            ],
+            [
+              24,
+              [
+                0.3,
+                0.43,
+                1
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "door",
+          "prop": "rotation_euler",
+          "keys": [
+            [
+              1,
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            [
+              24,
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            [
+              68,
+              [
+                0,
+                0,
+                1.35
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          25,
+          "latch",
+          "click"
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "outside",
+      "frames": 120,
+      "set": "exterior",
+      "camera": {
+        "eye": [
+          -3,
+          7,
+          1.48
+        ],
+        "aim": [
+          -0.1,
+          3.8,
+          1.14
+        ],
+        "end_eye": [
+          -3.15,
+          7,
+          1.47
+        ],
+        "lens": 40
+      },
+      "action": "Outside with James. Station wall and open doorway behind him. He radios back and rounds the corner.",
+      "tracks": [
+        {
+          "id": "james",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                -0.45,
+                3.75,
+                0
+              ]
+            ],
+            [
+              64,
+              [
+                -0.45,
+                3.75,
+                0
+              ]
+            ],
+            [
+              120,
+              [
+                4.5,
+                4,
+                0
+              ]
+            ]
+          ]
+        },
+        {
+          "id": "james_right",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                -0.17,
+                -0.18,
+                1.56
+              ]
+            ],
+            [
+              64,
+              [
+                -0.17,
+                -0.18,
+                1.56
+              ]
+            ],
+            [
+              94,
+              [
+                -0.25,
+                -0.1,
+                0.97
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          2,
+          "wind",
+          "gust"
+        ],
+        [
+          35,
+          "james over handheld",
+          "Kate? There's nobody here."
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "wait",
+      "frames": 60,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          1.8,
+          -1.4,
+          1.37
+        ],
+        "aim": [
+          2.65,
+          0.27,
+          1.29
+        ],
+        "end_eye": [
+          1.84,
+          -1.35,
+          1.37
+        ],
+        "lens": 40
+      },
+      "action": "Kate listens for another call; her gaze lifts to the door.",
+      "tracks": [
+        {
+          "id": "kate",
+          "prop": "rotation_euler",
+          "keys": [
+            [
+              1,
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            [
+              45,
+              [
+                0,
+                0,
+                -0.55
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          1,
+          "receiver",
+          "hiss"
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "transmit",
+      "frames": 96,
+      "set": "interior",
+      "camera": {
+        "eye": [
+          1.35,
+          -0.9,
+          1.33
+        ],
+        "aim": [
+          2.24,
+          0.63,
+          1.08
+        ],
+        "end_eye": [
+          1.47,
+          -0.8,
+          1.3
+        ],
+        "lens": 40
+      },
+      "action": "Kate keys the wired desk microphone. Same receiver, empty charger.",
+      "tracks": [
+        {
+          "id": "kate_left",
+          "prop": "location",
+          "keys": [
+            [
+              1,
+              [
+                0.26,
+                -0.06,
+                0.5
+              ]
+            ],
+            [
+              23,
+              [
+                -0.61,
+                0.55,
+                1.06
+              ]
+            ]
+          ]
+        }
+      ],
+      "sound": [
+        [
+          24,
+          "kate",
+          "James, come back inside."
+        ]
+      ],
+      "must": []
+    },
+    {
+      "id": "black",
+      "frames": 48,
+      "set": "black",
+      "camera": {
+        "eye": null,
+        "aim": null,
+        "end_eye": null,
+        "lens": 40
+      },
+      "action": "Cut to black. Three taps answer.",
+      "tracks": [],
+      "sound": [
+        [
+          8,
+          "receiver",
+          "tap"
+        ],
+        [
+          16,
+          "receiver",
+          "tap"
+        ],
+        [
+          24,
+          "receiver",
+          "tap"
+        ]
+      ],
+      "must": []
+    }
+  ],
+  "lights": [
+    {
+      "location": [
+        1,
+        0,
+        2.5
+      ],
+      "aim": [
+        2,
+        1,
+        0.8
+      ],
+      "watts": 140,
+      "size": 1,
+      "rgb": [
+        1,
+        0.75,
+        0.49
+      ]
+    },
+    {
+      "location": [
+        -2,
+        1,
+        3.5
+      ],
+      "aim": [
+        1,
+        0,
+        1
+      ],
+      "watts": 220,
+      "size": 4,
+      "rgb": [
+        0.59,
+        0.78,
+        1
+      ]
+    },
+    {
+      "location": [
+        0,
+        7,
+        5
+      ],
+      "aim": [
+        0,
+        3,
+        1
+      ],
+      "watts": 400,
+      "size": 5,
+      "rgb": [
+        0.68,
+        0.8,
+        1
+      ]
+    }
+  ],
+  "initial_attachments": {
+    "walkie": "charger",
+    "mic": "desk",
+    "receiver": "desk",
+    "charger": "desk",
+    "door": "cabin"
+  },
+  "asset_format": {
+    "width": 1024,
+    "height": 768,
+    "seed": 835721
+  }
+}

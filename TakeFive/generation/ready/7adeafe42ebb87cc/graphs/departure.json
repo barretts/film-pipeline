@@ -1,0 +1,1208 @@
+{
+  "1": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "flux-2-klein-4b-fp8.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "2": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "flux2",
+      "device": "default"
+    }
+  },
+  "3": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "flux2-vae.safetensors"
+    }
+  },
+  "4": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-departure.png"
+    }
+  },
+  "5": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-employee.png"
+    }
+  },
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Tight eye-level head-and-shoulders portrait, cropped at the upper chest. A single real human man in a rust jacket over a cream shirt, standing still in three-quarter profile looking toward screen RIGHT at his manager. His head fills the central half of the frame and his shoulders reach the bottom corners. His face is calm and his lips are together. The blue glass-panel door immediately behind him is softly out of focus. This is the employee's dialogue close-up. A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. Use image one as the entire camera frame. Preserve its framing, eyelines, door position and subject sizes. The small detail references identify people and materials already in this scene.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "5",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "9": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "6",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "10": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "7",
+        0
+      ],
+      "latent": [
+        "8",
+        0
+      ]
+    }
+  },
+  "11": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7624
+    }
+  },
+  "12": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "13": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "14": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "15": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "9",
+        0
+      ],
+      "negative": [
+        "10",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "16": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "11",
+        0
+      ],
+      "guider": [
+        "15",
+        0
+      ],
+      "sampler": [
+        "12",
+        0
+      ],
+      "sigmas": [
+        "13",
+        0
+      ],
+      "latent_image": [
+        "14",
+        0
+      ]
+    }
+  },
+  "17": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "16",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "18": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "17",
+        0
+      ],
+      "filename_prefix": "looks/employee"
+    }
+  },
+  "19": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "17",
+        0
+      ],
+      "x": 284,
+      "y": 35,
+      "width": 261,
+      "height": 229
+    }
+  },
+  "20": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-manager.png"
+    }
+  },
+  "21": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A modest freight dispatch office with a wooden counter, teal wainscoting, a window with horizontal blinds and a painted street door with brass hardware. Outside is its adjoining warehouse sidewalk. The street door is blue. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Recreate the first reference as a live-action photograph. Match its camera angle, positions, gaze, doorway and wardrobe colors. Give figures realistic human faces, hands and body proportions. Additional references establish the cast and the location. Match their features, clothes and materials exactly.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "22": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "21",
+        0
+      ]
+    }
+  },
+  "23": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "20",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "24": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "21",
+        0
+      ],
+      "latent": [
+        "23",
+        0
+      ]
+    }
+  },
+  "25": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "22",
+        0
+      ],
+      "latent": [
+        "23",
+        0
+      ]
+    }
+  },
+  "26": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7625
+    }
+  },
+  "27": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "28": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "29": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "30": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "24",
+        0
+      ],
+      "negative": [
+        "25",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "31": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "26",
+        0
+      ],
+      "guider": [
+        "30",
+        0
+      ],
+      "sampler": [
+        "27",
+        0
+      ],
+      "sigmas": [
+        "28",
+        0
+      ],
+      "latent_image": [
+        "29",
+        0
+      ]
+    }
+  },
+  "32": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "31",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "33": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "32",
+        0
+      ],
+      "filename_prefix": "looks/manager"
+    }
+  },
+  "34": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "32",
+        0
+      ],
+      "x": 300,
+      "y": 39,
+      "width": 207,
+      "height": 203
+    }
+  },
+  "35": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "layout-arrival.png"
+    }
+  },
+  "36": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "17",
+        0
+      ],
+      "x": 284,
+      "y": 35,
+      "width": 261,
+      "height": 229
+    }
+  },
+  "37": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "32",
+        0
+      ],
+      "x": 300,
+      "y": 39,
+      "width": 207,
+      "height": 203
+    }
+  },
+  "38": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A single live-action photograph, a wide establishing shot from across the dispatch office. Exactly two people. At far left, one man in a rust work jacket and dark trousers is stepping in through an open blue street door, walking toward screen right, his full figure small in the frame. At far right one Black woman in a teal work shirt and round glasses sits behind her small wooden desk, watching him. A broad stretch of empty floor separates them. The door is on the LEFT wall. The desk, window blinds and seated woman occupy the RIGHT side. A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Use image one as the entire camera frame. Preserve its framing, eyelines, door position and subject sizes. The small detail references identify people and materials already in this scene.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "39": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "38",
+        0
+      ]
+    }
+  },
+  "40": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "35",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "41": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "38",
+        0
+      ],
+      "latent": [
+        "40",
+        0
+      ]
+    }
+  },
+  "42": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "39",
+        0
+      ],
+      "latent": [
+        "40",
+        0
+      ]
+    }
+  },
+  "43": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "36",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "44": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "41",
+        0
+      ],
+      "latent": [
+        "43",
+        0
+      ]
+    }
+  },
+  "45": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "42",
+        0
+      ],
+      "latent": [
+        "43",
+        0
+      ]
+    }
+  },
+  "46": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "37",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "47": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "44",
+        0
+      ],
+      "latent": [
+        "46",
+        0
+      ]
+    }
+  },
+  "48": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "45",
+        0
+      ],
+      "latent": [
+        "46",
+        0
+      ]
+    }
+  },
+  "49": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7626
+    }
+  },
+  "50": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "51": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "52": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "53": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "47",
+        0
+      ],
+      "negative": [
+        "48",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "54": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "49",
+        0
+      ],
+      "guider": [
+        "53",
+        0
+      ],
+      "sampler": [
+        "50",
+        0
+      ],
+      "sigmas": [
+        "51",
+        0
+      ],
+      "latent_image": [
+        "52",
+        0
+      ]
+    }
+  },
+  "55": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "54",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "56": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "55",
+        0
+      ],
+      "filename_prefix": "looks/arrival"
+    }
+  },
+  "57": {
+    "class_type": "ImageCrop",
+    "inputs": {
+      "image": [
+        "55",
+        0
+      ],
+      "x": 269,
+      "y": 22,
+      "width": 207,
+      "height": 95
+    }
+  },
+  "58": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A wide full-body two-shot from across the same office. Exactly two people, separated by open floor. One man in a rust work jacket stands in profile at center-left, two paces from the closed blue street door on the far LEFT wall. One Black woman with a teal shirt and round glasses stays seated behind her wooden desk on the far RIGHT, beneath a window with blinds. Each person has their own distinct position. The camera sees the floor, shoes, desk and walls. A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A man in his early thirties, medium-light skin, short side-parted dark brown hair, clean-shaven, work jacket over a cream collared shirt. The employee's outer garment is rust. A Black woman in her forties with short dark natural hair, round brass wire glasses and small gold earrings, wearing a collared work shirt. The manager's outer garment is teal. Use image one as the entire camera frame. Preserve its framing, eyelines, door position and subject sizes. The small detail references identify people and materials already in this scene.",
+      "clip": [
+        "2",
+        0
+      ]
+    }
+  },
+  "59": {
+    "class_type": "ConditioningZeroOut",
+    "inputs": {
+      "conditioning": [
+        "58",
+        0
+      ]
+    }
+  },
+  "60": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "4",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "61": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "58",
+        0
+      ],
+      "latent": [
+        "60",
+        0
+      ]
+    }
+  },
+  "62": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "59",
+        0
+      ],
+      "latent": [
+        "60",
+        0
+      ]
+    }
+  },
+  "63": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "19",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "64": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "61",
+        0
+      ],
+      "latent": [
+        "63",
+        0
+      ]
+    }
+  },
+  "65": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "62",
+        0
+      ],
+      "latent": [
+        "63",
+        0
+      ]
+    }
+  },
+  "66": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "34",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "67": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "64",
+        0
+      ],
+      "latent": [
+        "66",
+        0
+      ]
+    }
+  },
+  "68": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "65",
+        0
+      ],
+      "latent": [
+        "66",
+        0
+      ]
+    }
+  },
+  "69": {
+    "class_type": "VAEEncode",
+    "inputs": {
+      "pixels": [
+        "57",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "70": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "67",
+        0
+      ],
+      "latent": [
+        "69",
+        0
+      ]
+    }
+  },
+  "71": {
+    "class_type": "ReferenceLatent",
+    "inputs": {
+      "conditioning": [
+        "68",
+        0
+      ],
+      "latent": [
+        "69",
+        0
+      ]
+    }
+  },
+  "72": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 7627
+    }
+  },
+  "73": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler"
+    }
+  },
+  "74": {
+    "class_type": "Flux2Scheduler",
+    "inputs": {
+      "steps": 4,
+      "width": 768,
+      "height": 432
+    }
+  },
+  "75": {
+    "class_type": "EmptyFlux2LatentImage",
+    "inputs": {
+      "width": 768,
+      "height": 432,
+      "batch_size": 1
+    }
+  },
+  "76": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "1",
+        0
+      ],
+      "positive": [
+        "70",
+        0
+      ],
+      "negative": [
+        "71",
+        0
+      ],
+      "cfg": 1.0
+    }
+  },
+  "77": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "72",
+        0
+      ],
+      "guider": [
+        "76",
+        0
+      ],
+      "sampler": [
+        "73",
+        0
+      ],
+      "sigmas": [
+        "74",
+        0
+      ],
+      "latent_image": [
+        "75",
+        0
+      ]
+    }
+  },
+  "78": {
+    "class_type": "VAEDecode",
+    "inputs": {
+      "samples": [
+        "77",
+        0
+      ],
+      "vae": [
+        "3",
+        0
+      ]
+    }
+  },
+  "79": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "78",
+        0
+      ],
+      "filename_prefix": "looks/departure"
+    }
+  },
+  "80": {
+    "class_type": "CheckpointLoaderSimple",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "81": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "inputs": {
+      "text_encoder": "gemma_3_12B_it_fp8_scaled.safetensors",
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors",
+      "device": "default"
+    }
+  },
+  "82": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": [
+        "80",
+        0
+      ],
+      "lora_name": "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "83": {
+    "class_type": "GetICLoRAParameters",
+    "inputs": {
+      "iclora_model": [
+        "82",
+        0
+      ]
+    }
+  },
+  "84": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "A naturalistic live-action film in a working freight depot. Real adult human anatomy, natural skin texture, worn painted walls, practical daylight and restrained color. Observational eye-level cinematography. A wide view of the same office. The employee turns and walks through the street door. The manager remains seated behind her desk. Both are silent. The visible people are silent.",
+      "clip": [
+        "81",
+        0
+      ]
+    }
+  },
+  "85": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "text": "Cartoon rendering, plastic skin, rubber limbs, broken glasses or drifting faces.",
+      "clip": [
+        "81",
+        0
+      ]
+    }
+  },
+  "86": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "84",
+        0
+      ],
+      "negative": [
+        "85",
+        0
+      ],
+      "frame_rate": 24
+    }
+  },
+  "87": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 1024,
+      "height": 576,
+      "length": 121,
+      "batch_size": 1
+    }
+  },
+  "88": {
+    "class_type": "LTXVImgToVideoInplace",
+    "inputs": {
+      "vae": [
+        "80",
+        2
+      ],
+      "image": [
+        "78",
+        0
+      ],
+      "latent": [
+        "87",
+        0
+      ],
+      "strength": 1.0,
+      "bypass": false
+    }
+  },
+  "89": {
+    "class_type": "LoadVideo",
+    "inputs": {
+      "file": "edges-departure.mp4"
+    }
+  },
+  "90": {
+    "class_type": "GetVideoComponents",
+    "inputs": {
+      "video": [
+        "89",
+        0
+      ]
+    }
+  },
+  "91": {
+    "class_type": "LTXVAddGuide",
+    "inputs": {
+      "positive": [
+        "86",
+        0
+      ],
+      "negative": [
+        "86",
+        1
+      ],
+      "vae": [
+        "80",
+        2
+      ],
+      "latent": [
+        "88",
+        0
+      ],
+      "image": [
+        "90",
+        0
+      ],
+      "frame_idx": 0,
+      "strength": 0.65,
+      "iclora_parameters": [
+        "83",
+        0
+      ]
+    }
+  },
+  "92": {
+    "class_type": "LoadAudio",
+    "inputs": {
+      "audio": "voice-departure.wav"
+    }
+  },
+  "93": {
+    "class_type": "LTXVAudioVAELoader",
+    "inputs": {
+      "ckpt_name": "ltx-2.3-22b-distilled-fp8.safetensors"
+    }
+  },
+  "94": {
+    "class_type": "LTXVAudioVAEEncode",
+    "inputs": {
+      "audio": [
+        "92",
+        0
+      ],
+      "audio_vae": [
+        "93",
+        0
+      ]
+    }
+  },
+  "95": {
+    "class_type": "SolidMask",
+    "inputs": {
+      "value": 0.0,
+      "width": 64,
+      "height": 64
+    }
+  },
+  "96": {
+    "class_type": "SetLatentNoiseMask",
+    "inputs": {
+      "samples": [
+        "94",
+        0
+      ],
+      "mask": [
+        "95",
+        0
+      ]
+    }
+  },
+  "97": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "91",
+        2
+      ],
+      "audio_latent": [
+        "96",
+        0
+      ]
+    }
+  },
+  "98": {
+    "class_type": "KSampler",
+    "inputs": {
+      "model": [
+        "82",
+        0
+      ],
+      "seed": 7727,
+      "steps": 8,
+      "cfg": 1.0,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "linear_quadratic",
+      "positive": [
+        "91",
+        0
+      ],
+      "negative": [
+        "91",
+        1
+      ],
+      "latent_image": [
+        "97",
+        0
+      ],
+      "denoise": 1.0
+    }
+  },
+  "99": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "98",
+        0
+      ]
+    }
+  },
+  "100": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": [
+        "91",
+        0
+      ],
+      "negative": [
+        "91",
+        1
+      ],
+      "latent": [
+        "99",
+        0
+      ]
+    }
+  },
+  "101": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "100",
+        2
+      ],
+      "vae": [
+        "80",
+        2
+      ],
+      "tile_size": 384,
+      "overlap": 64,
+      "temporal_size": 32,
+      "temporal_overlap": 8
+    }
+  },
+  "102": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "101",
+        0
+      ],
+      "fps": 24
+    }
+  },
+  "103": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "102",
+        0
+      ],
+      "filename_prefix": "takes/departure",
+      "format": "mp4",
+      "format.codec": "auto"
+    }
+  }
+}
