@@ -68,5 +68,33 @@
     "sha256": "8321b35306dda546b025a6919b86064799335f55dba27093ae6f45d37ddacce6",
     "seed": 3558849287,
     "script_sha256": "09ef79232c4133791e62db8e7791eccdfa5c9a9bec51aea1beec5e79196efb1c"
+  },
+  "cabin_closed": {
+    "sha256": "5b0b7c89e7e583b81c13dc37f940ac6ab8e43dab7a55bff7ac0f13e2bb57dcac",
+    "seed": 1879875248,
+    "script_sha256": "4aa94a49771bc53f2e6a6d12619a5713d153ffb04be9718d8636b195d3aacca3",
+    "definition": {
+      "label": "Station interior, hatch sealed",
+      "parent": null,
+      "references": [
+        "cabin",
+        "door"
+      ],
+      "description": "One photographic interior view of the same empty radio room as the first reference. Close the exterior hatch fully. Fill the ENTIRE doorway opening on the left with the opaque blue-grey steel door leaf, flush inside its frame, horizontal silver latch engaged. An uninterrupted steel surface covers the threshold from top to floor. No daylight or snow around the door. The only snow visible is through the frosted window on the right. Keep the birch radio desk, practical lamp and room proportions from the first reference. Show one room, no panels, no people."
+    }
+  },
+  "cabin_sealed": {
+    "sha256": "8a0a457e09f11cbab8366e5ac0046a5e6e4e6eb4ee622bb45963f1972c97d60b",
+    "seed": 462673894,
+    "script_sha256": "21bf8e01bde4b6e10df7b537a258a38dc1ed8ee9bc535770930036c493de5d9a",
+    "definition": {
+      "label": "Radio room with fully latched door",
+      "parent": null,
+      "references": [
+        "door",
+        "workstation"
+      ],
+      "description": "Wide frontal photograph from inside an empty polar station. Left wall has a fully closed flush steel hatch: an opaque rectangular blue steel panel with latch, all four edges seated snugly in its steel jamb. Right wall has a birch radio desk, amber practical lamp, radio equipment and a frosted window. Continuous dry interior floor from left to right. Snow visible through window glass only. Single finished photographic room."
+    }
   }
 }

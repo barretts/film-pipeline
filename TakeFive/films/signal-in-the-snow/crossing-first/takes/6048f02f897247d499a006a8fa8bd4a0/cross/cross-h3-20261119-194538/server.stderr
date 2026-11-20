@@ -99,3 +99,4 @@ Import times for custom nodes:
 [32m[INFO][0m Model MiniMaxH3AudioVAE prepared for dynamic VRAM loading. 576MB Staged. 0 patches attached. Force pre-loaded 401 weights: 539 KB.
 [32m[INFO][0m Model MiniMaxH3VideoVAE prepared for dynamic VRAM loading. 4965MB Staged. 0 patches attached. Force pre-loaded 128 weights: 352 KB.
 [32m[INFO][0m [32mPrompt executed in 01:20:01[0m
+[32m[INFO][0m Using RAM pressure cache.

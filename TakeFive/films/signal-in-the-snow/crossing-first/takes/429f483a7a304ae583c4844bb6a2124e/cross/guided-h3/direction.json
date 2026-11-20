@@ -1,0 +1,9 @@
+{
+  "references": [
+    "james",
+    "kate",
+    "cabin_sealed"
+  ],
+  "prompt": "Create one continuous finished photographic shot in a restrained polar drama style. <Picture 1> is James: use his face, charcoal earflap hat, faded vermilion survival suit and boots. <Picture 2> is Kate: use her face, silver-streaked short hair, navy jacket and cream sweater; she is seated at the radio desk. <Picture 3> is the finished polar station interior, including its fully closed, latched hatch on the left and radio desk beneath the frosted window on the right. Preserve the room\u2019s practical warm lamp and cold blue fill.\n\n<Video 1> supplies the camera movement, screen positions, timing and blocking. Replace the tall orange marker with James and the shorter cyan marker with seated Kate; remove the markers and the guide\u2019s simplified geometry. Begin inside the room on James full-length at the closed hatch, with Kate and the desk outside the frame to the right. Three distinct taps sound from the base radio receiver. James crosses the room toward screen right with empty hands. The camera travels sideways with him, leaving space ahead of him while allowing him to move within the frame. The closed hatch slips off the left edge as the desk and Kate enter from the right. Kate turns toward James as he arrives beside her, and the shot ends with them together by the desk. The handheld radio remains upright in its charging cradle throughout. Keep the floor and interior walls filling the view throughout; snow is visible only through the window. Both people remain silent, with no speech or lip movement. No captions.",
+  "seed": 51773015869447
+}

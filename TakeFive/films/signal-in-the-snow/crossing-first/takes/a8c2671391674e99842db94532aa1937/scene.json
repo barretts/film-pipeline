@@ -1,0 +1,9 @@
+{
+  "status": "blocked",
+  "reason": "The supplied routing instructions require reading an expert\u2019s SKILL.md before answering, but the request prohibits tool use.",
+  "question": "May I use a file-reading tool to activate expert-engineer-peirce and then produce the shot JSON?",
+  "size": [
+    1024,
+    576
+  ]
+}

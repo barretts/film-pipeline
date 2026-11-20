@@ -41,7 +41,8 @@ def generate(script, selected, take, seed=None):
             if not snapshot.exists() or sha(snapshot) != lock.read_text().strip():
                 raise ValueError("Cannot verify the original asset specifications")
             original = json.loads(snapshot.read_text(encoding="utf-8-sig"))
-            if (original["assets"], original["style"]) != (assets, film["style"]):
+            if (original["style"] != film["style"] or
+                    any(assets.get(k) != v for k,v in original["assets"].items())):
                 raise ValueError("Asset definitions changed after generation")
             original_fmt = defaults | original.get("asset_format", {})
             if any(fmt[key] != original_fmt[key] for key in defaults):
@@ -56,6 +57,8 @@ def generate(script, selected, take, seed=None):
         manifest=job/"assets.json"
         records=json.loads(manifest.read_text()) if manifest.exists() else {}
         for name,rec in records.items():
+            if "definition" in rec and rec["definition"] != assets.get(name):
+                raise ValueError(f"Frozen asset definition changed: {name}")
             if sha(looks/(name+".png"))!=rec["sha256"]:
                 raise ValueError(f"Frozen image changed: {name}")
         keys=[selected] if selected else order
@@ -83,7 +86,7 @@ def generate(script, selected, take, seed=None):
                 path=looks/(key+".png")
                 with Image.open(path) as im:
                     im.verify()
-                records[key]=dict(sha256=sha(path),seed=recipe[key]["seed"],script_sha256=digest)
+                records[key]=dict(sha256=sha(path),seed=recipe[key]["seed"],script_sha256=digest,definition=assets[key])
             manifest.write_text(json.dumps(records,indent=2))
         ids=[k for k in assets if k in records]
         board=Image.new("RGB",(900,((len(ids)+2)//3)*250),"#16191c")

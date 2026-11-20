@@ -85,5 +85,21 @@
       "desk_lamp": "ca3ff806790ce53dd13007d142052184265ab89508775cd41652c15b13a51591",
       "chair": "65f99a325d3940b632c66f997e7873a5206e5a23c70224fd78286a9080c5921e"
     }
+  },
+  "cabin_closed": {
+    "key": "195bc909c29ca4cc3c456b3d7903f105248b50a42d123273a24a0b9fecd7dd03",
+    "sha256": "5b0b7c89e7e583b81c13dc37f940ac6ab8e43dab7a55bff7ac0f13e2bb57dcac",
+    "references": {
+      "cabin": "ec420f56be6b149a53f37143c690a586db45b26f8035fbfbe4512b794fd74a03",
+      "door": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa"
+    }
+  },
+  "cabin_sealed": {
+    "key": "db0475604318d016d4a726842f2c6fea84b682e98532a460cd5c2d84d5ed48e6",
+    "sha256": "8a0a457e09f11cbab8366e5ac0046a5e6e4e6eb4ee622bb45963f1972c97d60b",
+    "references": {
+      "door": "06e6c7635c75b2721890998ba94e07f6a6e47ec8d0445448874d98d2787f15aa",
+      "workstation": "8321b35306dda546b025a6919b86064799335f55dba27093ae6f45d37ddacce6"
+    }
   }
 }

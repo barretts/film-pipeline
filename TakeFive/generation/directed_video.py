@@ -1,5 +1,6 @@
 """Produce a guided H3 clip from a rendered take, its script and frozen assets."""
 import json
+from html import escape
 from pathlib import Path
 import secrets
 import shutil
@@ -53,6 +54,9 @@ the guide endpoints and the available asset board. Use the film as creative sour
     if (not isinstance(refs,list) or len(refs)>9 or len(set(refs))!=len(refs)
             or any(r not in film["assets"] for r in refs) or not result["prompt"].strip()):
         raise ValueError("Invalid H3 reference selection or prompt")
+    room = shot.get("room_reference")
+    if room and room not in refs:
+        raise ValueError(f"H3 direction must bind the shot's room_reference {room}")
     return result
 
 
@@ -108,6 +112,14 @@ def video(source, film, shot, target, model, prepare_only):
         graph, output = build_graph(plan,size,round(frames*24/film["fps"]))
         graph_file = job/"graph.json"
         graph_file.write_text(json.dumps(graph,indent=2))
+        pictures = [("First Blender frame","../first.png"),("Last Blender frame","../last.png")]
+        pictures.extend((f"Picture {i}: {key}",f"input/{key}.png")
+                        for i,key in enumerate(plan["references"],1))
+        figures = "".join(f'<figure><img src="{escape(path,quote=True)}" width="320">'
+                          f'<figcaption>{escape(label)}</figcaption></figure>' for label,path in pictures)
+        (job/"review.html").write_text('<!doctype html><meta charset="utf-8"><title>Shot inputs</title>'
+            '<style>main{display:flex;flex-wrap:wrap}figure{margin:8px}body{max-width:1100px;font:16px system-ui}'
+            'p{white-space:pre-wrap}</style><main>'+figures+'</main><p>'+escape(plan["prompt"])+'</p>',encoding="utf-8")
         if prepare_only:
             return graph_file
         rt = ROOT/"runtime"

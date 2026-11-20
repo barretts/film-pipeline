@@ -94,6 +94,18 @@
       ],
       "description": "Interior establishing photograph, camera looking across a cramped steel polar station radio room. Closed referenced hatch at back LEFT, referenced birch workbench at RIGHT beneath the referenced frosted window. Open walking aisle from hatch to desk, grounded floor, amber practical light and cold snow fill. Empty of people."
     },
+    "cabin_closed": {
+      "label": "Station interior, hatch sealed",
+      "parent": null,
+      "references": ["cabin", "door"],
+      "description": "One photographic interior view of the same empty radio room as the first reference. Close the exterior hatch fully. Fill the ENTIRE doorway opening on the left with the opaque blue-grey steel door leaf, flush inside its frame, horizontal silver latch engaged. An uninterrupted steel surface covers the threshold from top to floor. No daylight or snow around the door. The only snow visible is through the frosted window on the right. Keep the birch radio desk, practical lamp and room proportions from the first reference. Show one room, no panels, no people."
+    },
+    "cabin_sealed": {
+      "label": "Radio room with fully latched door",
+      "parent": null,
+      "references": ["door", "workstation"],
+      "description": "Wide frontal photograph from inside an empty polar station. Left wall has a fully closed flush steel hatch: an opaque rectangular blue steel panel with latch, all four edges seated snugly in its steel jamb. Right wall has a birch radio desk, amber practical lamp, radio equipment and a frosted window. Continuous dry interior floor from left to right. Snow visible through window glass only. Single finished photographic room."
+    },
     "workstation": {
       "label": "Dressed radio desk",
       "parent": "cabin",
@@ -119,6 +131,7 @@
   "shots": [
     {
       "id": "cross",
+      "room_reference": "cabin_sealed",
       "set": "interior",
       "action": "Three taps from the receiver. James crosses the room from the shut outer door. Kate turns toward him as he arrives. The handheld remains docked.",
       "sound": [
